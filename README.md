@@ -1,2 +1,2 @@
-# theInternal
-Tiny Doctor Big Dreams
+# the Internal
+*Tiny Doctor Big Dreams*
