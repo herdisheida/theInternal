@@ -85,6 +85,7 @@ public class AudioManager : MonoBehaviour
     }
 
 
+
     // Play a specific music clip (chosen from Inspector or passed in).
     // Example: AudioManager.instance.PlayMusic(AudioManager.instance.bossBattleMusic);
     public void PlayMusic(AudioClip clip)
@@ -113,6 +114,8 @@ public class AudioManager : MonoBehaviour
         if (sfxSource == null || clip == null) return;
         sfxSource.PlayOneShot(clip);
     }
+
+
 
 
 
