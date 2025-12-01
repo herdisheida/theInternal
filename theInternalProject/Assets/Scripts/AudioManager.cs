@@ -8,10 +8,16 @@ public class AudioManager : MonoBehaviour
     public AudioSource musicSource; // drag and drop AudioSource component in inspector (looping music)
     public AudioSource sfxSource; // drag and drop another AudioSource component in inspector
 
+
     [Header("Background Music Clips")]
     public AudioClip hospitalLobbyMusic;
     public AudioClip obstacleGameplayMusic;
     public AudioClip bossBattleMusic;
+
+    public AudioClip goodEndingMusic; // save all patients
+    public AudioClip badEndingMusic; // save no patients
+    public AudioClip partialEndingMusic; // save some patients but not all
+
 
     [Header("Sound Effect Clips")]
     // menu-related
