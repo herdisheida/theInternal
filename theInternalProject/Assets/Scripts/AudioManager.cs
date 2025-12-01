@@ -32,6 +32,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip shootPatientClip; // shoot infected patient
 
     // enemy-related
+    public AudioClip enemyAttackClip;
+    public AudioClip enemyDeathClip;
 
 
     void Awake()
@@ -90,4 +92,7 @@ public class AudioManager : MonoBehaviour
     public void dying()          => PlaySFX(dyingClip);
     public void attack()         => PlaySFX(attackClip);
     public void shootPatient()   => PlaySFX(shootPatientClip);
+
+    public void enemyAttack()    => PlaySFX(enemyAttackClip);
+    public void enemyDeath()     => PlaySFX(enemyDeathClip);
 }
