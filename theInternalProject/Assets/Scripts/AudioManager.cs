@@ -20,25 +20,24 @@ public class AudioManager : MonoBehaviour
     public AudioClip badEndingMusic;     // save no patients
     public AudioClip partialEndingMusic; // save some patients but not all
 
+
     [Header("Default Music")]
     public AudioClip defaultMusic; // optional default music clip -- when PlayMusic() with no arguments is called
     private AudioClip currentMusic; // to keep track of currently playing music
 
+
     [Header("Sound Effect Clips")]
-    // menu-related
-    public AudioClip buttonClickClip; // start, quit buttons
-
-    // ambient-related
-
     // player-related
     public AudioClip damageTakenClip;
     public AudioClip dyingClip;
     public AudioClip attackClip;        // medicine bullet shooting
     public AudioClip shootPatientClip;  // shoot infected patient
-
     // enemy-related
     public AudioClip enemyAttackClip;
     public AudioClip enemyDeathClip;
+    // menu-related
+    public AudioClip buttonClickClip; // start, quit buttons
+    // ambient-related
 
 
     void Awake()
@@ -59,7 +58,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        // PlayMusic();
+        PlayMusic(); 
     }
 
     void Update()
@@ -68,22 +67,46 @@ public class AudioManager : MonoBehaviour
     }
 
 
-    // public void PlayMusic()
-    // {
-    //     if (musicSource == null || backgroundMusic == null) return;
+    /// Play whatever is in currentMusic / defaultMusic.
+    public void PlayMusic()
+    {
+        if (musicSource == null) return;
 
-    //     if (musicSource.isPlaying) return; // don’t restart if already playing
+        // choose target clip: currentMusic > defaultMusic
+        AudioClip targetClip = currentMusic != null ? currentMusic : defaultMusic;
+        if (targetClip == null) return;
 
-    //     musicSource.clip = backgroundMusic;
-    //     musicSource.loop = true;
-    //     musicSource.Play();
-    // }
+        // if we’re already playing this exact clip, don’t restart it
+        if (musicSource.isPlaying && musicSource.clip == targetClip) return;
 
-    // public void StopMusic()
-    // {
-    //     if (musicSource != null)
-    //         musicSource.Stop();
-    // }
+        musicSource.clip = targetClip;
+        musicSource.loop = true;
+        musicSource.Play();
+    }
+
+
+    // Play a specific music clip (chosen from Inspector or passed in).
+    // Example: AudioManager.instance.PlayMusic(AudioManager.instance.bossBattleMusic);
+    public void PlayMusic(AudioClip clip)
+    {
+        if (musicSource == null || clip == null) return;
+
+        // if already playing the same clip, do nothing
+        if (musicSource.isPlaying && musicSource.clip == clip) return;
+
+        currentMusic = clip;
+        musicSource.clip = clip;
+        musicSource.loop = true;
+        musicSource.Play();
+    }
+
+    public void StopMusic()
+    {
+        if (musicSource != null)
+        {
+            musicSource.Stop();
+        }
+    }
 
     void PlaySFX(AudioClip clip)
     {
@@ -93,11 +116,17 @@ public class AudioManager : MonoBehaviour
 
 
 
-    // music helper methods
+    // helper methods for background music
+    public void PlayHospitalLobbyMusic()     => PlayMusic(hospitalLobbyMusic);
+    public void PlayObstacleGameplayMusic()  => PlayMusic(obstacleGameplayMusic);
+    public void PlayBossBattleMusic()        => PlayMusic(bossBattleMusic);
+
+    public void PlayGoodEndingMusic()        => PlayMusic(goodEndingMusic);
+    public void PlayBadEndingMusic()         => PlayMusic(badEndingMusic);
+    public void PlayPartialEndingMusic()     => PlayMusic(partialEndingMusic);
 
 
-
-    // sound effect helper methods
+    // helper methods for SFX
     public void buttonClick()    => PlaySFX(buttonClickClip);
     
     public void damageTaken()    => PlaySFX(damageTakenClip);
