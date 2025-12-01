@@ -21,11 +21,6 @@ public class AudioManager : MonoBehaviour
     public AudioClip partialEndingMusic; // save some patients but not all
 
 
-    [Header("Default Music")]
-    public AudioClip defaultMusic; // optional default music clip -- when PlayMusic() with no arguments is called
-    private AudioClip currentMusic; // to keep track of currently playing music
-
-
     [Header("Sound Effect Clips")]
     // player-related
     public AudioClip damageTakenClip;
@@ -53,37 +48,16 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        currentMusic = defaultMusic;
     }
 
     void Start()
     {
-        PlayMusic(); 
     }
 
     void Update()
     {
         
     }
-
-
-    /// Play whatever is in currentMusic / defaultMusic.
-    public void PlayMusic()
-    {
-        if (musicSource == null) return;
-
-        // choose target clip: currentMusic > defaultMusic
-        AudioClip targetClip = currentMusic != null ? currentMusic : defaultMusic;
-        if (targetClip == null) return;
-
-        // if we’re already playing this exact clip, don’t restart it
-        if (musicSource.isPlaying && musicSource.clip == targetClip) return;
-
-        musicSource.clip = targetClip;
-        musicSource.loop = true;
-        musicSource.Play();
-    }
-
 
 
     // Play a specific music clip (chosen from Inspector or passed in).
@@ -95,7 +69,6 @@ public class AudioManager : MonoBehaviour
         // if already playing the same clip, do nothing
         if (musicSource.isPlaying && musicSource.clip == clip) return;
 
-        currentMusic = clip;
         musicSource.clip = clip;
         musicSource.loop = true;
         musicSource.Play();
