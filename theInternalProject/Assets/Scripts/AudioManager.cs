@@ -4,6 +4,8 @@ using UnityEngine;
 // background music, sound effects, etc
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager instance;
+
     [Header("Sources")]
     public AudioSource musicSource; // drag and drop AudioSource component in inspector (looping music)
     public AudioSource sfxSource; // drag and drop another AudioSource component in inspector
