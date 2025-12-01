@@ -130,13 +130,13 @@ public class AudioManager : MonoBehaviour
 
 
     // helper methods for SFX
-    public void buttonClick()    => PlaySFX(buttonClickClip);
+    public void ButtonClick()    => PlaySFX(buttonClickClip);
     
-    public void damageTaken()    => PlaySFX(damageTakenClip);
-    public void dying()          => PlaySFX(dyingClip);
-    public void attack()         => PlaySFX(attackClip);
-    public void shootPatient()   => PlaySFX(shootPatientClip);
+    public void DamageTaken()    => PlaySFX(damageTakenClip);
+    public void Dying()          => PlaySFX(dyingClip);
+    public void Attack()         => PlaySFX(attackClip);
+    public void ShootPatient()   => PlaySFX(shootPatientClip);
 
-    public void enemyAttack()    => PlaySFX(enemyAttackClip);
-    public void enemyDeath()     => PlaySFX(enemyDeathClip);
+    public void EnemyAttack()    => PlaySFX(enemyAttackClip);
+    public void EnemyDeath()     => PlaySFX(enemyDeathClip);
 }
