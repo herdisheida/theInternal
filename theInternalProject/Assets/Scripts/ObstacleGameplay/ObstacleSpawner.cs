@@ -14,14 +14,11 @@ public class ObstacleSpawner : MonoBehaviour
 
     [Header("Tunnel Settings")]
     public GameObject tunnelPrefab;
-    public float tunnelY = 0f;               // vertical position of the tunnel
-    public float tunnelStopPos = -2f;          // where it stops on screen
-    public float tunnelSpawnDelayAfterEnd = 1.5f; // delay after last obstacle
+    public float tunnelY = 0f;                  // vertical position of the tunnel
+    public float tunnelStopPos = 4f;            // where it stops on screen
+    public float tunnelSpawnDelayAfterEnd = 2f; // delay after last obstacle
 
     [Header("Spawn Timer")]
-    // public float spawnDuration = 40f;        // how long obstacles should spawn
-    // private float elapsedTime = 0f;
-    // public bool stopWhenTimeIsUp = true;
     public float spawnDuration = 40f;        // how long obstacles should spawn
     private float elapsedTime = 0f;
     private bool spawningFinished = false;
