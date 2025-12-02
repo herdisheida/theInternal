@@ -121,51 +121,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     void SpawnScatterFormation()
     {
-        if (infectionPrefab == null) return;
-
-        GameObject group = CreateGroup("ScatterColumns"); // will move left via Scroller
-
-        int columnCount = Random.Range(scatterColumnCountMin, scatterColumnCountMax + 1);
-
-        for (int c = 0; c < columnCount; c++)
-        {
-            // columns are offset to the right of spawnPos so they form a small group off-screen
-            float xOffset = c * scatterColumnSpacing 
-                            + Random.Range(-scatterColumnJitter, scatterColumnJitter);
-
-            int infectionsInThisColumn = Random.Range(scatterPerColumnMin, scatterPerColumnMax + 1);
-
-            // keep track of Y values in this column so they don't sit on top of each other
-            System.Collections.Generic.List<float> usedY = new System.Collections.Generic.List<float>();
-
-            int safety = 0;
-            int maxTries = 50;
-
-            while (usedY.Count < infectionsInThisColumn && safety < maxTries)
-            {
-                safety++;
-
-                float y = scatterYCenter 
-                        + Random.Range(-scatterAreaHeight / 2f, scatterAreaHeight / 2f);
-
-                bool tooClose = false;
-                foreach (float existingY in usedY)
-                {
-                    if (Mathf.Abs(existingY - y) < scatterVerticalSpacingMin)
-                    {
-                        tooClose = true;
-                        break;
-                    }
-                }
-
-                if (tooClose) continue;
-
-                usedY.Add(y);
-
-                Vector3 pos = new Vector3(spawnPos + xOffset, y, 0f);
-                CreateInfection(pos, group.transform);
-            }
-        }
+        
     }
 
 
