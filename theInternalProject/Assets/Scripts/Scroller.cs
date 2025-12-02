@@ -3,7 +3,7 @@ using UnityEngine;
 public class Scroller : MonoBehaviour
 {
     public float moveSpeed = 5f;   // how fast obstacles move left
-    public float destroyPos = -15f;  // pos where we delete the obstacles
+    public float destroyPos = -20f;  // pos where we delete the obstacles
 
     void Start()
     {

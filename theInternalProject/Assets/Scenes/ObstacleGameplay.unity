@@ -149,18 +149,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleSpawner
   infectionPrefab: {fileID: 3341388141512193241, guid: 9b45f95e39d404c80a557b22f308da4a, type: 3}
-  spawnPos: 12
-  minSpawnDelay: 1.5
-  maxSpawnDelay: 3
+  spawnPos: 14
+  minSpawnDelay: 2
+  maxSpawnDelay: 4
   obstacleMoveSpeed: 5
   pipeGapHeight: 2
   pipeYMin: -1
   pipeYMax: 3
   pipeExtraSegments: 6
-  scatterMinCount: 4
-  scatterMaxCount: 10
   scatterAreaHeight: 7
   scatterYCenter: 0
+  scatterColumnCountMin: 2
+  scatterColumnCountMax: 4
+  scatterPerColumnMin: 2
+  scatterPerColumnMax: 6
+  scatterColumnSpacing: 4
+  scatterColumnJitter: 0
+  scatterVerticalSpacingMin: 3
   zigZagCount: 9
   zigZagVerticalStep: 1.5
 --- !u!4 &362788874

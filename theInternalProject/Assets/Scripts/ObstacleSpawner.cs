@@ -6,8 +6,8 @@ public class ObstacleSpawner : MonoBehaviour
 {
     [Header("General Settings")]
     public GameObject infectionPrefab;
-    public float spawnPos = 12f;          // pos where formations appear
-    public float minSpawnDelay = 1.5f;
+    public float spawnPos = 14f;          // pos where formations appear
+    public float minSpawnDelay = 2f;
     public float maxSpawnDelay = 3f;
     public float obstacleMoveSpeed = 5f;
 
@@ -17,15 +17,21 @@ public class ObstacleSpawner : MonoBehaviour
     public float pipeYMax = 3f;           // max center of the gap
     public int pipeExtraSegments = 6;     // how tall the pipe can extend above/below
 
-    [Header("Random Scatter Settings")]
-    public int scatterMinCount = 4;
-    public int scatterMaxCount = 10;
-    
-    public float scatterAreaHeight = 7f;   // vertical size of scatter
-    public float scatterYCenter = 0f;      // middle of scatter area
 
-    public float scatterLength = 12f;      // how far to spread along x-axis
-    public float scatterMinSpacing = 1.0f; // minimum distance between infections
+    [Header("Random Column Scatter Settings")]
+    public float scatterAreaHeight = 7f;     // total vertical range
+    public float scatterYCenter = 0f;        // center of the range
+
+    public int scatterColumnCountMin = 2;    // how many columns per formation (min)
+    public int scatterColumnCountMax = 4;    // how many columns per formation (max)
+
+    public int scatterPerColumnMin = 2;      // min infections in one column
+    public int scatterPerColumnMax = 6;      // max infections in one column
+
+    public float scatterColumnSpacing = 5f;    // distance between columns (horizontally)
+    public float scatterColumnJitter = 0f;     // little random offset on X for each column
+
+    public float scatterVerticalSpacingMin = 3f; // min distance between infections in same column
 
 
     [Header("ZigZag Settings")]
@@ -117,45 +123,51 @@ public class ObstacleSpawner : MonoBehaviour
     {
         if (infectionPrefab == null) return;
 
-        GameObject group = CreateGroup("ScatterFormation");
+        GameObject group = CreateGroup("ScatterColumns"); // will move left via Scroller
 
-        int count = Random.Range(scatterMinCount, scatterMaxCount + 1);
+        int columnCount = Random.Range(scatterColumnCountMin, scatterColumnCountMax + 1);
 
-        List<Vector2> usedPositions = new List<Vector2>();
-
-        int safety = 0;
-        int maxTries = 200;  // to avoid infinite loops
-
-        while (usedPositions.Count < count && safety < maxTries)
+        for (int c = 0; c < columnCount; c++)
         {
-            safety++;
+            // columns are offset to the right of spawnPos so they form a small group off-screen
+            float xOffset = c * scatterColumnSpacing 
+                            + Random.Range(-scatterColumnJitter, scatterColumnJitter);
 
-            // spread along X from spawnPos backwards (to the left)
-            float x = spawnPos - Random.Range(0f, scatterLength);
+            int infectionsInThisColumn = Random.Range(scatterPerColumnMin, scatterPerColumnMax + 1);
 
-            // random vertical position in the area
-            float y = scatterYCenter + Random.Range(-scatterAreaHeight / 2f, scatterAreaHeight / 2f);
+            // keep track of Y values in this column so they don't sit on top of each other
+            System.Collections.Generic.List<float> usedY = new System.Collections.Generic.List<float>();
 
-            Vector2 candidate = new Vector2(x, y);
+            int safety = 0;
+            int maxTries = 50;
 
-            // check distance to all previously placed infections
-            bool tooClose = false;
-            foreach (Vector2 pos in usedPositions)
+            while (usedY.Count < infectionsInThisColumn && safety < maxTries)
             {
-                if (Vector2.Distance(pos, candidate) < scatterMinSpacing)
+                safety++;
+
+                float y = scatterYCenter 
+                        + Random.Range(-scatterAreaHeight / 2f, scatterAreaHeight / 2f);
+
+                bool tooClose = false;
+                foreach (float existingY in usedY)
                 {
-                    tooClose = true;
-                    break;
+                    if (Mathf.Abs(existingY - y) < scatterVerticalSpacingMin)
+                    {
+                        tooClose = true;
+                        break;
+                    }
                 }
+
+                if (tooClose) continue;
+
+                usedY.Add(y);
+
+                Vector3 pos = new Vector3(spawnPos + xOffset, y, 0f);
+                CreateInfection(pos, group.transform);
             }
-
-            if (tooClose) continue; // try another point
-
-            // accept this position
-            usedPositions.Add(candidate);
-            CreateInfection(new Vector3(candidate.x, candidate.y, 0f), group.transform);
         }
     }
+
 
 
     void SpawnZigZagFormation()
