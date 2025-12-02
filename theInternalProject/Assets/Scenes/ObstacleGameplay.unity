@@ -151,7 +151,7 @@ MonoBehaviour:
   infectionPrefab: {fileID: 3341388141512193241, guid: 9b45f95e39d404c80a557b22f308da4a, type: 3}
   spawnPos: 14
   minSpawnDelay: 2
-  maxSpawnDelay: 4
+  maxSpawnDelay: 3
   obstacleMoveSpeed: 5
   pipeGapHeight: 2
   pipeYMin: -1
@@ -163,7 +163,7 @@ MonoBehaviour:
   scatterColumnCountMax: 4
   scatterPerColumnMin: 2
   scatterPerColumnMax: 6
-  scatterColumnSpacing: 4
+  scatterColumnSpacing: 5
   scatterColumnJitter: 0
   scatterVerticalSpacingMin: 3
   zigZagCount: 9
