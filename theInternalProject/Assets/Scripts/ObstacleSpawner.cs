@@ -117,15 +117,15 @@ public class ObstacleSpawner : MonoBehaviour
     {
         if (infectionPrefab == null) return;
 
-        GameObject group = CreateGroup("MultiGapTube");  // moves left with Scroller
+        GameObject group = CreateGroup("MultiGapTube");
 
-        // we use the sprite's height to stack them cleanly
+        // use the sprite's height to stack them cleanly
         float spriteHeight = infectionPrefab.GetComponent<SpriteRenderer>().bounds.size.y;
 
         int segments = Mathf.Max(1, tubeSegments);
         bool[] isGap = new bool[segments];
 
-        // how many gaps (holes) this tube will have (2–3)
+        // how many gaps (holes) this tube will have
         int gapsToPlace = Mathf.Clamp(Random.Range(minGapCount, maxGapCount + 1), 1, segments);
 
         int safety = 0;
