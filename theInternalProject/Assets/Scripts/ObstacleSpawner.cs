@@ -11,6 +11,7 @@ public class ObstacleSpawner : MonoBehaviour
     public float maxSpawnDelay = 3f;
     public float obstacleMoveSpeed = 5f;
 
+
     [Header("Pipe Settings")]
     public float pipeGapHeight = 2f;      // size of hole player can pass through
     public float pipeYMin = -1f;          // min center of the gap
@@ -18,20 +19,12 @@ public class ObstacleSpawner : MonoBehaviour
     public int pipeExtraSegments = 6;     // how tall the pipe can extend above/below
 
 
-    [Header("Random Column Scatter Settings")]
-    public float scatterAreaHeight = 7f;     // total vertical range
-    public float scatterYCenter = 0f;        // center of the range
-
-    public int scatterColumnCountMin = 2;    // how many columns per formation (min)
-    public int scatterColumnCountMax = 4;    // how many columns per formation (max)
-
-    public int scatterPerColumnMin = 2;      // min infections in one column
-    public int scatterPerColumnMax = 6;      // max infections in one column
-
-    public float scatterColumnSpacing = 5f;    // distance between columns (horizontally)
-    public float scatterColumnJitter = 0f;     // little random offset on X for each column
-
-    public float scatterVerticalSpacingMin = 3f; // min distance between infections in same column
+    [Header("Multi-Gap Tube Settings")]
+    public int tubeSegments = 7;          // how many infection sprites stacked from bottom to top
+    public float tubeBottomY = -5f;        // Y of the bottom segment
+    public int minGapCount = 2;            // minimum number of gaps (holes)
+    public int maxGapCount = 3;            // maximum number of gaps
+    public int gapSizeInSegments = 1;      // how tall each gap is (in sprite slots)
 
 
     [Header("ZigZag Settings")]
@@ -70,7 +63,7 @@ public class ObstacleSpawner : MonoBehaviour
                 SpawnPipeFormation();
                 break;
             case 1:
-                SpawnScatterFormation();
+                SpawnMultiGapWall();
                 break;
             case 2:
                 SpawnZigZagFormation();
@@ -119,9 +112,64 @@ public class ObstacleSpawner : MonoBehaviour
         }
     }
 
-    void SpawnScatterFormation()
+
+    void SpawnMultiGapWall()
     {
-        
+        if (infectionPrefab == null) return;
+
+        GameObject group = CreateGroup("MultiGapTube");  // moves left with Scroller
+
+        // we use the sprite's height to stack them cleanly
+        float spriteHeight = infectionPrefab.GetComponent<SpriteRenderer>().bounds.size.y;
+
+        int segments = Mathf.Max(1, tubeSegments);
+        bool[] isGap = new bool[segments];
+
+        // how many gaps (holes) this tube will have (2–3)
+        int gapsToPlace = Mathf.Clamp(Random.Range(minGapCount, maxGapCount + 1), 1, segments);
+
+        int safety = 0;
+        int maxAttempts = 50;
+
+        while (gapsToPlace > 0 && safety < maxAttempts)
+        {
+            safety++;
+
+            // choose a random segment index where the gap starts
+            int startIndex = Random.Range(0, segments - gapSizeInSegments);
+
+            // check if this range already overlaps another gap
+            bool overlap = false;
+            for (int i = startIndex; i < startIndex + gapSizeInSegments; i++)
+            {
+                if (isGap[i])
+                {
+                    overlap = true;
+                    break;
+                }
+            }
+
+            if (overlap) continue;
+
+            // mark this range as a gap
+            for (int i = startIndex; i < startIndex + gapSizeInSegments; i++)
+            {
+                isGap[i] = true;
+            }
+
+            gapsToPlace--;
+        }
+
+        // now build the tube: fill all non-gap segments with infections
+        for (int i = 0; i < segments; i++)
+        {
+            if (isGap[i]) continue; // leave the gap empty
+
+            float y = tubeBottomY + i * spriteHeight;
+            Vector3 pos = new Vector3(spawnPos, y, 0f);
+
+            CreateInfection(pos, group.transform);
+        }
     }
 
 
