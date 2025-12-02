@@ -4,12 +4,19 @@ using System.Collections.Generic;
 
 public class ObstacleSpawner : MonoBehaviour
 {
+
     [Header("General Settings")]
     public GameObject infectionPrefab;
     public float spawnPos = 14f;             // pos where formations appear
     public float minSpawnDelay = 2f;
     public float maxSpawnDelay = 3f;
     public float obstacleMoveSpeed = 5f;
+
+    [Header("Tunnel Settings")]
+    public GameObject tunnelPrefab;
+    public float tunnelY = 0f;               // vertical position of the tunnel
+    public float tunnelStopX = -2f;          // where it stops on screen
+    public float tunnelSpawnDelayAfterEnd = 1.5f; // delay after last obstacle
 
     [Header("Spawn Timer")]
     public float spawnDuration = 40f;        // how long obstacles should spawn
