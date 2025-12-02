@@ -6,18 +6,28 @@ public class ObstacleSpawner : MonoBehaviour
 {
     [Header("General Settings")]
     public GameObject infectionPrefab;
-    public float spawnPos = 14f;          // pos where formations appear
+    public float spawnPos = 14f;             // pos where formations appear
     public float minSpawnDelay = 2f;
     public float maxSpawnDelay = 3f;
     public float obstacleMoveSpeed = 5f;
 
+    [Header("Spawn Timer")]
+    public float spawnDuration = 40f;        // how long obstacles should spawn
+    private float elapsedTime = 0f;
+    public bool stopWhenTimeIsUp = true;
 
+    [Header("Speed Increase")]
+    public float speedIncreaseDelay = 10f;   // time before speed up starts
+    public float speedIncreaseRate = 0.5f;   // speed added every second (after delay)
+    public float maxSpeed = 12f;
+
+
+    //  ------ INFECTION FORMATIONS ------
     [Header("Pipe Settings")]
     public float pipeGapHeight = 2f;      // size of hole player can pass through
     public float pipeYMin = -1f;          // min center of the gap
     public float pipeYMax = 3f;           // max center of the gap
     public int pipeExtraSegments = 6;     // how tall the pipe can extend above/below
-
 
     [Header("Multi-Gap Tube Settings")]
     public int tubeSegments = 7;          // how many infection sprites stacked from bottom to top
@@ -25,7 +35,6 @@ public class ObstacleSpawner : MonoBehaviour
     public int minGapCount = 2;            // minimum number of gaps (holes)
     public int maxGapCount = 3;            // maximum number of gaps
     public int gapSizeInSegments = 1;      // how tall each gap is (in sprite slots)
-
 
     [Header("ZigZag Settings")]
     public int zigZagCount = 9;
@@ -40,6 +49,21 @@ public class ObstacleSpawner : MonoBehaviour
 
     void Update()
     {
+        // timer
+        elapsedTime += Time.deltaTime;
+
+        // stop spawning when time is up
+        if (stopWhenTimeIsUp && elapsedTime >= spawnDuration)
+            return;
+
+        // speed increase
+        if (elapsedTime >= speedIncreaseDelay)
+        {
+            obstacleMoveSpeed += speedIncreaseRate * Time.deltaTime;
+            obstacleMoveSpeed = Mathf.Min(obstacleMoveSpeed, maxSpeed);
+        }
+
+        // spawn logic
         _timeToNextSpawn -= Time.deltaTime;
         if (_timeToNextSpawn <= 0f)
         {

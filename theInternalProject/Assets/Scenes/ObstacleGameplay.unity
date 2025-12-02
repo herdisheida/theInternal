@@ -153,6 +153,11 @@ MonoBehaviour:
   minSpawnDelay: 2
   maxSpawnDelay: 3
   obstacleMoveSpeed: 5
+  spawnDuration: 50
+  stopWhenTimeIsUp: 1
+  speedIncreaseDelay: 10
+  speedIncreaseRate: 0.5
+  maxSpeed: 12
   pipeGapHeight: 2
   pipeYMin: -1
   pipeYMax: 3
