@@ -14,6 +14,9 @@ public class HealthSystem : MonoBehaviour
     {
         currentHealth -= amount;
 
+        // Trigger the red flash
+        GetComponent<DamageFlash>().Flash();
+
         if (currentHealth <= 0)
         {
             Die();

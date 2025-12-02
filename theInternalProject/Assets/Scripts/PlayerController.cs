@@ -28,4 +28,6 @@ public class PlayerController : MonoBehaviour
         Vector2 targetPosition = rb.position + moveSpeed * moveInput * Time.fixedDeltaTime;
         rb.MovePosition(targetPosition);
     }
+
+    
 }
