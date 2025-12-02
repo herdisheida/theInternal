@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BossShooting : MonoBehaviour
+public class BulletController : MonoBehaviour
 {
     public float speed = 6f;
     public float lifetime = 3f;
