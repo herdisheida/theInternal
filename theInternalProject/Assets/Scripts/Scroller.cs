@@ -3,7 +3,7 @@ using UnityEngine;
 public class Scroller : MonoBehaviour
 {
     public float moveSpeed = 5f;   // how fast obstacles move left
-    public float destroyX = -15f;  // pos where we delete the obstacles
+    public float destroyPos = -15f;  // pos where we delete the obstacles
 
     void Start()
     {
@@ -14,7 +14,7 @@ public class Scroller : MonoBehaviour
     {
         transform.position += Vector3.left * moveSpeed * Time.deltaTime;
 
-        if (transform.position.x < destroyX)
+        if (transform.position.x < destroyPos)
         {
             Destroy(gameObject);
         }
