@@ -15,13 +15,18 @@ public class ObstacleSpawner : MonoBehaviour
     [Header("Tunnel Settings")]
     public GameObject tunnelPrefab;
     public float tunnelY = 0f;               // vertical position of the tunnel
-    public float tunnelStopX = -2f;          // where it stops on screen
+    public float tunnelStopPos = -2f;          // where it stops on screen
     public float tunnelSpawnDelayAfterEnd = 1.5f; // delay after last obstacle
 
     [Header("Spawn Timer")]
+    // public float spawnDuration = 40f;        // how long obstacles should spawn
+    // private float elapsedTime = 0f;
+    // public bool stopWhenTimeIsUp = true;
     public float spawnDuration = 40f;        // how long obstacles should spawn
     private float elapsedTime = 0f;
-    public bool stopWhenTimeIsUp = true;
+    private bool spawningFinished = false;
+    private bool tunnelSpawned = false;
+    private float timeSinceSpawningStopped = 0f;
 
     [Header("Speed Increase")]
     public float speedIncreaseDelay = 10f;   // time before speed up starts
@@ -60,8 +65,11 @@ public class ObstacleSpawner : MonoBehaviour
         elapsedTime += Time.deltaTime;
 
         // stop spawning when time is up
-        if (stopWhenTimeIsUp && elapsedTime >= spawnDuration)
-            return;
+        if (!spawningFinished && elapsedTime >= spawnDuration)
+        {
+            spawningFinished = true;
+            timeSinceSpawningStopped = 0f;
+        }
 
         // speed increase
         if (elapsedTime >= speedIncreaseDelay)
@@ -71,11 +79,26 @@ public class ObstacleSpawner : MonoBehaviour
         }
 
         // spawn logic
-        _timeToNextSpawn -= Time.deltaTime;
-        if (_timeToNextSpawn <= 0f)
+        if (!spawningFinished)
         {
-            SpawnRandomFormation();
-            ScheduleNextSpawn();
+            _timeToNextSpawn -= Time.deltaTime;
+            if (_timeToNextSpawn <= 0f)
+            {
+                SpawnRandomFormation();
+                ScheduleNextSpawn();
+            }
+        } else
+        {
+            // after spawning obstacles finsihes, spawn the tunnel
+            if (!tunnelSpawned)
+            {
+                timeSinceSpawningStopped += Time.deltaTime;
+                if (timeSinceSpawningStopped >= tunnelSpawnDelayAfterEnd)
+                {
+                    SpawnTunnel();
+                    tunnelSpawned = true;
+                }
+            }
         }
     }
 
@@ -102,7 +125,7 @@ public class ObstacleSpawner : MonoBehaviour
         }
     }
 
-    // --------  Helper: create parent + add Scroller  --------
+    // -------- create parent and add Scroller  --------
     GameObject CreateGroup(string name)
     {
         GameObject group = new GameObject(name);
@@ -114,6 +137,7 @@ public class ObstacleSpawner : MonoBehaviour
         return group;
     }
 
+    // ------ spawning obstacles ------
     void SpawnPipeFormation()
     {
         if (infectionPrefab == null) return;
@@ -227,5 +251,29 @@ public class ObstacleSpawner : MonoBehaviour
     void CreateInfection(Vector3 position, Transform parent)
     {
         Instantiate(infectionPrefab, position, Quaternion.identity, parent);
+    }
+
+
+
+
+    // ------ spawn the tunnel at the end ------
+    void SpawnTunnel()
+    {
+        if (tunnelPrefab == null)
+        {
+            Debug.LogWarning("ObstacleSpawner: tunnelPrefab is not assigned!");
+            return;
+        }
+
+        Vector3 pos = new Vector3(spawnPos, tunnelY, 0f);
+        GameObject tunnel = Instantiate(tunnelPrefab, pos, Quaternion.identity);
+
+        // set tunnel movement speed & stop position
+        TunnelMover mover = tunnel.GetComponent<TunnelMover>();
+        if (mover != null)
+        {
+            mover.moveSpeed = obstacleMoveSpeed; // same as obstacles
+            mover.stopPos = tunnelStopPos;
+        }
     }
 }

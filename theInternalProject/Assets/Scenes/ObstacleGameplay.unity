@@ -210,8 +210,11 @@ MonoBehaviour:
   minSpawnDelay: 2
   maxSpawnDelay: 3
   obstacleMoveSpeed: 5
+  tunnelPrefab: {fileID: 2822540653660913477, guid: a024fdb334ff245cd8ea4b9951814c14, type: 3}
+  tunnelY: 0
+  tunnelStopPos: -2
+  tunnelSpawnDelayAfterEnd: 1.5
   spawnDuration: 50
-  stopWhenTimeIsUp: 1
   speedIncreaseDelay: 10
   speedIncreaseRate: 0.5
   maxSpeed: 12

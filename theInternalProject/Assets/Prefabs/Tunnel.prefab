@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7505513648505753138}
   - component: {fileID: 1236059075868673399}
   - component: {fileID: 1552815100866936838}
+  - component: {fileID: 2675466345754182303}
   m_Layer: 0
   m_Name: Tunnel
   m_TagString: Tunnel
@@ -151,3 +152,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TunnelPortal
   sceneToLoad: BossBattle
+--- !u!114 &2675466345754182303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2822540653660913477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43c1de2abcd834bb599ee7ce772ac2c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TunnelMover
+  moveSpeed: 5
+  stopPos: 0
