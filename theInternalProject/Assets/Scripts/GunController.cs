@@ -51,7 +51,7 @@ public class GunController : MonoBehaviour
         );
         currentBullets--;
         // Avoid compile-time dependency on BulletController; call SetDirection at runtime instead.
-        bullet.SendMessage("SetDirection", firePoint.right, SendMessageOptions.DontRequireReceiver);   
+        // bullet.SendMessage("SetDirection", firePoint.right, SendMessageOptions.DontRequireReceiver);   
 
         isLeftFirePoint = !isLeftFirePoint;
     }
