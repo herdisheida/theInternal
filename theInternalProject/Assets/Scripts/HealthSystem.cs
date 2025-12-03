@@ -16,15 +16,29 @@ public class HealthSystem : MonoBehaviour
     public TextMeshProUGUI healthText;       // UI text (e.g. on screen)
     public TextMeshPro healthWorldText;      // World-space text above player
 
+    [Header("Invincibility framees")]
+
+    public float invincibilityPeriod = 0.9f;
+    public float preBlinkDelay = 0.1f; // To show Damage Flash
+    private bool isInvincible = false;
+    public float blinkInterval = 0.1f;
+    private SpriteRenderer[] spriteRenderers;
+
+
     void Start()
     {
         currentHealth = maxHealth;
         UpdateAllHealthDisplays();
+
+        // Cache all sprites on load for better perfomance
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
     }
 
     // Called when the player takes damage
     public void TakeDamage(int amount)
     {
+        if (isInvincible) return; // no damage if invincible
+
         currentHealth -= amount;
         currentHealth = Mathf.Max(0, currentHealth); // prevent negative health
 
@@ -39,8 +53,49 @@ public class HealthSystem : MonoBehaviour
         {
             Die();
         }
+        else
+        {
+            StartCoroutine(InvincibilityCoroutine());
+        }
     }
 
+    System.Collections.IEnumerator InvincibilityCoroutine()
+    {
+        isInvincible = true;
+
+        if (preBlinkDelay > 0f)
+        {
+            yield return new WaitForSeconds(preBlinkDelay);
+        }
+        float elapsed = 0f;
+        bool visible = true;
+
+        while (elapsed < invincibilityPeriod)
+        {
+            visible = !visible;
+
+            foreach(var sr in spriteRenderers)
+            {
+                if (sr != null)
+                {
+                    sr.enabled = visible;
+                }
+            }
+
+            yield return new WaitForSeconds(blinkInterval);
+            elapsed += blinkInterval;
+        }
+        foreach(var sr in spriteRenderers)
+        {
+            if (sr != null)
+            {
+                sr.enabled = true;
+            }
+        }
+
+        isInvincible = false;
+
+    }
     void Update()
     {
         UpdateHealthBar();

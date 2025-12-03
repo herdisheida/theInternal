@@ -192,6 +192,10 @@ PrefabInstance:
       propertyPath: movementBounds
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4315159835419543337, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4729519753121233426, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: m_Name
       value: PlayerCharacter
