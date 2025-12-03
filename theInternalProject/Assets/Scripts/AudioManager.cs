@@ -24,7 +24,7 @@ public class AudioManager : MonoBehaviour
     [Header("Sound Effect Clips")]
     // menu-related
     public AudioClip buttonClickClip; // start, quit buttons
-    
+
     // player-related
     public AudioClip damageTakenClip;
     public AudioClip dyingClip;
@@ -92,6 +92,7 @@ public class AudioManager : MonoBehaviour
     void PlaySFX(AudioClip clip)
     {
         if (sfxSource == null || clip == null) return;
+        if (!sfxSource.isActiveAndEnabled) return; // prevents errors if AudioSource is disabled
         sfxSource.PlayOneShot(clip);
     }
 

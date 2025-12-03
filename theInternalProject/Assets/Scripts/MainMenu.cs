@@ -18,7 +18,10 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        // load the next scene
+        // play button click sound
+        AudioManager.instance?.ButtonClick();
+
+        // then load the next scene
         if (!string.IsNullOrEmpty(sceneToLoadOnStart))
         {
             SceneManager.LoadScene(sceneToLoadOnStart);
