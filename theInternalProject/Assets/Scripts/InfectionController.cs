@@ -3,6 +3,8 @@ using UnityEngine;
 // Infection mechanics in Obsticle Gameplay
 public class InfectionController : MonoBehaviour
 {
+    [SerializeField] private int damagePlayerAmount = 20; // how much health to remove per hit
+
     void Start()
     {
         
@@ -11,5 +13,17 @@ public class InfectionController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            HealthSystem hs = other.GetComponent<HealthSystem>();
+            if (hs != null)
+            {
+                hs.TakeDamage(damagePlayerAmount);
+            }
+        }
     }
 }
