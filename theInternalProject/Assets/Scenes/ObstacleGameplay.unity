@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!61 &17990093 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7507139623795160318, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
+  m_PrefabInstance: {fileID: 1886781210}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &214830371
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -172,9 +177,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3409462471403445576, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
+      propertyPath: padding
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409462471403445576, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: topBorder
       value: 
-      objectReference: {fileID: 1886781213}
+      objectReference: {fileID: 17990093}
     - target: {fileID: 3409462471403445576, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: bottomBorder
       value: 
@@ -470,11 +479,6 @@ PrefabInstance:
 --- !u!61 &1886781212 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 422553559509716480, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
-  m_PrefabInstance: {fileID: 1886781210}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &1886781213 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 7507139623795160318, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
   m_PrefabInstance: {fileID: 1886781210}
   m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
