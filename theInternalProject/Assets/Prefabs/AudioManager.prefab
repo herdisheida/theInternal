@@ -62,7 +62,7 @@ MonoBehaviour:
   deepExhaleClip: {fileID: 8300000, guid: 513b4a4ab1ffc4cd38598a2256fed6e1, type: 3}
   enemyAttackClip: {fileID: 0}
   enemyDeathClip: {fileID: 0}
-  buttonClickClip: {fileID: 0}
+  buttonClickClip: {fileID: 8300000, guid: ccac5e46673c84b52b31fc7ea8014b8f, type: 3}
 --- !u!82 &5469112575120005823
 AudioSource:
   m_ObjectHideFlags: 0
