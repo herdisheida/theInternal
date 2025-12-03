@@ -33,7 +33,7 @@ public class GunShakeController : MonoBehaviour
     public Color maxRedTint = new Color(1f, 0.2f, 0.2f, 1f); // target colour at end
 
     [Header("Fade & Scene")]
-    public float blackHoldDuration = 10f;
+    public float blackHoldDuration = 9f;
     public string nextSceneName = "PatientSelection";
 
 
@@ -134,7 +134,9 @@ public class GunShakeController : MonoBehaviour
     {
         hasShot = true;
     
-        // sound effect
+        // stop heavy breathing audio
+        AudioManager.instance?.StopSFX();
+        // play shoot patient audio
         AudioManager.instance?.ShootPatient();
 
         // flash shooting sprite

@@ -625,7 +625,7 @@ MonoBehaviour:
   minRotation: 1
   maxRotation: 6
   maxRedTint: {r: 1, g: 0.2, b: 0.2, a: 1}
-  blackHoldDuration: 10
+  blackHoldDuration: 9
   nextSceneName: PatientSelection
 --- !u!1 &1648003153
 GameObject:
