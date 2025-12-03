@@ -195,6 +195,9 @@ MonoBehaviour:
   smoothSpeed: 10
   healthText: {fileID: 0}
   healthWorldText: {fileID: 0}
+  invincibilityPeriod: 0.9
+  preBlinkDelay: 0.1
+  blinkInterval: 0.1
 --- !u!114 &1235428796783345502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,11 +253,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2864012558004865179, guid: da78b5674a20044af9adeceeb391299a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.039
+      value: -0.131
       objectReference: {fileID: 0}
     - target: {fileID: 2864012558004865179, guid: da78b5674a20044af9adeceeb391299a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.016
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3035940581038775235, guid: da78b5674a20044af9adeceeb391299a, type: 3}
       propertyPath: m_Name

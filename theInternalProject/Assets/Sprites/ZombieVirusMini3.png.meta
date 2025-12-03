@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d0fd834afcf72411a8b46f7755d780bb
+guid: 8ad27aed1883344c898fb8d720b25a10
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3593222769044295800
-    second: PillsForShip_0
+      213: -5367624995132680702
+    second: ZombieVirusMini3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PillsForShip_0
+      name: ZombieVirusMini3_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 6
-        height: 4
+        y: 3
+        width: 64
+        height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8701bbb1211bdd130800000000000000
-      internalID: 3593222769044295800
+      spriteID: 206db9d718d5285b0800000000000000
+      internalID: -5367624995132680702
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      PillsForShip_0: 3593222769044295800
+      ZombieVirusMini3_0: -5367624995132680702
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
