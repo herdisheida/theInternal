@@ -33,7 +33,7 @@ public class GunShakeController : MonoBehaviour
     public Color maxRedTint = new Color(1f, 0.2f, 0.2f, 1f); // target colour at end
 
     [Header("Fade & Scene")]
-    public float blackHoldDuration = 9f;
+    public float blackHoldDuration = 7f;
     public string nextSceneName = "PatientSelection";
 
 
