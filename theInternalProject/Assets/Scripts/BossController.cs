@@ -3,6 +3,8 @@ using System.Collections;
 
 public class BossController : MonoBehaviour
 {
+    public Transform player;
+
     [Header("Movement")]
     public float moveSpeed = 2f;
     public float moveDistance = 3f;
@@ -14,12 +16,12 @@ public class BossController : MonoBehaviour
     public int maxHealth = 10;
     private int currentHealth;
 
-    public Transform healthBarFill;   // the green bar (Fill object)
-    public GameObject healthBarRoot;  // the entire HealthBar object in hierarchy
+    public Transform healthBarFill;
+    public GameObject healthBarRoot;
 
     [Header("Shooting")]
-    public Transform firePoint;       
-    public GameObject bulletPrefab;   
+    public Transform firePoint;
+    public GameObject bulletPrefab;
 
     public int bulletsPerBurst = 3;
     public float timeBetweenShots = 0.3f;
@@ -29,10 +31,21 @@ public class BossController : MonoBehaviour
     [Header("Health Bar Smoothness")]
     public float smoothSpeed = 10f;
 
+    [Header("Bite Attack Settings")]
+    public GameObject biteHitbox;
+    public float lungeDistance = 0.5f;
+    public float lungeSpeed = 10f;
+    public float biteCooldown = 2f;
+    public float biteActiveTime = 0.15f;
+    private bool canBite = true;
+    private bool isBiting = false;
+
     void Start()
     {
         startPos = transform.position;
         currentHealth = maxHealth;
+
+        biteHitbox.SetActive(false); // important
     }
 
     void Update()
@@ -40,13 +53,19 @@ public class BossController : MonoBehaviour
         MoveBoss();
         UpdateHealthBar();
 
-        if (!isBursting)
+        if (!isBursting && !isBiting)
         {
             StartCoroutine(ShootBurst());
         }
+
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+        if (distanceToPlayer < 7f && canBite)
+        {
+            StartCoroutine(BiteAttackRoutine());
+        }
     }
 
-    // Movement
     void MoveBoss()
     {
         movementTime += Time.deltaTime * moveSpeed;
@@ -59,7 +78,6 @@ public class BossController : MonoBehaviour
         );
     }
 
-    // Burst Shooting
     IEnumerator ShootBurst()
     {
         isBursting = true;
@@ -79,12 +97,9 @@ public class BossController : MonoBehaviour
         Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
     }
 
-    // Health
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
-
-        // flash red when hit
         GetComponent<DamageFlash>().Flash();
 
         if (currentHealth <= 0)
@@ -98,13 +113,48 @@ public class BossController : MonoBehaviour
         }
     }
 
+    IEnumerator BiteAttackRoutine()
+    {
+        canBite = false;
+        isBiting = true;
+
+        Vector3 originalPos = transform.position;
+
+        // Determine direction
+        float direction = player.position.x < transform.position.x ? -1f : 1f;
+
+        Vector3 bitePos = originalPos + new Vector3(direction * lungeDistance, 0, 0);
+
+        float t = 0;
+        while (t < 1)
+        {
+            t += Time.deltaTime * lungeSpeed;
+            transform.position = Vector3.Lerp(originalPos, bitePos, t);
+            yield return null;
+        }
+
+        biteHitbox.SetActive(true);
+        yield return new WaitForSeconds(biteActiveTime);
+        biteHitbox.SetActive(false);
+
+        t = 0;
+        while (t < 1)
+        {
+            t += Time.deltaTime * lungeSpeed;
+            transform.position = Vector3.Lerp(bitePos, originalPos, t);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(biteCooldown);
+        isBiting = false;
+        canBite = true;
+    }
+
     void UpdateHealthBar()
     {
         float targetRatio = (float)currentHealth / maxHealth;
 
-        float currentX = healthBarFill.localScale.x;
-        float newX = Mathf.Lerp(currentX, targetRatio, Time.deltaTime * smoothSpeed);
-
+        float newX = Mathf.Lerp(healthBarFill.localScale.x, targetRatio, Time.deltaTime * smoothSpeed);
         healthBarFill.localScale = new Vector3(newX, 1f, 1f);
     }
 
