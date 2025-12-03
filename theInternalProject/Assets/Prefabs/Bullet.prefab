@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7704536446878021327}
   - component: {fileID: 6424116110146476392}
   - component: {fileID: 2150188853541386452}
-  - component: {fileID: 4993946906446086960}
+  - component: {fileID: -7331875625933129102}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.044765186, y: 0.044765186, z: 0.44765186}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -154,9 +154,9 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.1
---- !u!114 &4993946906446086960
+  m_Offset: {x: 0, y: -0.09761132}
+  m_Radius: 2.5402813
+--- !u!114 &-7331875625933129102
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,8 +165,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1262311614346054073}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab5c363439cee4992a979d37e5768800, type: 3}
+  m_Script: {fileID: 11500000, guid: cefdfd5405f43224289f0db3971a904f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  speed: 6
-  lifetime: 3
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerBullet
+  damage: 1
+  speed: 7
+  lifetime: 2
