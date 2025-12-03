@@ -112,8 +112,9 @@ public class GunShakeController : MonoBehaviour
             backgroundImage.color = Color.Lerp(bgOriginalColor, maxRedTint, tintAmount);
         }
 
-        // if shoot (press space) OR time up
-        if (!hasShot && Input.GetKeyDown(KeyCode.Space) || elapsed >= totalDuration)
+
+        // if player shoots (space bar) OR time runs out =>>> shoot patient
+        if (!hasShot && (Input.GetKeyDown(KeyCode.Space) || elapsed >= totalDuration))
         {
             StartCoroutine(HandleShotSequence());
         }
@@ -126,7 +127,7 @@ public class GunShakeController : MonoBehaviour
         hasShot = false;
 
         // start heavy breathing audio
-        AudioManager.instance.HeavyBreathing();
+        AudioManager.instance?.HeavyBreathing();
     }
 
     IEnumerator HandleShotSequence()
@@ -134,7 +135,7 @@ public class GunShakeController : MonoBehaviour
         hasShot = true;
     
         // sound effect
-        AudioManager.instance.ShootPatient();
+        AudioManager.instance?.ShootPatient();
 
         // flash shooting sprite
         if (gunImage != null && shootGunSprite != null)
@@ -146,8 +147,8 @@ public class GunShakeController : MonoBehaviour
 
         EndShake();
 
-        // fade to black + exhale + change scene
-        yield return StartCoroutine(FadeAndGoToNextScene());
+        // instantly go black + exhale + change scene
+        yield return StartCoroutine(BlackScreenAndGoToNextScene());
     }
 
     void EndShake()
@@ -167,24 +168,21 @@ public class GunShakeController : MonoBehaviour
             backgroundTransform.anchoredPosition = bgOriginalPos;
         if (backgroundImage != null)
             backgroundImage.color = bgOriginalColor;
-
-        // stop breathing sound
-        AudioManager.instance.HeavyBreathing();
     }
 
 
-    IEnumerator FadeAndGoToNextScene()
+    IEnumerator BlackScreenAndGoToNextScene()
     {
         // instantly turn screen black
         if (fadeImage != null)
         {
             Color c = fadeImage.color;
-            c.a = 1f;                   // fully opaque black
+            c.a = 1f; // fully opaque black
             fadeImage.color = c;
         }
 
-        // Play exhale sound after the shot
-        AudioManager.instance.DeepExhale();
+        // play exhale sound after the shot
+        AudioManager.instance?.DeepExhale();
 
         // Short pause to let the exhale play
         yield return new WaitForSeconds(blackHoldDuration);
