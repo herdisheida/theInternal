@@ -21,7 +21,6 @@ public class MainMenu : MonoBehaviour
         // load the next scene
         if (!string.IsNullOrEmpty(sceneToLoadOnStart))
         {
-            Debug.Log("Start Game");
             SceneManager.LoadScene(sceneToLoadOnStart);
         }
         else
@@ -32,7 +31,6 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("Quit Game");
         Application.Quit();
     }
 
