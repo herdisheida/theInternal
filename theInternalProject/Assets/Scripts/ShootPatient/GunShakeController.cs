@@ -20,7 +20,7 @@ public class GunShakeController : MonoBehaviour
     public float shootFlashDuration = 0.1f;
 
     [Header("Shake Settings")]
-    public float totalDuration = 10f;                // how long the player has to shoot
+    public float totalDuration = 7f;                // how long the player has to shoot
     public float minShakeAmount = 2f;               // starting shake
     public float maxShakeAmount = 15f;              // shake near the end
     public float backgroundShakeMultiplier = 0.4f;  // background shakes less
@@ -33,7 +33,7 @@ public class GunShakeController : MonoBehaviour
     public Color maxRedTint = new Color(1f, 0.2f, 0.2f, 1f); // target colour at end
 
     [Header("Fade & Scene")]
-    public float blackHoldDuration = 7f;
+    public float blackHoldDuration = 4f;
     public string nextSceneName = "PatientSelection";
 
 
@@ -108,7 +108,7 @@ public class GunShakeController : MonoBehaviour
         // tint background red over time
         if (backgroundImage != null)
         {
-            float tintAmount = t * t;
+            float tintAmount = Mathf.Clamp01(t * 2f);
             backgroundImage.color = Color.Lerp(bgOriginalColor, maxRedTint, tintAmount);
         }
 
