@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
+
     public int damage = 1;
     public float speed = 15f;
     public float lifetime = 2f;

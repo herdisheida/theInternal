@@ -58,22 +58,26 @@ public class HealthSystem : MonoBehaviour
             StartCoroutine(InvincibilityCoroutine());
         }
     }
-
+    
+    // about 1 seconds of iframes
     System.Collections.IEnumerator InvincibilityCoroutine()
     {
         isInvincible = true;
 
         if (preBlinkDelay > 0f)
         {
+            // so damage flash can be shown
             yield return new WaitForSeconds(preBlinkDelay);
         }
         float elapsed = 0f;
         bool visible = true;
 
         while (elapsed < invincibilityPeriod)
-        {
+        {   
+            //Toggle visibility on and off
             visible = !visible;
 
+            // For all sprites connected to main character
             foreach(var sr in spriteRenderers)
             {
                 if (sr != null)
@@ -93,6 +97,7 @@ public class HealthSystem : MonoBehaviour
             }
         }
 
+        // Can get hurt again
         isInvincible = false;
 
     }
