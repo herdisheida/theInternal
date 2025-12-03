@@ -93,11 +93,18 @@ public class AudioManager : MonoBehaviour
         sfxSource.PlayOneShot(clip);
     }
 
+    void StopSFX()
+    {
+        if (sfxSource != null)
+        {
+            sfxSource.Stop();
+        }
+    }
 
 
 
 
-    // helper methods for background music
+    // helper methods for playing background music
     // Example: AudioManager.instance?.PlayHospitalLobbyMusic();
     public void PlayHospitalLobbyMusic()     => PlayMusic(hospitalLobbyMusic);
     public void PlayObstacleGameplayMusic()  => PlayMusic(obstacleGameplayMusic);
