@@ -57,7 +57,7 @@ MonoBehaviour:
   damageTakenClip: {fileID: 0}
   dyingClip: {fileID: 0}
   attackClip: {fileID: 0}
-  shootPatientClip: {fileID: 8300000, guid: 30fed790464da477db27922dfb25ae51, type: 3}
+  shootPatientClip: {fileID: 8300000, guid: 379d64f29535246b5be5844d5288e989, type: 3}
   heavyBreathingClip: {fileID: 0}
   deepExhaleClip: {fileID: 8300000, guid: 513b4a4ab1ffc4cd38598a2256fed6e1, type: 3}
   enemyAttackClip: {fileID: 0}
