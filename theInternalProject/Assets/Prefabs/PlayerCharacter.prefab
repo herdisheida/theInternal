@@ -175,7 +175,7 @@ MonoBehaviour:
   moveSpeed: 7.5
   topBorder: {fileID: 0}
   bottomBorder: {fileID: 0}
-  padding: 0.2
+  padding: 0.3
 --- !u!114 &4315159835419543337
 MonoBehaviour:
   m_ObjectHideFlags: 0

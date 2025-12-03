@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Bounds")]
     public BoxCollider2D topBorder;
     public BoxCollider2D bottomBorder;
-    public float padding = 0.6f;           // avoid player being inside the border
+    public float padding = 0.3f;           // avoid player being inside the border
 
     void Start()
     {
