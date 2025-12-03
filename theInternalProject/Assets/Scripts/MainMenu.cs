@@ -28,7 +28,7 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("PatientPatientSelection: sceneToLoad is not set!");
+            Debug.LogWarning("PatientSelection: sceneToLoad is not set!");
         }
     }
 
