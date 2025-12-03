@@ -620,6 +620,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1821354735574082476, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
+      propertyPath: m_Radius
+      value: 1.1549038
+      objectReference: {fileID: 0}
+    - target: {fileID: 1821354735574082476, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.002931555
+      objectReference: {fileID: 0}
     - target: {fileID: 3409462471403445576, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: topBorder
       value: 
@@ -767,6 +775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d33ee5d7ce3425fb8efdc8d3d61b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossController
+  player: {fileID: 1784275241}
   moveSpeed: 2
   moveDistance: 3
   maxHealth: 10
@@ -774,10 +783,15 @@ MonoBehaviour:
   healthBarRoot: {fileID: 0}
   firePoint: {fileID: 1155680648}
   bulletPrefab: {fileID: 8294092606376788268, guid: 6af455a6fc270724f88e390dc69ecfa5, type: 3}
-  bulletsPerBurst: 3
+  bulletsPerBurst: 0
   timeBetweenShots: 0.15
   burstInterval: 2
   smoothSpeed: 10
+  biteHitbox: {fileID: 1396872894}
+  lungeDistance: 0.5
+  lungeSpeed: 10
+  biteCooldown: 2
+  biteActiveTime: 0.2
 --- !u!61 &997752120
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -833,10 +847,11 @@ Transform:
   m_GameObject: {fileID: 997752116}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.41, y: 0.11, z: 0}
+  m_LocalPosition: {x: 7.49, y: 0.11, z: 0}
   m_LocalScale: {x: 4.141315, y: 4.141315, z: 4.141315}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1396872896}
   - {fileID: 1155680648}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -981,6 +996,98 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1396872894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1396872896}
+  - component: {fileID: 1396872895}
+  - component: {fileID: 1396872897}
+  m_Layer: 0
+  m_Name: bitehitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &1396872895
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396872894}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!4 &1396872896
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396872894}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.232, y: 0.085, z: 0}
+  m_LocalScale: {x: 0.42715904, y: 0.42715904, z: 0.42715904}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 997752121}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1396872897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396872894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63bc5b231ebc24a43857b6080a93d88a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BiteAttack
+  damage: 20
 --- !u!1 &1517914502
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,6 +1228,11 @@ CanvasRenderer:
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 7507139623795160318, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
   m_PrefabInstance: {fileID: 1905082209}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1784275241 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1244538808713842361, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
+  m_PrefabInstance: {fileID: 761730001}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1790200262
 GameObject:
