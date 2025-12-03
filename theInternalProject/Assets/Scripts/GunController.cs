@@ -9,11 +9,15 @@ public class GunController : MonoBehaviour
     private bool isReloading = false;
     private float timer;
     private int currentBullets;
+    public GameObject leftFirePoint;
+    public GameObject rightFirePoint;
+    private bool isLeftFirePoint;
     
 
     void Start()
     {
         currentBullets = maxBullets;
+        isLeftFirePoint = true;
     }
     void Update()
     {
@@ -39,11 +43,17 @@ public class GunController : MonoBehaviour
 
     void Shoot()
     {
-        
-        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-        currentBullets -= 1;
+        Transform firePoint = isLeftFirePoint ? leftFirePoint.transform : rightFirePoint.transform;
+        GameObject bullet = Instantiate(
+            bulletPrefab, 
+            firePoint.position, 
+            firePoint.rotation
+        );
+        currentBullets--;
         // Avoid compile-time dependency on BulletController; call SetDirection at runtime instead.
-        bullet.SendMessage("SetDirection", Vector2.right, SendMessageOptions.DontRequireReceiver);   
+        bullet.SendMessage("SetDirection", firePoint.right, SendMessageOptions.DontRequireReceiver);   
+
+        isLeftFirePoint = !isLeftFirePoint;
     }
 
     
