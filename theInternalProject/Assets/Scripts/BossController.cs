@@ -60,7 +60,7 @@ public class BossController : MonoBehaviour
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        if (distanceToPlayer < 2f && canBite)
+        if (distanceToPlayer < 7f && canBite)
         {
             StartCoroutine(BiteAttackRoutine());
         }
@@ -117,8 +117,6 @@ public class BossController : MonoBehaviour
     {
         canBite = false;
         isBiting = true;
-
-        Debug.Log("Boss is biting!");
 
         Vector3 originalPos = transform.position;
 

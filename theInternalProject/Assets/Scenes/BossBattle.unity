@@ -725,12 +725,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2799798257536191386, guid: 7a01fb5e9bfc06b4084c1e5ae9812c79, type: 3}
+  m_Sprite: {fileID: -2156788823971364934, guid: b6993276041d2ff4ebf23c4a38237e8f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.5, y: 0.94}
+  m_Size: {x: 0.53, y: 1.26}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -778,12 +778,12 @@ MonoBehaviour:
   player: {fileID: 1784275241}
   moveSpeed: 2
   moveDistance: 3
-  maxHealth: 10
+  maxHealth: 100
   healthBarFill: {fileID: 1277512730}
   healthBarRoot: {fileID: 0}
   firePoint: {fileID: 1155680648}
   bulletPrefab: {fileID: 8294092606376788268, guid: 6af455a6fc270724f88e390dc69ecfa5, type: 3}
-  bulletsPerBurst: 0
+  bulletsPerBurst: 4
   timeBetweenShots: 0.15
   burstInterval: 2
   smoothSpeed: 10
@@ -830,8 +830,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 0.94}
-    newSize: {x: 0.5, y: 0.94}
+    oldSize: {x: 0.53, y: 1.26}
+    newSize: {x: 0.53, y: 1.26}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -1069,8 +1069,8 @@ Transform:
   m_GameObject: {fileID: 1396872894}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.232, y: 0.085, z: 0}
-  m_LocalScale: {x: 0.42715904, y: 0.42715904, z: 0.42715904}
+  m_LocalPosition: {x: -0.648, y: 0.209, z: 0}
+  m_LocalScale: {x: 1.1671693, y: 1.1671693, z: 1.1671693}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 997752121}
