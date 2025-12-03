@@ -11,6 +11,8 @@ public class GunShakeController : MonoBehaviour
     public RectTransform gunTransform;          // GunImage RectTransform
     public Image backgroundImage;               // Background Image component
     public RectTransform backgroundTransform;   // Background RectTransform
+    public Image fadeImage;                     // full-screen black Image
+
 
     [Header("Sprites")]
     public Sprite idleGunSprite;                // normal hand gun sprite
@@ -30,10 +32,16 @@ public class GunShakeController : MonoBehaviour
     [Header("Background Tint")]
     public Color maxRedTint = new Color(1f, 0.2f, 0.2f, 1f); // target colour at end
 
+    [Header("Fade & Scene")]
+    public float fadeDuration = 0.6f;
+    public float blackHoldDuration = 5f;
+    public string nextSceneName = "PatientSelection";
+
     private Vector2 gunOriginalPos;
     private float gunOriginalRotZ;
     private Vector2 bgOriginalPos;
     private Color bgOriginalColor;
+    private Color fadeOriginalColor;
 
     private float elapsed = 0f;
     private bool isRunning = false; // hand is shaking
@@ -55,6 +63,9 @@ public class GunShakeController : MonoBehaviour
             bgOriginalPos = backgroundTransform.anchoredPosition;
         if (backgroundImage != null)
             bgOriginalColor = backgroundImage.color;
+            
+        if (fadeImage != null)
+            fadeOriginalColor = fadeImage.color;
 
         // default idle sprite if not set
         if (idleGunSprite == null && gunImage != null)
@@ -72,11 +83,11 @@ public class GunShakeController : MonoBehaviour
         elapsed += Time.deltaTime;
         float t = Mathf.Clamp01(elapsed / totalDuration);
 
-        // increasing intensity
+        // increasing shaking intensity
         float posIntensity = Mathf.Lerp(minShakeAmount, maxShakeAmount, t);
         float rotIntensity = Mathf.Lerp(minRotation, maxRotation, t);
 
-        // random offset for gun
+        // shake gun
         Vector2 gunOffset = Random.insideUnitCircle * posIntensity;
         float gunRotOffset = Random.Range(-rotIntensity, rotIntensity);
 
@@ -85,17 +96,24 @@ public class GunShakeController : MonoBehaviour
         euler.z = gunOriginalRotZ + gunRotOffset;
         gunTransform.localEulerAngles = euler;
 
-        // background shake
+        // shake background
         if (backgroundTransform != null)
         {
             Vector2 bgOffset = Random.insideUnitCircle * (posIntensity * backgroundShakeMultiplier);
             backgroundTransform.anchoredPosition = bgOriginalPos + bgOffset;
         }
 
+        // tint background red over time
+        if (backgroundImage != null)
+        {
+            float tintAmount = t * t;
+            backgroundImage.color = Color.Lerp(bgOriginalColor, maxRedTint, tintAmount);
+        }
+
         // if shoot (press space) OR time up
         if (!hasShot && Input.GetKeyDown(KeyCode.Space) || elapsed >= totalDuration)
         {
-            OnShoot();
+            StartCoroutine(HandleShotSequence());
         }
     }
 
@@ -109,15 +127,14 @@ public class GunShakeController : MonoBehaviour
         if (AudioManager.instance != null) { AudioManager.instance.HeavyBreathing(); }
     }
 
-    void OnShoot()
+    IEnumerator HandleShotSequence()
     {
         hasShot = true;
-        Debug.Log("SHOT!");
     
         // sound effect
         if (AudioManager.instance != null) { AudioManager.instance.ShootPatient(); }
 
-        // change to shooting sprite briefly
+        // flash shooting sprite
         if (gunImage != null && shootGunSprite != null)
         {
             gunImage.sprite = shootGunSprite;
@@ -126,6 +143,9 @@ public class GunShakeController : MonoBehaviour
         }
 
         EndShake();
+
+        // fade to black + exhale + change scene
+        yield return StartCoroutine(FadeAndGoToNextScene(playExhale: true));
     }
 
     void EndShake()
@@ -148,5 +168,35 @@ public class GunShakeController : MonoBehaviour
 
         // stop breathing sound
         if (AudioManager.instance != null) { AudioManager.instance.HeavyBreathing(); }
+    }
+
+
+    IEnumerator FadeAndGoToNextScene(bool playExhale)
+    {
+        if (fadeImage != null)
+        {
+            Color c = fadeOriginalColor;
+            float startAlpha = c.a;
+            float time = 0f;
+
+            while (time < fadeDuration)
+            {
+                time += Time.deltaTime;
+                float t = Mathf.Clamp01(time / fadeDuration);
+                c.a = Mathf.Lerp(startAlpha, 1f, t); // go fully black
+                fadeImage.color = c;
+                yield return null;
+            }
+
+            // hold on black for a bit
+            if (playExhale && AudioManager.instance != null)
+            {
+                AudioManager.instance.Exhale();
+            }
+
+            yield return new WaitForSeconds(blackHoldDuration);
+        }
+
+        SceneManager.LoadScene(nextSceneName);
     }
 }
