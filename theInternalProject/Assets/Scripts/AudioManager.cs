@@ -22,6 +22,9 @@ public class AudioManager : MonoBehaviour
 
 
     [Header("Sound Effect Clips")]
+    // menu-related
+    public AudioClip buttonClickClip; // start, quit buttons
+
     // player-related
     public AudioClip damageTakenClip;
     public AudioClip dyingClip;
@@ -35,8 +38,7 @@ public class AudioManager : MonoBehaviour
     // enemy-related
     public AudioClip enemyAttackClip;
     public AudioClip enemyDeathClip;
-    // menu-related
-    public AudioClip buttonClickClip; // start, quit buttons
+
     // ambient-related
 
 
@@ -90,6 +92,7 @@ public class AudioManager : MonoBehaviour
     void PlaySFX(AudioClip clip)
     {
         if (sfxSource == null || clip == null) return;
+        if (!sfxSource.isActiveAndEnabled) return; // prevents errors if AudioSource is disabled
         sfxSource.PlayOneShot(clip);
     }
 
@@ -122,6 +125,7 @@ public class AudioManager : MonoBehaviour
     public void DamageTaken()    => PlaySFX(damageTakenClip);
     public void Dying()          => PlaySFX(dyingClip);
     public void Attack()         => PlaySFX(attackClip);
+
     public void ShootPatient()   => PlaySFX(shootPatientClip);
     public void HeavyBreathing()    => PlaySFX(heavyBreathingClip);
     public void DeepExhale()         => PlaySFX(deepExhaleClip);
