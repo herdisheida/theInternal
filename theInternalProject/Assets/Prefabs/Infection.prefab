@@ -31,7 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -82,12 +82,12 @@ SpriteRenderer:
   m_SortingLayerID: 1373827247
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5015496347405010578, guid: cb3d7dd17b33a46b1821fe13f03a8ef0, type: 3}
+  m_Sprite: {fileID: 6019453725058403666, guid: 79993976643e34c5abc5a973d80b622d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.9, y: 1.84}
+  m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
