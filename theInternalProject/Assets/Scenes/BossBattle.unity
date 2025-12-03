@@ -318,7 +318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4315159835419543337, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: maxHealth
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4729519753121233426, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: m_Name
@@ -341,13 +341,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 997752121}
+  - component: {fileID: 997752118}
   - component: {fileID: 997752120}
   - component: {fileID: 997752119}
-  - component: {fileID: 997752118}
+  - component: {fileID: 997752122}
   - component: {fileID: 997752117}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -418,7 +419,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997752116}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -435,7 +436,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 5
 --- !u!114 &997752119
 MonoBehaviour:
@@ -502,7 +503,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.565117, y: 1}
   m_EdgeRadius: 0
 --- !u!4 &997752121
 Transform:
@@ -521,6 +522,21 @@ Transform:
   - {fileID: 1812497425}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &997752122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997752116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5540e09001bc6d42971204828b204b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageFlash
+  spriteRenderer: {fileID: 997752117}
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.1
 --- !u!1 &1155680647
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,7 +594,7 @@ Transform:
   m_GameObject: {fileID: 1277512729}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.01, y: 4.13, z: 0}
+  m_LocalPosition: {x: -0.01, y: 3.98, z: 0}
   m_LocalScale: {x: 2.25, y: 0.24680348, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
