@@ -15,7 +15,7 @@ public class ObstacleSpawner : MonoBehaviour
     [Header("Tunnel Settings")]
     public GameObject tunnelPrefab;
     public float tunnelY = 0f;                  // vertical position of the tunnel
-    public float tunnelStopPos = 4f;            // where it stops on screen
+    public float tunnelStopPos = 5f;            // where it stops on screen
     public float tunnelSpawnDelayAfterEnd = 2f; // delay after last obstacle
 
     [Header("Spawn Timer")]
