@@ -18,4 +18,9 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("PatientSelection");
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
 }
