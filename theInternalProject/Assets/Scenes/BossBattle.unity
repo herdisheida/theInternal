@@ -316,6 +316,14 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.912663
       objectReference: {fileID: 0}
+    - target: {fileID: 3409462471403445576, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
+      propertyPath: topBorder
+      value: 
+      objectReference: {fileID: 5883499222708568158}
+    - target: {fileID: 3409462471403445576, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
+      propertyPath: bottomBorder
+      value: 
+      objectReference: {fileID: 5883499222708568157}
     - target: {fileID: 4315159835419543337, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: maxHealth
       value: 100
@@ -327,10 +335,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4729519753121233426, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1618091946}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
 --- !u!1 &997752116
 GameObject:
@@ -659,31 +664,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1618091939 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4729519753121233426, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
-  m_PrefabInstance: {fileID: 761730001}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &1618091944 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 3957775815832412039, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
-  m_PrefabInstance: {fileID: 761730001}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1618091946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1618091939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5540e09001bc6d42971204828b204b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DamageFlash
-  spriteRenderer: {fileID: 1618091944}
-  flashColor: {r: 1, g: 0, b: 0, a: 1}
-  flashDuration: 0.1
 --- !u!1 &1790200262
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,6 +909,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
+--- !u!61 &5883499222708568157 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 422553559509716480, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
+  m_PrefabInstance: {fileID: 5883499222708568156}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &5883499222708568158 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7507139623795160318, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
+  m_PrefabInstance: {fileID: 5883499222708568156}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
