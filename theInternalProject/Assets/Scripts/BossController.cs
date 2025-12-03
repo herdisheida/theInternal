@@ -40,6 +40,11 @@ public class BossController : MonoBehaviour
     private bool canBite = true;
     private bool isBiting = false;
 
+    [Header("Bite Telegraph Shake")]
+    public float shakeDuration = 0.3f;
+    public float shakeMagnitude = 0.1f;
+
+
     void Start()
     {
         startPos = transform.position;
@@ -113,15 +118,68 @@ public class BossController : MonoBehaviour
         }
     }
 
+    IEnumerator ShakeBeforeBite()
+    {
+        Vector3 originalPos = transform.position;
+        float elapsed = 0f;
+
+        while (elapsed < shakeDuration)
+        {
+            float offsetX = Random.Range(-1f, 1f) * shakeMagnitude;
+            float offsetY = Random.Range(-0.5f, 0.5f) * shakeMagnitude;
+
+            transform.position = new Vector3(
+                originalPos.x + offsetX,
+                originalPos.y + offsetY,
+                originalPos.z
+            );
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // return to original position
+        transform.position = originalPos;
+    }
+
+
     IEnumerator BiteAttackRoutine()
     {
         canBite = false;
         isBiting = true;
 
-        Vector3 originalPos = transform.position;
+        Debug.Log("Boss is shaking before bite!");
 
-        // Determine direction
-        float direction = player.position.x < transform.position.x ? -1f : 1f;
+        //
+        // 1. TELEGRAPH SHAKE
+        //
+        Vector3 originalPos = transform.position;
+        float elapsed = 0f;
+
+        while (elapsed < shakeDuration)
+        {
+            float offsetX = Random.Range(-1f, 1f) * shakeMagnitude;
+            float offsetY = Random.Range(-0.5f, 0.5f) * shakeMagnitude;
+
+            transform.position = new Vector3(
+                originalPos.x + offsetX,
+                originalPos.y + offsetY,
+                originalPos.z
+            );
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // Return to center before lunging
+        transform.position = originalPos;
+
+
+
+        //
+        // 2. LUNGE FORWARD
+        //
+        float direction = (player.position.x < transform.position.x) ? -1f : 1f;
 
         Vector3 bitePos = originalPos + new Vector3(direction * lungeDistance, 0, 0);
 
@@ -133,10 +191,20 @@ public class BossController : MonoBehaviour
             yield return null;
         }
 
+
+
+        //
+        // 3. BITE DAMAGE WINDOW (Hitbox active)
+        //
         biteHitbox.SetActive(true);
         yield return new WaitForSeconds(biteActiveTime);
         biteHitbox.SetActive(false);
 
+
+
+        //
+        // 4. RETURN TO ORIGINAL POSITION
+        //
         t = 0;
         while (t < 1)
         {
@@ -145,10 +213,16 @@ public class BossController : MonoBehaviour
             yield return null;
         }
 
+
+
+        //
+        // 5. COOLDOWN
+        //
         yield return new WaitForSeconds(biteCooldown);
         isBiting = false;
         canBite = true;
     }
+
 
     void UpdateHealthBar()
     {
