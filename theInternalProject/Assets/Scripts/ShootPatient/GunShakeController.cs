@@ -17,7 +17,7 @@ public class GunShakeController : MonoBehaviour
     [Header("Sprites")]
     public Sprite idleGunSprite;                // normal hand gun sprite
     public Sprite shootGunSprite;               // flash sprite when shooting
-    public float shootFlashDuration = 0.1f;
+    public float shootFlashDuration = 0.2f;
 
     [Header("Shake Settings")]
     public float totalDuration = 10f;                // how long the player has to shoot
@@ -33,16 +33,18 @@ public class GunShakeController : MonoBehaviour
     public Color maxRedTint = new Color(1f, 0.2f, 0.2f, 1f); // target colour at end
 
     [Header("Fade & Scene")]
-    public float fadeDuration = 0.5f;
     public float blackHoldDuration = 8f;
     public string nextSceneName = "PatientSelection";
 
+
+    // original transforms/colors
     private Vector2 gunOriginalPos;
     private float gunOriginalRotZ;
     private Vector2 bgOriginalPos;
     private Color bgOriginalColor;
     private Color fadeOriginalColor;
 
+    // runtime variables
     private float elapsed = 0f;
     private bool isRunning = false; // hand is shaking
     private bool hasShot = false;
@@ -173,30 +175,21 @@ public class GunShakeController : MonoBehaviour
 
     IEnumerator FadeAndGoToNextScene(bool playExhale)
     {
+        // instantly turn screen black
         if (fadeImage != null)
         {
-            Color c = fadeOriginalColor;
-            float startAlpha = c.a;
-            float time = 0f;
-
-            while (time < fadeDuration)
-            {
-                time += Time.deltaTime;
-                float t = Mathf.Clamp01(time / fadeDuration);
-                c.a = Mathf.Lerp(startAlpha, 1f, t); // go fully black
-                fadeImage.color = c;
-                yield return null;
-            }
-
-            // hold on black for a bit
-            if (playExhale && AudioManager.instance != null)
-            {
-                AudioManager.instance.Exhale();
-            }
-
-            yield return new WaitForSeconds(blackHoldDuration);
+            Color c = fadeImage.color;
+            c.a = 1f;                   // fully opaque black
+            fadeImage.color = c;
         }
 
+        // Play exhale sound after the shot
+        if (playExhale && AudioManager.instance != null) { AudioManager.instance.DeepExhale(); }
+
+        // Short pause to let the exhale play
+        yield return new WaitForSeconds(blackHoldDuration);
+
+        // load next scene
         SceneManager.LoadScene(nextSceneName);
     }
 }
