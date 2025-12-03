@@ -29,7 +29,7 @@ public class AudioManager : MonoBehaviour
 
     // shoot patient-related
     public AudioClip shootPatientClip; // shoot infected patient
-    public AudioClip breathHeavyClip;  // breath heavily while shooting
+    public AudioClip heavyBreathingClip;  // breath heavily while shooting
     public AudioClip exhaleClip;       // exhale after shooting
 
     // enemy-related
@@ -114,7 +114,7 @@ public class AudioManager : MonoBehaviour
     public void Dying()          => PlaySFX(dyingClip);
     public void Attack()         => PlaySFX(attackClip);
     public void ShootPatient()   => PlaySFX(shootPatientClip);
-    public void BreathHeavy()    => PlaySFX(breathHeavyClip);
+    public void HeavyBreathing()    => PlaySFX(heavyBreathingClip);
     public void Exhale()         => PlaySFX(exhaleClip);
 
     public void EnemyAttack()    => PlaySFX(enemyAttackClip);

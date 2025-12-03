@@ -3,8 +3,8 @@ guid: 00c4e0dcd4a27443080011116f3040d4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7764625388459646674
-    second: ShootingPatient_0
+      213: 281306285295221210
+    second: gun01_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ShootingPatient_0
+      name: gun01_0
       rect:
         serializedVersion: 2
         x: 4639
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e2122e219528e3490800000000000000
-      internalID: -7764625388459646674
+      spriteID: ad93b18739667e300800000000000000
+      internalID: 281306285295221210
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ShootingPatient_0: -7764625388459646674
+      gun01_0: 281306285295221210
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

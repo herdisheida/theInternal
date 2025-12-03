@@ -447,7 +447,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7764625388459646674, guid: 00c4e0dcd4a27443080011116f3040d4, type: 3}
+  m_Sprite: {fileID: 281306285295221210, guid: 00c4e0dcd4a27443080011116f3040d4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -477,14 +477,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d47b3212f0fb4954bf0f1c9db8424d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunShakeController
+  gunImage: {fileID: 0}
   gunTransform: {fileID: 1539025786}
+  backgroundImage: {fileID: 0}
   backgroundTransform: {fileID: 411518026}
+  idleGunSprite: {fileID: 281306285295221210, guid: 00c4e0dcd4a27443080011116f3040d4, type: 3}
+  shootGunSprite: {fileID: -331875709885016742, guid: 896c27cee8d734b35be5318efb31e857, type: 3}
+  shootFlashDuration: 0.1
   totalDuration: 10
   minShakeAmount: 2
   maxShakeAmount: 15
   backgroundShakeMultiplier: 0.4
   minRotation: 1
   maxRotation: 6
+  maxRedTint: {r: 1, g: 0.2, b: 0.2, a: 1}
 --- !u!1 &1648003153
 GameObject:
   m_ObjectHideFlags: 0

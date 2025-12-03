@@ -1,11 +1,21 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class GunShakeController : MonoBehaviour
 {
     [Header("References")]
-    public RectTransform gunTransform;        // assign GunImage RectTransform
-    public RectTransform backgroundTransform; // assign Background RectTransform (optional)
+    public Image gunImage;                      // GunImage Image component
+    public RectTransform gunTransform;          // GunImage RectTransform
+    public Image backgroundImage;               // Background Image component
+    public RectTransform backgroundTransform;   // Background RectTransform
+
+    [Header("Sprites")]
+    public Sprite idleGunSprite;                // normal hand gun sprite
+    public Sprite shootGunSprite;               // flash sprite when shooting
+    public float shootFlashDuration = 0.1f;
 
     [Header("Shake Settings")]
     public float totalDuration = 10f;                // how long the player has to shoot
@@ -17,9 +27,13 @@ public class GunShakeController : MonoBehaviour
     public float minRotation = 1f;
     public float maxRotation = 6f;
 
+    [Header("Background Tint")]
+    public Color maxRedTint = new Color(1f, 0.2f, 0.2f, 1f); // target colour at end
+
     private Vector2 gunOriginalPos;
     private float gunOriginalRotZ;
     private Vector2 bgOriginalPos;
+    private Color bgOriginalColor;
 
     private float elapsed = 0f;
     private bool isRunning = false; // hand is shaking
@@ -28,8 +42,10 @@ public class GunShakeController : MonoBehaviour
 
     void Start()
     {
-        if (gunTransform == null)
+       if (gunTransform == null)
             gunTransform = GetComponent<RectTransform>();
+        if (gunImage == null)
+            gunImage = GetComponent<Image>();
 
         // store original transforms
         gunOriginalPos = gunTransform.anchoredPosition;
@@ -37,6 +53,12 @@ public class GunShakeController : MonoBehaviour
 
         if (backgroundTransform != null)
             bgOriginalPos = backgroundTransform.anchoredPosition;
+        if (backgroundImage != null)
+            bgOriginalColor = backgroundImage.color;
+
+        // default idle sprite if not set
+        if (idleGunSprite == null && gunImage != null)
+            idleGunSprite = gunImage.sprite;
 
         StartShake();
     }
@@ -70,16 +92,10 @@ public class GunShakeController : MonoBehaviour
             backgroundTransform.anchoredPosition = bgOriginalPos + bgOffset;
         }
 
-        // listen for shoot input
-        if (!hasShot && Input.GetKeyDown(KeyCode.Space))
+        // if shoot (press space) OR time up
+        if (!hasShot && Input.GetKeyDown(KeyCode.Space) || elapsed >= totalDuration)
         {
             OnShoot();
-        }
-
-        // time up
-        if (elapsed >= totalDuration)
-        {
-            EndShake();
         }
     }
 
@@ -88,15 +104,27 @@ public class GunShakeController : MonoBehaviour
         elapsed = 0f;
         isRunning = true;
         hasShot = false;
+
+        // start heavy breathing audio
+        if (AudioManager.instance != null) { AudioManager.instance.HeavyBreathing(); }
     }
 
     void OnShoot()
     {
         hasShot = true;
         Debug.Log("SHOT!");
+    
+        // sound effect
+        if (AudioManager.instance != null) { AudioManager.instance.ShootPatient(); }
 
-        // TODO: play SFX, spawn bullet, go to next scene (with patient dead)
-        // AudioManager.instance.ShootPatient();
+        // change to shooting sprite briefly
+        if (gunImage != null && shootGunSprite != null)
+        {
+            gunImage.sprite = shootGunSprite;
+            yield return new WaitForSeconds(shootFlashDuration);
+            gunImage.sprite = idleGunSprite;
+        }
+
         EndShake();
     }
 
@@ -112,14 +140,13 @@ public class GunShakeController : MonoBehaviour
             gunOriginalRotZ
         );
 
-        // reset positions/rotation of background
+        // reset positions/rotation/color of background
         if (backgroundTransform != null)
             backgroundTransform.anchoredPosition = bgOriginalPos;
+        if (backgroundImage != null)
+            backgroundImage.color = bgOriginalColor;
 
-        if (!hasShot)
-        {
-            Debug.Log("Player did NOT shoot in time!");
-            OnShoot(); // auto-shoot
-        }
+        // stop breathing sound
+        if (AudioManager.instance != null) { AudioManager.instance.HeavyBreathing(); }
     }
 }
