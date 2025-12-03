@@ -8,8 +8,8 @@ public class ObstacleSpawner : MonoBehaviour
     [Header("General Settings")]
     public GameObject infectionPrefab;
     public float spawnPos = 14f;             // pos where formations appear
-    public float minSpawnDelay = 2f;
-    public float maxSpawnDelay = 3f;
+    public float minSpawnDelay = 1.5f;
+    public float maxSpawnDelay = 2.5f;
     public float obstacleMoveSpeed = 5f;
 
     [Header("Tunnel Settings")]
