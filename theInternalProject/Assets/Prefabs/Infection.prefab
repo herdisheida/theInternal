@@ -168,4 +168,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab316955c64734a4aa6c72d8ffd91408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InfectionController
-  damagePlayerAmount: 10
+  damagePlayerAmount: 20
