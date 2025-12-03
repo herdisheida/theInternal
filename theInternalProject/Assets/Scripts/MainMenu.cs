@@ -34,6 +34,7 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        AudioManager.instance?.ButtonClick();
         Application.Quit();
     }
 
