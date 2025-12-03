@@ -560,7 +560,7 @@ MonoBehaviour:
   fadeImage: {fileID: 1071907908}
   idleGunSprite: {fileID: 281306285295221210, guid: 00c4e0dcd4a27443080011116f3040d4, type: 3}
   shootGunSprite: {fileID: -331875709885016742, guid: 896c27cee8d734b35be5318efb31e857, type: 3}
-  shootFlashDuration: 0.2
+  shootFlashDuration: 0.1
   totalDuration: 10
   minShakeAmount: 2
   maxShakeAmount: 15
@@ -568,8 +568,7 @@ MonoBehaviour:
   minRotation: 1
   maxRotation: 6
   maxRedTint: {r: 1, g: 0.2, b: 0.2, a: 1}
-  fadeDuration: 0.05
-  blackHoldDuration: 5
+  blackHoldDuration: 8
   nextSceneName: PatientSelection
 --- !u!1 &1648003153
 GameObject:

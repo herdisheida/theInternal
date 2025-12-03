@@ -17,7 +17,7 @@ public class GunShakeController : MonoBehaviour
     [Header("Sprites")]
     public Sprite idleGunSprite;                // normal hand gun sprite
     public Sprite shootGunSprite;               // flash sprite when shooting
-    public float shootFlashDuration = 0.2f;
+    public float shootFlashDuration = 0.1f;
 
     [Header("Shake Settings")]
     public float totalDuration = 10f;                // how long the player has to shoot
