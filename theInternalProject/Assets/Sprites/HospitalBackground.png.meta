@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 45c37b417526c4a76892f5e945610f75
+guid: cbe547d81ff66476cbbd04f0d7388ccf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7149406215798919658
-    second: Virus_0005_Package-----------------_0
+      213: -2751406487082976676
+    second: HospitalBackground_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Virus_0005_Package-----------------_0
+      name: HospitalBackground_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 183
-        height: 185
+        width: 2160
+        height: 1620
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ae11aa7f21bc73360800000000000000
-      internalID: 7149406215798919658
+      spriteID: c5ab6b8a06a01d9d0800000000000000
+      internalID: -2751406487082976676
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Virus_0005_Package-----------------_0: 7149406215798919658
+      HospitalBackground_0: -2751406487082976676
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
