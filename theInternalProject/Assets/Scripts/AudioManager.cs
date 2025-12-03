@@ -66,7 +66,7 @@ public class AudioManager : MonoBehaviour
 
 
     // Play a specific music clip (chosen from Inspector or passed in).
-    // Example: AudioManager.instance.PlayMusic(AudioManager.instance.bossBattleMusic);
+    // Example: AudioManager.instance?.PlayMusic(AudioManager.instance.bossBattleMusic);
     public void PlayMusic(AudioClip clip)
     {
         if (musicSource == null || clip == null) return;
@@ -98,6 +98,7 @@ public class AudioManager : MonoBehaviour
 
 
     // helper methods for background music
+    // Example: AudioManager.instance?.PlayHospitalLobbyMusic();
     public void PlayHospitalLobbyMusic()     => PlayMusic(hospitalLobbyMusic);
     public void PlayObstacleGameplayMusic()  => PlayMusic(obstacleGameplayMusic);
     public void PlayBossBattleMusic()        => PlayMusic(bossBattleMusic);
@@ -108,6 +109,7 @@ public class AudioManager : MonoBehaviour
 
 
     // helper methods for SFX
+    // Example: AudioManager.instance?.ButtonClick();
     public void ButtonClick()    => PlaySFX(buttonClickClip);
     
     public void DamageTaken()    => PlaySFX(damageTakenClip);
