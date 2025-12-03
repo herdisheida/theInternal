@@ -15,11 +15,13 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
+        Debug.Log("Start Game");
         SceneManager.LoadScene("PatientSelection");
     }
 
     public void QuitGame()
     {
+        Debug.Log("Quit Game");
         Application.Quit();
     }
 
