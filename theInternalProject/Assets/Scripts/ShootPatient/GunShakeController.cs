@@ -108,7 +108,7 @@ public class GunShakeController : MonoBehaviour
         // tint background red over time
         if (backgroundImage != null)
         {
-            float tintAmount = t * t;
+            float tintAmount = Mathf.Pow(t, 0.3f);
             backgroundImage.color = Color.Lerp(bgOriginalColor, maxRedTint, tintAmount);
         }
 
