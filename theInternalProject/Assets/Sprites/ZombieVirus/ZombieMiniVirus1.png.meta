@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ced0ccd476e9243daa0044b9a582ea68
+guid: 79993976643e34c5abc5a973d80b622d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9198370732960367871
-    second: ZombieMiniVirus1_0
+      213: 6019453725058403666
+    second: Zombie_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 23
+  spritePixelsToUnits: 45
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ZombieMiniVirus1_0
+      name: Zombie_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 2
-        width: 27
-        height: 28
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 10b3c8dad82d85080800000000000000
-      internalID: -9198370732960367871
+      spriteID: 25d02004545698350800000000000000
+      internalID: 6019453725058403666
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ae98b24c7b3354714a06bec90304b32b
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ZombieMiniVirus1_0: -9198370732960367871
+      Zombie_0: 6019453725058403666
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
