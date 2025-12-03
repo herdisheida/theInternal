@@ -188,8 +188,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0322e9a8015744198301bf842b0697a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthSystem
-  maxHealth: 100
+  maxHealth: 50
   currentHealth: 0
+  healthBarRoot: {fileID: 0}
+  healthBarFill: {fileID: 0}
+  smoothSpeed: 10
+  healthText: {fileID: 0}
+  healthWorldText: {fileID: 0}
 --- !u!114 &1235428796783345502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5540e09001bc6d42971204828b204b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageFlash
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 3957775815832412039}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.1
 --- !u!95 &2465748235576492838
