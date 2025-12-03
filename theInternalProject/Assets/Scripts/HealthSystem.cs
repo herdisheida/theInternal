@@ -1,55 +1,43 @@
 using UnityEngine;
+using TMPro;
 
 public class HealthSystem : MonoBehaviour
 {
-    [Header("Health")]
+    [Header("Health Settings")]
     public int maxHealth = 100;
     public int currentHealth;
 
-    [Header("Health Bar")]
-    public GameObject healthBarRoot;   // the entire health bar object
-    public Transform healthBarFill;    // the green bar (with pivot on right)
-    public float smoothSpeed = 10f;
+    [Header("Health Bar (World Space)")]
+    public GameObject healthBarRoot;   // The whole health bar object (parent)
+    public Transform healthBarFill;    // Only the green fill object
+    public float smoothSpeed = 10f;    // Smooth scaling speed
+
+    [Header("Health Text (Optional)")]
+    public TextMeshProUGUI healthText;       // UI text (e.g. on screen)
+    public TextMeshPro healthWorldText;      // World-space text above player
 
     void Start()
     {
         currentHealth = maxHealth;
-        UpdateHealthBar(); // ensure full bar at start
+        UpdateAllHealthDisplays();
     }
 
+    // Called when the player takes damage
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
+        currentHealth = Mathf.Max(0, currentHealth); // prevent negative health
 
-        // Flash red on hit
-        GetComponent<DamageFlash>().Flash();
+        // Flash red when hit
+        DamageFlash flash = GetComponent<DamageFlash>();
+        if (flash != null)
+            flash.Flash();
 
-        // Do not allow negative health
-        currentHealth = Mathf.Max(0, currentHealth);
-
-        // Update the bar immediately on damage
-        UpdateHealthBar();
+        UpdateAllHealthDisplays();
 
         if (currentHealth <= 0)
         {
             Die();
-        }
-    }
-
-    void UpdateHealthBar()
-    {
-        if (healthBarRoot != null && healthBarFill != null)
-        {
-            // Show the bar only when hurt
-            healthBarRoot.SetActive(currentHealth < maxHealth);
-
-            float targetScaleX = (float)currentHealth / maxHealth;
-
-            Vector3 currentScale = healthBarFill.localScale;
-
-            currentScale.x = Mathf.Lerp(currentScale.x, targetScaleX, Time.deltaTime * smoothSpeed);
-
-            healthBarFill.localScale = currentScale;
         }
     }
 
@@ -58,13 +46,47 @@ public class HealthSystem : MonoBehaviour
         UpdateHealthBar();
     }
 
+    // Updates the world-space health bar
+    void UpdateHealthBar()
+    {
+        if (healthBarRoot == null || healthBarFill == null)
+            return;
+
+        // Hide bar when full, show when damaged
+        healthBarRoot.SetActive(currentHealth < maxHealth);
+
+        float targetRatio = (float)currentHealth / maxHealth;
+
+        // Smooth shrink from right to left (pivot must be on the right)
+        float currentScaleX = healthBarFill.localScale.x;
+        float newScaleX = Mathf.Lerp(currentScaleX, targetRatio, Time.deltaTime * smoothSpeed);
+
+        healthBarFill.localScale = new Vector3(newScaleX, 1f, 1f);
+    }
+
+    // Updates health number (UI or world)
+    void UpdateHealthText()
+    {
+        if (healthText != null)
+            healthText.text = currentHealth.ToString();
+
+        if (healthWorldText != null)
+            healthWorldText.text = currentHealth.ToString();
+    }
+
+    void UpdateAllHealthDisplays()
+    {
+        UpdateHealthBar();
+        UpdateHealthText();
+    }
+
     public void Die()
     {
-        // Hide the health bar
+        // hide health bar on death
         if (healthBarRoot != null)
             healthBarRoot.SetActive(false);
 
-        // Disable the player (or boss)
+        // deactivate the player
         gameObject.SetActive(false);
     }
 }
