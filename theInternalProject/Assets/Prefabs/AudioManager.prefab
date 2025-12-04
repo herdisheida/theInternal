@@ -48,12 +48,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   musicSource: {fileID: 5469112575120005823}
   sfxSource: {fileID: 5959252056732647028}
-  hospitalLobbyMusic: {fileID: 0}
+  menuScreenMusic: {fileID: 8300000, guid: 427f6ad408d80442383fb1424d36de46, type: 3}
+  hospitalLobbyMusic: {fileID: 8300000, guid: 526572bcd4aee4a74b1267ad61781ec3, type: 3}
   obstacleGameplayMusic: {fileID: 0}
   bossBattleMusic: {fileID: 0}
   goodEndingMusic: {fileID: 0}
   badEndingMusic: {fileID: 0}
   partialEndingMusic: {fileID: 0}
+  buttonClickClip: {fileID: 8300000, guid: ccac5e46673c84b52b31fc7ea8014b8f, type: 3}
   damageTakenClip: {fileID: 0}
   dyingClip: {fileID: 0}
   attackClip: {fileID: 0}
@@ -62,7 +64,6 @@ MonoBehaviour:
   deepExhaleClip: {fileID: 8300000, guid: 513b4a4ab1ffc4cd38598a2256fed6e1, type: 3}
   enemyAttackClip: {fileID: 0}
   enemyDeathClip: {fileID: 0}
-  buttonClickClip: {fileID: 8300000, guid: ccac5e46673c84b52b31fc7ea8014b8f, type: 3}
 --- !u!82 &5469112575120005823
 AudioSource:
   m_ObjectHideFlags: 0

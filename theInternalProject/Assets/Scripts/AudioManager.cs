@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour
 
 
     [Header("Background Music Clips")]
+    public AudioClip menuScreenMusic;
     public AudioClip hospitalLobbyMusic;
     public AudioClip obstacleGameplayMusic;
     public AudioClip bossBattleMusic;
@@ -109,6 +110,7 @@ public class AudioManager : MonoBehaviour
 
     // helper methods for playing background music
     // Example: AudioManager.instance?.PlayHospitalLobbyMusic();
+    public void PlayMenuScreenMusic()        => PlayMusic(menuScreenMusic);
     public void PlayHospitalLobbyMusic()     => PlayMusic(hospitalLobbyMusic);
     public void PlayObstacleGameplayMusic()  => PlayMusic(obstacleGameplayMusic);
     public void PlayBossBattleMusic()        => PlayMusic(bossBattleMusic);
