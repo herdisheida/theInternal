@@ -13,9 +13,12 @@ public class GunShakeController : MonoBehaviour
     public RectTransform backgroundTransform;   // Background RectTransform
     public Image fadeImage;                     // full-screen black Image
 
-    [Header("Shooting Message Hint")]
-    public Graphic[] shootingMsgGraphics;       // box + text
-    public float shootingMsgBlinkSpeed = 4.4f;  // blink speed
+    [Header("Space Key Hint")]
+    public Image spaceKeyImage;             // UI Image that shows the space bar
+    public Sprite spaceBarUnpressedSprite;  // normal key
+    public Sprite spaceBarPressedSprite;    // “pressed” key
+    public float spaceKeyBlinkSpeed = 4f;   // how fast it switches
+
 
     [Header("Sprites")]
     public Sprite idleGunSprite;                // normal hand gun sprite
@@ -68,15 +71,6 @@ public class GunShakeController : MonoBehaviour
             
         if (fadeImage != null) { fadeOriginalColor = fadeImage.color; }
 
-        if (shootingMsgGraphics != null && shootingMsgGraphics.Length > 0)
-        {
-            shootingMsgOriginalColors = new Color[shootingMsgGraphics.Length];
-            for (int i = 0; i < shootingMsgGraphics.Length; i++)
-            {
-                if (shootingMsgGraphics[i] != null)
-                    shootingMsgOriginalColors[i] = shootingMsgGraphics[i].color;
-            }
-        }
         // default idle sprite if not set
         if (idleGunSprite == null && gunImage != null) { idleGunSprite = gunImage.sprite; }
 
@@ -87,7 +81,8 @@ public class GunShakeController : MonoBehaviour
     {
         if (!isRunning)
         {
-            UpdateShootingMsgBlink(false); // hint off when not active
+            // keep key in unpressed state when not running
+            UpdateSpaceKeyBlink(false);
             return;
         }
 
@@ -122,8 +117,8 @@ public class GunShakeController : MonoBehaviour
             backgroundImage.color = Color.Lerp(bgOriginalColor, maxRedTint, tintAmount);
         }
 
-        // blink the shooting message while shaking
-        UpdateShootingMsgBlink(true);
+        // toggle the space key sprite
+        UpdateSpaceKeyBlink(true);
 
         // if player shoots (space bar) OR time runs out =>>> shoot patient
         if (!hasShot && (Input.GetKeyDown(KeyCode.Space) || elapsed >= totalDuration))
@@ -205,32 +200,25 @@ public class GunShakeController : MonoBehaviour
         SceneManager.LoadScene(nextSceneName);
     }
 
-    // make the ShootingMsg box blink
-    void UpdateShootingMsgBlink(bool active)
+    // make the SpaceKey box blink
+    void UpdateSpaceKeyBlink(bool active)
     {
-        if (shootingMsgGraphics == null || shootingMsgGraphics.Length == 0)
+        if (spaceKeyImage == null || spaceBarUnpressedSprite == null || spaceBarPressedSprite == null)
             return;
 
-        float a = 0f;
-
-        if (active)
+        if (!active)
         {
-            // alpha oscillates 0–1
-            a = (Mathf.Sin(Time.time * shootingMsgBlinkSpeed) + 1f) / 2f;
+            // when not shaking, just show unpressed
+            spaceKeyImage.sprite = spaceBarUnpressedSprite;
+            return;
         }
 
-        for (int i = 0; i < shootingMsgGraphics.Length; i++)
-        {
-            var g = shootingMsgGraphics[i];
-            if (g == null) continue;
+        // use a sine wave to flip between sprites
+        float v = Mathf.Sin(Time.time * spaceKeyBlinkSpeed);
 
-            Color baseColor = (shootingMsgOriginalColors != null && i < shootingMsgOriginalColors.Length)
-                ? shootingMsgOriginalColors[i]
-                : g.color;
-
-            baseColor.a = a;
-            g.color = baseColor;
-        }
+        if (v > 0f)
+            { spaceKeyImage.sprite = spaceBarPressedSprite; }
+        else
+            { spaceKeyImage.sprite = spaceBarUnpressedSprite; }
     }
-
 }
