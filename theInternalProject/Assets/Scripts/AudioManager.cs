@@ -25,24 +25,27 @@ public class AudioManager : MonoBehaviour
 
 
     [Header("Sound Effect Clips")]
+    [Header("Menu SFX")]
     // menu-related
     public AudioClip buttonClickClip; // start, quit buttons
 
+    [Header("Player SFX")]
     // player-related
     public AudioClip damageTakenClip;
     public AudioClip dyingClip;
     public AudioClip attackClip;        // medicine bullet shooting
 
+    [Header("Player Shoot Patient SFX")]
     // shoot patient-related
     public AudioClip shootPatientClip;    // shoot infected patient
     public AudioClip heavyBreathingClip;  // breath heavily while shooting
     public AudioClip deepExhaleClip;      // exhale after shooting
 
+    [Header("Zombie Enemy SFX")]
     // enemy-related
     public AudioClip zombieChompClip;
-    public AudioClip enemyDeathClip;
+    public AudioClip zombieDeathClip;
  
-    // ambient-related
 
 
     void Awake()
@@ -137,5 +140,5 @@ public class AudioManager : MonoBehaviour
     public void DeepExhale()         => PlaySFX(deepExhaleClip);
 
     public void ZombieChomp()    => PlaySFX(zombieChompClip);
-    public void EnemyDeath()     => PlaySFX(enemyDeathClip);
+    public void ZombieDeath()     => PlaySFX(zombieDeathClip);
 }
