@@ -78,8 +78,9 @@ public class BossController : MonoBehaviour
         if (!phase2)
         {
             // PHASE 1 attacks
-            if (!isBursting && !isBiting)
-                StartCoroutine(ShootBurst());
+            if (!isBursting)
+             StartCoroutine(ShootBurst());
+
 
             float distance = Vector2.Distance(transform.position, player.position);
             if (distance < 7f && canBite)
@@ -185,8 +186,6 @@ public class BossController : MonoBehaviour
         isBiting = true;
         freezeMovement = true;
 
-        Debug.Log("Boss is shaking before bite!");
-
         Vector3 originalPos = transform.position;
 
         // Telegraph shake
@@ -253,7 +252,7 @@ public class BossController : MonoBehaviour
 
     void EnterPhase2()
     {
-        if (currentHealth <= 0) return;  // the real fix!
+        if (currentHealth <= 0) return;
 
         phase2 = true;
         Debug.Log("BOSS ENTERS PHASE 2!");
@@ -274,7 +273,7 @@ public class BossController : MonoBehaviour
         {
             if (currentHealth <= 0) yield break;
 
-            // Always spawn off-screen above the camera
+            // always spawn off-screen above the camera
             float topY = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 1.3f, 0)).y;
 
             Vector3 spawnPos = new Vector3(

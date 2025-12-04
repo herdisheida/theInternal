@@ -6,13 +6,10 @@ public class BiteAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("BITE HIT: " + collision.name);
-
         HealthSystem hs = collision.GetComponentInParent<HealthSystem>();
 
         if (hs != null)
         {
-            Debug.Log("Player took damage!");
             hs.TakeDamage(damage);
         }
     }
