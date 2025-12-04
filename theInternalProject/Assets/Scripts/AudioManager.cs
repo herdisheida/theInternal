@@ -22,16 +22,23 @@ public class AudioManager : MonoBehaviour
 
 
     [Header("Sound Effect Clips")]
+    // menu-related
+    public AudioClip buttonClickClip; // start, quit buttons
+
     // player-related
     public AudioClip damageTakenClip;
     public AudioClip dyingClip;
     public AudioClip attackClip;        // medicine bullet shooting
-    public AudioClip shootPatientClip;  // shoot infected patient
+
+    // shoot patient-related
+    public AudioClip shootPatientClip;    // shoot infected patient
+    public AudioClip heavyBreathingClip;  // breath heavily while shooting
+    public AudioClip deepExhaleClip;      // exhale after shooting
+
     // enemy-related
     public AudioClip enemyAttackClip;
     public AudioClip enemyDeathClip;
-    // menu-related
-    public AudioClip buttonClickClip; // start, quit buttons
+
     // ambient-related
 
 
@@ -61,7 +68,7 @@ public class AudioManager : MonoBehaviour
 
 
     // Play a specific music clip (chosen from Inspector or passed in).
-    // Example: AudioManager.instance.PlayMusic(AudioManager.instance.bossBattleMusic);
+    // Example: AudioManager.instance?.PlayMusic(AudioManager.instance.bossBattleMusic);
     public void PlayMusic(AudioClip clip)
     {
         if (musicSource == null || clip == null) return;
@@ -85,14 +92,23 @@ public class AudioManager : MonoBehaviour
     void PlaySFX(AudioClip clip)
     {
         if (sfxSource == null || clip == null) return;
+        if (!sfxSource.isActiveAndEnabled) return; // prevents errors if AudioSource is disabled
         sfxSource.PlayOneShot(clip);
+    }
+
+    public void StopSFX()
+    {
+        if (sfxSource != null)
+        {
+            sfxSource.Stop();
+        }
     }
 
 
 
 
-
-    // helper methods for background music
+    // helper methods for playing background music
+    // Example: AudioManager.instance?.PlayHospitalLobbyMusic();
     public void PlayHospitalLobbyMusic()     => PlayMusic(hospitalLobbyMusic);
     public void PlayObstacleGameplayMusic()  => PlayMusic(obstacleGameplayMusic);
     public void PlayBossBattleMusic()        => PlayMusic(bossBattleMusic);
@@ -103,12 +119,16 @@ public class AudioManager : MonoBehaviour
 
 
     // helper methods for SFX
+    // Example: AudioManager.instance?.ButtonClick();
     public void ButtonClick()    => PlaySFX(buttonClickClip);
     
     public void DamageTaken()    => PlaySFX(damageTakenClip);
     public void Dying()          => PlaySFX(dyingClip);
     public void Attack()         => PlaySFX(attackClip);
+
     public void ShootPatient()   => PlaySFX(shootPatientClip);
+    public void HeavyBreathing()    => PlaySFX(heavyBreathingClip);
+    public void DeepExhale()         => PlaySFX(deepExhaleClip);
 
     public void EnemyAttack()    => PlaySFX(enemyAttackClip);
     public void EnemyDeath()     => PlaySFX(enemyDeathClip);

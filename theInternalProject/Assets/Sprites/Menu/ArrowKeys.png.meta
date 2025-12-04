@@ -125,10 +125,10 @@ TextureImporter:
       name: ArrowKeys_0
       rect:
         serializedVersion: 2
-        x: 250
-        y: 196
-        width: 156
-        height: 156
+        x: 8063
+        y: 6335
+        width: 4834
+        height: 4834
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,10 +147,10 @@ TextureImporter:
       name: ArrowKeys_1
       rect:
         serializedVersion: 2
-        x: 82
-        y: 29
-        width: 157
-        height: 156
+        x: 2687
+        y: 991
+        width: 4866
+        height: 4834
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,10 +169,10 @@ TextureImporter:
       name: ArrowKeys_2
       rect:
         serializedVersion: 2
-        x: 250
-        y: 29
-        width: 156
-        height: 156
+        x: 8063
+        y: 991
+        width: 4834
+        height: 4834
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,10 +191,10 @@ TextureImporter:
       name: ArrowKeys_3
       rect:
         serializedVersion: 2
-        x: 417
-        y: 29
-        width: 157
-        height: 156
+        x: 13407
+        y: 991
+        width: 4866
+        height: 4834
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

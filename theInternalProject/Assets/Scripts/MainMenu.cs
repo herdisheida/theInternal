@@ -18,19 +18,23 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        // load the next scene
+        // play button click sound
+        AudioManager.instance?.ButtonClick();
+
+        // then load the next scene
         if (!string.IsNullOrEmpty(sceneToLoadOnStart))
         {
             SceneManager.LoadScene(sceneToLoadOnStart);
         }
         else
         {
-            Debug.LogWarning("PatientPatientSelection: sceneToLoad is not set!");
+            Debug.LogWarning("PatientSelection: sceneToLoad is not set!");
         }
     }
 
     public void QuitGame()
     {
+        AudioManager.instance?.ButtonClick();
         Application.Quit();
     }
 
