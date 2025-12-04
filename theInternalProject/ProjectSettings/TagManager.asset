@@ -8,6 +8,7 @@ TagManager:
   - Tunnel
   - Boss
   - BackgroundBorder
+  - Background
   layers:
   - Default
   - TransparentFX
@@ -47,6 +48,12 @@ TagManager:
     locked: 0
   - name: Obstacles
     uniqueID: 1373827247
+    locked: 0
+  - name: BackgroundBorder
+    uniqueID: 876540115
+    locked: 0
+  - name: Background
+    uniqueID: 1645914281
     locked: 0
   m_RenderingLayers:
   - Default

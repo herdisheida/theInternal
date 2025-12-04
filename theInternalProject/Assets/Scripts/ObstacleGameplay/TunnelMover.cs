@@ -7,17 +7,22 @@ public class TunnelMover : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()
     {
         if (transform.position.x <= stopPos)
         {
+            // snap into correct pos
             transform.position = new Vector3(stopPos, transform.position.y, transform.position.z);
-            enabled = false; // stop moving
+
+            // stop moving tunnel
+            enabled = false;
             return;
         }
+
+        // move tunnel left
         transform.position += Vector3.left * moveSpeed * Time.deltaTime;
     }
 }
