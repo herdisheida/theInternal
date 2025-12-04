@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7326787598668202316}
   m_Layer: 0
   m_Name: Infection
-  m_TagString: Untagged
+  m_TagString: Infection
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,7 +169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab316955c64734a4aa6c72d8ffd91408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InfectionController
-  damagePlayerAmount: 20
+  maxHealth: 4
+  hitFlashDuration: 0.1
 --- !u!95 &7326787598668202316
 Animator:
   serializedVersion: 7

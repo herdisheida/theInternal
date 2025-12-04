@@ -27,6 +27,7 @@ public class PlayerBullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
+        // hit boss
         if (collision.CompareTag("Boss"))
         {
             BossController boss = collision.GetComponent<BossController>();
@@ -35,6 +36,19 @@ public class PlayerBullet : MonoBehaviour
                 boss.TakeDamage(damage);
             }
             Destroy(gameObject);
+        }
+
+
+        // hit mini infection
+        if (collision.CompareTag("Infection"))
+        {
+            InfectionController infection = collision.GetComponent<InfectionController>();
+            if (infection != null)
+            {
+                infection.TakeBulletDamage(damage);
+            }
+            Destroy(gameObject);
+            return;
         }
     }
 }
