@@ -158,17 +158,8 @@ public class BossController : MonoBehaviour
                 healthBarRoot.SetActive(false);
 
             Die();
-            StartCoroutine(LoadNextSceneAfterDelay());
             return;
         }
-    }
-
-    IEnumerator LoadNextSceneAfterDelay()
-    {
-        // length of delay
-        float delay = 3f;
-        yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene("PatientSelection");
     }
 
     void UpdateHealthBar()
@@ -183,8 +174,9 @@ public class BossController : MonoBehaviour
         StopAllCoroutines();
         Destroy(gameObject);
 
+        // load next scene TODO HERDIS delay a little bit
+        SceneManager.LoadScene("PatientSelection");
     }
-
 
     // ---------------- BITE ATTACK ----------------
 
