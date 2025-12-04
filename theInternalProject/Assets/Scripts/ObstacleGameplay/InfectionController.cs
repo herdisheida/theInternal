@@ -7,7 +7,7 @@ public class InfectionController : MonoBehaviour
     private int damagePlayerAmount = 15; // how much health to remove from player per hit
 
     [Header("Infection health settings")]
-    public int maxHealth = 4;          // 3–4 shots KO
+    public int maxHealth = 7;          // 6-8 shots KO
     public float hitFlashDuration = 0.1f;
 
     private int currentHealth;
