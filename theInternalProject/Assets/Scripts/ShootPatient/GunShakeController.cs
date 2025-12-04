@@ -56,10 +56,8 @@ public class GunShakeController : MonoBehaviour
     private bool hasShot = false;
 
 
-    void Start()
+    IEnumerator Start()
     {
-        // start with black (then SHOOTING sequence)
-        yield return StartCoroutine(BlackScreen(3f));
 
        if (gunTransform == null) { gunTransform = GetComponent<RectTransform>(); }
         if (gunImage == null) { gunImage = GetComponent<Image>(); }
@@ -76,6 +74,10 @@ public class GunShakeController : MonoBehaviour
         // default idle sprite if not set
         if (idleGunSprite == null && gunImage != null) { idleGunSprite = gunImage.sprite; }
 
+        // start with black screen for 3 seconds
+        yield return StartCoroutine(BlackScreen(3f));
+
+        // after black screen, start shaking
         StartShake();
     }
 
@@ -199,6 +201,14 @@ public class GunShakeController : MonoBehaviour
 
         // Short pause to let the exhale play
         yield return new WaitForSeconds(blackHoldDuration);
+
+        // fade back to transparent
+        if (fadeImage != null)
+        {
+            Color c = fadeImage.color;
+            c.a = 0f;
+            fadeImage.color = c;
+        }
     }
 
     // make the SpaceKey box blink
