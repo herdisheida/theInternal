@@ -25,18 +25,45 @@ public class PatientSelectionUI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.RightArrow)|| Input.GetKeyDown(KeyCode.D))
         {
-            currentIndex = Mathf.Min(currentIndex +1, PatientSlots.Length -1);
+            MoveRight();
             UpdateSprite(currentIndex);
             MoveArrowToCurrent();
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow)|| Input.GetKeyDown(KeyCode.A))
         {
-            currentIndex = Mathf.Max(currentIndex -1, 0);
+            MoveLeft();
             UpdateSprite(currentIndex);
             MoveArrowToCurrent();
         }
     }
 
+    private void MoveRight()
+    {
+        int nextIndex = currentIndex;
+
+        do
+        {
+            nextIndex++;
+            if (nextIndex >= PatientSlots.Length) 
+                return;
+        } while (!PatientSlots[nextIndex].IsSelectable());
+
+        currentIndex = nextIndex;
+    }
+
+    private void MoveLeft()
+    {
+        int prevIndex = currentIndex;
+
+        do
+        {
+            prevIndex--;
+            if (prevIndex < 0)
+                return;
+        } while (!PatientSlots[prevIndex].IsSelectable());
+
+        currentIndex = prevIndex;
+    }
     private void UpdateSprite(int index)
     {
         

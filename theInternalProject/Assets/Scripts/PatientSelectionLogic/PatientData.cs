@@ -9,5 +9,6 @@ public class PatientData : ScriptableObject
     public Sprite unselected;
     public Sprite infected;
     public Sprite dead;
+    public bool isSaved;
 
 }
