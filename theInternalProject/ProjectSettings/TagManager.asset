@@ -9,6 +9,7 @@ TagManager:
   - Boss
   - BackgroundBorder
   - Background
+  - Infection
   layers:
   - Default
   - TransparentFX

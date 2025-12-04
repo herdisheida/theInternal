@@ -19,6 +19,7 @@ public class PatientSelectionUI : MonoBehaviour
     {
 
         UpdateSprite(currentIndex);
+        AudioManager.instance?.PlayHospitalLobbyMusic();
         MoveArrowToCurrent();
     }
 

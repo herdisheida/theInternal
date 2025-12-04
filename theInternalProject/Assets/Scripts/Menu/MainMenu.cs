@@ -25,7 +25,6 @@ public class MainMenu : MonoBehaviour
         if (!string.IsNullOrEmpty(sceneToLoadOnStart))
         {
             AudioManager.instance?.StopMusic();
-            AudioManager.instance?.PlayHospitalLobbyMusic(); // TODO HERDIS: move this to the lobby scene (so it starts every time we load the lobby)
             SceneManager.LoadScene(sceneToLoadOnStart);
         }
         else

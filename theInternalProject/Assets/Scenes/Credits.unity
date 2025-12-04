@@ -128,7 +128,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 131506710}
-  - component: {fileID: 131506711}
   - component: {fileID: 131506712}
   m_Layer: 5
   m_Name: Credits
@@ -158,19 +157,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.53533936, y: -411}
   m_SizeDelta: {x: 599.2845, y: 281.057}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &131506711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 131506709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 275b9d90479cb4021bcfc09e6a482366, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  sceneToLoadOnStart: PatientSelection
 --- !u!114 &131506712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +168,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b9d2072eeb9346428acb448daf42e12, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::CreditScroll
   scrollSpeed: 40
 --- !u!1 &255119735
 GameObject:

@@ -1538,6 +1538,10 @@ PrefabInstance:
       propertyPath: healthBarFill
       value: 
       objectReference: {fileID: 1277512730}
+    - target: {fileID: 3615863617986684596, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
+      propertyPath: spreadBulletPrefab
+      value: 
+      objectReference: {fileID: 8294092606376788268, guid: 55fc04bc048ceda4b84b5b4efee09717, type: 3}
     - target: {fileID: 6153616709873930589, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.041
