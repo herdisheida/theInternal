@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        
+        AudioManager.instance?.PlayMenuScreenMusic();
     }
 
     void Update()
@@ -24,6 +24,8 @@ public class MainMenu : MonoBehaviour
         // then load the next scene
         if (!string.IsNullOrEmpty(sceneToLoadOnStart))
         {
+            AudioManager.instance?.StopMusic();
+            AudioManager.instance?.PlayHospitalLobbyMusic(); // TODO HERDIS: move this to the lobby scene (so it starts every time we load the lobby)
             SceneManager.LoadScene(sceneToLoadOnStart);
         }
         else

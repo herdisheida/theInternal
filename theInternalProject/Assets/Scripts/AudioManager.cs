@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour
 
 
     [Header("Background Music Clips")]
+    public AudioClip menuScreenMusic;
     public AudioClip hospitalLobbyMusic;
     public AudioClip obstacleGameplayMusic;
     public AudioClip bossBattleMusic;
@@ -19,6 +20,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip goodEndingMusic;    // save all patients
     public AudioClip badEndingMusic;     // save no patients
     public AudioClip partialEndingMusic; // save some patients but not all
+
+    public AudioClip CreditsClip; // credits music
 
 
     [Header("Sound Effect Clips")]
@@ -109,6 +112,7 @@ public class AudioManager : MonoBehaviour
 
     // helper methods for playing background music
     // Example: AudioManager.instance?.PlayHospitalLobbyMusic();
+    public void PlayMenuScreenMusic()        => PlayMusic(menuScreenMusic);
     public void PlayHospitalLobbyMusic()     => PlayMusic(hospitalLobbyMusic);
     public void PlayObstacleGameplayMusic()  => PlayMusic(obstacleGameplayMusic);
     public void PlayBossBattleMusic()        => PlayMusic(bossBattleMusic);
@@ -116,6 +120,8 @@ public class AudioManager : MonoBehaviour
     public void PlayGoodEndingMusic()        => PlayMusic(goodEndingMusic);
     public void PlayBadEndingMusic()         => PlayMusic(badEndingMusic);
     public void PlayPartialEndingMusic()     => PlayMusic(partialEndingMusic);
+
+    public void PlayCredits()  => PlayMusic(CreditsClip);
 
 
     // helper methods for SFX
