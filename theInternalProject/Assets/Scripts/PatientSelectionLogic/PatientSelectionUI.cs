@@ -1,39 +1,39 @@
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using Mono.Cecil.Cil;
 
 public class PatientSelectionUI : MonoBehaviour
 {
-    
     [Header("Data")]
-    public PatientData[] patients;
-
-    [Header("UI References")]
-    public Image portraitImage;
-    
+    // public PatientData[] patients; 
+    public PatientSlot[] slots; 
     private int currentIndex = 0;
 
-    void Start()
+    // public void Start()
+    // {
+
+    //     // patients[currentIndex].alive;
+    // }
+
+    private void Update()
     {
-        ShowPatient(currentIndex);
+        if (Input.GetKeyDown(KeyCode.RightArrow)|| Input.GetKeyDown(KeyCode.D))
+        {
+            currentIndex = Mathf.Min(currentIndex +1, slots.Length -1);
+            UpdateSprite(currentIndex);
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow)|| Input.GetKeyDown(KeyCode.A))
+        {
+            currentIndex = Mathf.Max(currentIndex -1, 0);
+            UpdateSprite(currentIndex);
+        }
     }
 
-    public void NextPatient()
+    private void UpdateSprite(int index)
     {
-        currentIndex = (currentIndex - 1 + patients.Length) % patients.Length;
-        ShowPatient(currentIndex);
+        
+        for (int i = 0; i < slots.Length; i++)
+        {
+            bool isSelected = (index == i);
+            slots[i].Refresh(isSelected);
+        }
     }
-
-    void ShowPatient(int index)
-    {
-        var data = patients[index];
-
-        portraitImage.sprite = data.alive;
-    }
-
-    public void ConfirmSelection()
-    {
-        var selected = patients[currentIndex];
-    } 
 }
