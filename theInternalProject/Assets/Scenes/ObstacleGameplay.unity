@@ -318,7 +318,7 @@ GameObject:
   - component: {fileID: 1758841168}
   - component: {fileID: 1758841169}
   m_Layer: 0
-  m_Name: FleshyBG_01
+  m_Name: BG_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 1865587995}
   - component: {fileID: 1865587994}
   m_Layer: 0
-  m_Name: FleshyBG_02
+  m_Name: BG_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
