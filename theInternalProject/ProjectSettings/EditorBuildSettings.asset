@@ -6,17 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 40e7900f2128d46bb9e780dc3ad27e77
+  - enabled: 1
     path: Assets/Scenes/PatientSelection.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
-    path: Assets/Scenes/BossBattle.unity
-    guid: 806002517ffcc4adaa5ed8b9c59acb88
   - enabled: 1
     path: Assets/Scenes/ObstacleGameplay.unity
     guid: 340f3128158214020957c317bbde15b2
   - enabled: 1
-    path: Assets/Scenes/Menu.unity
-    guid: 40e7900f2128d46bb9e780dc3ad27e77
+    path: Assets/Scenes/BossBattle.unity
+    guid: 806002517ffcc4adaa5ed8b9c59acb88
   - enabled: 1
     path: Assets/Scenes/ShootPatient.unity
     guid: 8abb0b93e782e495a8c8533f9eeb6e1b
