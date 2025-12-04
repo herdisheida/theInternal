@@ -1,3 +1,4 @@
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,6 +35,10 @@ public class PatientSelectionUI : MonoBehaviour
             MoveLeft();
             UpdateSprite(currentIndex);
             MoveArrowToCurrent();
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            LoadPatientScreen();
         }
     }
 
@@ -88,9 +93,15 @@ public class PatientSelectionUI : MonoBehaviour
         Vector3 topCenter = (corners[1] + corners[2]) * 0.5f;
 
         arrowPoint.position = topCenter + new Vector3(0, arrowOffset, 0);
-        // float x = targetPatient.anchoredPosition.x;
-        // float y = targetPatient.anchoredPosition.y + (targetPatient.rect.height * 0.2f) + arrowOffset;
-        
-        // arrowPoint.anchoredPosition = new Vector2(x,y);
+    }
+
+    private void LoadPatientScreen()
+    {
+        string sceneToLoad = PatientSlots[currentIndex].sceneName;
+
+        if (!string.IsNullOrEmpty(sceneToLoad))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
+        }
     }
 }
