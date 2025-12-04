@@ -208,8 +208,8 @@ public class GunShakeController : MonoBehaviour
 
         if (!active)
         {
-            // when not shaking, just show unpressed
-            spaceKeyImage.sprite = spaceBarUnpressedSprite;
+            // when not shaking -> display nothing
+            spaceKeyImage.enabled = false;
             return;
         }
 
