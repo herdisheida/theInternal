@@ -225,6 +225,7 @@ public class GunShakeController : MonoBehaviour
         }
 
         spaceKeyImage.enabled = true;
+
         // use a sine wave to flip between sprites
         float v = Mathf.Sin(Time.time * spaceKeyBlinkSpeed);
 
