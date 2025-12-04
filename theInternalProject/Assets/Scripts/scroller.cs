@@ -1,0 +1,16 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+public class scroller : MonoBehaviour
+{
+    [SerializeField] private RawImage _img;
+    [SerializeField] private float _x;
+
+    void Update()
+    {
+        _img.uvRect = new Rect(
+            new Vector2(_img.uvRect.x + _x * Time.deltaTime, 0f),
+            _img.uvRect.size
+        );
+    }
+}

@@ -59,11 +59,11 @@ MonoBehaviour:
   buttonClickClip: {fileID: 8300000, guid: ccac5e46673c84b52b31fc7ea8014b8f, type: 3}
   damageTakenClip: {fileID: 0}
   dyingClip: {fileID: 0}
-  attackClip: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: 7922810297d526a4bb03e7db84f4ef17, type: 3}
   shootPatientClip: {fileID: 8300000, guid: 379d64f29535246b5be5844d5288e989, type: 3}
   heavyBreathingClip: {fileID: 8300000, guid: 6ca6794b8d36744088f5edcf70728e10, type: 3}
   deepExhaleClip: {fileID: 8300000, guid: 513b4a4ab1ffc4cd38598a2256fed6e1, type: 3}
-  enemyAttackClip: {fileID: 0}
+  zombieChompClip: {fileID: 8300000, guid: bf0c62b17c83840a282f70e4f0051b34, type: 3}
   enemyDeathClip: {fileID: 0}
 --- !u!82 &5469112575120005823
 AudioSource:

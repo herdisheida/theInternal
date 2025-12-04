@@ -14,7 +14,11 @@ public class PatientSlot: MonoBehaviour
     }
 
     public bool IsSelectable()
-    {
+    {   
+        if (portraitImage == null)
+        {
+            return false;
+        }
         if (data.isSaved)
         {
             return false;

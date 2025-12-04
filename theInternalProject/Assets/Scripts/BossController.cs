@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
+
 
 public class BossController : MonoBehaviour
 {
@@ -160,7 +162,6 @@ public class BossController : MonoBehaviour
         }
     }
 
-
     void UpdateHealthBar()
     {
         float targetRatio = (float)currentHealth / maxHealth;
@@ -173,8 +174,9 @@ public class BossController : MonoBehaviour
         StopAllCoroutines();
         Destroy(gameObject);
 
+        // load next scene TODO HERDIS delay a little bit
+        SceneManager.LoadScene("PatientSelection");
     }
-
 
     // ---------------- BITE ATTACK ----------------
 
@@ -224,6 +226,7 @@ public class BossController : MonoBehaviour
         }
 
         // Bite damage window
+        AudioManager.instance?.ZombieChomp();
         biteHitbox.SetActive(true);
         yield return new WaitForSeconds(biteActiveTime);
         biteHitbox.SetActive(false);

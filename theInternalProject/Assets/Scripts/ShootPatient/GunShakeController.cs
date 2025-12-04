@@ -39,7 +39,6 @@ public class GunShakeController : MonoBehaviour
     public Color maxRedTint = new Color(1f, 0.2f, 0.2f, 1f); // target colour at end
 
     [Header("BlackScreen & Scene")]
-    public float blackHoldDuration = 4f;
     public string nextSceneName = "PatientSelection";
 
 
@@ -57,8 +56,9 @@ public class GunShakeController : MonoBehaviour
     private bool hasShot = false;
 
 
-    void Start()
+    IEnumerator Start()
     {
+
        if (gunTransform == null) { gunTransform = GetComponent<RectTransform>(); }
         if (gunImage == null) { gunImage = GetComponent<Image>(); }
 
@@ -74,6 +74,10 @@ public class GunShakeController : MonoBehaviour
         // default idle sprite if not set
         if (idleGunSprite == null && gunImage != null) { idleGunSprite = gunImage.sprite; }
 
+        // start with black screen for 2 seconds
+        yield return StartCoroutine(BlackScreen(2f));
+
+        // after black screen, start shaking
         StartShake();
     }
 
@@ -157,7 +161,9 @@ public class GunShakeController : MonoBehaviour
         EndShake();
 
         // instantly go black + exhale + change scene
-        yield return StartCoroutine(BlackScreenAndGoToNextScene());
+        yield return StartCoroutine(BlackScreen(4f));
+        // load next scene
+        SceneManager.LoadScene(nextSceneName);
     }
 
     void EndShake()
@@ -180,7 +186,7 @@ public class GunShakeController : MonoBehaviour
     }
 
 
-    IEnumerator BlackScreenAndGoToNextScene()
+    IEnumerator BlackScreen(float blackHoldDuration)
     {
         // instantly turn screen black
         if (fadeImage != null)
@@ -196,8 +202,13 @@ public class GunShakeController : MonoBehaviour
         // Short pause to let the exhale play
         yield return new WaitForSeconds(blackHoldDuration);
 
-        // load next scene
-        SceneManager.LoadScene(nextSceneName);
+        // fade back to transparent
+        if (fadeImage != null)
+        {
+            Color c = fadeImage.color;
+            c.a = 0f;
+            fadeImage.color = c;
+        }
     }
 
     // make the SpaceKey box blink
@@ -212,6 +223,8 @@ public class GunShakeController : MonoBehaviour
             spaceKeyImage.enabled = false;
             return;
         }
+
+        spaceKeyImage.enabled = true;
 
         // use a sine wave to flip between sprites
         float v = Mathf.Sin(Time.time * spaceKeyBlinkSpeed);

@@ -11,9 +11,7 @@ public class PatientSelectionUI : MonoBehaviour
 
     [Header("Arrow")]
     public Image arrow;
-    public float arrowOffset = 30f;
-
-
+    public float arrowOffset = 40f;
 
     public void Start()
     {
