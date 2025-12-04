@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
+
 
 public class BossController : MonoBehaviour
 {
@@ -156,10 +158,18 @@ public class BossController : MonoBehaviour
                 healthBarRoot.SetActive(false);
 
             Die();
+            StartCoroutine(LoadNextSceneAfterDelay());
             return;
         }
     }
 
+    IEnumerator LoadNextSceneAfterDelay()
+    {
+        // length of delay
+        float delay = 3f;
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene("PatientSelection");
+    }
 
     void UpdateHealthBar()
     {
