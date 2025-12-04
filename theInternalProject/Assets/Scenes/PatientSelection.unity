@@ -273,6 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PatientSlot
   portraitImage: {fileID: 0}
   data: {fileID: 11400000, guid: 946d4417ca413421e802d55482df187c, type: 2}
+  sceneName: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,6 +461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PatientSlot
   portraitImage: {fileID: 0}
   data: {fileID: 11400000, guid: 447ed8633429c4f70ba59e00ec758005, type: 2}
+  sceneName: 
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,7 +602,7 @@ MonoBehaviour:
   - {fileID: 281788650}
   - {fileID: 618330202}
   arrow: {fileID: 1939195815}
-  arrowOffset: 30
+  arrowOffset: 40
 --- !u!1 &1054509933
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,6 +958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PatientSlot
   portraitImage: {fileID: 1311870543}
   data: {fileID: 11400000, guid: b9e940b781e414dc0aa84c87f8ac9111, type: 2}
+  sceneName: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
