@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ZombiePatientData
   m_EditorClassIdentifier: Assembly-CSharp::PatientData
   patientName: Zane
-  alive: {fileID: 8439635505814947257, guid: d35f7806717b146bab90aaff3f145035, type: 3}
-  dlackAndWhite: {fileID: -8489462254518878276, guid: dc6e00b495b0f4c4d89ee0cb3e136a57, type: 3}
+  selected: {fileID: -8489462254518878276, guid: dc6e00b495b0f4c4d89ee0cb3e136a57, type: 3}
+  unselected: {fileID: 8439635505814947257, guid: d35f7806717b146bab90aaff3f145035, type: 3}
   infected: {fileID: -1621220576460722135, guid: 40faf5a89e26340dfbc406ea151fc4c7, type: 3}
   dead: {fileID: -5328564077077918766, guid: 3fa306401f7594bfd8ee26c4f630ba8e, type: 3}
