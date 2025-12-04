@@ -4,11 +4,12 @@ using UnityEngine.SceneManagement;
 
 public class HealthSystem : MonoBehaviour
 {
-    public static HealthSystem instance;
-
     [Header("Health Settings")]
     public int maxHealth = 100;
     public int currentHealth;
+
+    // this is the shared health for ALL HealthSystem instances
+    public static int sharedHealth = -1; // -1 means "not initialized yet"
 
     [Header("Health Bar (World Space)")]
     public GameObject healthBarRoot;   // The whole health bar object (parent)
@@ -27,29 +28,36 @@ public class HealthSystem : MonoBehaviour
     public float blinkInterval = 0.1f;
     private SpriteRenderer[] spriteRenderers;
 
-    void Awake ()
+    void Awake()
     {
-        // singleton pattern
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
+        // Cache all sprites on load for better perfomance
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
     }
 
     void Start()
     {
-        currentHealth = maxHealth;
-        UpdateAllHealthDisplays();
+        // first scene: sharedHealth == -1 → start at maxHealth
+        // later scenes: use whatever sharedHealth was left at
+        if (sharedHealth < 0 || sharedHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+            sharedHealth = currentHealth;
+        }
+        else
+        {
+            currentHealth = sharedHealth;
+        }
 
-        // Cache all sprites on load for better perfomance
-        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        UpdateAllHealthDisplays();
     }
+
+    void Update()
+    {
+        UpdateHealthBar();
+    }
+
+
+    // --- DAMAGE / DEATH --------------------------------------------------
 
     // Called when the player takes damage
     public void TakeDamage(int amount)
@@ -58,6 +66,9 @@ public class HealthSystem : MonoBehaviour
 
         currentHealth -= amount;
         currentHealth = Mathf.Max(0, currentHealth); // prevent negative health
+
+        // sync static value so next scene sees same HP
+        sharedHealth = currentHealth;
 
         // Flash red when hit
         DamageFlash flash = GetComponent<DamageFlash>();
@@ -116,12 +127,23 @@ public class HealthSystem : MonoBehaviour
 
         // Can get hurt again
         isInvincible = false;
+    }
 
-    }
-    void Update()
+    public void Die()
     {
-        UpdateHealthBar();
+        // hide health bar on death
+        if (healthBarRoot != null)
+            healthBarRoot.SetActive(false);
+
+        // deactivate the player
+        gameObject.SetActive(false);
+        SceneManager.LoadScene("ShootPatient");
     }
+
+
+
+    // --- HEALTH UI -------------------------------------------------------
+
 
     // Updates the world-space health bar
     void UpdateHealthBar()
@@ -155,16 +177,5 @@ public class HealthSystem : MonoBehaviour
     {
         UpdateHealthBar();
         UpdateHealthText();
-    }
-
-    public void Die()
-    {
-        // hide health bar on death
-        if (healthBarRoot != null)
-            healthBarRoot.SetActive(false);
-
-        // deactivate the player
-        gameObject.SetActive(false);
-        SceneManager.LoadScene("ShootPatient");
     }
 }
