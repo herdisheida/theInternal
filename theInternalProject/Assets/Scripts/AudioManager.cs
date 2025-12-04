@@ -21,7 +21,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip badEndingMusic;     // save no patients
     public AudioClip partialEndingMusic; // save some patients but not all
 
-    public AudioClip CreditsClip; // credits music
+    public AudioClip creditsMusic; // credits music
 
 
     [Header("Sound Effect Clips")]
@@ -121,7 +121,7 @@ public class AudioManager : MonoBehaviour
     public void PlayBadEndingMusic()         => PlayMusic(badEndingMusic);
     public void PlayPartialEndingMusic()     => PlayMusic(partialEndingMusic);
 
-    public void PlayCredits()  => PlayMusic(CreditsClip);
+    public void PlayCredits()                => PlayMusic(creditsMusic);
 
 
     // helper methods for SFX
