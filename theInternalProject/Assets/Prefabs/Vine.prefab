@@ -151,8 +151,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VineAttack
   damage: 10
-  peekAmount: 0.1
-  dropAmount: 2
-  warningTime: 1
-  dropSpeed: 2
+  warningTime: 3
+  stretchSpeed: 2
   retractSpeed: 6
