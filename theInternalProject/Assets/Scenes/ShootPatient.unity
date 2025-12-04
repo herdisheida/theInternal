@@ -876,7 +876,7 @@ MonoBehaviour:
   shootingMsgGraphics:
   - {fileID: 1079358023}
   - {fileID: 889536241}
-  shootingMsgBlinkSpeed: 4.25
+  shootingMsgBlinkSpeed: 4
   idleGunSprite: {fileID: 281306285295221210, guid: 00c4e0dcd4a27443080011116f3040d4, type: 3}
   shootGunSprite: {fileID: -331875709885016742, guid: 896c27cee8d734b35be5318efb31e857, type: 3}
   shootFlashDuration: 0.1
