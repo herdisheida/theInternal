@@ -7,7 +7,7 @@ public class TunnelMover : MonoBehaviour
 
     void Start()
     {
-        if (backgroundScroller == null) { backgroundScroller = FindObjectOfType<BackgroundScroller>(); }
+
     }
 
     void Update()
