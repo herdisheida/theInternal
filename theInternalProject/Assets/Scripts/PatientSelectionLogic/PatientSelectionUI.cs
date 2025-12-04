@@ -7,11 +7,11 @@ public class PatientSelectionUI : MonoBehaviour
     public PatientSlot[] slots; 
     private int currentIndex = 0;
 
-    // public void Start()
-    // {
+    public void Start()
+    {
 
-    //     // patients[currentIndex].alive;
-    // }
+        UpdateSprite(currentIndex);
+    }
 
     private void Update()
     {

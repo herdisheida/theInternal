@@ -5,7 +5,7 @@ using UnityEngine;
 public class PatientData : ScriptableObject
 {
     public string patientName;
-    public Sprite alive;
+    public Sprite selected;
     public Sprite unselected;
     public Sprite infected;
     public Sprite dead;
