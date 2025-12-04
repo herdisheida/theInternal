@@ -487,8 +487,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1645914281
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 1390576757391040844, guid: 6a91487226eed498a9373b77d8b5c640, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.45490196}
@@ -538,7 +538,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1616503787330669840, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 101
       objectReference: {fileID: 0}
     - target: {fileID: 1616503787330669840, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
       propertyPath: m_LocalRotation.w
