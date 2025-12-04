@@ -74,8 +74,8 @@ public class GunShakeController : MonoBehaviour
         // default idle sprite if not set
         if (idleGunSprite == null && gunImage != null) { idleGunSprite = gunImage.sprite; }
 
-        // start with black screen for 3 seconds
-        yield return StartCoroutine(BlackScreen(3f));
+        // start with black screen for 2 seconds
+        yield return StartCoroutine(BlackScreen(2f));
 
         // after black screen, start shaking
         StartShake();
