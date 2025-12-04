@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class HealthSystem : MonoBehaviour
 {
+    public static HealthSystem instance;
+
     [Header("Health Settings")]
     public int maxHealth = 100;
     public int currentHealth;
@@ -25,6 +27,20 @@ public class HealthSystem : MonoBehaviour
     public float blinkInterval = 0.1f;
     private SpriteRenderer[] spriteRenderers;
 
+    void Awake ()
+    {
+        // singleton pattern
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
 
     void Start()
     {
