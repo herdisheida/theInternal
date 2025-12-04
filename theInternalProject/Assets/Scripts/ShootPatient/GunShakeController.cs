@@ -39,7 +39,6 @@ public class GunShakeController : MonoBehaviour
     public Color maxRedTint = new Color(1f, 0.2f, 0.2f, 1f); // target colour at end
 
     [Header("BlackScreen & Scene")]
-    public float blackHoldDuration = 4f;
     public string nextSceneName = "PatientSelection";
 
 
@@ -59,6 +58,9 @@ public class GunShakeController : MonoBehaviour
 
     void Start()
     {
+        // start with black (then SHOOTING sequence)
+        yield return StartCoroutine(BlackScreen(3f));
+
        if (gunTransform == null) { gunTransform = GetComponent<RectTransform>(); }
         if (gunImage == null) { gunImage = GetComponent<Image>(); }
 
@@ -157,7 +159,9 @@ public class GunShakeController : MonoBehaviour
         EndShake();
 
         // instantly go black + exhale + change scene
-        yield return StartCoroutine(BlackScreenAndGoToNextScene());
+        yield return StartCoroutine(BlackScreen(4f));
+        // load next scene
+        SceneManager.LoadScene(nextSceneName);
     }
 
     void EndShake()
@@ -180,7 +184,7 @@ public class GunShakeController : MonoBehaviour
     }
 
 
-    IEnumerator BlackScreenAndGoToNextScene()
+    IEnumerator BlackScreen(float blackHoldDuration)
     {
         // instantly turn screen black
         if (fadeImage != null)
@@ -195,9 +199,6 @@ public class GunShakeController : MonoBehaviour
 
         // Short pause to let the exhale play
         yield return new WaitForSeconds(blackHoldDuration);
-
-        // load next scene
-        SceneManager.LoadScene(nextSceneName);
     }
 
     // make the SpaceKey box blink
