@@ -873,7 +873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252ff65e246a43646b44967fd93f2ebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PatientSlot
-  portraitImage: {fileID: 0}
+  portraitImage: {fileID: 1311870543}
   data: {fileID: 11400000, guid: b9e940b781e414dc0aa84c87f8ac9111, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
