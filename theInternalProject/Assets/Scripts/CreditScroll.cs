@@ -9,6 +9,7 @@ public class CreditScroll : MonoBehaviour
     {
         // get the RectTransform component
         rectTransform = GetComponent<RectTransform>();
+        AudioManager.instance?.PlayCredits();
     }
 
     void Update()

@@ -55,7 +55,7 @@ MonoBehaviour:
   goodEndingMusic: {fileID: 0}
   badEndingMusic: {fileID: 0}
   partialEndingMusic: {fileID: 0}
-  CreditsClip: {fileID: 8300000, guid: 3383eaed8dc93491f91f6c6215db786d, type: 3}
+  creditsMusic: {fileID: 8300000, guid: ec6eb95a2924b4700be5c359d2a668e3, type: 3}
   buttonClickClip: {fileID: 8300000, guid: ccac5e46673c84b52b31fc7ea8014b8f, type: 3}
   damageTakenClip: {fileID: 0}
   dyingClip: {fileID: 0}
