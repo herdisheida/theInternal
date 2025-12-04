@@ -226,6 +226,7 @@ public class BossController : MonoBehaviour
         }
 
         // Bite damage window
+        AudioManager.instance?.ZombieChomp();
         biteHitbox.SetActive(true);
         yield return new WaitForSeconds(biteActiveTime);
         biteHitbox.SetActive(false);
