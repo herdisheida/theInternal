@@ -19,7 +19,7 @@ public class ObstacleSpawner : MonoBehaviour
     public float tunnelSpawnDelayAfterEnd = 2f; // delay after last obstacle
 
     [Header("Spawn Timer")]
-    public float spawnDuration = 40f;        // how long obstacles should spawn
+    public float spawnDuration = 35f;        // how long obstacles should spawn
     private float elapsedTime = 0f;
     private bool spawningFinished = false;
     private bool tunnelSpawned = false;

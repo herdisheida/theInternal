@@ -227,7 +227,7 @@ MonoBehaviour:
   tunnelY: 0
   tunnelStopPos: 5
   tunnelSpawnDelayAfterEnd: 1.5
-  spawnDuration: 40
+  spawnDuration: 35
   speedIncreaseDelay: 10
   speedIncreaseRate: 0.5
   maxSpeed: 12
