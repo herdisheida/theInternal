@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 131506710}
   - component: {fileID: 131506711}
+  - component: {fileID: 131506712}
   m_Layer: 5
   m_Name: Credits
   m_TagString: Untagged
@@ -154,7 +155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.53533936, y: -27.352386}
+  m_AnchoredPosition: {x: 0.53533936, y: -411}
   m_SizeDelta: {x: 599.2845, y: 281.057}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &131506711
@@ -170,6 +171,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   sceneToLoadOnStart: PatientSelection
+--- !u!114 &131506712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131506709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b9d2072eeb9346428acb448daf42e12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  scrollSpeed: 40
 --- !u!1 &255119735
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,7 +196,7 @@ GameObject:
   - component: {fileID: 255119738}
   - component: {fileID: 255119737}
   m_Layer: 5
-  m_Name: Credits
+  m_Name: Heimildir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -204,7 +218,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 104}
+  m_AnchoredPosition: {x: 0, y: 8}
   m_SizeDelta: {x: 450, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &255119737
@@ -227,7 +241,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Credits\n\nScript Writer:\nHera\nHerd\xEDs\nBrynhildur\nJ\xFAl\xEDa\n\nAnimation/Graphics:\nHera\nHerd\xEDs\nBrynhildur\nJ\xFAl\xEDa\n\nDevelopers:\nHera\nHerd\xEDs\nBrynhildur\nJ\xFAl\xEDa\n\nAssets:\nCreated
+  m_text: "Script Writer:\nHera\nHerd\xEDs\nBrynhildur\nJ\xFAl\xEDa\n\nAnimation/Graphics:\nHera\nHerd\xEDs\nBrynhildur\nJ\xFAl\xEDa\n\nDevelopers:\nHera\nHerd\xEDs\nBrynhildur\nJ\xFAl\xEDa\n\nAssets:\nCreated
     using Piskel\n\nPixel Font: https://fonts.google.com/specimen/Pixelify+Sans?query=pixel\n\nSound
     Effects:\nGun sound effect template - https://www.youtube.com/watch?v=lGNwnstqAO4\nExhale
     sound effect template - https://pixabay.com/sound-effects/search/exhale/\nHeavy
@@ -859,7 +873,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1867556648
 RectTransform:
   m_ObjectHideFlags: 0
@@ -876,7 +890,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -18}
+  m_AnchoredPosition: {x: 0, y: -70}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1867556649
@@ -899,7 +913,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tiny Doctor Big Dreams
+  m_text: Credits
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ae54e4a9236384581b2bd9316f43a841, type: 2}
   m_sharedMaterial: {fileID: 4653624503363158687, guid: ae54e4a9236384581b2bd9316f43a841, type: 2}
@@ -926,13 +940,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
