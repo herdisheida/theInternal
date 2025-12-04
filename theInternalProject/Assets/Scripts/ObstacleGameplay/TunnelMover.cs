@@ -5,10 +5,6 @@ public class TunnelMover : MonoBehaviour
     public float moveSpeed = 5f;
     public float stopPos = 0f; // where tunnel should stop on screen
 
-    [Header("Things to stop when tunnel arrives")]
-    public BackgroundScroller backgroundScroller;
-
-
     void Start()
     {
         if (backgroundScroller == null) { backgroundScroller = FindObjectOfType<BackgroundScroller>(); }
@@ -20,10 +16,6 @@ public class TunnelMover : MonoBehaviour
         {
             // snap into correct pos
             transform.position = new Vector3(stopPos, transform.position.y, transform.position.z);
-
-            // stop background scrolling
-            if (backgroundScroller != null)
-                backgroundScroller.StopScrolling();
 
             // stop moving tunnel
             enabled = false;
