@@ -52,6 +52,14 @@ public class BossController : MonoBehaviour
     public float vineDamage = 10f;
     private bool isUsingVines = false;
 
+    [Header("Spread Shot Attack")]
+    public GameObject spreadBulletPrefab;
+    public int spreadCount = 5; // how many bullets in the fan
+    public float spreadAngle = 45f; // total degrees of the fan
+    public float spreadCooldown = 4f;
+    private bool canSpread = true;
+
+
 
     void Start()
     {
@@ -69,21 +77,22 @@ public class BossController : MonoBehaviour
 
         if (!phase2)
         {
-            // Shooting attack
+            // PHASE 1 attacks
             if (!isBursting && !isBiting)
-            {
                 StartCoroutine(ShootBurst());
-            }
 
-            // Bite attack
             float distance = Vector2.Distance(transform.position, player.position);
             if (distance < 7f && canBite)
-            {
                 StartCoroutine(BiteAttackRoutine());
-            }
         }
-        // Phase 2 behavior is handled entirely inside VineAttackRoutine()
+        else
+        {
+            // PHASE 2 attacks
+            if (canSpread)
+                StartCoroutine(SpreadShotRoutine());
+        }
     }
+
 
 
     // ---------------- MOVEMENT ----------------
@@ -257,7 +266,7 @@ public class BossController : MonoBehaviour
     }
 
 
-IEnumerator VineAttackRoutine()
+    IEnumerator VineAttackRoutine()
     {
         isUsingVines = true;
 
@@ -283,5 +292,28 @@ IEnumerator VineAttackRoutine()
 
         isUsingVines = false;
     }
+
+    IEnumerator SpreadShotRoutine()
+    {
+        canSpread = false;
+
+        float angleStep = spreadAngle / (spreadCount - 1);
+        float startAngle = 180f - (spreadAngle / 2f);
+
+        for (int i = 0; i < spreadCount; i++)
+        {
+            float angle = startAngle + angleStep * i;
+            float rad = angle * Mathf.Deg2Rad;
+
+            Vector2 dir = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
+
+            GameObject bullet = Instantiate(spreadBulletPrefab, firePoint.position, Quaternion.identity);
+            bullet.GetComponent<SpreadBullet>().SetDirection(dir);
+        }
+
+        yield return new WaitForSeconds(spreadCooldown);
+        canSpread = true;
+    }
+
 
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class HealthSystem : MonoBehaviour
 {
@@ -148,5 +149,6 @@ public class HealthSystem : MonoBehaviour
 
         // deactivate the player
         gameObject.SetActive(false);
+        SceneManager.LoadScene("ShootPatient");
     }
 }
