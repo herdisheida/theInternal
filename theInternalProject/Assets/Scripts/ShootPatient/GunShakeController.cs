@@ -15,7 +15,7 @@ public class GunShakeController : MonoBehaviour
 
     [Header("Shooting Message Hint")]
     public Graphic[] shootingMsgGraphics;       // box + text
-    public float shootingMsgBlinkSpeed = 3f;    // blink speed
+    public float shootingMsgBlinkSpeed = 4.25f; // blink speed
 
     [Header("Sprites")]
     public Sprite idleGunSprite;                // normal hand gun sprite
@@ -32,7 +32,7 @@ public class GunShakeController : MonoBehaviour
     public float minRotation = 1f;
     public float maxRotation = 6f;
 
-    [Header("Background Tint")]
+    [Header("Background Red Tint")]
     public Color maxRedTint = new Color(1f, 0.2f, 0.2f, 1f); // target colour at end
 
     [Header("BlackScreen & Scene")]
