@@ -476,6 +476,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackgroundRoot
       objectReference: {fileID: 0}
+    - target: {fileID: 441875909330743429, guid: 07ff982ac672b4a20a40ea59ae8b8b16, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6553593993058695862, guid: 07ff982ac672b4a20a40ea59ae8b8b16, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
