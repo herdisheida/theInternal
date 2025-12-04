@@ -39,7 +39,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip deepExhaleClip;      // exhale after shooting
 
     // enemy-related
-    public AudioClip enemyAttackClip;
+    public AudioClip zombieChompClip;
     public AudioClip enemyDeathClip;
 
     // ambient-related
@@ -136,6 +136,6 @@ public class AudioManager : MonoBehaviour
     public void HeavyBreathing()    => PlaySFX(heavyBreathingClip);
     public void DeepExhale()         => PlaySFX(deepExhaleClip);
 
-    public void EnemyAttack()    => PlaySFX(enemyAttackClip);
+    public void ZombieChomp()    => PlaySFX(zombieChompClip);
     public void EnemyDeath()     => PlaySFX(enemyDeathClip);
 }
