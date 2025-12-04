@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 362180840}
   - component: {fileID: 362180839}
   m_Layer: 0
-  m_Name: New Piskel-1.png(7)_0 (2)
+  m_Name: BossHealthBarBorder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -685,11 +685,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1244538808713842361, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.87
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 1244538808713842361, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.14635
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1244538808713842361, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -763,7 +763,7 @@ GameObject:
   - component: {fileID: 1277512730}
   - component: {fileID: 1277512731}
   m_Layer: 0
-  m_Name: HealthBar
+  m_Name: BossHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1274,7 +1274,7 @@ GameObject:
   - component: {fileID: 1903133190}
   - component: {fileID: 1903133191}
   m_Layer: 0
-  m_Name: HealthBar (1)
+  m_Name: PlayerHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1364,7 +1364,7 @@ GameObject:
   - component: {fileID: 1928359060}
   - component: {fileID: 1928359059}
   m_Layer: 0
-  m_Name: New Piskel-1.png(7)_0 (1)
+  m_Name: PlayerHealthBarBorder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1538,21 +1538,25 @@ PrefabInstance:
       propertyPath: healthBarFill
       value: 
       objectReference: {fileID: 1277512730}
+    - target: {fileID: 5359322526546469424, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6553214280964255607, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
     - target: {fileID: 7957974831376436071, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 7957974831376436071, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.41
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7957974831376436071, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.84
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7957974831376436071, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
       propertyPath: m_LocalRotation.w

@@ -9,7 +9,7 @@ public class BossController : MonoBehaviour
 
     [Header("Movement")]
     public float moveSpeed = 2f;
-    public float moveDistance = 3f;
+    public float moveDistance = 2f;
     private Vector3 startPos;
     private float movementTime = 0f;
     private bool freezeMovement = false;
@@ -23,8 +23,8 @@ public class BossController : MonoBehaviour
     [Header("Shooting Attack")]
     public Transform firePoint;
     public GameObject bulletPrefab;
-    public int bulletsPerBurst = 3;
-    public float timeBetweenShots = 0.3f;
+    public int bulletsPerBurst = 4;
+    public float timeBetweenShots = 0.15f;
     public float burstInterval = 2f;
     private bool isBursting = false;
 
