@@ -472,6 +472,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 842498230615105733, guid: d83faf052b769451cbe756749730ac3e, type: 3}
+      propertyPath: m_Color.a
+      value: 0.30588236
+      objectReference: {fileID: 0}
+    - target: {fileID: 842498230615105733, guid: d83faf052b769451cbe756749730ac3e, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9978822
+      objectReference: {fileID: 0}
+    - target: {fileID: 842498230615105733, guid: d83faf052b769451cbe756749730ac3e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9481132
+      objectReference: {fileID: 0}
+    - target: {fileID: 842498230615105733, guid: d83faf052b769451cbe756749730ac3e, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4294291288355253394, guid: d83faf052b769451cbe756749730ac3e, type: 3}
       propertyPath: m_Name
       value: FleshyBackground
