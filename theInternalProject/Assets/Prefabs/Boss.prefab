@@ -271,6 +271,10 @@ MonoBehaviour:
   vinePrefab: {fileID: 4419261858496108236, guid: 19a20cee1d420834cb499c20914c473a, type: 3}
   vineInterval: 2.5
   vineDamage: 20
+  spreadBulletPrefab: {fileID: 8294092606376788268, guid: 55fc04bc048ceda4b84b5b4efee09717, type: 3}
+  spreadCount: 5
+  spreadAngle: 45
+  spreadCooldown: 4
 --- !u!212 &5359322526546469424
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -370,7 +374,7 @@ Transform:
   m_GameObject: {fileID: 6824211441945623543}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.024146898, y: 0.998, z: 0}
+  m_LocalPosition: {x: 0.024146898, y: 1.041, z: 0}
   m_LocalScale: {x: 1.1485482, y: 1.3926147, z: 1.1485482}
   m_ConstrainProportionsScale: 0
   m_Children: []
