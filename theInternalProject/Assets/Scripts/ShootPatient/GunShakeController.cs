@@ -16,8 +16,8 @@ public class GunShakeController : MonoBehaviour
     [Header("Space Key Hint")]
     public Image spaceKeyImage;             // UI Image that shows the space bar
     public Sprite spaceBarUnpressedSprite;  // normal key
-    public Sprite spaceBarPressedSprite;    // “pressed” key
-    public float spaceKeyBlinkSpeed = 4f;   // how fast it switches
+    public Sprite spaceBarPressedSprite;    // pressed key
+    public float spaceKeyBlinkSpeed = 8f;   // how fast it switches
 
 
     [Header("Sprites")]

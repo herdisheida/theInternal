@@ -1010,7 +1010,7 @@ MonoBehaviour:
   spaceKeyImage: {fileID: 322976843}
   spaceBarUnpressedSprite: {fileID: -5704742595995698447, guid: 53a2e168aaa3e4a2ba13b0ff92956911, type: 3}
   spaceBarPressedSprite: {fileID: -1796503253441457639, guid: a1e7a9b49eb9c4d4b99087b64686347f, type: 3}
-  spaceKeyBlinkSpeed: 4
+  spaceKeyBlinkSpeed: 8
   idleGunSprite: {fileID: 281306285295221210, guid: 00c4e0dcd4a27443080011116f3040d4, type: 3}
   shootGunSprite: {fileID: -331875709885016742, guid: 896c27cee8d734b35be5318efb31e857, type: 3}
   shootFlashDuration: 0.1
