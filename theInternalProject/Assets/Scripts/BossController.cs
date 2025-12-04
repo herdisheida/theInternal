@@ -8,21 +8,19 @@ public class BossController : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed = 2f;
     public float moveDistance = 3f;
-
     private Vector3 startPos;
     private float movementTime = 0f;
+    private bool freezeMovement = false;
 
     [Header("Health")]
     public int maxHealth = 10;
     private int currentHealth;
-
     public Transform healthBarFill;
     public GameObject healthBarRoot;
 
-    [Header("Shooting")]
+    [Header("Shooting Attack")]
     public Transform firePoint;
     public GameObject bulletPrefab;
-
     public int bulletsPerBurst = 3;
     public float timeBetweenShots = 0.3f;
     public float burstInterval = 2f;
@@ -31,7 +29,7 @@ public class BossController : MonoBehaviour
     [Header("Health Bar Smoothness")]
     public float smoothSpeed = 10f;
 
-    [Header("Bite Attack Settings")]
+    [Header("Bite Attack")]
     public GameObject biteHitbox;
     public float lungeDistance = 0.5f;
     public float lungeSpeed = 10f;
@@ -40,9 +38,19 @@ public class BossController : MonoBehaviour
     private bool canBite = true;
     private bool isBiting = false;
 
-    [Header("Bite Telegraph Shake")]
+    [Header("Bite Telegraph")]
     public float shakeDuration = 0.3f;
     public float shakeMagnitude = 0.1f;
+
+    [Header("Phase Control")]
+    public bool phase2 = false;
+    public float phase2Threshold = 0.5f; // health below 50%
+
+    [Header("Phase 2 Vine Attack")]
+    public GameObject vinePrefab;
+    public float vineInterval = 2.5f;
+    public float vineDamage = 10f;
+    private bool isUsingVines = false;
 
 
     void Start()
@@ -50,7 +58,8 @@ public class BossController : MonoBehaviour
         startPos = transform.position;
         currentHealth = maxHealth;
 
-        biteHitbox.SetActive(false); // important
+        if (biteHitbox != null)
+            biteHitbox.SetActive(false);
     }
 
     void Update()
@@ -58,21 +67,31 @@ public class BossController : MonoBehaviour
         MoveBoss();
         UpdateHealthBar();
 
-        if (!isBursting && !isBiting)
+        if (!phase2)
         {
-            StartCoroutine(ShootBurst());
-        }
+            // Shooting attack
+            if (!isBursting && !isBiting)
+            {
+                StartCoroutine(ShootBurst());
+            }
 
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-
-        if (distanceToPlayer < 7f && canBite)
-        {
-            StartCoroutine(BiteAttackRoutine());
+            // Bite attack
+            float distance = Vector2.Distance(transform.position, player.position);
+            if (distance < 7f && canBite)
+            {
+                StartCoroutine(BiteAttackRoutine());
+            }
         }
+        // Phase 2 behavior is handled entirely inside VineAttackRoutine()
     }
+
+
+    // ---------------- MOVEMENT ----------------
 
     void MoveBoss()
     {
+        if (freezeMovement) return;
+
         movementTime += Time.deltaTime * moveSpeed;
         float offsetY = Mathf.Sin(movementTime) * moveDistance;
 
@@ -82,6 +101,9 @@ public class BossController : MonoBehaviour
             transform.position.z
         );
     }
+
+
+    // ---------------- SHOOTING ----------------
 
     IEnumerator ShootBurst()
     {
@@ -102,138 +124,164 @@ public class BossController : MonoBehaviour
         Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
     }
 
+
+    // ---------------- HEALTH ----------------
+
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
+        currentHealth = Mathf.Max(0, currentHealth);
+
         GetComponent<DamageFlash>().Flash();
+
+        // Only enter phase 2 if boss is STILL alive
+        if (!phase2 && currentHealth > 0 && currentHealth <= maxHealth * phase2Threshold)
+        {
+            EnterPhase2();
+        }
 
         if (currentHealth <= 0)
         {
-            currentHealth = 0;
-
             if (healthBarRoot != null)
                 healthBarRoot.SetActive(false);
 
             Die();
+            return;
         }
-    }
-
-    IEnumerator ShakeBeforeBite()
-    {
-        Vector3 originalPos = transform.position;
-        float elapsed = 0f;
-
-        while (elapsed < shakeDuration)
-        {
-            float offsetX = Random.Range(-1f, 1f) * shakeMagnitude;
-            float offsetY = Random.Range(-0.5f, 0.5f) * shakeMagnitude;
-
-            transform.position = new Vector3(
-                originalPos.x + offsetX,
-                originalPos.y + offsetY,
-                originalPos.z
-            );
-
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        // return to original position
-        transform.position = originalPos;
-    }
-
-
-    IEnumerator BiteAttackRoutine()
-    {
-        canBite = false;
-        isBiting = true;
-
-        Debug.Log("Boss is shaking before bite!");
-
-        //
-        // 1. TELEGRAPH SHAKE
-        //
-        Vector3 originalPos = transform.position;
-        float elapsed = 0f;
-
-        while (elapsed < shakeDuration)
-        {
-            float offsetX = Random.Range(-1f, 1f) * shakeMagnitude;
-            float offsetY = Random.Range(-0.5f, 0.5f) * shakeMagnitude;
-
-            transform.position = new Vector3(
-                originalPos.x + offsetX,
-                originalPos.y + offsetY,
-                originalPos.z
-            );
-
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        // Return to center before lunging
-        transform.position = originalPos;
-
-
-
-        //
-        // 2. LUNGE FORWARD
-        //
-        float direction = (player.position.x < transform.position.x) ? -1f : 1f;
-
-        Vector3 bitePos = originalPos + new Vector3(direction * lungeDistance, 0, 0);
-
-        float t = 0;
-        while (t < 1)
-        {
-            t += Time.deltaTime * lungeSpeed;
-            transform.position = Vector3.Lerp(originalPos, bitePos, t);
-            yield return null;
-        }
-
-
-
-        //
-        // 3. BITE DAMAGE WINDOW (Hitbox active)
-        //
-        biteHitbox.SetActive(true);
-        yield return new WaitForSeconds(biteActiveTime);
-        biteHitbox.SetActive(false);
-
-
-
-        //
-        // 4. RETURN TO ORIGINAL POSITION
-        //
-        t = 0;
-        while (t < 1)
-        {
-            t += Time.deltaTime * lungeSpeed;
-            transform.position = Vector3.Lerp(bitePos, originalPos, t);
-            yield return null;
-        }
-
-
-
-        //
-        // 5. COOLDOWN
-        //
-        yield return new WaitForSeconds(biteCooldown);
-        isBiting = false;
-        canBite = true;
     }
 
 
     void UpdateHealthBar()
     {
         float targetRatio = (float)currentHealth / maxHealth;
-
-        float newX = Mathf.Lerp(healthBarFill.localScale.x, targetRatio, Time.deltaTime * smoothSpeed);
-        healthBarFill.localScale = new Vector3(newX, 1f, 1f);
+        float smoothedX = Mathf.Lerp(healthBarFill.localScale.x, targetRatio, Time.deltaTime * smoothSpeed);
+        healthBarFill.localScale = new Vector3(smoothedX, 1f, 1f);
     }
 
     void Die()
     {
+        StopAllCoroutines();
         Destroy(gameObject);
+
     }
+
+
+    // ---------------- BITE ATTACK ----------------
+
+    IEnumerator BiteAttackRoutine()
+    {
+        if (currentHealth <= 0) yield break;
+
+        canBite = false;
+        isBiting = true;
+        freezeMovement = true;
+
+        Debug.Log("Boss is shaking before bite!");
+
+        Vector3 originalPos = transform.position;
+
+        // Telegraph shake
+        float elapsed = 0f;
+        while (elapsed < shakeDuration)
+        {
+            if (currentHealth <= 0) yield break;
+
+            float offsetX = Random.Range(-1f, 1f) * shakeMagnitude;
+            float offsetY = Random.Range(-0.5f, 0.5f) * shakeMagnitude;
+
+            transform.position = new Vector3(
+                originalPos.x + offsetX,
+                originalPos.y + offsetY,
+                originalPos.z
+            );
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = originalPos;
+
+        // Lunge toward player
+        float direction = (player.position.x < transform.position.x) ? -1f : 1f;
+        Vector3 bitePos = originalPos + new Vector3(direction * lungeDistance, 0, 0);
+
+        float t = 0;
+        while (t < 1f)
+        {
+            if (currentHealth <= 0) yield break;
+
+            t += Time.deltaTime * lungeSpeed;
+            transform.position = Vector3.Lerp(originalPos, bitePos, t);
+            yield return null;
+        }
+
+        // Bite damage window
+        biteHitbox.SetActive(true);
+        yield return new WaitForSeconds(biteActiveTime);
+        biteHitbox.SetActive(false);
+
+        // Return
+        t = 0;
+        while (t < 1f)
+        {
+            if (currentHealth <= 0) yield break;
+
+            t += Time.deltaTime * lungeSpeed;
+            transform.position = Vector3.Lerp(bitePos, originalPos, t);
+            yield return null;
+        }
+
+        // Cooldown
+        yield return new WaitForSeconds(biteCooldown);
+
+        freezeMovement = false;
+        isBiting = false;
+        canBite = true;
+    }
+
+
+    // ---------------- PHASE 2 ----------------
+
+    void EnterPhase2()
+    {
+        if (currentHealth <= 0) return;  // the real fix!
+
+        phase2 = true;
+        Debug.Log("BOSS ENTERS PHASE 2!");
+
+        isBursting = true;
+        canBite = false;
+        isBiting = false;
+
+        StartCoroutine(VineAttackRoutine());
+    }
+
+
+IEnumerator VineAttackRoutine()
+    {
+        isUsingVines = true;
+
+        while (phase2)
+        {
+            if (currentHealth <= 0) yield break;
+
+            // Always spawn off-screen above the camera
+            float topY = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 1.3f, 0)).y;
+
+            Vector3 spawnPos = new Vector3(
+                player.position.x,
+                topY,
+                0f
+            );
+
+            GameObject vine = Instantiate(vinePrefab, spawnPos, Quaternion.identity);
+
+            vine.GetComponent<VineAttack>().damage = (int)vineDamage;
+
+            yield return new WaitForSeconds(vineInterval);
+        }
+
+        isUsingVines = false;
+    }
+
 }
