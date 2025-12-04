@@ -6,7 +6,7 @@ public class VineAttack : MonoBehaviour
     public int damage = 10;
 
     [Header("Timing")]
-    public float warningTime = 2f;   // how long vine "prepares"
+    public float warningTime = 4f;   // how long vine "prepares"
     public float stretchSpeed = 4f;    // how fast it extends
     public float retractSpeed = 3f;    // how fast it retracts
 
@@ -26,38 +26,49 @@ public class VineAttack : MonoBehaviour
 
     IEnumerator VineRoutine()
     {
-        //  1. WARNING — wait before stretching
-        yield return new WaitForSeconds(warningTime);
+        // 1. Peek (vine moves down slightly)
+        Vector3 peekPos = transform.position - new Vector3(0, 0.5f, 0);
 
-        //  2. STRETCH DOWNWARD
         float t = 0;
-        while (t < 1)
+        while (t < 1f)
         {
-            t += Time.deltaTime * stretchSpeed;
-
-            // Scale from 0 to full height
-            float stretch = Mathf.Lerp(0f, baseScale.y, t);
-            transform.localScale = new Vector3(baseScale.x, stretch, baseScale.z);
-
+            t += Time.deltaTime * 2f;  // peek speed
+            transform.position = Vector3.Lerp(transform.position, peekPos, t);
             yield return null;
         }
 
-        // leave fully extended for a moment
-        yield return new WaitForSeconds(0.1f);
+        // 2. Hold (warning)
+        yield return new WaitForSeconds(warningTime);
 
-        //  3. RETRACT UPWARD
+        // 3. Stretch downward
         t = 0;
-        while (t < 1)
+        while (t < 1f)
+        {
+            t += Time.deltaTime * stretchSpeed;
+            transform.localScale = new Vector3(
+                baseScale.x,
+                Mathf.Lerp(0f, baseScale.y, t),
+                baseScale.z
+            );
+            yield return null;
+        }
+
+        // 4. Retract
+        t = 0;
+        while (t < 1f)
         {
             t += Time.deltaTime * retractSpeed;
-            float shrink = Mathf.Lerp(baseScale.y, 0f, t);
-            transform.localScale = new Vector3(baseScale.x, shrink, baseScale.z);
-
+            transform.localScale = new Vector3(
+                baseScale.x,
+                Mathf.Lerp(baseScale.y, 0f, t),
+                baseScale.z
+            );
             yield return null;
         }
 
         Destroy(gameObject);
     }
+
 
     //  DAMAGE USING COLLIDER
     private void OnTriggerEnter2D(Collider2D collision)
