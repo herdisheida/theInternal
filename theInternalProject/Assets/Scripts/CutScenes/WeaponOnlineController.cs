@@ -17,7 +17,7 @@ public class WeaponOnlineController : MonoBehaviour
     public GunPowerupFlash gunPowerup; // reference gun-powerup script
 
     [Header("Timings")]
-    public float textFadeTime = 0.6f;  // fade in/out time for each line
+    public float textFadeTime = 0.8f;  // fade in/out time for each line
     public float textHoldTime = 3f;    // how long each message stays fully visible
 
     [Header("Scene Flow")]
@@ -66,6 +66,9 @@ public class WeaponOnlineController : MonoBehaviour
 
     IEnumerator CutsceneRoutine()
     {
+        // wait 2 seconds before starting
+        yield return new WaitForSeconds(2f);
+        
         // Message 1
         yield return StartCoroutine(ShowLine("Infection Concentration CRITICAL."));
 
