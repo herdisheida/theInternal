@@ -158,6 +158,9 @@ public class BossController : MonoBehaviour
                 healthBarRoot.SetActive(false);
 
             Die();
+            // mark saved before switching scenes so the new scene can read it
+            PatientAnalysisScreen.isSaved = true;
+            SceneManager.LoadScene("ZombieAnalysisScreen");
             return;
         }
     }
