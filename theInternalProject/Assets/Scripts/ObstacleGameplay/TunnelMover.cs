@@ -9,7 +9,11 @@ public class TunnelMover : MonoBehaviour
 
     void Start()
     {
-
+        // auto find background scroller
+        if (backgroundScroller == null)
+        {
+            backgroundScroller = FindObjectOfType<BackgroundScroller>();
+        }
     }
 
     void Update()
