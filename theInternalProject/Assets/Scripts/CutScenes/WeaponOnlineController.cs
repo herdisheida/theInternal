@@ -167,7 +167,6 @@ public class WeaponOnlineController : MonoBehaviour
         {
             on = !on;
             hudGroup.alpha = on ? 1f : 0f;
-            PlayBeep();
 
             float step = Random.Range(0.05f, 0.15f);
             elapsed += step;
