@@ -1,5 +1,7 @@
+using System.Collections;
 using UnityEngine;
 using System.Collections;
+
 
 
 // this class manages overall audio functionalities
@@ -30,8 +32,8 @@ public class AudioManager : MonoBehaviour
     [Header("Menu SFX")]
     public AudioClip buttonClickClip; // start, quit buttons
 
-    [Header("Cutscene SFX")]
-    public AudioClip weaponOnlineClip; // weapon online sound effect
+    [Header("Cut Scene SFX")]
+    public AudioClip WeaponOnlineClip; // gun power-up appears
 
 
     [Header("Player SFX")]
@@ -164,7 +166,7 @@ public class AudioManager : MonoBehaviour
     // Example: AudioManager.instance?.ButtonClick();
     public void ButtonClick()    => PlaySFX(buttonClickClip);
 
-    public void WeaponOnline()   => PlaySFX(weaponOnlineClip);
+    public void WeaponOnline()   => PlaySFX(WeaponOnlineClip);
     
     public void DamageTaken()    => PlaySFX(damageTakenClip);
     public void Dying()          => PlaySFX(dyingClip);
