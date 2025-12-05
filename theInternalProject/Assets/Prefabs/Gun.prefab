@@ -111,7 +111,6 @@ GameObject:
   - component: {fileID: 2864012558004865179}
   - component: {fileID: 4706632582158487096}
   - component: {fileID: 566061530400717958}
-  - component: {fileID: 1285859670895296480}
   m_Layer: 0
   m_Name: GunIdle
   m_TagString: Untagged
@@ -207,22 +206,6 @@ MonoBehaviour:
   spriteRenderer: {fileID: 4706632582158487096}
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.1
---- !u!114 &1285859670895296480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4410495606581598397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fc78460111ad4478b8cdb3035a49d9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GunPowerupFlash
-  appearScale: 1
-  bigScale: 1.3
-  pulseCount: 3
-  pulseDuration: 0.12
 --- !u!1 &7925330738371659673
 GameObject:
   m_ObjectHideFlags: 0
