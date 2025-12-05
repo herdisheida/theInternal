@@ -92,20 +92,21 @@ public class WeaponOnlineController : MonoBehaviour
         // Gun power-up pulse + enable shooting
         yield return StartCoroutine(GunPowerup());
 
+        // Clear the last line text
+        if (statusText != null) statusText.text = "";
+
+        // Player flies to screen center
+        if (player != null) yield return StartCoroutine(PlayerFlyToCenter());
+
         // final prompt to press Space
         if (spaceKeyHint != null) spaceKeyHint.SetActive(true);
 
-        // Wait for player to press Space
-        // yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         // Wait for N shots (space presses)
         yield return StartCoroutine(WaitForShots(requiredShots));
-
 
         // hide HUD while flying to center
         if (spaceKeyHint != null) spaceKeyHint.SetActive(false);
 
-        // Player flies to screen center, then load boss scene
-        if (player != null) yield return StartCoroutine(PlayerFlyToCenter());
         SceneManager.LoadScene(nextSceneName);
     }
 
