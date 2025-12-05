@@ -728,7 +728,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -347.72153, y: -174.56593, z: -23.18444, w: 177.29358}
+  m_margin: {x: -347.72153, y: -174.56593, z: -125.75069, w: 177.29358}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -755,7 +755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   hintGroup: {fileID: 962492697}
-  delayBeforeFade: 5
+  delayBeforeFade: 1
   fadeDuration: 1
 --- !u!225 &962492697
 CanvasGroup:
