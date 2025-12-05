@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class scroller : MonoBehaviour
+public class BackgroundScroller : MonoBehaviour
 {
     [SerializeField] private RawImage _img;
     [SerializeField] private float _x;
