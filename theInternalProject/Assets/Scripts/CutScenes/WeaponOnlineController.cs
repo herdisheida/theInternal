@@ -8,19 +8,17 @@ using UnityEngine.SceneManagement;
 public class WeaponOnlineController : MonoBehaviour
 {
     [Header("UI References")]
-    public Image fadeImage;            // full-screen black image
+    public Image background;           // background
     public CanvasGroup hudGroup;       // panel that flickers on
     public TextMeshProUGUI statusText; // main HUD text
     public GameObject spaceKeyHint;    // the space-bar image + text container
 
-    [Header("Gun Glow")]
-    public DamageFlash gunFlash;       // DamageFlash on your GunIdle object
-    public float glowDelay = 0.3f;
+    [Header("Gun Powerup")]
+    public GunPowerupFlash gunPowerup; // reference gun-powerup script
 
     [Header("Timings")]
-    public float darkenDuration = 0.8f;
-    public float flickerDuration = 0.6f;
-    public float textHoldTime = 3f;
+    public float textFadeTime = 0.6f;  // fade in/out time for each line
+    public float textHoldTime = 3f;    // how long each message stays fully visible
 
     [Header("Scene Flow")]
     public string nextSceneName = "BossBattle";
@@ -33,19 +31,24 @@ public class WeaponOnlineController : MonoBehaviour
 
     void Start()
     {
-        // start fully black, then fade IN so player + background are revealed
-        if (fadeImage != null)
+        
+        if (background != null)
         {
-            var c = fadeImage.color;
-            c.a = 1f; // fully opaque to start
-            fadeImage.color = c;
+            Color c = background.color;
+            c.a = 1f;                   // opaque black
+            background.color = c;
         }
 
         if (hudGroup != null)
-            hudGroup.alpha = 0f;
+            hudGroup.alpha = 1f;
 
         if (statusText != null)
+        {
+            Color c = statusText.color;
+            c.a = 0f;                   // start invisible, we’ll fade it in
+            statusText.color = c;
             statusText.text = "";
+        }
 
         if (spaceKeyHint != null)
             spaceKeyHint.SetActive(false);
@@ -63,79 +66,73 @@ public class WeaponOnlineController : MonoBehaviour
 
     IEnumerator CutsceneRoutine()
     {
-        // Fade IN from black
-        yield return StartCoroutine(FadeFromBlack());
-
-        // HUD flicker on
-        yield return StartCoroutine(HUDFlicker());
-
         // Message 1
         yield return StartCoroutine(ShowLine("Infection Concentration CRITICAL."));
 
         // Message 2
         yield return StartCoroutine(ShowLine("Activate the Power of Friendship."));
 
-        // Gun glow
-        yield return new WaitForSeconds(glowDelay);
+        // Gun power-up: big + flash + sound
         AudioManager.instance?.WeaponOnline();
-        if (gunFlash != null)
-            gunFlash.Flash();
-
-        // Final prompt + space-key hint
-        if (statusText != null)
-            statusText.text = "PRESS SPACE TO SHOOT.";
-
-        if (spaceKeyHint != null)
-            spaceKeyHint.SetActive(true);
+        if (gunPowerup != null)
+            yield return StartCoroutine(gunPowerup.PlayPowerup());
 
 
-        // Wait for N shots (space presses), then go to the boss scene
+        // final msg no fade out
+        if (statusText != null) statusText.text = "PRESS SPACE TO SHOOT.";
+
+        if (spaceKeyHint != null) spaceKeyHint.SetActive(true);
+
+
+        // Wait until the player has pressed Space requiredShots times
         yield return StartCoroutine(WaitForShots(requiredShots));
+
+
         SceneManager.LoadScene(nextSceneName);
     }
 
-    IEnumerator FadeFromBlack()
+
+    // Fade a line in, hold, then fade out
+    IEnumerator ShowLine(string line)
     {
-        if (fadeImage == null)
+        if (statusText == null)
             yield break;
 
-        float t = 0f;
-        Color c = fadeImage.color;
+        statusText.text = line;
+        PlayBeep();
 
-        while (t < darkenDuration)
+        // Fade IN
+        float t = 0f;
+        while (t < textFadeTime)
         {
             t += Time.deltaTime;
-            float a = Mathf.Lerp(1f, 0f, t / darkenDuration); // 1 -> 0
-            c.a = a;
-            fadeImage.color = c;
+            float a = Mathf.Clamp01(t / textFadeTime);
+            SetTextAlpha(a);
             yield return null;
         }
 
-        // ensure fully transparent at the end
-        c.a = 0f;
-        fadeImage.color = c;
-    }
+        // Hold
+        yield return new WaitForSeconds(textHoldTime);
 
-    IEnumerator HUDFlicker()
-    {
-        if (hudGroup == null)
-            yield break;
-
-        float elapsed = 0f;
-        bool on = false;
-
-        while (elapsed < flickerDuration)
+        // Fade OUT
+        t = 0f;
+        while (t < textFadeTime)
         {
-            on = !on;
-            hudGroup.alpha = on ? 1f : 0f;
-            PlayBeep();
-
-            float step = Random.Range(0.05f, 0.15f);
-            elapsed += step;
-            yield return new WaitForSeconds(step);
+            t += Time.deltaTime;
+            float a = Mathf.Clamp01(1f - (t / textFadeTime));
+            SetTextAlpha(a);
+            yield return null;
         }
 
-        hudGroup.alpha = 1f; // stay on
+        SetTextAlpha(0f);
+    }
+
+    void SetTextAlpha(float alpha)
+    {
+        if (statusText == null) return;
+        Color c = statusText.color;
+        c.a = alpha;
+        statusText.color = c;
     }
 
 
@@ -149,16 +146,6 @@ public class WeaponOnlineController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space)) { shots++; }
             yield return null;
         }
-    }
-
-
-    IEnumerator ShowLine(string line)
-    {
-        if (statusText != null)
-            statusText.text = line;
-
-        PlayBeep();
-        yield return new WaitForSeconds(textHoldTime);
     }
 
     void PlayBeep()
