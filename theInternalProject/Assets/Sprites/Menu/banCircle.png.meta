@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 862e3f51d3874463584c1debc583ab73
+guid: f8fe8bf7ce2c8463583e7110d52c6e73
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3927285671776144049
-    second: ban_0
+      213: -3529170235286613637
+    second: banCircle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ban_0
+      name: banCircle_0
       rect:
         serializedVersion: 2
         x: 127
-        y: 191
+        y: 63
         width: 2914
-        height: 2818
+        height: 3074
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f453d4a3d7a7f79c0800000000000000
-      internalID: -3927285671776144049
+      spriteID: b711cdd8e5ed50fc0800000000000000
+      internalID: -3529170235286613637
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ban_0: -3927285671776144049
+      banCircle_0: -3529170235286613637
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
