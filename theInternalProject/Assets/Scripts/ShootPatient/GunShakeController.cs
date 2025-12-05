@@ -14,10 +14,11 @@ public class GunShakeController : MonoBehaviour
     public Image fadeImage;                     // full-screen black Image
 
     [Header("Space Key Hint")]
-    public Image spaceKeyImage;             // UI Image that shows the space bar
-    public Sprite spaceBarUnpressedSprite;  // normal key
-    public Sprite spaceBarPressedSprite;    // pressed key
-    public float spaceKeyBlinkSpeed = 8f;   // how fast it switches
+    public Image spaceKeyImage;                 // UI Image that shows the space bar
+    public Sprite spaceBarUnpressedSprite;      // normal key
+    public Sprite spaceBarPressedSprite;        // pressed key
+    public float spaceKeyBlinkSpeed = 8f;       // how fast it switches
+    public float disableSpaceKeyForSeconds = 1.5f; // disable at start
 
 
     [Header("Sprites")]
@@ -125,9 +126,15 @@ public class GunShakeController : MonoBehaviour
         UpdateSpaceKeyBlink(true);
 
         // if player shoots (space bar) OR time runs out =>>> shoot patient
-        if (!hasShot && (Input.GetKeyDown(KeyCode.Space) || elapsed >= totalDuration))
+        if (!hasShot)
         {
-            StartCoroutine(HandleShotSequence());
+            // check for space key press after initial disable time
+            if (Input.GetKeyDown(KeyCode.Space) && elapsed >= disableSpaceKeyForSeconds)
+                { StartCoroutine(HandleShotSequence()); }
+
+            // time ran out
+            if (elapsed >= totalDuration)
+                { StartCoroutine(HandleShotSequence()); }
         }
     }
 
