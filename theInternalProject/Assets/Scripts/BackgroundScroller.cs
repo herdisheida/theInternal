@@ -13,4 +13,11 @@ public class BackgroundScroller : MonoBehaviour
             _img.uvRect.size
         );
     }
+
+
+    // stops the scrolling of the background
+    public void StopScrolling()
+    {
+        _isScrolling = false;
+    }
 }
