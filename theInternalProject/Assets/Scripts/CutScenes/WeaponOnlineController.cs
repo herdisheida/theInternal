@@ -214,12 +214,9 @@ public class WeaponOnlineController : MonoBehaviour
             gunRoot.transform.localScale = originalScale;
         }
 
-        // AFTER the pulse, shooting becomes available
-        if (gunController != null)
-            gunController.enabled = true;
-
-        if (gunSpriteSwitcher != null)
-            gunSpriteSwitcher.enabled = true;
+        // after the pulse, shooting becomes available
+        if (gunController != null) gunController.enabled = true;
+        if (gunSpriteSwitcher != null) gunSpriteSwitcher.enabled = true;
     }
 
     // ------------ AUDIO ------------

@@ -953,6 +953,7 @@ MonoBehaviour:
   gunPulseDuration: 0.5
   hudFlickerDuration: 0.6
   textHoldTime: 4
+  requiredShots: 3
   nextSceneName: BossBattle
   player: {fileID: 1809358057}
   playerStartOffset: {x: -6, y: 0, z: 0}
