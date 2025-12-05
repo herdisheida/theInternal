@@ -20,18 +20,128 @@ public class WeaponOnlineController : MonoBehaviour
     [Header("Timings")]
     public float darkenDuration = 0.5f;
     public float flickerDuration = 0.6f;
-    public float textHoldTime = 1.5f;
+    public float textHoldTime = 3f;
 
     [Header("Scene Flow")]
     public string nextSceneName = "BossBattle";
 
+
     void Start()
     {
-        
+        // initial state
+        if (fadeImage != null)
+        {
+            var c = fadeImage.color;
+            c.a = 0f;
+            fadeImage.color = c;
+        }
+
+        if (hudGroup != null)
+            hudGroup.alpha = 0f;
+
+        if (statusText != null)
+            statusText.text = "";
+
+        if (spaceKeyHint != null)
+            spaceKeyHint.SetActive(false);
+
+        // start the cutscene
+        StartCoroutine(CutsceneRoutine());
     }
+
 
     void Update()
     {
         
     }
+
+
+    IEnumerator CutsceneRoutine()
+    {
+        // Darken screen
+        yield return StartCoroutine(FadeToBlack());
+
+        // HUD flicker on
+        yield return StartCoroutine(HUDFlicker());
+
+        // Message 1
+        yield return StartCoroutine(ShowLine("Infection Concentration CRITICAL."));
+
+        // Message 2
+        yield return StartCoroutine(ShowLine("Antibody Injector Armed."));
+
+        // Gun glow
+        yield return new WaitForSeconds(glowDelay);
+        AudioManager.instance?.WeaponOnline();
+        if (gunFlash != null)
+            gunFlash.Flash();
+
+        // Final prompt + space-key hint
+        if (statusText != null)
+            statusText.text = "PRESS SPACE TO SHOOT.";
+
+        if (spaceKeyHint != null)
+            spaceKeyHint.SetActive(true);
+
+
+        // Wait for player to press space, then go to boss
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+        SceneManager.LoadScene(nextSceneName);
+    }
+
+    IEnumerator FadeToBlack()
+    {
+        if (fadeImage == null)
+            yield break;
+
+        float t = 0f;
+        Color c = fadeImage.color;
+
+        while (t < darkenDuration)
+        {
+            t += Time.deltaTime;
+            float a = Mathf.Lerp(0f, 1f, t / darkenDuration);
+            c.a = a;
+            fadeImage.color = c;
+            yield return null;
+        }
+    }
+
+    IEnumerator HUDFlicker()
+    {
+        if (hudGroup == null)
+            yield break;
+
+        float elapsed = 0f;
+        bool on = false;
+
+        while (elapsed < flickerDuration)
+        {
+            on = !on;
+            hudGroup.alpha = on ? 1f : 0f;
+            PlayBeep();
+
+            float step = Random.Range(0.05f, 0.15f);
+            elapsed += step;
+            yield return new WaitForSeconds(step);
+        }
+
+        hudGroup.alpha = 1f; // stay on
+    }
+
+    IEnumerator ShowLine(string line)
+    {
+        if (statusText != null)
+            statusText.text = line;
+
+        PlayBeep();
+        yield return new WaitForSeconds(textHoldTime);
+    }
+
+    void PlayBeep()
+    {
+        // beep for HUD flicker and text lines
+        AudioManager.instance?.ButtonClick();
+    }
+
 }
