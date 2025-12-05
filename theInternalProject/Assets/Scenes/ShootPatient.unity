@@ -694,7 +694,7 @@ MonoBehaviour:
   idleGunSprite: {fileID: 281306285295221210, guid: 00c4e0dcd4a27443080011116f3040d4, type: 3}
   shootGunSprite: {fileID: -331875709885016742, guid: 896c27cee8d734b35be5318efb31e857, type: 3}
   shootFlashDuration: 0.1
-  totalDuration: 15
+  totalDuration: 10
   minShakeAmount: 2
   maxShakeAmount: 15
   backgroundShakeMultiplier: 0.4
