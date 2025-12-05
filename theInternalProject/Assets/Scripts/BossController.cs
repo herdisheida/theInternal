@@ -65,6 +65,7 @@ public class BossController : MonoBehaviour
 
     void Start()
     {
+        AudioManager.instance?.PlayZombieBossBattleMusic();
         startPos = transform.position;
         currentHealth = maxHealth;
 
