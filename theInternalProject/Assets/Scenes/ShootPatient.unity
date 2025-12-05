@@ -616,7 +616,7 @@ RectTransform:
   m_GameObject: {fileID: 1539025785}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.3, y: 2.3, z: 2.3}
+  m_LocalScale: {x: 2.7, y: 2.7, z: 2.7}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 375259254}
@@ -685,6 +685,7 @@ MonoBehaviour:
   spaceBarUnpressedSprite: {fileID: -5704742595995698447, guid: 53a2e168aaa3e4a2ba13b0ff92956911, type: 3}
   spaceBarPressedSprite: {fileID: -1796503253441457639, guid: a1e7a9b49eb9c4d4b99087b64686347f, type: 3}
   spaceKeyBlinkSpeed: 8
+  disableSpaceKeyForSeconds: 1.5
   idleGunSprite: {fileID: 281306285295221210, guid: 00c4e0dcd4a27443080011116f3040d4, type: 3}
   shootGunSprite: {fileID: -331875709885016742, guid: 896c27cee8d734b35be5318efb31e857, type: 3}
   shootFlashDuration: 0.1
