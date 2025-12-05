@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class WeaponOnlineController : MonoBehaviour
 {
     [Header("UI References")]
-    public Image background;           // background
     public CanvasGroup hudGroup;       // panel that flickers on
     public TextMeshProUGUI statusText; // main HUD text
     public GameObject spaceKeyHint;    // the space-bar image + text container
@@ -18,7 +17,7 @@ public class WeaponOnlineController : MonoBehaviour
 
     [Header("Timings")]
     public float textFadeTime = 0.8f;  // fade in/out time for each line
-    public float textHoldTime = 3f;    // how long each message stays fully visible
+    public float textHoldTime = 4f;    // how long each message stays fully visible
 
     [Header("Scene Flow")]
     public string nextSceneName = "BossBattle";
@@ -31,14 +30,6 @@ public class WeaponOnlineController : MonoBehaviour
 
     void Start()
     {
-        
-        if (background != null)
-        {
-            Color c = background.color;
-            c.a = 1f;                   // opaque black
-            background.color = c;
-        }
-
         if (hudGroup != null)
             hudGroup.alpha = 1f;
 
@@ -68,7 +59,7 @@ public class WeaponOnlineController : MonoBehaviour
     {
         // wait 2 seconds before starting
         yield return new WaitForSeconds(2f);
-        
+
         // Message 1
         yield return StartCoroutine(ShowLine("Infection Concentration CRITICAL."));
 
