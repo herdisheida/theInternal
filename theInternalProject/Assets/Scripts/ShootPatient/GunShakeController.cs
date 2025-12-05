@@ -42,7 +42,7 @@ public class GunShakeController : MonoBehaviour
 
     // TODO HERDIS CHANGE AFTER ALPHA
     // public string nextSceneName = "PatientSelection";
-    public string nextSceneName = "Credits";
+    private string nextSceneName = "Credits";
 
 
     // original transforms/colors
