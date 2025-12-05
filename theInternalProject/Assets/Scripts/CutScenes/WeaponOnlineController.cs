@@ -73,7 +73,7 @@ public class WeaponOnlineController : MonoBehaviour
         yield return StartCoroutine(ShowLine("Infection Concentration CRITICAL."));
 
         // Message 2
-        yield return StartCoroutine(ShowLine("Antibody Injector Armed."));
+        yield return StartCoroutine(ShowLine("Activate the Power of Friendship."));
 
         // Gun glow
         yield return new WaitForSeconds(glowDelay);
