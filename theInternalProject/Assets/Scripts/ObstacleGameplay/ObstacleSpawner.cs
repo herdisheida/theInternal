@@ -129,7 +129,7 @@ public class ObstacleSpawner : MonoBehaviour
         GameObject group = new GameObject(name);
         group.transform.position = new Vector3(spawnPos, 0f, 0f);
 
-        Scroller scroller = group.AddComponent<Scroller>();
+        ObstacleScroller scroller = group.AddComponent<ObstacleScroller>();
         scroller.moveSpeed = obstacleMoveSpeed;
 
         return group;
