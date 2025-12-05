@@ -371,7 +371,7 @@ GameObject:
   - component: {fileID: 235162371}
   - component: {fileID: 235162370}
   m_Layer: 5
-  m_Name: InstructionText
+  m_Name: ControlsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -416,7 +416,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: INSTRUCTIONS
+  m_text: CONTROLS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ae54e4a9236384581b2bd9316f43a841, type: 2}
   m_sharedMaterial: {fileID: 4653624503363158687, guid: ae54e4a9236384581b2bd9316f43a841, type: 2}
@@ -1898,7 +1898,7 @@ GameObject:
   m_Component:
   - component: {fileID: 730308783}
   m_Layer: 5
-  m_Name: InstructionMenu
+  m_Name: ControlsMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
