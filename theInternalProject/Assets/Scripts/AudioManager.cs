@@ -28,10 +28,6 @@ public class AudioManager : MonoBehaviour
     [Header("Menu SFX")]
     public AudioClip buttonClickClip; // start, quit buttons
 
-    [Header("Cutscene SFX")]
-    public AudioClip weaponOnlineClip; // weapon online sound effect
-
-
     [Header("Player SFX")]
     public AudioClip damageTakenClip;
     public AudioClip dyingClip;
@@ -72,6 +68,8 @@ public class AudioManager : MonoBehaviour
         
     }
 
+    // ---------------------- music / soundtracks ----------------------
+
 
     // Play a specific music clip (chosen from Inspector or passed in).
     // Example: AudioManager.instance?.PlayMusic(AudioManager.instance.bossBattleMusic);
@@ -95,6 +93,34 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void FadeOutMusic(float duration = 1f)
+    {
+        if (musicSource != null)
+            StartCoroutine(FadeOutMusicRoutine(duration));
+    }
+
+    private IEnumerator FadeOutMusicRoutine(float duration)
+    {
+        if (musicSource == null || !musicSource.isPlaying)
+            yield break;
+
+        float startVolume = musicSource.volume;
+        float t = 0f;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            musicSource.volume = Mathf.Lerp(startVolume, 0f, t / duration);
+            yield return null;
+        }
+
+        musicSource.Stop();
+        musicSource.volume = startVolume; // restore for next track
+    }
+
+
+    // ---------------------- sound effects ----------------------
+
     void PlaySFX(AudioClip clip)
     {
         if (sfxSource == null || clip == null) return;
@@ -112,6 +138,7 @@ public class AudioManager : MonoBehaviour
 
 
 
+    // ---------------------- helper methods ----------------------
 
     // helper methods for playing background music
     // Example: AudioManager.instance?.PlayHospitalLobbyMusic();
@@ -130,8 +157,6 @@ public class AudioManager : MonoBehaviour
     // helper methods for SFX
     // Example: AudioManager.instance?.ButtonClick();
     public void ButtonClick()    => PlaySFX(buttonClickClip);
-
-    public void WeaponOnline()   => PlaySFX(weaponOnlineClip);
     
     public void DamageTaken()    => PlaySFX(damageTakenClip);
     public void Dying()          => PlaySFX(dyingClip);
