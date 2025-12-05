@@ -7,6 +7,11 @@ public class BossController : MonoBehaviour
 {
     public Transform player;
 
+    [Header("Attack Start Delay")]
+    public float attackDelay = 3f;   // wait this long before any attacks
+    private float attackTimer = 0f;
+    private bool attacksEnabled = false;
+
     [Header("Movement")]
     public float moveSpeed = 2f;
     public float moveDistance = 2f;
@@ -66,6 +71,8 @@ public class BossController : MonoBehaviour
     void Start()
     {
         AudioManager.instance?.PlayZombieBossBattleMusic();
+
+        
         startPos = transform.position;
         currentHealth = maxHealth;
 
@@ -77,6 +84,16 @@ public class BossController : MonoBehaviour
     {
         MoveBoss();
         UpdateHealthBar();
+
+        // ----- delay attacks for a few seconds -----
+        if (!attacksEnabled)
+        {
+            attackTimer += Time.deltaTime;
+            if (attackTimer < attackDelay)
+                return;                    // boss moves only + no attacks yet
+            attacksEnabled = true;
+        }
+        // ------------------------------------------
 
         if (!phase2)
         {
