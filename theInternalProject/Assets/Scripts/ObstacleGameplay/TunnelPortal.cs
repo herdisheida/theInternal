@@ -22,13 +22,6 @@ public class TunnelPortal : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         // load the next scene
-        if (!string.IsNullOrEmpty(sceneToLoad))
-        {
-            SceneManager.LoadScene(sceneToLoad);
-        }
-        else
-        {
-            Debug.LogWarning("TunnelPortal: nextSceneName is not set!");
-        }
+        SceneManager.LoadScene(nextSceneName);
     }
 }
