@@ -39,10 +39,7 @@ public class GunShakeController : MonoBehaviour
     public Color maxRedTint = new Color(1f, 0.2f, 0.2f, 1f); // target colour at end
 
     [Header("BlackScreen & Scene")]
-
-    // TODO HERDIS CHANGE AFTER ALPHA
-    // public string nextSceneName = "PatientSelection";
-    private string nextSceneName = "Credits";
+    public string nextSceneName = "PatientSelection";
 
 
     // original transforms/colors
@@ -77,8 +74,8 @@ public class GunShakeController : MonoBehaviour
         // default idle sprite if not set
         if (idleGunSprite == null && gunImage != null) { idleGunSprite = gunImage.sprite; }
 
-        // start with black screen for 2 seconds
-        yield return StartCoroutine(BlackScreen(2f));
+        // start with black screen for 1 seconds
+        yield return StartCoroutine(BlackScreen(1f));
 
         // after black screen, start shaking
         StartShake();
@@ -164,7 +161,7 @@ public class GunShakeController : MonoBehaviour
         EndShake();
 
         // instantly go black + exhale + change scene
-        yield return StartCoroutine(BlackScreen(4f));
+        yield return StartCoroutine(BlackScreen(3f));
         // load next scene
         SceneManager.LoadScene(nextSceneName);
     }

@@ -695,6 +695,7 @@ MonoBehaviour:
   minRotation: 1
   maxRotation: 6
   maxRedTint: {r: 1, g: 0.21226418, b: 0.21226418, a: 1}
+  nextSceneName: PatientSelection
 --- !u!1 &1648003153
 GameObject:
   m_ObjectHideFlags: 0
