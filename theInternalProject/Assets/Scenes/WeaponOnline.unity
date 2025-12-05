@@ -623,6 +623,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1068646989 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3579778356679460487, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
+  m_PrefabInstance: {fileID: 1809358056}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5db1b543857bc4aeba8e514dc23d6952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GunSpriteSwitcher
+--- !u!114 &1068646990 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2749585140649661399, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
+  m_PrefabInstance: {fileID: 1809358056}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96bbb7f88cdcd4061810a75b70ac16b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &1137592022
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,6 +946,8 @@ MonoBehaviour:
   textHoldTime: 4
   nextSceneName: BossBattle
   requiredShots: 5
+  gunController: {fileID: 1068646990}
+  gunSpriteSwitcher: {fileID: 1068646989}
   player: {fileID: 1809358057}
 --- !u!4 &1388473017
 Transform:

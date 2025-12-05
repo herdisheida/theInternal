@@ -24,14 +24,20 @@ public class WeaponOnlineController : MonoBehaviour
     public int requiredShots = 5;  // how many space presses before going to Boss Scene
 
 
+    [Header("References")]
+    public GunController gunController;
+    public GunSpriteSwitcher gunSpriteSwitcher;
+
     [Header("Player Character Reference")]
     public Transform player;
 
 
     void Start()
     {
-        if (hudGroup != null)
-            hudGroup.alpha = 1f;
+        // disable gun behaviours at the beginning
+        if (gunController != null) gunController.enabled = false;
+        if (gunSpriteSwitcher != null) gunSpriteSwitcher.enabled = false;
+
 
         if (statusText != null)
         {
@@ -71,12 +77,14 @@ public class WeaponOnlineController : MonoBehaviour
         if (gunPowerup != null)
             yield return StartCoroutine(gunPowerup.PlayPowerup());
 
-
         // final msg no fade out
         if (statusText != null) statusText.text = "PRESS SPACE TO SHOOT.";
 
         if (spaceKeyHint != null) spaceKeyHint.SetActive(true);
 
+        // re-enable gun behaviours
+        if (gunController != null) gunController.enabled = true;
+        if (gunSpriteSwitcher != null) gunSpriteSwitcher.enabled = true;
 
         // Wait until the player has pressed Space requiredShots times
         yield return StartCoroutine(WaitForShots(requiredShots));
