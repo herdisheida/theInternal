@@ -18,21 +18,24 @@ public class WeaponOnlineController : MonoBehaviour
     public float glowDelay = 0.3f;
 
     [Header("Timings")]
-    public float darkenDuration = 0.5f;
+    public float darkenDuration = 0.8f;
     public float flickerDuration = 0.6f;
     public float textHoldTime = 3f;
 
     [Header("Scene Flow")]
     public string nextSceneName = "BossBattle";
 
+    [Header("Player Character Reference")]
+    public Transform player;
+
 
     void Start()
     {
-        // initial state
+        // start fully black, then fade IN so player + background are revealed
         if (fadeImage != null)
         {
             var c = fadeImage.color;
-            c.a = 0f;
+            c.a = 1f; // fully opaque to start
             fadeImage.color = c;
         }
 
@@ -58,8 +61,8 @@ public class WeaponOnlineController : MonoBehaviour
 
     IEnumerator CutsceneRoutine()
     {
-        // Darken screen
-        yield return StartCoroutine(FadeToBlack());
+        // Fade IN from black
+        yield return StartCoroutine(FadeFromBlack());
 
         // HUD flicker on
         yield return StartCoroutine(HUDFlicker());
@@ -89,7 +92,7 @@ public class WeaponOnlineController : MonoBehaviour
         SceneManager.LoadScene(nextSceneName);
     }
 
-    IEnumerator FadeToBlack()
+    IEnumerator FadeFromBlack()
     {
         if (fadeImage == null)
             yield break;
@@ -100,11 +103,15 @@ public class WeaponOnlineController : MonoBehaviour
         while (t < darkenDuration)
         {
             t += Time.deltaTime;
-            float a = Mathf.Lerp(0f, 1f, t / darkenDuration);
+            float a = Mathf.Lerp(1f, 0f, t / darkenDuration); // 1 -> 0
             c.a = a;
             fadeImage.color = c;
             yield return null;
         }
+
+        // ensure fully transparent at the end
+        c.a = 0f;
+        fadeImage.color = c;
     }
 
     IEnumerator HUDFlicker()
