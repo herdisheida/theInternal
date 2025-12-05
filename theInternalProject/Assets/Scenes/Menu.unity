@@ -2997,6 +2997,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2065831753065413071, guid: 052794737db8040bbb5307e9abe5f294, type: 3}
+      propertyPath: WeaponOnlineClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a4370b5d0579849d9b62b92f0b0f51f4, type: 3}
     - target: {fileID: 4694619297270320214, guid: 052794737db8040bbb5307e9abe5f294, type: 3}
       propertyPath: m_LocalPosition.x
       value: 253.13173
