@@ -193,8 +193,7 @@ public class WeaponOnlineController : MonoBehaviour
         if (gunRoot != null)
             gunRoot.SetActive(true);
 
-        // play power-up sound (your Mario-style sound)
-        AudioManager.instance?.WeaponOnline();
+        PlayPowerupSound();
 
         // pulse scale up and down
         if (gunRoot != null)
@@ -228,6 +227,12 @@ public class WeaponOnlineController : MonoBehaviour
     void PlayBeep()
     {
         AudioManager.instance?.ButtonClick();
+    }
+
+    void PlayPowerupSound()
+    {
+        // mario powerup sound
+        AudioManager.instance?.WeaponOnline();
     }
 
     // ------------ INPUT WAITING ------------
