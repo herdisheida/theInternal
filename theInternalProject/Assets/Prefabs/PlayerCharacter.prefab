@@ -175,7 +175,9 @@ MonoBehaviour:
   moveSpeed: 7.5
   topBorder: {fileID: 0}
   bottomBorder: {fileID: 0}
-  padding: 0.2
+  leftBorder: {fileID: 0}
+  rightBorder: {fileID: 0}
+  padding: 0.7
 --- !u!114 &4315159835419543337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +255,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2573260814302310857, guid: da78b5674a20044af9adeceeb391299a, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693104434481070252, guid: da78b5674a20044af9adeceeb391299a, type: 3}
+      propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2864012558004865179, guid: da78b5674a20044af9adeceeb391299a, type: 3}
