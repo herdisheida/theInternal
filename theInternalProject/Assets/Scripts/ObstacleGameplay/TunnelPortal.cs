@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 public class TunnelPortal : MonoBehaviour
 {
 
-    [Tooltip("Name of the scene to load when the player enters the tunnel.")]
-    public string sceneToLoad;
+    [Header("Scene Flow")]
+    public string nextSceneName = "WeaponOnline";
 
     void Start()
     {
@@ -28,7 +28,7 @@ public class TunnelPortal : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("TunnelPortal: sceneToLoad is not set!");
+            Debug.LogWarning("TunnelPortal: nextSceneName is not set!");
         }
     }
 }
