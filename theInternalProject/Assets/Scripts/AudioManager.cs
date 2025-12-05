@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+
 
 // this class manages overall audio functionalities
 // background music, sound effects, etc
