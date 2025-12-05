@@ -1,9 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
 
 public class WeaponOnlineController : MonoBehaviour
 {
@@ -12,59 +10,78 @@ public class WeaponOnlineController : MonoBehaviour
     public TextMeshProUGUI statusText; // main HUD text
     public GameObject spaceKeyHint;    // the space-bar image + text container
 
-    [Header("Gun Powerup")]
-    public GunPowerupFlash gunPowerup; // reference gun-powerup script
-
-    [Header("Timings")]
-    public float textFadeTime = 0.8f;  // fade in/out time for each line
-    public float textHoldTime = 4f;    // how long each message stays fully visible
-
-    [Header("Scene Flow")]
-    public string nextSceneName = "BossBattle";
-    public int requiredShots = 5;  // how many space presses before going to Boss Scene
-
-
-    [Header("References")]
-    public GunController gunController;
+    [Header("Gun & Shooting")]
+    public GameObject gunRoot;               // parent object for the gun
+    public GunController gunController;      // disabled at start, enabled after powerup
     public GunSpriteSwitcher gunSpriteSwitcher;
 
-    [Header("Player Character Reference")]
-    public Transform player;
+    [Header("Gun Powerup Pulse")]
+    public float gunPulseScale = 1.3f;
+    public float gunPulseDuration = 0.5f;
 
+    [Header("Timings")]
+    public float hudFlickerDuration = 0.6f;
+    public float textHoldTime = 4f;
+
+    [Header("Scene Flow")]
+    public int requiredShots = 3; // how many shots before continuing
+    public string nextSceneName = "BossBattle";
+
+    [Header("Player Entrance")]
+    public Transform player;                // your PlayerCharacter transform
+    public Vector3 playerStartOffset = new Vector3(-6f, 0f, 0f); // how far left to start
+    public float flyInDuration = 1.2f;
+    public float flyInBobAmplitude = 0.3f;  // vertical bob size
+    public float flyInBobFrequency = 3f;    // bob speed
+
+    [Header("Fly To Center After Space")]
+    public float flyToCenterDuration = 0.8f;
+
+    // internal
+    Vector3 playerTargetPos;
+    Vector3 playerStartPos;
 
     void Start()
     {
-        // disable gun behaviours at the beginning
-        if (gunController != null) gunController.enabled = false;
-        if (gunSpriteSwitcher != null) gunSpriteSwitcher.enabled = false;
+        
 
+        // HUD hidden
+        if (hudGroup != null)
+            hudGroup.alpha = 0f;
 
         if (statusText != null)
-        {
-            Color c = statusText.color;
-            c.a = 0f;                   // start invisible, we’ll fade it in
-            statusText.color = c;
             statusText.text = "";
-        }
 
         if (spaceKeyHint != null)
             spaceKeyHint.SetActive(false);
 
-        // start the cutscene
+        // Gun hidden / disabled until powerup
+        if (gunRoot != null) gunRoot.SetActive(false);
+        if (gunController != null) gunController.enabled = false;
+        if (gunSpriteSwitcher != null)gunSpriteSwitcher.enabled = false;
+
+        // Prepare player entrance
+        if (player != null)
+        {
+            playerTargetPos = player.position; // where he should end up
+            playerStartPos = playerTargetPos + playerStartOffset; // off-screen left
+            player.position = playerStartPos;
+        }
+
+        // start cutscene
         StartCoroutine(CutsceneRoutine());
     }
 
-
-    void Update()
-    {
-        
-    }
-
-
     IEnumerator CutsceneRoutine()
     {
-        // wait 2 seconds before starting
-        yield return new WaitForSeconds(2f);
+        // wait a bit
+        yield return new WaitForSeconds(1f);
+
+        // Player flies in with bobbing
+        if (player != null) yield return StartCoroutine(PlayerFlyIn());
+
+        // HUD flicker on
+        yield return StartCoroutine(HUDFlicker());
 
         // Message 1
         yield return StartCoroutine(ShowLine("Infection Concentration CRITICAL."));
@@ -72,72 +89,148 @@ public class WeaponOnlineController : MonoBehaviour
         // Message 2
         yield return StartCoroutine(ShowLine("Activate the Power of Friendship."));
 
-        // Gun power-up: big + flash + sound
-        AudioManager.instance?.WeaponOnline();
-        if (gunPowerup != null)
-            yield return StartCoroutine(gunPowerup.PlayPowerup());
+        // Gun power-up pulse + enable shooting
+        yield return StartCoroutine(GunPowerup());
 
-        // final msg no fade out
-        if (statusText != null) statusText.text = "PRESS SPACE TO SHOOT.";
-
+        // final prompt to press Space
         if (spaceKeyHint != null) spaceKeyHint.SetActive(true);
 
-        // re-enable gun behaviours
-        if (gunController != null) gunController.enabled = true;
-        if (gunSpriteSwitcher != null) gunSpriteSwitcher.enabled = true;
-
-        // Wait until the player has pressed Space requiredShots times
+        // Wait for player to press Space
+        // yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+        // Wait for N shots (space presses)
         yield return StartCoroutine(WaitForShots(requiredShots));
 
 
+        // hide HUD while flying to center
+        if (spaceKeyHint != null) spaceKeyHint.SetActive(false);
+
+        // Player flies to screen center, then load boss scene
+        if (player != null) yield return StartCoroutine(PlayerFlyToCenter());
         SceneManager.LoadScene(nextSceneName);
     }
 
+    // ------------ PLAYER ANIMATIONS ------------
 
-    // Fade a line in, hold, then fade out
-    IEnumerator ShowLine(string line)
+    IEnumerator PlayerFlyIn()
     {
-        if (statusText == null)
+        float t = 0f;
+
+        while (t < flyInDuration)
+        {
+            t += Time.deltaTime;
+            float lerp = Mathf.Clamp01(t / flyInDuration);
+
+            // horizontal lerp
+            Vector3 pos = Vector3.Lerp(playerStartPos, playerTargetPos, lerp);
+
+            // vertical bob
+            float bob = Mathf.Sin(lerp * Mathf.PI * flyInBobFrequency) * flyInBobAmplitude;
+            pos.y = playerTargetPos.y + bob;
+
+            player.position = pos;
+            yield return null;
+        }
+
+        player.position = playerTargetPos;
+    }
+
+    IEnumerator PlayerFlyToCenter()
+    {
+        Vector3 start = player.position;
+        Vector3 target = new Vector3(0f, start.y, start.z); // center on x
+
+        float t = 0f;
+        while (t < flyToCenterDuration)
+        {
+            t += Time.deltaTime;
+            float lerp = Mathf.Clamp01(t / flyToCenterDuration);
+
+            player.position = Vector3.Lerp(start, target, lerp);
+            yield return null;
+        }
+
+        player.position = target;
+    }
+
+    // ------------ HUD & TEXT ------------
+
+    IEnumerator HUDFlicker()
+    {
+        if (hudGroup == null)
             yield break;
 
-        statusText.text = line;
-        PlayBeep();
+        float elapsed = 0f;
+        bool on = false;
 
-        // Fade IN
-        float t = 0f;
-        while (t < textFadeTime)
+        while (elapsed < hudFlickerDuration)
         {
-            t += Time.deltaTime;
-            float a = Mathf.Clamp01(t / textFadeTime);
-            SetTextAlpha(a);
-            yield return null;
+            on = !on;
+            hudGroup.alpha = on ? 1f : 0f;
+            PlayBeep();
+
+            float step = Random.Range(0.05f, 0.15f);
+            elapsed += step;
+            yield return new WaitForSeconds(step);
         }
 
-        // Hold
-        yield return new WaitForSeconds(textHoldTime);
-
-        // Fade OUT
-        t = 0f;
-        while (t < textFadeTime)
-        {
-            t += Time.deltaTime;
-            float a = Mathf.Clamp01(1f - (t / textFadeTime));
-            SetTextAlpha(a);
-            yield return null;
-        }
-
-        SetTextAlpha(0f);
+        hudGroup.alpha = 1f; // stay on
     }
 
-    void SetTextAlpha(float alpha)
+    IEnumerator ShowLine(string line)
     {
-        if (statusText == null) return;
-        Color c = statusText.color;
-        c.a = alpha;
-        statusText.color = c;
+        if (statusText != null)
+            statusText.text = line;
+
+        PlayBeep();
+        yield return new WaitForSeconds(textHoldTime);
     }
 
+    // ------------ GUN POWERUP ------------
 
+    IEnumerator GunPowerup()
+    {
+        // show the gun object
+        if (gunRoot != null)
+            gunRoot.SetActive(true);
+
+        // play power-up sound (your Mario-style sound)
+        AudioManager.instance?.WeaponOnline();
+
+        // pulse scale up and down
+        if (gunRoot != null)
+        {
+            Vector3 originalScale = gunRoot.transform.localScale;
+            float t = 0f;
+
+            while (t < gunPulseDuration)
+            {
+                t += Time.deltaTime;
+                float lerp = Mathf.Sin((t / gunPulseDuration) * Mathf.PI); // 0 -> 1 -> 0
+                float scaleFactor = Mathf.Lerp(1f, gunPulseScale, lerp);
+
+                gunRoot.transform.localScale = originalScale * scaleFactor;
+                yield return null;
+            }
+
+            gunRoot.transform.localScale = originalScale;
+        }
+
+        // AFTER the pulse, shooting becomes available
+        if (gunController != null)
+            gunController.enabled = true;
+
+        if (gunSpriteSwitcher != null)
+            gunSpriteSwitcher.enabled = true;
+    }
+
+    // ------------ AUDIO ------------
+
+    void PlayBeep()
+    {
+        AudioManager.instance?.ButtonClick();
+    }
+
+    // ------------ INPUT WAITING ------------
     // wait until the player has pressed Space requiredShots times
     IEnumerator WaitForShots(int requiredShots)
     {
@@ -148,12 +241,6 @@ public class WeaponOnlineController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space)) { shots++; }
             yield return null;
         }
-    }
-
-    void PlayBeep()
-    {
-        // beep for HUD flicker and text lines
-        AudioManager.instance?.ButtonClick();
     }
 
 }

@@ -623,12 +623,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1068646987 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7803944192286405300, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
+  m_PrefabInstance: {fileID: 1809358056}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1068646989 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3579778356679460487, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
   m_PrefabInstance: {fileID: 1809358056}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1068646987}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5db1b543857bc4aeba8e514dc23d6952, type: 3}
@@ -639,7 +644,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2749585140649661399, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
   m_PrefabInstance: {fileID: 1809358056}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1068646987}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96bbb7f88cdcd4061810a75b70ac16b4, type: 3}
@@ -679,7 +684,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 39, y: 0}
+  m_AnchoredPosition: {x: 39, y: -21}
   m_SizeDelta: {x: 150, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1137592024
@@ -941,14 +946,20 @@ MonoBehaviour:
   hudGroup: {fileID: 497940455}
   statusText: {fileID: 1137592024}
   spaceKeyHint: {fileID: 1253932130}
-  gunPowerup: {fileID: 0}
-  textFadeTime: 0.8
-  textHoldTime: 4
-  nextSceneName: BossBattle
-  requiredShots: 5
+  gunRoot: {fileID: 1068646987}
   gunController: {fileID: 1068646990}
   gunSpriteSwitcher: {fileID: 1068646989}
+  gunPulseScale: 1.3
+  gunPulseDuration: 0.5
+  hudFlickerDuration: 0.6
+  textHoldTime: 4
+  nextSceneName: BossBattle
   player: {fileID: 1809358057}
+  playerStartOffset: {x: -6, y: 0, z: 0}
+  flyInDuration: 1.2
+  flyInBobAmplitude: 0.3
+  flyInBobFrequency: 3
+  flyToCenterDuration: 0.8
 --- !u!4 &1388473017
 Transform:
   m_ObjectHideFlags: 0
@@ -998,7 +1009,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1244538808713842361, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.83
+      value: -4.33
       objectReference: {fileID: 0}
     - target: {fileID: 1244538808713842361, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1120,7 +1131,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6319874862605178519, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
