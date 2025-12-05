@@ -173,6 +173,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2749585140649661399, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
+      propertyPath: fireRate
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749585140649661399, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
