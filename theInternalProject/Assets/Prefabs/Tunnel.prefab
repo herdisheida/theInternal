@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66d2f0b02d214b2b97439ca9f6cca74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TunnelPortal
-  sceneToLoad: BossBattle
+  sceneToLoad: WeaponOnline
 --- !u!114 &2675466345754182303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,6 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TunnelMover
   moveSpeed: 5
   stopPos: 0
+  backgroundScroller: {fileID: 0}
 --- !u!114 &4398821201847405239
 MonoBehaviour:
   m_ObjectHideFlags: 0

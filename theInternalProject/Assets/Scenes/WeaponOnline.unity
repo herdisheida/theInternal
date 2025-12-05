@@ -961,8 +961,6 @@ MonoBehaviour:
   flyInBobAmplitude: 0.3
   flyInBobFrequency: 3
   flyToCenterDuration: 0.8
-  playerTargetPos: {x: 0, y: 0, z: 0}
-  playerStartPos: {x: 0, y: 0, z: 0}
 --- !u!4 &1388473017
 Transform:
   m_ObjectHideFlags: 0

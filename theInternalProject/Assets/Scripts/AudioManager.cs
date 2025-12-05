@@ -30,6 +30,10 @@ public class AudioManager : MonoBehaviour
     [Header("Menu SFX")]
     public AudioClip buttonClickClip; // start, quit buttons
 
+    [Header("Cutscene SFX")]
+    public AudioClip weaponOnlineClip; // weapon online sound effect
+
+
     [Header("Player SFX")]
     public AudioClip damageTakenClip;
     public AudioClip dyingClip;
@@ -159,6 +163,8 @@ public class AudioManager : MonoBehaviour
     // helper methods for SFX
     // Example: AudioManager.instance?.ButtonClick();
     public void ButtonClick()    => PlaySFX(buttonClickClip);
+
+    public void WeaponOnline()   => PlaySFX(weaponOnlineClip);
     
     public void DamageTaken()    => PlaySFX(damageTakenClip);
     public void Dying()          => PlaySFX(dyingClip);
