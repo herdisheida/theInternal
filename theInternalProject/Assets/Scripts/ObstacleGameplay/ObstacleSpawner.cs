@@ -54,6 +54,7 @@ public class ObstacleSpawner : MonoBehaviour
     void Start()
     {
         ScheduleNextSpawn();
+        AudioManager.instance?.PlayObstacleGameplayMusic();
     }
 
     void Update()

@@ -15,7 +15,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip menuScreenMusic;
     public AudioClip hospitalLobbyMusic;
     public AudioClip obstacleGameplayMusic;
-    public AudioClip bossBattleMusic;
+    public AudioClip zombieBossBattleMusic;
 
     public AudioClip goodEndingMusic;    // save all patients
     public AudioClip badEndingMusic;     // save no patients
@@ -114,7 +114,7 @@ public class AudioManager : MonoBehaviour
     public void PlayMenuScreenMusic()        => PlayMusic(menuScreenMusic);
     public void PlayHospitalLobbyMusic()     => PlayMusic(hospitalLobbyMusic);
     public void PlayObstacleGameplayMusic()  => PlayMusic(obstacleGameplayMusic);
-    public void PlayBossBattleMusic()        => PlayMusic(bossBattleMusic);
+    public void PlayZombieBossBattleMusic()        => PlayMusic(zombieBossBattleMusic);
 
     public void PlayGoodEndingMusic()        => PlayMusic(goodEndingMusic);
     public void PlayBadEndingMusic()         => PlayMusic(badEndingMusic);
