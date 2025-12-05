@@ -220,7 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleSpawner
   infectionPrefab: {fileID: 3341388141512193241, guid: 9b45f95e39d404c80a557b22f308da4a, type: 3}
   spawnPos: 14
-  minSpawnDelay: 1
+  minSpawnDelay: 1.4
   maxSpawnDelay: 2.5
   obstacleMoveSpeed: 5
   tunnelPrefab: {fileID: 2822540653660913477, guid: a024fdb334ff245cd8ea4b9951814c14, type: 3}
