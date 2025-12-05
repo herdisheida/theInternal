@@ -632,41 +632,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3447872424490958614, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
-      propertyPath: m_Color.b
-      value: 0.03137255
-      objectReference: {fileID: 0}
-    - target: {fileID: 3447872424490958614, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
-      propertyPath: m_Color.g
-      value: 0.03137255
-      objectReference: {fileID: 0}
-    - target: {fileID: 3447872424490958614, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
-      propertyPath: m_Color.r
-      value: 0.18823531
-      objectReference: {fileID: 0}
-    - target: {fileID: 4512229608844423502, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
-      propertyPath: m_Color.b
-      value: 0.03137255
-      objectReference: {fileID: 0}
-    - target: {fileID: 4512229608844423502, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
-      propertyPath: m_Color.g
-      value: 0.03137255
-      objectReference: {fileID: 0}
-    - target: {fileID: 4512229608844423502, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
-      propertyPath: m_Color.r
-      value: 0.18431373
-      objectReference: {fileID: 0}
     - target: {fileID: 6479943542984722666, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
       propertyPath: m_Name
       value: BackgroundBorder
-      objectReference: {fileID: 0}
-    - target: {fileID: 8168159442081319706, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8862998771897047184, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

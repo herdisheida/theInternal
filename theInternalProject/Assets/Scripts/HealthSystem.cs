@@ -22,10 +22,10 @@ public class HealthSystem : MonoBehaviour
 
     [Header("Invincibility framees")]
 
-    public float invincibilityPeriod = 0.9f;
+    public float invincibilityPeriod = 0.6f;
     public float preBlinkDelay = 0.1f; // To show Damage Flash
     private bool isInvincible = false;
-    public float blinkInterval = 0.1f;
+    public float blinkInterval = 0.07f;
     private SpriteRenderer[] spriteRenderers;
 
     void Awake()
