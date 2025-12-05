@@ -39,7 +39,10 @@ public class GunShakeController : MonoBehaviour
     public Color maxRedTint = new Color(1f, 0.2f, 0.2f, 1f); // target colour at end
 
     [Header("BlackScreen & Scene")]
-    public string nextSceneName = "PatientSelection";
+
+    // TODO HERDIS CHANGE AFTER ALPHA
+    // public string nextSceneName = "PatientSelection";
+    public string nextSceneName = "Credits";
 
 
     // original transforms/colors
