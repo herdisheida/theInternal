@@ -24,6 +24,8 @@ public class WeaponOnlineController : MonoBehaviour
 
     [Header("Scene Flow")]
     public string nextSceneName = "BossBattle";
+    public int requiredShots = 3;  // how many space presses before going to Boss Scene
+
 
     [Header("Player Character Reference")]
     public Transform player;
@@ -87,8 +89,8 @@ public class WeaponOnlineController : MonoBehaviour
             spaceKeyHint.SetActive(true);
 
 
-        // Wait for player to press space, then go to boss
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+        // Wait for N shots (space presses), then go to the boss scene
+        yield return StartCoroutine(WaitForShots(requiredShots));
         SceneManager.LoadScene(nextSceneName);
     }
 
@@ -135,6 +137,20 @@ public class WeaponOnlineController : MonoBehaviour
 
         hudGroup.alpha = 1f; // stay on
     }
+
+
+    // wait until the player has pressed Space requiredShots times
+    IEnumerator WaitForShots(int requiredShots)
+    {
+        int shots = 0;
+
+        while (shots < requiredShots)
+        {
+            if (Input.GetKeyDown(KeyCode.Space)) { shots++; }
+            yield return null;
+        }
+    }
+
 
     IEnumerator ShowLine(string line)
     {
