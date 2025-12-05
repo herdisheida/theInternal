@@ -24,7 +24,7 @@ public class WeaponOnlineController : MonoBehaviour
 
     [Header("Scene Flow")]
     public string nextSceneName = "BossBattle";
-    public int requiredShots = 3;  // how many space presses before going to Boss Scene
+    public int requiredShots = 5;  // how many space presses before going to Boss Scene
 
 
     [Header("Player Character Reference")]
