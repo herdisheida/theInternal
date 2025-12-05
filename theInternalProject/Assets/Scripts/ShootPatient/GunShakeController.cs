@@ -160,14 +160,14 @@ public class GunShakeController : MonoBehaviour
 
         
 
-        // toggle the space key sprite
-        UpdateSpaceKeyBlink(true);
-
-        // if player shoots (space bar) OR time runs out =>>> shoot patient
-        if (!hasShot)
+        // allow shooting only after initial delay
+        if (!hasShot && elapsed >= disableSpaceKeyForSeconds)
         {
-            // check for space key press after initial disable time
-            if (Input.GetKeyDown(KeyCode.Space) && elapsed >= disableSpaceKeyForSeconds)
+            // toggle the space key sprite
+            UpdateSpaceKeyBlink(true);
+
+            // shoot when space key is pressed
+            if (Input.GetKeyDown(KeyCode.Space))
                 { StartCoroutine(HandleShotSequence()); }
 
             // time ran out
