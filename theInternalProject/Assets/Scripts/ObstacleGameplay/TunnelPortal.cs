@@ -23,14 +23,6 @@ public class TunnelPortal : MonoBehaviour
 
         AudioManager.instance?.FadeOutMusic(1.0f);
         // load the next scene
-        if (!string.IsNullOrEmpty(sceneToLoad))
-        {
-            AudioManager.instance?.FadeOutMusic(1.5f);
-            SceneManager.LoadScene(sceneToLoad);
-        }
-        else
-        {
-            Debug.LogWarning("TunnelPortal: sceneToLoad is not set!");
-        }
+        SceneManager.LoadScene(nextSceneName);
     }
 }
