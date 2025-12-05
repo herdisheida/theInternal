@@ -678,8 +678,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GunShakeController
   gunImage: {fileID: 1539025787}
   gunTransform: {fileID: 1539025786}
-  backgroundImage: {fileID: 411518027}
-  backgroundTransform: {fileID: 411518026}
+  shakeTargets:
+  - transform: {fileID: 411518026}
+    image: {fileID: 411518027}
+    tintRed: 1
+  - transform: {fileID: 1722436194}
+    image: {fileID: 1722436195}
+    tintRed: 1
   fadeImage: {fileID: 1071907908}
   spaceKeyImage: {fileID: 322976843}
   spaceBarUnpressedSprite: {fileID: -5704742595995698447, guid: 53a2e168aaa3e4a2ba13b0ff92956911, type: 3}
@@ -689,7 +694,7 @@ MonoBehaviour:
   idleGunSprite: {fileID: 281306285295221210, guid: 00c4e0dcd4a27443080011116f3040d4, type: 3}
   shootGunSprite: {fileID: -331875709885016742, guid: 896c27cee8d734b35be5318efb31e857, type: 3}
   shootFlashDuration: 0.1
-  totalDuration: 20
+  totalDuration: 15
   minShakeAmount: 2
   maxShakeAmount: 15
   backgroundShakeMultiplier: 0.4

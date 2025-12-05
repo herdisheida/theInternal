@@ -6,11 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class GunShakeController : MonoBehaviour
 {
+    [System.Serializable]
+    public class ShakeTarget
+    {
+        public RectTransform transform; // the thing to move
+        public Image image;             // the thing to tint
+        public bool tintRed = true;     // should this one get red tint?
+    }
+
     [Header("References")]
     public Image gunImage;                      // GunImage Image component
     public RectTransform gunTransform;          // GunImage RectTransform
-    public Image backgroundImage;               // Background Image component
-    public RectTransform backgroundTransform;   // Background RectTransform
+    public ShakeTarget[] shakeTargets;          // many images to shake/tint
     public Image fadeImage;                     // full-screen black Image
 
     [Header("Space Key Hint")]
@@ -19,7 +26,6 @@ public class GunShakeController : MonoBehaviour
     public Sprite spaceBarPressedSprite;        // pressed key
     public float spaceKeyBlinkSpeed = 8f;       // how fast it switches
     public float disableSpaceKeyForSeconds = 1.5f; // disable at start
-
 
     [Header("Sprites")]
     public Sprite idleGunSprite;                // normal hand gun sprite
@@ -46,8 +52,10 @@ public class GunShakeController : MonoBehaviour
     // original transforms/colors
     private Vector2 gunOriginalPos;
     private float gunOriginalRotZ;
-    private Vector2 bgOriginalPos;
-    private Color bgOriginalColor;
+
+    private Vector2[] bgOriginalPos;   // per target
+    private Color[] bgOriginalColor;   // per target
+
     private Color fadeOriginalColor;
     private Color[] shootingMsgOriginalColors;
 
@@ -67,12 +75,28 @@ public class GunShakeController : MonoBehaviour
         gunOriginalPos = gunTransform.anchoredPosition;
         gunOriginalRotZ = gunTransform.localEulerAngles.z;
 
-        if (backgroundTransform != null) { bgOriginalPos = backgroundTransform.anchoredPosition; }
-        if (backgroundImage != null) { bgOriginalColor = backgroundImage.color; }
-            
+        // store original positions/colors for each shake target
+        if (shakeTargets != null && shakeTargets.Length > 0)
+        {
+            bgOriginalPos = new Vector2[shakeTargets.Length];
+            bgOriginalColor = new Color[shakeTargets.Length];
+
+            for (int i = 0; i < shakeTargets.Length; i++)
+            {
+                if (shakeTargets[i] != null)
+                {
+                    if (shakeTargets[i].transform != null)
+                        bgOriginalPos[i] = shakeTargets[i].transform.anchoredPosition;
+
+                    if (shakeTargets[i].image != null)
+                        bgOriginalColor[i] = shakeTargets[i].image.color;
+                }
+            }
+        }
+
         if (fadeImage != null) { fadeOriginalColor = fadeImage.color; }
 
-        // default idle sprite if not set
+        // default idle for gun sprite
         if (idleGunSprite == null && gunImage != null) { idleGunSprite = gunImage.sprite; }
 
         // start with black screen for 1 seconds
@@ -108,19 +132,33 @@ public class GunShakeController : MonoBehaviour
         euler.z = gunOriginalRotZ + gunRotOffset;
         gunTransform.localEulerAngles = euler;
 
-        // shake background
-        if (backgroundTransform != null)
+
+
+        // shake + tint all targets (backgrounds and patients)
+        if (shakeTargets != null)
         {
-            Vector2 bgOffset = Random.insideUnitCircle * (posIntensity * backgroundShakeMultiplier);
-            backgroundTransform.anchoredPosition = bgOriginalPos + bgOffset;
+            for (int i = 0; i < shakeTargets.Length; i++)
+            {
+                var target = shakeTargets[i];
+                if (target == null) continue;
+
+                // shake
+                if (target.transform != null)
+                {
+                    Vector2 bgOffset = Random.insideUnitCircle * (posIntensity * backgroundShakeMultiplier);
+                    target.transform.anchoredPosition = bgOriginalPos[i] + bgOffset;
+                }
+
+                // tint red
+                if (target.tintRed && target.image != null)
+                {
+                    float tintAmount = Mathf.Clamp01(t * 2f);
+                    target.image.color = Color.Lerp(bgOriginalColor[i], maxRedTint, tintAmount);
+                }
+            }
         }
 
-        // tint background red over time
-        if (backgroundImage != null)
-        {
-            float tintAmount = Mathf.Clamp01(t * 2f);
-            backgroundImage.color = Color.Lerp(bgOriginalColor, maxRedTint, tintAmount);
-        }
+        
 
         // toggle the space key sprite
         UpdateSpaceKeyBlink(true);
@@ -177,7 +215,7 @@ public class GunShakeController : MonoBehaviour
     {
         isRunning = false;
 
-        // reset positions/rotation of gun
+        // reset gun transform
         gunTransform.anchoredPosition = gunOriginalPos;
         gunTransform.localEulerAngles = new Vector3(
             gunTransform.localEulerAngles.x,
@@ -185,11 +223,18 @@ public class GunShakeController : MonoBehaviour
             gunOriginalRotZ
         );
 
-        // reset positions/rotation/color of background
-        if (backgroundTransform != null)
-            backgroundTransform.anchoredPosition = bgOriginalPos;
-        if (backgroundImage != null)
-            backgroundImage.color = bgOriginalColor;
+        // reset all shake targets
+        if (shakeTargets != null)
+        {
+            for (int i = 0; i < shakeTargets.Length; i++)
+            {
+                var target = shakeTargets[i];
+                if (target == null) continue;
+
+                if (target.transform != null) { target.transform.anchoredPosition = bgOriginalPos[i]; }
+                if (target.image != null) { target.image.color = bgOriginalColor[i]; }
+            }
+        }
     }
 
 
