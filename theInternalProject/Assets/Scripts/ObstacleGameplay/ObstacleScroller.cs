@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Scroller : MonoBehaviour
+public class ObstacleScroller : MonoBehaviour
 {
     public float moveSpeed = 5f;   // how fast obstacles move left
     public float destroyPos = -20f;  // pos where we delete the obstacles
