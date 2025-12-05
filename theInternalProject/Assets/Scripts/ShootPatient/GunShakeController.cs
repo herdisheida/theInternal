@@ -27,7 +27,7 @@ public class GunShakeController : MonoBehaviour
     public float shootFlashDuration = 0.1f;
 
     [Header("Shake Settings")]
-    public float totalDuration = 8f;                // how long the player has to shoot
+    public float totalDuration = 7f;                // how long the player has to shoot
     public float minShakeAmount = 2f;               // starting shake
     public float maxShakeAmount = 15f;              // shake near the end
     public float backgroundShakeMultiplier = 0.4f;  // background shakes less
