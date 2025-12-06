@@ -6,9 +6,17 @@ public class VineAttack : MonoBehaviour
     public int damage = 10;
 
     [Header("Timing")]
-    public float warningTime = 4f;   // how long vine "prepares"
-    public float stretchSpeed = 4f;    // how fast it extends
-    public float retractSpeed = 3f;    // how fast it retracts
+    public float warningTime = 2f;
+    public float stretchSpeed = 4f;
+    public float retractSpeed = 3f;
+
+    [Header("Warning Indicator")]
+    public GameObject warningIndicatorPrefab;   // Assign in Inspector
+
+    // Offset to control *where* the warning appears relative to vine
+    public Vector3 indicatorOffset = new Vector3(0, -6f, 0);
+
+    private GameObject activeIndicator;
 
     private SpriteRenderer sr;
     private Vector3 baseScale;
@@ -18,7 +26,7 @@ public class VineAttack : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         baseScale = transform.localScale;
 
-        // Start vine completely hidden (scale = 0)
+        // Start vine hidden
         transform.localScale = new Vector3(baseScale.x, 0f, baseScale.z);
 
         StartCoroutine(VineRoutine());
@@ -26,21 +34,47 @@ public class VineAttack : MonoBehaviour
 
     IEnumerator VineRoutine()
     {
-        // 1. Peek (vine moves down slightly)
-        Vector3 peekPos = transform.position - new Vector3(0, 0.5f, 0);
+        // The vine actually appears at peekPos, not at original transform.position
+        Vector3 startPos = transform.position;
+        Vector3 peekPos = startPos - new Vector3(0, 1f, 0);
 
+        // Spawn the warning where the vine will be seen
+        Vector3 attackPosition = peekPos + indicatorOffset;
+
+        if (warningIndicatorPrefab != null)
+        {
+            activeIndicator = Instantiate(warningIndicatorPrefab, attackPosition, Quaternion.identity);
+
+            SpriteRenderer indSR = activeIndicator.GetComponent<SpriteRenderer>();
+            if (indSR != null)
+            {
+                indSR.enabled = true;
+                indSR.sortingOrder = 999;
+            }
+
+            activeIndicator.transform.localScale = Vector3.one;
+        }
+
+        Debug.Log("Indicator spawned at: " + attackPosition);
+
+        // 2. Peek vine slightly
         float t = 0;
         while (t < 1f)
         {
-            t += Time.deltaTime * 2f;  // peek speed
-            transform.position = Vector3.Lerp(transform.position, peekPos, t);
+            t += Time.deltaTime * 2f;
+            transform.position = Vector3.Lerp(startPos, peekPos, t);
             yield return null;
         }
 
-        // 2. Hold (warning)
+
+        // 3. Wait during warning time
         yield return new WaitForSeconds(warningTime);
 
-        // 3. Stretch downward
+        // Remove indicator right before the vine strikes
+        if (activeIndicator != null)
+            Destroy(activeIndicator);
+
+        // 4. Stretch downward
         t = 0;
         while (t < 1f)
         {
@@ -53,7 +87,7 @@ public class VineAttack : MonoBehaviour
             yield return null;
         }
 
-        // 4. Retract
+        // 5. Retract
         t = 0;
         while (t < 1f)
         {
@@ -69,8 +103,6 @@ public class VineAttack : MonoBehaviour
         Destroy(gameObject);
     }
 
-
-    //  DAMAGE USING COLLIDER
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
