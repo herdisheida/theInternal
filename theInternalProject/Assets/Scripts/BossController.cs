@@ -177,6 +177,7 @@ public class BossController : MonoBehaviour
 
             Die();
             // mark saved before switching scenes so the new scene can read it
+            AudioManager.instance?.FadeOutMusic(1.5f);
             PatientAnalysisScreen.isSaved = true;
             SceneManager.LoadScene("ZombieAnalysisScreen");
             return;

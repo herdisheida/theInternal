@@ -80,6 +80,7 @@ public class HealthSystem : MonoBehaviour
         if (currentHealth <= 0)
         {
             Die();
+            AudioManager.instance?.FadeOutMusic(1.5f);
         }
         else
         {
