@@ -154,3 +154,4 @@ MonoBehaviour:
   warningTime: 3
   stretchSpeed: 2
   retractSpeed: 6
+  warningIndicatorPrefab: {fileID: 96068019287669006, guid: eb2d7bddc31fc7f44a4d586c291f70b5, type: 3}
