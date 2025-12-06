@@ -75,10 +75,11 @@ public class WeaponOnlineController : MonoBehaviour
     IEnumerator CutsceneRoutine()
     {
         // wait a bit
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.75f);
 
         // Player flies in with bobbing
         if (player != null) yield return StartCoroutine(PlayerFlyIn());
+        yield return new WaitForSeconds(1.5f);
 
         // HUD flicker on
         yield return StartCoroutine(HUDFlicker());

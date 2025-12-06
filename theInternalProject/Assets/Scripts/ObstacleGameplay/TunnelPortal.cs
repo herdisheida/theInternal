@@ -21,7 +21,7 @@ public class TunnelPortal : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
-        AudioManager.instance?.FadeOutMusic(2f);
+        AudioManager.instance?.FadeOutMusic(3f);
         // load the next scene
         SceneManager.LoadScene(nextSceneName);
     }
