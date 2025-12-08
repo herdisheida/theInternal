@@ -20,7 +20,6 @@ public class AutoMoveToTunnel : MonoBehaviour
     {
         tunnel = tunnelTransform;
         autoMoving = true;
-        Debug.Log("AutoMoveToTunnel: Begin auto move toward tunnel.");
     }
 
     void Update()
