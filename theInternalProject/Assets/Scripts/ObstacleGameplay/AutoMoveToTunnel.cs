@@ -5,10 +5,9 @@ public class AutoMoveToTunnel : MonoBehaviour
 {
     [Header("Auto Move Settings")]
     public float moveSpeed = 4f;
-    public float stopOffsetX = 0.3f;
 
     // where you want the player to end up
-    public Vector3 targetPosition = new Vector3(5f, 0f, 0f);
+    public Vector3 targetPosition = new Vector3(5.5f, 0f, 0f);
 
     private bool autoMoving = false;
 
