@@ -48,7 +48,7 @@ public class TunnelMover : MonoBehaviour
     IEnumerator NotifyPlayerAfterDelay()
     {
         // wait 2 seconds so obstacles clear out
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.8f);
 
         AutoMoveToTunnel player = FindObjectOfType<AutoMoveToTunnel>();
         if (player != null) player.BeginAutoMove(transform);
