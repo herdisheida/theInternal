@@ -19,4 +19,4 @@ MonoBehaviour:
   dead: {fileID: -7117073988383508056, guid: 3fa306401f7594bfd8ee26c4f630ba8e, type: 3}
   saved: {fileID: -2799798257536191386, guid: 7a01fb5e9bfc06b4084c1e5ae9812c79, type: 3}
   isSaved: 0
-  status: 2
+  status: 0
