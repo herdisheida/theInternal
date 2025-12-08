@@ -18,7 +18,7 @@ MonoBehaviour:
   infected: {fileID: -1621220576460722135, guid: 40faf5a89e26340dfbc406ea151fc4c7, type: 3}
   dead: {fileID: -5328564077077918766, guid: 3fa306401f7594bfd8ee26c4f630ba8e, type: 3}
   saved: {fileID: 0}
-  analysisInfe: {fileID: 0}
-  analysisSafe: {fileID: 0}
+  analysisInfected: {fileID: 0}
+  analysisSafe: {fileID: 1302723820812287101, guid: 02f78cbb07e633449abf6a62a98e0655, type: 3}
   isSaved: 0
   status: 0
