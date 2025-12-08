@@ -7,8 +7,10 @@ public class GameManager : MonoBehaviour
     [Header("Current Patient")]
     public PatientData currentPatient;   // who we’re working on right now
 
+
     void Awake()
     {
+        // singleton pattern
         if (instance == null)
         {
             instance = this;

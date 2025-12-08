@@ -97,6 +97,7 @@ public class PatientSelectionUI : MonoBehaviour
     private void LoadPatientScreen()
     {
         string sceneToLoad = PatientSlots[currentIndex].sceneName;
+        GameManager.instance?.SetCurrentPatient(PatientSlots[currentIndex].data);
 
         if (!string.IsNullOrEmpty(sceneToLoad))
         {

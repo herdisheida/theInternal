@@ -7,16 +7,31 @@ public class PatientStatusUI : MonoBehaviour
     public PatientData patientData;
     public Image displayImage;
 
+    private PatientStatus lastStatus;
 
     void Start()
     {
+        if (patientData == null || displayImage == null)
+        {
+            Debug.LogWarning($"{name}: PatientStatusUI missing references.");
+            enabled = false;
+            return;
+        }
+
+        lastStatus = patientData.status;
         RefreshVisual();
     }
 
     void Update()
     {
-        
+        // only update when status changes
+        if (patientData.status != lastStatus)
+        {
+            lastStatus = patientData.status;
+            RefreshVisual();
+        }
     }
+
 
     public void RefreshVisual()
     {

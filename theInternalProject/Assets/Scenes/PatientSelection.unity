@@ -1083,6 +1083,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2048644689}
   - component: {fileID: 2048644690}
+  - component: {fileID: 2048644691}
   m_Layer: 5
   m_Name: ZombiePatient
   m_TagString: Untagged
@@ -1117,7 +1118,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2048644688}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 252ff65e246a43646b44967fd93f2ebc, type: 3}
   m_Name: 
@@ -1125,6 +1126,20 @@ MonoBehaviour:
   portraitImage: {fileID: 1311870543}
   data: {fileID: 11400000, guid: b9e940b781e414dc0aa84c87f8ac9111, type: 2}
   sceneName: ZombieAnalysisScreen
+--- !u!114 &2048644691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048644688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c28e7a2fb6b946b5b13229587a55efe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PatientStatusUI
+  patientData: {fileID: 11400000, guid: b9e940b781e414dc0aa84c87f8ac9111, type: 2}
+  displayImage: {fileID: 1311870543}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
