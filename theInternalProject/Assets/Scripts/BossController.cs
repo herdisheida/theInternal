@@ -184,6 +184,7 @@ public class BossController : MonoBehaviour
             healthBarRoot?.SetActive(false);
             Die();
             PatientAnalysisScreen.isSaved = true;
+            GameManager.instance?.MarkPatientSaved();
             SceneManager.LoadScene("ZombieAnalysisScreen");
             return;
         }
