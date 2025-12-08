@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Called from the PatientSelection scene when the player picks someone
+    // FX: GameManager.instance?.SetCurrentPatient(patient);
     public void SetCurrentPatient(PatientData patient)
     {
         currentPatient = patient;
@@ -34,7 +35,8 @@ public class GameManager : MonoBehaviour
 
     // --------- STATE CHANGERS ---------
 
-    // --------- Player died anywhere before finishing ---------
+    // --------- Player dies in boss or obstacle fight ---------
+    // GameManager.instance?.MarkPatientInfected();
     public void MarkPatientInfected()
     {
         if (currentPatient == null) return;
@@ -55,6 +57,7 @@ public class GameManager : MonoBehaviour
     }
 
     // --------- Player defeated the boss ---------
+    // GameManager.instance?.MarkPatientSaved();
     public void MarkPatientSaved()
     {
         if (currentPatient == null) return;
