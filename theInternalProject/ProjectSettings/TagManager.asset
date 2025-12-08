@@ -47,20 +47,23 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Tunnel
-    uniqueID: 2400237755
-    locked: 0
-  - name: Player
-    uniqueID: 3588073
-    locked: 0
-  - name: Obstacles
-    uniqueID: 1373827247
+  - name: Background
+    uniqueID: 1645914281
     locked: 0
   - name: BackgroundBorder
     uniqueID: 876540115
     locked: 0
-  - name: Background
-    uniqueID: 1645914281
+  - name: Tunnel
+    uniqueID: 2400237755
+    locked: 0
+  - name: Obstacles
+    uniqueID: 1373827247
+    locked: 0
+  - name: Player
+    uniqueID: 3588073
+    locked: 0
+  - name: HealthBar
+    uniqueID: 1984506837
     locked: 0
   m_RenderingLayers:
   - Default
