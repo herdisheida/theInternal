@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class TunnelMover : MonoBehaviour
 {
@@ -28,14 +29,11 @@ public class TunnelMover : MonoBehaviour
                 backgroundScroller.StopScrolling();
             }
 
-            // tell the player to move into the tunnel
+            // start nofifying player to auto move
             if (!notifiedPlayer)
             {
                 notifiedPlayer = true;
-
-                AutoMoveToTunnel player = FindObjectOfType<AutoMoveToTunnel>();
-                if (player != null)
-                    player.BeginAutoMove(transform); // pass tunnel transform
+                StartCoroutine(NotifyPlayerAfterDelay());
             }
 
             // stop moving tunnel
@@ -45,6 +43,15 @@ public class TunnelMover : MonoBehaviour
 
         // move tunnel left
         transform.position += Vector3.left * moveSpeed * Time.deltaTime;
-
     }
+
+    IEnumerator NotifyPlayerAfterDelay()
+    {
+        // wait 2 seconds so obstacles clear out
+        yield return new WaitForSeconds(1f);
+
+        AutoMoveToTunnel player = FindObjectOfType<AutoMoveToTunnel>();
+        if (player != null) player.BeginAutoMove(transform);
+    }
+
 }
