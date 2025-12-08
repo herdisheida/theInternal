@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: WerewolfPatientData
   m_EditorClassIdentifier: Assembly-CSharp::PatientData
   patientName: 
-  alive: {fileID: 0}
-  dlackAndWhite: {fileID: 0}
-  infected: {fileID: 0}
-  dead: {fileID: 0}
+  selected: {fileID: -6903536960293837502, guid: bc51e95cc9ac0034a882bc7d479ea081, type: 3}
+  unselected: {fileID: -5106396905415437222, guid: f6f64b2afe194bf4db3b581bad4c4fd8, type: 3}
+  infected: {fileID: 3415214611565262916, guid: 49d1a759257a69542abd12db52c57e8a, type: 3}
+  dead: {fileID: -7306661346976735226, guid: 5a1c91f84921be34581eb943e46c2672, type: 3}
+  saved: {fileID: 0}
+  analysisInfe: {fileID: 0}
+  analysisSafe: {fileID: 0}
+  isSaved: 0
+  status: 0
