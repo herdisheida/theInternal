@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections;
+
 
 public class HealthSystem : MonoBehaviour
 {
@@ -8,36 +10,38 @@ public class HealthSystem : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
 
-    // this is the shared health for ALL HealthSystem instances
-    public static int sharedHealth = -1; // -1 means "not initialized yet"
+    // Shared between scenes
+    public static int sharedHealth = -1;
 
     [Header("Health Bar (World Space)")]
-    public GameObject healthBarRoot;   // The whole health bar object (parent)
-    public Transform healthBarFill;    // Only the green fill object
-    public float smoothSpeed = 10f;    // Smooth scaling speed
+    public GameObject healthBarRoot;
+    public Transform healthBarFill;
+    public float smoothSpeed = 10f;
+    private SpriteRenderer healthBarSprite;
+
+    [Header("Low HP Pulse")]
+    public float pulseSpeed = 6f;         // how fast it pulses
+    public float pulseScaleAmount = 0.15f; // pulse height amount
 
     [Header("Health Text (Optional)")]
-    public TextMeshProUGUI healthText;       // UI text (e.g. on screen)
-    public TextMeshPro healthWorldText;      // World-space text above player
+    public TextMeshProUGUI healthText;
+    public TextMeshPro healthWorldText;
 
-    [Header("Invincibility framees")]
-
-    public float invincibilityPeriod = 0.6f;
-    public float preBlinkDelay = 0.1f; // To show Damage Flash
+    [Header("Invincibility Frames")]
+    public float invincibilityPeriod = 0.9f;
+    public float preBlinkDelay = 0.1f;
     private bool isInvincible = false;
     public float blinkInterval = 0.07f;
     private SpriteRenderer[] spriteRenderers;
 
     void Awake()
     {
-        // Cache all sprites on load for better perfomance
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
     }
 
     void Start()
     {
-        // first scene: sharedHealth == -1 → start at maxHealth
-        // later scenes: use whatever sharedHealth was left at
+        // Initialize shared HP
         if (sharedHealth < 0 || sharedHealth > maxHealth)
         {
             currentHealth = maxHealth;
@@ -49,6 +53,9 @@ public class HealthSystem : MonoBehaviour
         }
 
         UpdateAllHealthDisplays();
+
+        // Cache fill sprite
+        healthBarSprite = healthBarFill.GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -57,20 +64,17 @@ public class HealthSystem : MonoBehaviour
     }
 
 
-    // --- DAMAGE / DEATH --------------------------------------------------
-
-    // Called when the player takes damage
+    // ---------------- DAMAGE ----------------
     public void TakeDamage(int amount)
     {
-        if (isInvincible) return; // no damage if invincible
+        if (isInvincible) return;
 
         currentHealth -= amount;
-        currentHealth = Mathf.Max(0, currentHealth); // prevent negative health
+        currentHealth = Mathf.Max(0, currentHealth);
 
-        // sync static value so next scene sees same HP
         sharedHealth = currentHealth;
 
-        // Flash red when hit
+        // Flash red
         DamageFlash flash = GetComponent<DamageFlash>();
         if (flash != null)
             flash.Flash();
@@ -87,84 +91,117 @@ public class HealthSystem : MonoBehaviour
             StartCoroutine(InvincibilityCoroutine());
         }
     }
-    
-    // about 1 seconds of iframes
-    System.Collections.IEnumerator InvincibilityCoroutine()
+
+
+    IEnumerator InvincibilityCoroutine()
     {
         isInvincible = true;
 
-        if (preBlinkDelay > 0f)
-        {
-            // so damage flash can be shown
+        if (preBlinkDelay > 0)
             yield return new WaitForSeconds(preBlinkDelay);
-        }
+
         float elapsed = 0f;
         bool visible = true;
 
         while (elapsed < invincibilityPeriod)
-        {   
-            //Toggle visibility on and off
+        {
             visible = !visible;
 
-            // For all sprites connected to main character
-            foreach(var sr in spriteRenderers)
-            {
-                if (sr != null)
-                {
-                    sr.enabled = visible;
-                }
-            }
+            foreach (var sr in spriteRenderers)
+                if (sr != null) sr.enabled = visible;
 
             yield return new WaitForSeconds(blinkInterval);
             elapsed += blinkInterval;
         }
-        foreach(var sr in spriteRenderers)
-        {
-            if (sr != null)
-            {
-                sr.enabled = true;
-            }
-        }
 
-        // Can get hurt again
+        foreach (var sr in spriteRenderers)
+            if (sr != null) sr.enabled = true;
+
         isInvincible = false;
     }
 
+
+    // ---------------- DEATH ----------------
     public void Die()
     {
-        // hide health bar on death
         if (healthBarRoot != null)
             healthBarRoot.SetActive(false);
 
-        // deactivate the player
         gameObject.SetActive(false);
         SceneManager.LoadScene("ShootPatient");
     }
 
 
-
-    // --- HEALTH UI -------------------------------------------------------
-
-
-    // Updates the world-space health bar
+    // ---------------- HEALTH BAR ----------------
     void UpdateHealthBar()
     {
         if (healthBarRoot == null || healthBarFill == null)
             return;
 
-        // Hide bar when full, show when damaged
+        // show only when damaged
         healthBarRoot.SetActive(currentHealth < maxHealth);
 
-        float targetRatio = (float)currentHealth / maxHealth;
+        float ratio = (float)currentHealth / maxHealth;
 
-        // Smooth shrink from right to left (pivot must be on the right)
-        float currentScaleX = healthBarFill.localScale.x;
-        float newScaleX = Mathf.Lerp(currentScaleX, targetRatio, Time.deltaTime * smoothSpeed);
+        // -----------------------------------------
+        // LOW HP EFFECTS ( < 25 percent )
+        // -----------------------------------------
+        if (ratio <= 0.25f)
+        {
+            // turn red
+            if (healthBarSprite != null)
+                healthBarSprite.color = Color.red;
 
-        healthBarFill.localScale = new Vector3(newScaleX, 1f, 1f);
+            // pulse height (bar heartbeat)
+            float pulse = 1f + Mathf.Sin(Time.time * pulseSpeed) * pulseScaleAmount;
+
+            healthBarFill.localScale = new Vector3(
+                healthBarFill.localScale.x,
+                pulse,
+                1f
+            );
+
+            // trigger screen-edge glow pulse
+            ScreenVignettePulse.instance?.StartPulse();
+        }
+        else
+        {
+            // NORMAL — no pulse, normal green
+            if (healthBarSprite != null)
+                healthBarSprite.color = Color.green;
+
+            // reset bar height
+            healthBarFill.localScale = new Vector3(
+                healthBarFill.localScale.x,
+                1f,
+                1f
+            );
+
+            // stop glow pulse
+            ScreenVignettePulse.instance?.StopPulse();
+        }
+
+
+        // -----------------------------------------
+        // WIDTH SMOOTH SHRINK
+        // -----------------------------------------
+
+        float currentX = healthBarFill.localScale.x;
+        float targetX = ratio;  // full width is "1"
+
+        float newX = Mathf.Lerp(currentX, targetX, Time.deltaTime * smoothSpeed);
+
+        // Keep only width changing
+        healthBarFill.localScale = new Vector3(
+            newX,
+            healthBarFill.localScale.y, // keep pulse height if low HP
+            1f
+        );
     }
 
-    // Updates health number (UI or world)
+
+
+    // ---------------- HEALTH TEXT ----------------
     void UpdateHealthText()
     {
         if (healthText != null)
