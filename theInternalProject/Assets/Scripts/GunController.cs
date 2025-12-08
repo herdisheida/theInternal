@@ -12,12 +12,16 @@ public class GunController : MonoBehaviour
     public GameObject leftFirePoint;
     public GameObject rightFirePoint;
     private bool isLeftFirePoint;
+
+    public GunUI gunUI;
     
 
     void Start()
     {
         currentBullets = maxBullets;
         isLeftFirePoint = true;
+        gunUI.UpdateAmmoUI(currentBullets, maxBullets);
+        gunUI.hideReloading();
     }
     void Update()
     {
@@ -51,6 +55,7 @@ public class GunController : MonoBehaviour
             firePoint.rotation
         );
         currentBullets--;
+        gunUI.UpdateAmmoUI(currentBullets, maxBullets);
         // Avoid compile-time dependency on BulletController; call SetDirection at runtime instead.
         // bullet.SendMessage("SetDirection", firePoint.right, SendMessageOptions.DontRequireReceiver);   
 
@@ -61,11 +66,14 @@ public class GunController : MonoBehaviour
     System.Collections.IEnumerator Reload()
     {
         isReloading = true;
+        gunUI.showReloading();
 
         yield return new WaitForSeconds(reloadTimer);
 
         currentBullets = maxBullets;
+        gunUI.UpdateAmmoUI(currentBullets, maxBullets);
 
         isReloading = false;
+        gunUI.hideReloading();
     }
 }
