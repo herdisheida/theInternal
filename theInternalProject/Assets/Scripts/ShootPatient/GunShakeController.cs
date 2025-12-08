@@ -189,6 +189,8 @@ public class GunShakeController : MonoBehaviour
     IEnumerator HandleShotSequence()
     {
         hasShot = true;
+
+        GameManager.instance?.MarkPatientDead();
     
         // stop heavy breathing audio
         AudioManager.instance?.StopSFX();

@@ -128,6 +128,7 @@ public class HealthSystem : MonoBehaviour
             healthBarRoot.SetActive(false);
 
         gameObject.SetActive(false);
+        GameManager.instance?.MarkPatientInfected();
         SceneManager.LoadScene("ShootPatient");
     }
 
