@@ -631,11 +631,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df9c22c18fb78c459edf428f5f22f14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PatientAnalysisScreen
-  isSaved: 0
-  InfectedImage: {fileID: 2118381259}
-  SavedImage: {fileID: 1160092761}
-  InfectedSprite: {fileID: -2344715550444604041, guid: bee74f1025cd775438a9c97c0f845ae2, type: 3}
-  SavedSprite: {fileID: 1302723820812287101, guid: 02f78cbb07e633449abf6a62a98e0655, type: 3}
+  InfectedImage: {fileID: 0}
+  SavedImage: {fileID: 0}
+  InfectedSprite: {fileID: 0}
+  SavedSprite: {fileID: 0}
 --- !u!4 &2002063614
 Transform:
   m_ObjectHideFlags: 0
