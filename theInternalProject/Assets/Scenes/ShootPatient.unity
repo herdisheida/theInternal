@@ -792,8 +792,9 @@ GameObject:
   - component: {fileID: 1722436194}
   - component: {fileID: 1722436196}
   - component: {fileID: 1722436195}
+  - component: {fileID: 1722436197}
   m_Layer: 5
-  m_Name: Patient
+  m_Name: PatientPlaceholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -838,7 +839,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -6687728516929675107, guid: 40faf5a89e26340dfbc406ea151fc4c7, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -856,6 +857,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1722436193}
   m_CullTransparentMesh: 1
+--- !u!114 &1722436197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722436193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c28e7a2fb6b946b5b13229587a55efe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PatientStatusUI
+  patientData: {fileID: 11400000, guid: b9e940b781e414dc0aa84c87f8ac9111, type: 2}
+  displayImage: {fileID: 1722436195}
 --- !u!1 &1888090196
 GameObject:
   m_ObjectHideFlags: 0
