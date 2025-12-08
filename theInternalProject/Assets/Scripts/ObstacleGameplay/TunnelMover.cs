@@ -7,6 +7,9 @@ public class TunnelMover : MonoBehaviour
 
     public BackgroundScroller backgroundScroller; // reference to background scroller to stop it
 
+    private bool notifiedPlayer = false;
+
+
     void Start()
     {
 
@@ -23,6 +26,16 @@ public class TunnelMover : MonoBehaviour
             if (backgroundScroller != null)
             {
                 backgroundScroller.StopScrolling();
+            }
+
+            // tell the player to move into the tunnel
+            if (!notifiedPlayer)
+            {
+                notifiedPlayer = true;
+
+                AutoMoveToTunnel player = FindObjectOfType<AutoMoveToTunnel>();
+                if (player != null)
+                    player.BeginAutoMove(transform); // pass tunnel transform
             }
 
             // stop moving tunnel

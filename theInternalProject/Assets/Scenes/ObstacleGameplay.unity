@@ -133,6 +133,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1235428796783345502, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
+      propertyPath: spriteRenderers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1235428796783345502, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: 'spriteRenderers.Array.data[1]'
       value: 
       objectReference: {fileID: 0}
@@ -200,12 +204,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCharacter
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1235428796783345502, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7803944192286405300, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4729519753121233426, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 687269592}
   m_SourcePrefab: {fileID: 100100000, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
 --- !u!1 &362788872
 GameObject:
@@ -382,6 +388,25 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 4796045130027009545, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
   m_PrefabInstance: {fileID: 1886781210}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &687269584 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4729519753121233426, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
+  m_PrefabInstance: {fileID: 214830371}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &687269592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687269584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbd0373a702447c0af9e0911ee5b5ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoMoveToTunnel
+  horizontalSpeed: 4
+  stopOffsetX: 0.3
 --- !u!1 &1189323499
 GameObject:
   m_ObjectHideFlags: 0
