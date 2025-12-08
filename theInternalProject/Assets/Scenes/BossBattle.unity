@@ -352,6 +352,16 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 7507139623795160318, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
   m_PrefabInstance: {fileID: 218653329}
   m_PrefabAsset: {fileID: 0}
+--- !u!61 &218653332 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 4796045130027009545, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
+  m_PrefabInstance: {fileID: 218653329}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &218653333 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 6070565989724477573, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
+  m_PrefabInstance: {fileID: 218653329}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &312592564
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,11 +659,11 @@ PrefabInstance:
     - target: {fileID: 3409462471403445576, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: leftBorder
       value: 
-      objectReference: {fileID: 452299890}
+      objectReference: {fileID: 218653333}
     - target: {fileID: 3409462471403445576, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: rightBorder
       value: 
-      objectReference: {fileID: 578339948}
+      objectReference: {fileID: 218653332}
     - target: {fileID: 3409462471403445576, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: bottomBorder
       value: 
@@ -797,9 +807,7 @@ Transform:
   m_LocalPosition: {x: 5.340999, y: 3.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1277512730}
-  - {fileID: 362180840}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1466052496
@@ -1115,7 +1123,7 @@ Transform:
   m_LocalScale: {x: 1.490625, y: 0.24680348, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 664188056}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1903133191
 SpriteRenderer:
@@ -1263,7 +1271,7 @@ Transform:
   m_LocalScale: {x: 3.2167177, y: 2.1448762, z: 1.9723}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 664188056}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2023348736
 GameObject:
@@ -1436,3 +1444,4 @@ SceneRoots:
   - {fileID: 1928359060}
   - {fileID: 218653329}
   - {fileID: 23084165}
+  - {fileID: 1392236537}
