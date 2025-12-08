@@ -956,7 +956,7 @@ MonoBehaviour:
   requiredShots: 3
   nextSceneName: BossBattle
   player: {fileID: 1809358057}
-  playerStartOffset: {x: -6, y: 0, z: 0}
+  playerStartOffset: {x: -6.5, y: 0, z: 0}
   flyInDuration: 1.2
   flyInBobAmplitude: 0.3
   flyInBobFrequency: 3
