@@ -65,5 +65,8 @@ TagManager:
   - name: HealthBar
     uniqueID: 1984506837
     locked: 0
+  - name: Patient
+    uniqueID: 2464245211
+    locked: 0
   m_RenderingLayers:
   - Default

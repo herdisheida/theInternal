@@ -121,11 +121,11 @@ TextureImporter:
         serializedVersion: 2
         x: 359
         y: 36
-        width: 27
-        height: 18
-      alignment: 0
+        width: 6
+        height: 5
+      alignment: 9
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 6, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -141,10 +141,10 @@ TextureImporter:
       name: ZombiePatientDead_1
       rect:
         serializedVersion: 2
-        x: 370
+        x: 367
         y: 23
-        width: 1072
-        height: 1136
+        width: 656
+        height: 661
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
