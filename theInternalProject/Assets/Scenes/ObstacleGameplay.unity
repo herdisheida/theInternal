@@ -200,6 +200,18 @@ PrefabInstance:
       propertyPath: bottomBorder
       value: 
       objectReference: {fileID: 1886781212}
+    - target: {fileID: 3957775815832412039, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957775815832412039, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957775815832412039, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 3588073
+      objectReference: {fileID: 0}
     - target: {fileID: 4729519753121233426, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: m_Name
       value: PlayerCharacter
@@ -251,7 +263,7 @@ MonoBehaviour:
   tunnelY: 0
   tunnelStopPos: 5
   tunnelSpawnDelayAfterEnd: 1.5
-  spawnDuration: 35
+  spawnDuration: 2
   speedIncreaseDelay: 10
   speedIncreaseRate: 0.5
   maxSpeed: 12
@@ -405,8 +417,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dbd0373a702447c0af9e0911ee5b5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutoMoveToTunnel
-  horizontalSpeed: 4
+  moveSpeed: 4
   stopOffsetX: 0.3
+  targetPosition: {x: 5, y: 0, z: 0}
 --- !u!1 &1189323499
 GameObject:
   m_ObjectHideFlags: 0

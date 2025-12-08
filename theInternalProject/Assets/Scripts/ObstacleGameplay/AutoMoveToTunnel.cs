@@ -4,10 +4,12 @@ using UnityEngine;
 public class AutoMoveToTunnel : MonoBehaviour
 {
     [Header("Auto Move Settings")]
-    public float horizontalSpeed = 4f;
+    public float moveSpeed = 4f;
     public float stopOffsetX = 0.3f;
 
-    private Transform tunnel;
+    // where you want the player to end up
+    public Vector3 targetPosition = new Vector3(5f, 0f, 0f);
+
     private bool autoMoving = false;
 
     void Start()
@@ -18,29 +20,24 @@ public class AutoMoveToTunnel : MonoBehaviour
     // when the tunnel has spawned and should pull the player in
     public void BeginAutoMove(Transform tunnelTransform)
     {
-        tunnel = tunnelTransform;
         autoMoving = true;
     }
 
     void Update()
     {
-        if (!autoMoving || tunnel == null) return;
+        if (!autoMoving) return;
 
-        Vector3 pos = transform.position;
+        // move diagonally toward the final target (center)
+        transform.position = Vector3.MoveTowards(
+            transform.position,
+            targetPosition,
+            moveSpeed * Time.deltaTime
+        );
 
-        // where we want the player to stop (a bit before the tunnel)
-        float targetX = tunnel.position.x - stopOffsetX;
-
-        // only move if we're still left of that point
-        if (pos.x < targetX)
+        // stop when close enough
+        if (Vector3.Distance(transform.position, targetPosition) < 0.02f)
         {
-            pos.x += horizontalSpeed * Time.deltaTime;
-            transform.position = pos;
-        }
-        else
-        {
-            autoMoving = false;   // reached tunnel entrance
-            Debug.Log("AutoMoveToTunnel: Reached tunnel.");
+            autoMoving = false;
         }
     }
 }
