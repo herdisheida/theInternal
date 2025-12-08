@@ -15,11 +15,7 @@ public class PatientAnalysisScreen : MonoBehaviour
 
     void Start()
     {
-        // If saved, start countdown to Credits
-        if (isSaved)
-        {
-            StartCoroutine(GoToCreditsAfterDelay());
-        }
+        
     }
 
     void Update()
