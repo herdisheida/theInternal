@@ -200,11 +200,11 @@ public class GunShakeController : MonoBehaviour
         {
             gunImage.sprite = shootGunSprite;
             GameManager.instance?.MarkPatientDead();
-            yield return new WaitForSeconds(shootFlashDuration);
             gunImage.sprite = idleGunSprite;
         }
 
         EndShake();
+        yield return new WaitForSeconds(shootFlashDuration);
 
         // instantly go black + exhale + change scene
         yield return StartCoroutine(BlackScreen(3f));

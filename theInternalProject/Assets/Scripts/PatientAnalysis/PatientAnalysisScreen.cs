@@ -37,7 +37,7 @@ public class PatientAnalysisScreen : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("PatientAnalysisScreen: No current patient in GameManager – defaulting to INFECTED view.");
+            Debug.LogWarning("PatientAnalysisScreen: No current patient in GameManager - defaulting to unselected.");
         }
 
         // Apply optional sprite overrides
