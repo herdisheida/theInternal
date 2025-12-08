@@ -256,6 +256,76 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1 &313904316
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 313904318}
+  - component: {fileID: 313904317}
+  m_Layer: 0
+  m_Name: ShakeEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &313904317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 313904316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d47b3212f0fb4954bf0f1c9db8424d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GunShakeController
+  gunImage: {fileID: 1539025787}
+  gunTransform: {fileID: 1539025786}
+  shakeTargets:
+  - transform: {fileID: 411518026}
+    image: {fileID: 411518027}
+    tintRed: 1
+  - transform: {fileID: 1722436194}
+    image: {fileID: 1722436195}
+    tintRed: 1
+  fadeImage: {fileID: 1071907908}
+  spaceKeyImage: {fileID: 322976843}
+  spaceBarUnpressedSprite: {fileID: -5704742595995698447, guid: 53a2e168aaa3e4a2ba13b0ff92956911, type: 3}
+  spaceBarPressedSprite: {fileID: -1796503253441457639, guid: a1e7a9b49eb9c4d4b99087b64686347f, type: 3}
+  spaceKeyBlinkSpeed: 8
+  disableSpaceKeyForSeconds: 1.5
+  idleGunSprite: {fileID: 281306285295221210, guid: 00c4e0dcd4a27443080011116f3040d4, type: 3}
+  shootGunSprite: {fileID: -331875709885016742, guid: 896c27cee8d734b35be5318efb31e857, type: 3}
+  shootFlashDuration: 0.1
+  totalDuration: 10
+  minShakeAmount: 2
+  maxShakeAmount: 15
+  backgroundShakeMultiplier: 0.4
+  minRotation: 1
+  maxRotation: 6
+  maxRedTint: {r: 1, g: 0.21226418, b: 0.21226418, a: 1}
+  nextSceneName: PatientSelection
+--- !u!4 &313904318
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 313904316}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 342.62534, y: 218.41626, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &322976841
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +669,6 @@ GameObject:
   - component: {fileID: 1539025786}
   - component: {fileID: 1539025788}
   - component: {fileID: 1539025787}
-  - component: {fileID: 1539025789}
   m_Layer: 5
   m_Name: GunImage
   m_TagString: Untagged
@@ -664,44 +733,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1539025785}
   m_CullTransparentMesh: 1
---- !u!114 &1539025789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1539025785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d47b3212f0fb4954bf0f1c9db8424d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GunShakeController
-  gunImage: {fileID: 1539025787}
-  gunTransform: {fileID: 1539025786}
-  shakeTargets:
-  - transform: {fileID: 411518026}
-    image: {fileID: 411518027}
-    tintRed: 1
-  - transform: {fileID: 1722436194}
-    image: {fileID: 1722436195}
-    tintRed: 1
-  fadeImage: {fileID: 1071907908}
-  spaceKeyImage: {fileID: 322976843}
-  spaceBarUnpressedSprite: {fileID: -5704742595995698447, guid: 53a2e168aaa3e4a2ba13b0ff92956911, type: 3}
-  spaceBarPressedSprite: {fileID: -1796503253441457639, guid: a1e7a9b49eb9c4d4b99087b64686347f, type: 3}
-  spaceKeyBlinkSpeed: 8
-  disableSpaceKeyForSeconds: 1.5
-  idleGunSprite: {fileID: 281306285295221210, guid: 00c4e0dcd4a27443080011116f3040d4, type: 3}
-  shootGunSprite: {fileID: -331875709885016742, guid: 896c27cee8d734b35be5318efb31e857, type: 3}
-  shootFlashDuration: 0.1
-  totalDuration: 10
-  minShakeAmount: 2
-  maxShakeAmount: 15
-  backgroundShakeMultiplier: 0.4
-  minRotation: 1
-  maxRotation: 6
-  maxRedTint: {r: 1, g: 0.21226418, b: 0.21226418, a: 1}
-  nextSceneName: PatientSelection
 --- !u!1 &1648003153
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,3 +1028,4 @@ SceneRoots:
   - {fileID: 28234264}
   - {fileID: 375259254}
   - {fileID: 1648003156}
+  - {fileID: 313904318}
