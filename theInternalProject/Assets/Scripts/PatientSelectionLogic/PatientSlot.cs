@@ -19,6 +19,10 @@ public class PatientSlot: MonoBehaviour
         {
             return false;
         }
+        if (data == null)
+        {
+            return false;
+        }
         if (data.isSaved)
         {
             return false;

@@ -5,32 +5,37 @@ using System.Collections;
 
 public class PatientAnalysisScreen : MonoBehaviour
 {
-    public static bool isSaved = false;
+    public PatientData patientData;
 
-    public Image InfectedImage;
     public Image SavedImage;
+    public Image InfectedImage;
 
-    public Sprite InfectedSprite;
-    public Sprite SavedSprite;
-
-    void Start()
+    private void UpdateAnalysisUI()
     {
-        
-    }
+        if (patientData == null)
+        {
+            Debug.Log("Patient Data not assigned");
+            return;
+        }
+        bool isSaved = patientData.isSaved || patientData.status == PatientStatus.Saved;
 
-    void Update()
-    {
         if (isSaved)
         {
             SavedImage.gameObject.SetActive(true);
             InfectedImage.gameObject.SetActive(false);
-            SavedImage.sprite = SavedSprite;
+            if (patientData.analysisSafe != null)
+                {
+                SavedImage.sprite = patientData.analysisSafe; 
+                }
         }
         else
         {
             InfectedImage.gameObject.SetActive(true);
             SavedImage.gameObject.SetActive(false);
-            InfectedImage.sprite = InfectedSprite;
+            if (patientData.analysisInfected != null)
+                {
+                InfectedImage.sprite = patientData.analysisInfected; 
+                }
         }
     }
 

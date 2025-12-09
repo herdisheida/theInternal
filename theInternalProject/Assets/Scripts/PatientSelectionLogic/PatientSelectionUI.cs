@@ -1,4 +1,3 @@
-// using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -97,6 +96,9 @@ public class PatientSelectionUI : MonoBehaviour
     private void LoadPatientScreen()
     {
         string sceneToLoad = PatientSlots[currentIndex].sceneName;
+        PatientSlot slot = PatientSlots[currentIndex];
+
+        PatientManager.Instance.selectedPatient = slot.data;
 
         if (!string.IsNullOrEmpty(sceneToLoad))
         {

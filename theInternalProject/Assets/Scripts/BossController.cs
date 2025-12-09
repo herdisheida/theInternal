@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class BossController : MonoBehaviour
 {
     public Transform player;
+    private PatientData patientData;
 
     [Header("Attack Start Delay")]
     public float attackDelay = 3f;   // wait this long before any attacks
@@ -87,6 +88,10 @@ public class BossController : MonoBehaviour
         fillHeight = healthBarFill.localScale.y;
 
         fillSprite = healthBarFill.GetComponent<SpriteRenderer>();
+
+        if (PatientManager.Instance != null) {
+            patientData = PatientManager.Instance.selectedPatient;
+        }
     }
 
     void Update()
@@ -182,11 +187,18 @@ public class BossController : MonoBehaviour
         if (currentHealth <= 0)
         {
             healthBarRoot?.SetActive(false);
-            Die();
-            PatientAnalysisScreen.isSaved = true;
+            if (patientData != null)
+            {
+                patientData.isSaved = true;
+                patientData.status = PatientStatus.Saved;
+            }
+            else
+            {
+                Debug.LogWarning("BossController: patientData is null");
+            }
             GameManager.instance?.MarkPatientSaved();
+            Die();
             SceneManager.LoadScene("ZombieAnalysisScreen");
-            return;
         }
     }
 
@@ -220,7 +232,7 @@ public class BossController : MonoBehaviour
     {
         StopAllCoroutines();
         Destroy(gameObject);
-        SceneManager.LoadScene("PatientSelection");
+        // SceneManager.LoadScene("PatientSelection");
     }
 
 
