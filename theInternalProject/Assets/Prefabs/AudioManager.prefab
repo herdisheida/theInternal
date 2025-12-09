@@ -62,6 +62,7 @@ MonoBehaviour:
   closeDoorClip: {fileID: 8300000, guid: 277d65c8995dd4ed892c366a47dc3508, type: 3}
   walkingClip: {fileID: 8300000, guid: 57ea33f4a6197427db10e883a30d517b, type: 3}
   jumpClip: {fileID: 8300000, guid: c3536c2c3ac27455fbb6bc22aeb0aec2, type: 3}
+  podFlyingOffClip: {fileID: 8300000, guid: 44da8c0cddd3a445aaabb9390099d874, type: 3}
   damageTakenClip: {fileID: 0}
   dyingClip: {fileID: 0}
   attackClip: {fileID: 8300000, guid: 7922810297d526a4bb03e7db84f4ef17, type: 3}

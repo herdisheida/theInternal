@@ -235,6 +235,8 @@ public class BloodstreamIntroController : MonoBehaviour
         Vector3 start = pod.position;
         Vector3 end = podFlyOffTarget.position;
 
+        AudioManager.instance?.PodFlyingOff();
+
         float t = 0f;
 
         while (t < podFlyDuration)
