@@ -1,16 +1,246 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BloodstreamIntroController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [Header("Doctor & Pod")]
+    public Transform doctor;              // doctor sprite
+    public Transform pod;                 // pod sprite
+    public SpriteRenderer podSpriteRenderer;
+    public Sprite podOpenSprite;
+    public Sprite podClosedSprite;
+
+    [Header("Positions")]
+    public Transform doctorStartPoint;    // off-screen left
+    public Transform doctorGroundPoint;   // in front of pod
+    public Transform doctorOnPodPoint;    // on top of/opening
+    public Transform podFlyOffTarget;     // off-screen right target
+
+    [Header("Doctor Hop Settings")]
+    public float smallHopDuration = 0.4f;
+    public float smallHopHeight = 0.5f;
+    public int smallHopCount = 2;
+
+    public float bigHopDuration = 0.6f;
+    public float bigHopHeight = 1.2f;
+    public float bigHopRotation = -360f;   // full spin while jumping
+
+    [Header("Pod Shrink")]
+    public float shrinkDuration = 1.2f;
+    public float shrinkScale = 0.4f;
+
+    [Header("Pod Fly Off")]
+    public float podFlyDuration = 1.5f;
+
+    [Header("Blood Cells")]
+    public GameObject bloodCellPrefab;
+    public float bloodSpawnDuration = 2.5f;
+    public float startSpawnInterval = 0.4f;
+    public float endSpawnInterval = 0.05f;
+    public Vector2 bloodYRange = new Vector2(-3f, 3f);
+    public float bloodSpawnX = 10f;
+    public float bloodCellSpeed = 4f;
+
+    [Header("Scene Flow")]
+    public string nextSceneName = "ObstacleGameplay"; // bloodstream level
+
     void Start()
     {
-        
+        // Safety
+        if (doctor == null || pod == null || doctorStartPoint == null ||
+            doctorGroundPoint == null || doctorOnPodPoint == null || podFlyOffTarget == null)
+        {
+            Debug.LogWarning("BloodstreamIntroController: Missing references!");
+            return;
+        }
+
+        // Place doctor at start, set pod open
+        doctor.position = doctorStartPoint.position;
+
+        if (podSpriteRenderer != null && podOpenSprite != null)
+            podSpriteRenderer.sprite = podOpenSprite;
+
+        // Start the cutscene
+        StartCoroutine(CutsceneRoutine());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator CutsceneRoutine()
     {
-        
+        // Small pause before doctor appears
+        yield return new WaitForSeconds(0.5f);
+
+        // 1) small hops toward the pod
+        yield return StartCoroutine(DoctorSmallHops());
+
+        // 2) big hop & rotation into the pod opening
+        yield return StartCoroutine(DoctorBigHopIntoPod());
+
+        // 3) close pod + hide doctor
+        if (podSpriteRenderer != null && podClosedSprite != null)
+            podSpriteRenderer.sprite = podClosedSprite;
+
+        // hide doctor (he's inside now)
+        doctor.gameObject.SetActive(false);
+
+        // 4) start spawning blood cells
+        StartCoroutine(SpawnBloodCellsRoutine());
+
+        // 5) shrink the pod
+        yield return StartCoroutine(ShrinkPodRoutine());
+
+        // slight delay so we see the shrunken pod + blood cells
+        yield return new WaitForSeconds(0.5f);
+
+        // 6) pod flies off into the bloodstream
+        yield return StartCoroutine(PodFlyOffRoutine());
+
+        // 7) load the bloodstream gameplay scene
+        SceneManager.LoadScene(nextSceneName);
+    }
+
+    // -------- Doctor animations --------
+
+    IEnumerator DoctorSmallHops()
+    {
+        // We'll hop from start -> ground point with a few small hops.
+        Vector3 start = doctorStartPoint.position;
+        Vector3 end = doctorGroundPoint.position;
+
+        for (int i = 0; i < smallHopCount; i++)
+        {
+            Vector3 hopStart = Vector3.Lerp(start, end, (float)i / smallHopCount);
+            Vector3 hopEnd   = Vector3.Lerp(start, end, (float)(i + 1) / smallHopCount);
+
+            yield return StartCoroutine(HopArc(doctor, hopStart, hopEnd, smallHopDuration, smallHopHeight, rotate: false, rotationAmount: 0f));
+        }
+
+        // snap to ground point just in case
+        doctor.position = doctorGroundPoint.position;
+    }
+
+    IEnumerator DoctorBigHopIntoPod()
+    {
+        Vector3 start = doctorGroundPoint.position;
+        Vector3 end   = doctorOnPodPoint.position;
+
+        // big hop with rotation
+        yield return StartCoroutine(HopArc(doctor, start, end, bigHopDuration, bigHopHeight, rotate: true, rotationAmount: bigHopRotation));
+
+        doctor.position = doctorOnPodPoint.position;
+    }
+
+    /// <summary>
+    /// Generic parabolic hop between two points, optional rotation.
+    /// </summary>
+    IEnumerator HopArc(Transform target, Vector3 start, Vector3 end,
+                       float duration, float height, bool rotate, float rotationAmount)
+    {
+        float t = 0f;
+        float startRotZ = target.eulerAngles.z;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float lerp = Mathf.Clamp01(t / duration);
+
+            // horizontal lerp
+            Vector3 pos = Vector3.Lerp(start, end, lerp);
+
+            // parabolic vertical hop (sine gives nice up/down arc)
+            float yOffset = Mathf.Sin(lerp * Mathf.PI) * height;
+            pos.y += yOffset;
+
+            target.position = pos;
+
+            if (rotate)
+            {
+                float rotZ = startRotZ + rotationAmount * lerp;
+                target.rotation = Quaternion.Euler(0f, 0f, rotZ);
+            }
+
+            yield return null;
+        }
+
+        // final position
+        target.position = end;
+        if (rotate)
+            target.rotation = Quaternion.Euler(0f, 0f, startRotZ + rotationAmount);
+    }
+
+    // -------- Pod shrink & fly --------
+
+    IEnumerator ShrinkPodRoutine()
+    {
+        Vector3 originalScale = pod.localScale;
+        Vector3 targetScale = originalScale * shrinkScale;
+
+        float t = 0f;
+
+        while (t < shrinkDuration)
+        {
+            t += Time.deltaTime;
+            float lerp = Mathf.Clamp01(t / shrinkDuration);
+            pod.localScale = Vector3.Lerp(originalScale, targetScale, lerp);
+            yield return null;
+        }
+
+        pod.localScale = targetScale;
+    }
+
+    IEnumerator PodFlyOffRoutine()
+    {
+        Vector3 start = pod.position;
+        Vector3 end = podFlyOffTarget.position;
+
+        float t = 0f;
+
+        while (t < podFlyDuration)
+        {
+            t += Time.deltaTime;
+            float lerp = Mathf.Clamp01(t / podFlyDuration);
+            pod.position = Vector3.Lerp(start, end, lerp);
+            yield return null;
+        }
+
+        pod.position = end;
+    }
+
+    // -------- Blood cell spawning --------
+
+    IEnumerator SpawnBloodCellsRoutine()
+    {
+        if (bloodCellPrefab == null) yield break;
+
+        float elapsed = 0f;
+
+        while (elapsed < bloodSpawnDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / bloodSpawnDuration);
+
+            // spawn interval goes from slow to fast
+            float currentInterval = Mathf.Lerp(startSpawnInterval, endSpawnInterval, t);
+
+            // spawn a cell
+            SpawnBloodCell();
+
+            // wait until next spawn
+            yield return new WaitForSeconds(currentInterval);
+        }
+    }
+
+    void SpawnBloodCell()
+    {
+        float randomY = Random.Range(bloodYRange.x, bloodYRange.y);
+        Vector3 spawnPos = new Vector3(bloodSpawnX, randomY, 0f);
+
+        GameObject cell = Instantiate(bloodCellPrefab, spawnPos, Quaternion.identity);
+
+        BloodCellMover mover = cell.GetComponent<BloodCellMover>();
+        if (mover != null)
+        {
+            mover.speed = bloodCellSpeed;
+        }
     }
 }
