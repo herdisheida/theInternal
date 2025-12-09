@@ -11,6 +11,10 @@ public class PatientData : ScriptableObject
     public Sprite infected;
     public Sprite dead;
     public Sprite saved;
+    public Sprite analysisInfected;
+    public Sprite analysisSafe;
+    public Sprite Background;
+
     public bool isSaved;
 
     public PatientStatus status;
