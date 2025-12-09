@@ -41,6 +41,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip closeDoorClip;    // close pod door
     public AudioClip walkingClip;      // doctor walking
     public AudioClip jumpClip;         // jump to pod clip
+    public AudioClip podFlyingOffClip;         // pod flies off
+
 
 
     [Header("Player SFX")]
@@ -179,6 +181,7 @@ public class AudioManager : MonoBehaviour
     public void CloseDoor()      => PlaySFX(closeDoorClip);
     public void Walking()        => PlaySFX(walkingClip);
     public void JumpToPod()      => PlaySFX(jumpClip);
+    public void PodFlyingOff()   => PlaySFX(podFlyingOffClip);
     
     public void DamageTaken()    => PlaySFX(damageTakenClip);
     public void Dying()          => PlaySFX(dyingClip);

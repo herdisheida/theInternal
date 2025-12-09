@@ -232,6 +232,8 @@ public class BloodstreamIntroController : MonoBehaviour
 
     IEnumerator PodFlyOffRoutine()
     {
+        AudioManager.instance?.PodFlyingOff();
+
         Vector3 start = pod.position;
         Vector3 end = podFlyOffTarget.position;
 
