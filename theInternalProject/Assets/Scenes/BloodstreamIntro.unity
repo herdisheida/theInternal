@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 249197036}
   - component: {fileID: 249197035}
   m_Layer: 5
-  m_Name: background
+  m_Name: BloodBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1304,6 +1304,10 @@ MonoBehaviour:
   spawnIntervalMin: 0.1
   spawnIntervalMax: 0.18
   spawnDuration: 8
+  startBackground: {fileID: 0}
+  bloodBackground: {fileID: 249197036}
+  bloodScroller: {fileID: 249197035}
+  backgroundFadeDuration: 1.5
   nextSceneName: ObstacleGameplay
 --- !u!1 &953900838
 GameObject:
