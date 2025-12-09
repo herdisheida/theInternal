@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BloodstreamIntroController : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class BloodstreamIntroController : MonoBehaviour
     public float shrinkScale = 0.4f;
 
     [Header("Pod Fly Off")]
-    public float podFlyDuration = 1.5f;
+    public float podFlyDuration = 2f;
 
     [Header("Blood Cell Spawning")]
     public GameObject bloodCellPrefab;     // prefab with SpriteRenderer + BloodCellMover
@@ -47,6 +48,10 @@ public class BloodstreamIntroController : MonoBehaviour
     public float spawnIntervalMin = 0.1f;
     public float spawnIntervalMax = 0.18f;
     public float spawnDuration = 8f; // how long to keep spawning in this cutscene
+
+    [Header("Background Transition")]
+    public BackgroundScroller bloodstreamBackground; // drag the 'background' object here
+    public float bgFadeDuration = 1.5f;
 
 
     [Header("Scene Flow")]
@@ -102,9 +107,13 @@ public class BloodstreamIntroController : MonoBehaviour
         // show controls hint (arrow/WASD keys)
         if (controlsKeyHint != null) controlsKeyHint.SetActive(true);
 
+        // fade into the bloodstream background
+        if (bloodstreamBackground != null) yield return StartCoroutine(bloodstreamBackground.FadeInAndStart(bgFadeDuration));
+
+
         // start spawning blood cells
         StartCoroutine(SpawnBloodCellsRoutine());
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(4f);
 
         // pod flies off into the bloodstream
         yield return StartCoroutine(PodFlyOffRoutine());
@@ -120,6 +129,8 @@ public class BloodstreamIntroController : MonoBehaviour
         // We'll hop from start -> ground point with a few small hops.
         Vector3 start = doctorStartPoint.position;
         Vector3 end = doctorGroundPoint.position;
+
+        AudioManager.instance?.Walking();
 
         for (int i = 0; i < smallHopCount; i++)
         {
@@ -138,6 +149,8 @@ public class BloodstreamIntroController : MonoBehaviour
         Vector3 start = doctorGroundPoint.position;
         Vector3 end   = doctorOnPodPoint.position;
 
+        AudioManager.instance?.JumpToPod();
+        
         // big hop with rotation
         yield return StartCoroutine(HopArc(doctor, start, end, bigHopDuration, bigHopHeight, rotate: true, rotationAmount: bigHopRotation));
 

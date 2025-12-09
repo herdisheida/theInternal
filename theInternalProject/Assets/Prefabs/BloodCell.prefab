@@ -77,8 +77,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1591603947
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 2433718539669662468, guid: 8aa0d37165adf4950abff5de603d13ce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -103,5 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4118d0ff92e744ad4900dda019d1769b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BloodCellMover
-  speed: 3
-  lifeTime: 6
+  moveSpeed: 5
+  lifetime: 6
+  minRotSpeed: 15
+  maxRotSpeed: 60
