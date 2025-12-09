@@ -21,6 +21,7 @@ public class BossController_Werewolf : MonoBehaviour
     private float fullBarWidth;
     private float fillHeight;
     private SpriteRenderer fillSprite;
+    private DamageFlash flash;
 
     void Start()
     {
@@ -30,6 +31,8 @@ public class BossController_Werewolf : MonoBehaviour
         fullBarWidth = healthBarFill.localScale.x;
         fillHeight = healthBarFill.localScale.y;
         fillSprite = healthBarFill.GetComponent<SpriteRenderer>();
+
+        flash = GetComponent<DamageFlash>();
     }
 
     void Update()
@@ -53,22 +56,25 @@ public class BossController_Werewolf : MonoBehaviour
     void UpdateHealthBar()
     {
         float ratio = (float)currentHealth / maxHealth;
-        float newX = Mathf.Lerp(healthBarFill.localScale.x, fullBarWidth * ratio, Time.deltaTime * smoothSpeed);
+
+        float newX = Mathf.Lerp(
+            healthBarFill.localScale.x,
+            fullBarWidth * ratio,
+            Time.deltaTime * smoothSpeed
+        );
 
         healthBarFill.localScale = new Vector3(newX, fillHeight, 1f);
 
-        if (ratio <= 0.25f)
-            fillSprite.color = Color.red;
-        else
-            fillSprite.color = Color.green;
+        fillSprite.color = (ratio <= 0.25f ? Color.red : Color.green);
     }
 
+    // ---------------- DAMAGE ----------------
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
-        currentHealth = Mathf.Max(0, currentHealth);
+        if (currentHealth < 0) currentHealth = 0;
 
-        GetComponent<DamageFlash>()?.Flash();
+        flash?.Flash();
 
         if (currentHealth <= 0)
             Die();
@@ -77,5 +83,6 @@ public class BossController_Werewolf : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+        Debug.Log("Werewolf died");
     }
 }
