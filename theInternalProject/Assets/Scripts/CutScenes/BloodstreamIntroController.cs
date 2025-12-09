@@ -35,7 +35,7 @@ public class BloodstreamIntroController : MonoBehaviour
     public float shrinkScale = 0.4f;
 
     [Header("Pod Fly Off")]
-    public float podFlyDuration = 1.5f;
+    public float podFlyDuration = 2f;
 
     [Header("Blood Cell Spawning")]
     public GameObject bloodCellPrefab;     // prefab with SpriteRenderer + BloodCellMover
@@ -113,7 +113,7 @@ public class BloodstreamIntroController : MonoBehaviour
 
         // start spawning blood cells
         StartCoroutine(SpawnBloodCellsRoutine());
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(4f);
 
         // pod flies off into the bloodstream
         yield return StartCoroutine(PodFlyOffRoutine());

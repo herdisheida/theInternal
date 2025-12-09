@@ -63,6 +63,9 @@ TagManager:
   - name: Player
     uniqueID: 3588073
     locked: 0
+  - name: BloodCells
+    uniqueID: 2703363349
+    locked: 0
   - name: HealthBar
     uniqueID: 1984506837
     locked: 0
