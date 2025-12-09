@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 
-
 public class ClawShooter : MonoBehaviour
 {
     [Header("References")]
@@ -20,23 +19,28 @@ public class ClawShooter : MonoBehaviour
     public float minAttackDistance = 12f;
 
     private bool canAttack = true;
-    private bool isAttacking = false;   // blocks other attacks
-    private BossController_Werewolf wolf;
+    private bool isAttacking = false;
 
+    private BossController_Werewolf wolf; // reference to the boss
+
+    void Start()
+    {
+        // automatically fetch boss controller
+        wolf = GetComponentInParent<BossController_Werewolf>();
+    }
 
     void Update()
     {
+        // BLOCK SHOOTING WHEN WOLF IS ATTACKING
+        if (wolf != null && wolf.isAttacking)
+            return;
+
+        // normal shooting logic
         if (!isAttacking)
         {
-            if (player == null) return;
-
             float distance = Vector2.Distance(transform.position, player.position);
-
-            // Only attack when close enough and ready
             if (distance < minAttackDistance && canAttack)
-            {
                 StartCoroutine(ClawShootRoutine());
-            }
         }
     }
 
@@ -44,26 +48,21 @@ public class ClawShooter : MonoBehaviour
     {
         canAttack = false;
 
-        // Change claw sprite to attack
         if (clawRenderer != null && attackClawSprite != null)
             clawRenderer.sprite = attackClawSprite;
 
         yield return new WaitForSeconds(attackWindup);
 
-        // Determine direction
         float direction = (player.position.x < transform.position.x) ? -1f : 1f;
 
-        // Spawn projectile
         GameObject proj = Instantiate(clawProjectilePrefab, firePoint.position, Quaternion.identity);
         var cp = proj.GetComponent<ClawProjectile>();
         if (cp != null)
             cp.direction = new Vector2(direction, 0);
 
-        // Reset sprite
         if (clawRenderer != null && idleClawSprite != null)
             clawRenderer.sprite = idleClawSprite;
 
-        // Cooldown
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
     }
