@@ -30,25 +30,26 @@ public class PlayerBullet : MonoBehaviour
         // hit boss
         if (collision.CompareTag("Boss"))
         {
-            BossController boss = collision.GetComponent<BossController>();
-            if (boss != null)
+            // Try Zombie Boss
+            BossController zombieBoss = collision.GetComponent<BossController>();
+            if (zombieBoss != null)
             {
-                boss.TakeDamage(damage);
+                zombieBoss.TakeDamage(damage);
+                Destroy(gameObject);
+                return;
             }
+
+            // Try Werewolf Boss
+            BossController_Werewolf wolfBoss = collision.GetComponent<BossController_Werewolf>();
+            if (wolfBoss != null)
+            {
+                wolfBoss.TakeDamage(damage);
+                Destroy(gameObject);
+                return;
+            }
+
             Destroy(gameObject);
         }
 
-
-        // hit mini infection
-        if (collision.CompareTag("Infection"))
-        {
-            InfectionController infection = collision.GetComponent<InfectionController>();
-            if (infection != null)
-            {
-                infection.TakeBulletDamage(damage);
-            }
-            Destroy(gameObject);
-            return;
-        }
     }
 }
