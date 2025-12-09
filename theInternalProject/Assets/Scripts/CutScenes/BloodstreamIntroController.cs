@@ -191,7 +191,7 @@ public class BloodstreamIntroController : MonoBehaviour
 
         // original and target positions (keep X/Z, only change Y)
         Vector3 originalPos = pod.position;
-        Vector3 targetPos = new Vector3(originalPos.x, 0f, originalPos.z);
+        Vector3 targetPos = new Vector3(originalPos.x, 1f, originalPos.z);
 
         float t = 0f;
 
