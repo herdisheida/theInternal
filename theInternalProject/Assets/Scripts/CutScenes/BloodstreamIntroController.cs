@@ -177,6 +177,8 @@ public class BloodstreamIntroController : MonoBehaviour
 
         float t = 0f;
 
+        AudioManager.instance?.ShrinkPod();
+
         while (t < shrinkDuration)
         {
             t += Time.deltaTime;
