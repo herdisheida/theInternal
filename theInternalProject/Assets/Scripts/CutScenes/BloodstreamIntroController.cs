@@ -130,6 +130,8 @@ public class BloodstreamIntroController : MonoBehaviour
         Vector3 start = doctorStartPoint.position;
         Vector3 end = doctorGroundPoint.position;
 
+        AudioManager.instance?.Walking();
+
         for (int i = 0; i < smallHopCount; i++)
         {
             Vector3 hopStart = Vector3.Lerp(start, end, (float)i / smallHopCount);
@@ -147,6 +149,8 @@ public class BloodstreamIntroController : MonoBehaviour
         Vector3 start = doctorGroundPoint.position;
         Vector3 end   = doctorOnPodPoint.position;
 
+        AudioManager.instance?.JumpToPod();
+        
         // big hop with rotation
         yield return StartCoroutine(HopArc(doctor, start, end, bigHopDuration, bigHopHeight, rotate: true, rotationAmount: bigHopRotation));
 
