@@ -96,13 +96,11 @@ public class PatientSelectionUI : MonoBehaviour
     private void LoadPatientScreen()
     {
         string sceneToLoad = PatientSlots[currentIndex].sceneName;
-        PatientSlot slot = PatientSlots[currentIndex];
-
-        PatientManager.Instance.selectedPatient = slot.data;
+        GameManager.instance?.SetCurrentPatient(PatientSlots[currentIndex].data);
 
         if (!string.IsNullOrEmpty(sceneToLoad))
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("ZombieAnalysisScreen");
         }
     }
 }
