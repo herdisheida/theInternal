@@ -82,8 +82,8 @@ public class BloodstreamIntroController : MonoBehaviour
         doctor.gameObject.SetActive(false);
 
         // close the pod
-        if (podSpriteRenderer != null && podClosedSprite != null)
-            podSpriteRenderer.sprite = podClosedSprite;
+        if (podSpriteRenderer != null && podClosedSprite != null) podSpriteRenderer.sprite = podClosedSprite;
+        AudioManager.instance?.CloseDoor();
         yield return new WaitForSeconds(0.8f);
 
         // shrink the pod
