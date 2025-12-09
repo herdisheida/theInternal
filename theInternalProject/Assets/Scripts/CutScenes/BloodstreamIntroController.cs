@@ -38,7 +38,7 @@ public class BloodstreamIntroController : MonoBehaviour
     public float bloodSpawnDuration = 2.5f;
     public float startSpawnInterval = 0.4f;
     public float endSpawnInterval = 0.05f;
-    public Vector2 bloodYRange = new Vector2(-3f, 3f);
+    public Vector2 bloodYRange = new Vector2(-3.8f, 3.8f);
     public float bloodSpawnX = 10f;
     public float bloodCellSpeed = 4f;
 
