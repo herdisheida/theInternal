@@ -102,6 +102,9 @@ public class BloodstreamIntroController : MonoBehaviour
         // show controls hint (arrow/WASD keys)
         if (controlsKeyHint != null) controlsKeyHint.SetActive(true);
 
+        // fade into the bloodstream background
+        yield return StartCoroutine(FadeToBloodBackground());
+
         // start spawning blood cells
         StartCoroutine(SpawnBloodCellsRoutine());
         yield return new WaitForSeconds(6f);
@@ -270,5 +273,58 @@ public class BloodstreamIntroController : MonoBehaviour
                 sr.sprite = bloodCellSprites[index];
             }
         }
+    }
+
+
+    // -------- Background fade --------
+    IEnumerator FadeToBloodBackground()
+    {
+        if (bloodBackground == null)
+            yield break;
+
+        float t = 0f;
+
+        // grab starting colors
+        Color startBgColor = Color.white;
+        if (startBackground != null)
+            startBgColor = startBackground.color;
+
+        Color bloodBgColor = bloodBackground.color;
+        float startOldA = startBackground != null ? startBgColor.a : 1f;
+        float startNewA = bloodBgColor.a; // should be 0
+
+        while (t < backgroundFadeDuration)
+        {
+            t += Time.deltaTime;
+            float lerp = Mathf.Clamp01(t / backgroundFadeDuration);
+
+            // fade OUT old BG
+            if (startBackground != null)
+            {
+                startBgColor.a = Mathf.Lerp(startOldA, 0f, lerp);
+                startBackground.color = startBgColor;
+            }
+
+            // fade IN bloodstream BG
+            bloodBgColor.a = Mathf.Lerp(startNewA, 1f, lerp);
+            bloodBackground.color = bloodBgColor;
+
+            yield return null;
+        }
+
+        // final values
+        if (startBackground != null)
+        {
+            startBgColor.a = 0f;
+            startBackground.color = startBgColor;
+            startBackground.gameObject.SetActive(false);     // optional: hide it completely
+        }
+
+        bloodBgColor.a = 1f;
+        bloodBackground.color = bloodBgColor;
+
+        // now start scrolling the bloodstream
+        if (bloodScroller != null)
+            bloodScroller.enabled = true;
     }
 }
