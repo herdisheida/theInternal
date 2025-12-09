@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+
 public class ClawShooter : MonoBehaviour
 {
     [Header("References")]
@@ -19,17 +20,25 @@ public class ClawShooter : MonoBehaviour
     public float minAttackDistance = 12f;
 
     private bool canAttack = true;
+    private bool isAttacking = false;   // blocks other attacks
+    private BossController_Werewolf wolf;
+
+
+
 
     void Update()
     {
-        if (player == null) return;
-
-        float distance = Vector2.Distance(transform.position, player.position);
-
-        // Only attack when close enough and ready
-        if (distance < minAttackDistance && canAttack)
+        if (!isAttacking)
         {
-            StartCoroutine(ClawShootRoutine());
+            if (player == null) return;
+
+            float distance = Vector2.Distance(transform.position, player.position);
+
+            // Only attack when close enough and ready
+            if (distance < minAttackDistance && canAttack)
+            {
+                StartCoroutine(ClawShootRoutine());
+            }
         }
     }
 
