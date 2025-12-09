@@ -50,10 +50,9 @@ public class BloodstreamIntroController : MonoBehaviour
     public float spawnDuration = 8f; // how long to keep spawning in this cutscene
 
     [Header("Background Transition")]
-    public Image startBackground;            // the first, non-scrolling BG (room / neutral)
-    public RawImage bloodBackground;         // the fleshy scrolling BG (RawImage)
-    public BackgroundScroller bloodScroller; // the script on that BG
-    public float backgroundFadeDuration = 1.5f;
+    public BackgroundScroller bloodstreamBackground; // drag the 'background' object here
+    public float bgFadeDuration = 1.5f;
+
 
     [Header("Scene Flow")]
     public string nextSceneName = "ObstacleGameplay"; // bloodstream level
@@ -109,7 +108,8 @@ public class BloodstreamIntroController : MonoBehaviour
         if (controlsKeyHint != null) controlsKeyHint.SetActive(true);
 
         // fade into the bloodstream background
-        yield return StartCoroutine(FadeToBloodBackground());
+        if (bloodstreamBackground != null) yield return StartCoroutine(bloodstreamBackground.FadeInAndStart(bgFadeDuration));
+
 
         // start spawning blood cells
         StartCoroutine(SpawnBloodCellsRoutine());
@@ -279,58 +279,5 @@ public class BloodstreamIntroController : MonoBehaviour
                 sr.sprite = bloodCellSprites[index];
             }
         }
-    }
-
-
-    // -------- Background fade --------
-    IEnumerator FadeToBloodBackground()
-    {
-        if (bloodBackground == null)
-            yield break;
-
-        float t = 0f;
-
-        // grab starting colors
-        Color startBgColor = Color.white;
-        if (startBackground != null)
-            startBgColor = startBackground.color;
-
-        Color bloodBgColor = bloodBackground.color;
-        float startOldA = startBackground != null ? startBgColor.a : 1f;
-        float startNewA = bloodBgColor.a; // should be 0
-
-        while (t < backgroundFadeDuration)
-        {
-            t += Time.deltaTime;
-            float lerp = Mathf.Clamp01(t / backgroundFadeDuration);
-
-            // fade OUT old BG
-            if (startBackground != null)
-            {
-                startBgColor.a = Mathf.Lerp(startOldA, 0f, lerp);
-                startBackground.color = startBgColor;
-            }
-
-            // fade IN bloodstream BG
-            bloodBgColor.a = Mathf.Lerp(startNewA, 1f, lerp);
-            bloodBackground.color = bloodBgColor;
-
-            yield return null;
-        }
-
-        // final values
-        if (startBackground != null)
-        {
-            startBgColor.a = 0f;
-            startBackground.color = startBgColor;
-            startBackground.gameObject.SetActive(false);     // optional: hide it completely
-        }
-
-        bloodBgColor.a = 1f;
-        bloodBackground.color = bloodBgColor;
-
-        // now start scrolling the bloodstream
-        if (bloodScroller != null)
-            bloodScroller.enabled = true;
     }
 }
