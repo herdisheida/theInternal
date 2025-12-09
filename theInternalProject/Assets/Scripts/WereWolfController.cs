@@ -39,6 +39,24 @@ public class BossController_Werewolf : MonoBehaviour
     public TrailRenderer trailEffect;
     public float trailTime = 0.25f;
 
+    [Header("Phase 2 Settings")]
+    public bool phase2 = false;
+    public float phase2ShakeDuration = 1f;
+    public float phase2ShakeAmount = 0.25f;
+
+    // Stat buffs for phase 2
+    public float phase2MoveSpeed = 3.5f;
+    public float phase2BoomerangSpeed = 22f;
+    public float phase2BoomerangCooldown = 2.5f;
+    public float phase2TrailTime = 0.4f;
+
+    [Header("Phase 2 Attack Buffs")]
+    public float phase2BoomerangCooldownMultiplier = 0.6f;  // 40 percent faster
+    public float phase2ClawCooldownMultiplier = 0.6f;       // 40 percent faster claws
+    public float phase2MinAttackDistanceMultiplier = 1.2f;  // attacks further away
+
+
+
     void Start()
     {
         startPos = transform.position;
@@ -86,9 +104,16 @@ public class BossController_Werewolf : MonoBehaviour
 
         flash?.Flash();
 
+        // PHASE 2 TRIGGER
+        if (!phase2 && currentHealth <= maxHealth * 0.5f)
+        {
+            StartCoroutine(EnterPhase2());
+        }
+
         if (currentHealth <= 0)
             Die();
     }
+
 
     void UpdateHealthBar()
     {
@@ -130,7 +155,7 @@ public class BossController_Werewolf : MonoBehaviour
 
         Vector3 originalPos = transform.position;
 
-        // --- Shake Telegraph ---
+        // shake telegraph
         float elapsed = 0f;
         while (elapsed < boomerangWarningShakeDuration)
         {
@@ -145,7 +170,7 @@ public class BossController_Werewolf : MonoBehaviour
 
         transform.position = originalPos;
 
-        // --- Motion Blur ---
+        // a little trail effect
         if (trailEffect != null)
             trailEffect.time = trailTime;
 
@@ -176,7 +201,7 @@ public class BossController_Werewolf : MonoBehaviour
             yield return null;
         }
 
-        // BACK HOME → ALLOW SHOOTING AGAIN
+        // shooting enabled when done with attack
         isAttacking = false;
 
         boomerangHitbox.SetActive(false);
@@ -184,11 +209,50 @@ public class BossController_Werewolf : MonoBehaviour
         if (trailEffect != null)
             trailEffect.time = 0f;
 
-        // Cooldown only blocks boomerang, NOT shooting now
+        // no shooting during cooldown
         yield return new WaitForSeconds(boomerangCooldown);
 
         canBoomerang = true;
     }
+
+    IEnumerator EnterPhase2()
+    {
+        phase2 = true;
+        isAttacking = true; // prevent attacks during transformation
+
+        Vector3 originalPos = transform.position;
+        float elapsed = 0f;
+
+        // shake indicator for phase 2
+        while (elapsed < phase2ShakeDuration)
+        {
+            float offsetX = Random.Range(-phase2ShakeAmount, phase2ShakeAmount);
+            float offsetY = Random.Range(-phase2ShakeAmount, phase2ShakeAmount);
+
+            transform.position = originalPos + new Vector3(offsetX, offsetY, 0);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = originalPos;
+
+        // move stats in phase 2
+        moveSpeed = phase2MoveSpeed;
+        boomerangSpeed = phase2BoomerangSpeed;
+        boomerangCooldown *= phase2BoomerangCooldownMultiplier;
+
+        // claw shooters adjustments
+        ClawShooter[] claws = GetComponentsInChildren<ClawShooter>();
+        foreach (var c in claws)
+        {
+            c.attackCooldown *= phase2ClawCooldownMultiplier;
+            c.minAttackDistance *= phase2MinAttackDistanceMultiplier;
+        }
+
+        isAttacking = false; // allow attacks again
+    }
+
+
 
 
 }
