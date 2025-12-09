@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using SceneManagement;
+using UnityEngine.SceneManagement;
 
 
 // TOOD HERDIS muna setja þetta í patient selection screen til að checka hvort allir patientar hafa verið spilaðir
@@ -52,6 +52,9 @@ public class EndingScreen : MonoBehaviour
         {
             StartCoroutine(ShowLinesRoutine(lines));
         }
+
+        // go to credits after all lines shown
+        StartCoroutine(GoToCreditsAfterDelay());
     }
 
     string[] SetupVisualsForEnding(EndingType ending)
@@ -157,8 +160,9 @@ public class EndingScreen : MonoBehaviour
         endingText.color = c;
     }
 
-    public void goToCredits()
+    IEnumerator GoToCreditsAfterDelay()
     {
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("Credits");
     }
 }
