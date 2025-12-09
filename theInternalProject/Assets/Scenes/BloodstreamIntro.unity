@@ -992,13 +992,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BloodstreamIntroController
   doctor: {fileID: 2028308826}
   pod: {fileID: 1446735003}
-  podSpriteRenderer: {fileID: 0}
-  podOpenSprite: {fileID: 0}
-  podClosedSprite: {fileID: 0}
-  doctorStartPoint: {fileID: 0}
-  doctorGroundPoint: {fileID: 0}
-  doctorOnPodPoint: {fileID: 0}
-  podFlyOffTarget: {fileID: 0}
+  podSpriteRenderer: {fileID: 1152295150}
+  podOpenSprite: {fileID: -8621978332058056043, guid: 25aa55f0681b148729825eff46ef821b, type: 3}
+  podClosedSprite: {fileID: -4936297131196525391, guid: d22bf11d8f0bf4daca7a88bea885590f, type: 3}
+  doctorStartPoint: {fileID: 903908348}
+  doctorGroundPoint: {fileID: 562974506}
+  doctorOnPodPoint: {fileID: 1222731623}
+  podFlyOffTarget: {fileID: 272998467}
   smallHopDuration: 0.4
   smallHopHeight: 0.5
   smallHopCount: 2
@@ -1008,7 +1008,7 @@ MonoBehaviour:
   shrinkDuration: 1.2
   shrinkScale: 0.4
   podFlyDuration: 1.5
-  bloodCellPrefab: {fileID: 0}
+  bloodCellPrefab: {fileID: 5798910309913305696, guid: 16e37cd4028454a77a1a2229b7d4c283, type: 3}
   bloodSpawnDuration: 2.5
   startSpawnInterval: 0.4
   endSpawnInterval: 0.05
@@ -1594,111 +1594,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1850683813}
   m_CullTransparentMesh: 1
---- !u!1 &1936971607
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1936971609}
-  - component: {fileID: 1936971608}
-  - component: {fileID: 1936971610}
-  m_Layer: 0
-  m_Name: BloodCell
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &1936971608
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1936971607}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 2433718539669662468, guid: 8aa0d37165adf4950abff5de603d13ce, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1.13, y: 0.8}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &1936971609
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1936971607}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1936971610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1936971607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4118d0ff92e744ad4900dda019d1769b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BloodCellMover
-  speed: 3
-  lifeTime: 6
 --- !u!1 &1954892990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1934,7 +1829,6 @@ SceneRoots:
   - {fileID: 2028308826}
   - {fileID: 1446735003}
   - {fileID: 1152295149}
-  - {fileID: 1936971609}
   - {fileID: 952198162}
   - {fileID: 903908348}
   - {fileID: 562974506}
