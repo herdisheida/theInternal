@@ -163,6 +163,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba722f7bb2954b92b2d7573b10ebf94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  endingText: {fileID: 0}
+  endingImage: {fileID: 0}
+  goodSprite: {fileID: 1634367305891061768, guid: fb8a3d2ca2c364a2b9ea8f268f1bcd94, type: 3}
+  partialSprite: {fileID: -4315254791420604043, guid: cf670f62220fc4c86ba05d162d3a4732, type: 3}
+  badSprite: {fileID: -2455488159657730429, guid: 58c97507348934365b693d6ca8139cb8, type: 3}
 --- !u!1 &1099650894
 GameObject:
   m_ObjectHideFlags: 0
