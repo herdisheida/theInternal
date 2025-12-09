@@ -35,9 +35,12 @@ public class BossController_Werewolf : MonoBehaviour
     public GameObject boomerangHitbox;
     private bool canBoomerang = true;
 
-    [Header("Motion Blur (Trail)")]
+    [Header("Motion Blur")]
     public TrailRenderer trailEffect;
     public float trailTime = 0.25f;
+
+    [Header("Afterimage")]
+    public AfterImageGenerator afterImages;
 
     [Header("Phase 2 Settings")]
     public bool phase2 = false;
@@ -49,9 +52,9 @@ public class BossController_Werewolf : MonoBehaviour
     public float phase2BoomerangCooldownMultiplier = 0.6f;
     public float phase2TrailTime = 0.4f;
 
-    [Header("Phase 2 Attack Buffs")]
     public float phase2ClawCooldownMultiplier = 0.6f;
     public float phase2MinAttackDistanceMultiplier = 1.2f;
+
 
     void Start()
     {
@@ -73,11 +76,12 @@ public class BossController_Werewolf : MonoBehaviour
         MoveBoss();
         UpdateHealthBar();
 
+        // Only try Boomerang if allowed and not currently doing another attack
         if (canBoomerang && !isAttacking)
             TryBoomerangAttack();
     }
 
-    // MOVEMENT
+    // ---------------- MOVEMENT ----------------
     void MoveBoss()
     {
         if (isAttacking) return;
@@ -92,27 +96,21 @@ public class BossController_Werewolf : MonoBehaviour
         );
     }
 
-    // HEALTH
+    // ---------------- HEALTH ----------------
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
         currentHealth = Mathf.Max(0, currentHealth);
 
-        // tiny hitstop for juice (optional singleton)
-        // HitStop.instance?.StopTime(0.05f);
-
-        // boss flash
         flash?.Flash();
 
-        // shake health bar slightly
+        // health bar shake
         if (healthBarRoot != null)
             StartCoroutine(ShakeHealthBar());
 
-        // trigger phase 2 once below 50 percent, only if not already attacking
+        // enter phase 2 once, below 50 percent, and ONLY if not in attack animation
         if (!phase2 && !isAttacking && currentHealth <= maxHealth * 0.5f)
-        {
             StartCoroutine(EnterPhase2());
-        }
 
         if (currentHealth <= 0)
             Die();
@@ -154,61 +152,58 @@ public class BossController_Werewolf : MonoBehaviour
         healthBarRoot.transform.localPosition = original;
     }
 
-    // ATTACK HANDLING
+    // ---------------- ATTACK LOGIC ----------------
     void TryBoomerangAttack()
     {
         float dist = Mathf.Abs(player.position.x - transform.position.x);
 
         if (dist < 10f)
-        {
             StartCoroutine(BoomerangAttackRoutine());
-        }
     }
 
-    // FULL BOOMERANG ROUTINE
+    // ---------------- BOOMERANG ATTACK ----------------
     IEnumerator BoomerangAttackRoutine()
     {
+        // Check BEFORE enabling blur or effects
         if (!canBoomerang || isAttacking)
             yield break;
 
         isAttacking = true;
         canBoomerang = false;
 
-        Vector3 originalPos = transform.position;
+        // Now safe to activate effects
+        EnableDashBlur();
+        afterImages?.StartAfterImages();
 
-        // squash a bit before dash
+        Vector3 originalPos = transform.position;
         Vector3 originalScale = transform.localScale;
+
+        // squash/stretch before dash
         transform.localScale = new Vector3(originalScale.x * 1.1f, originalScale.y * 0.9f, originalScale.z);
 
-        // shake telegraph
+        // Telegraph shake
         float elapsed = 0f;
         while (elapsed < boomerangWarningShakeDuration)
         {
-            float offsetX = Random.Range(-1f, 1f) * boomerangWarningShakeAmount;
-            float offsetY = Random.Range(-1f, 1f) * boomerangWarningShakeAmount;
+            float ox = Random.Range(-boomerangWarningShakeAmount, boomerangWarningShakeAmount);
+            float oy = Random.Range(-boomerangWarningShakeAmount, boomerangWarningShakeAmount);
 
-            transform.position = originalPos + new Vector3(offsetX, offsetY, 0);
-
+            transform.position = originalPos + new Vector3(ox, oy, 0);
             elapsed += Time.deltaTime;
             yield return null;
         }
 
+        // reset
         transform.position = originalPos;
         transform.localScale = originalScale;
-
-        // enable motion blur
-        if (trailEffect != null)
-            trailEffect.time = trailTime;
 
         float direction = (player.position.x < transform.position.x) ? -1f : 1f;
         Vector3 dashTarget = originalPos + new Vector3(direction * boomerangDistance, 0, 0);
 
         boomerangHitbox.SetActive(true);
-
-        // camera shake on start of dash
         CameraShake.instance?.Shake(0.25f, 0.15f);
 
-        // forward dash
+        // first dash
         while (Vector3.Distance(transform.position, dashTarget) > 0.1f)
         {
             transform.position = Vector3.MoveTowards(
@@ -219,7 +214,7 @@ public class BossController_Werewolf : MonoBehaviour
             yield return null;
         }
 
-        // return dash
+        // return
         while (Vector3.Distance(transform.position, originalPos) > 0.1f)
         {
             transform.position = Vector3.MoveTowards(
@@ -230,18 +225,16 @@ public class BossController_Werewolf : MonoBehaviour
             yield return null;
         }
 
-        // in phase 2, do a quick second dash combo for more aggression
+        // PHASE 2 BONUS DASH
         if (phase2)
         {
             yield return new WaitForSeconds(0.15f);
 
-            // recalc direction toward player again
             direction = (player.position.x < transform.position.x) ? -1f : 1f;
             dashTarget = transform.position + new Vector3(direction * (boomerangDistance * 0.8f), 0, 0);
 
             CameraShake.instance?.Shake(0.3f, 0.18f);
 
-            // second forward dash
             while (Vector3.Distance(transform.position, dashTarget) > 0.1f)
             {
                 transform.position = Vector3.MoveTowards(
@@ -266,60 +259,77 @@ public class BossController_Werewolf : MonoBehaviour
 
         boomerangHitbox.SetActive(false);
 
-        // disable blur
-        if (trailEffect != null)
-            trailEffect.time = 0f;
+        DisableDashBlur();   
+        afterImages?.StopAfterImages();
 
         isAttacking = false;
 
-        // cooldown only blocks next boomerang, not claws
         yield return new WaitForSeconds(boomerangCooldown);
         canBoomerang = true;
     }
 
-    // PHASE 2 TRANSFORMATION
+    // ---------------- PHASE 2 ----------------
     IEnumerator EnterPhase2()
     {
         phase2 = true;
-        isAttacking = true; // pause other attacks during transform
+        isAttacking = true;
 
         Vector3 originalPos = transform.position;
-        float elapsed = 0f;
+        float t = 0f;
 
-        // long dramatic shake
-        while (elapsed < phase2ShakeDuration)
+        // shaking transition
+        while (t < phase2ShakeDuration)
         {
-            float offsetX = Random.Range(-phase2ShakeAmount, phase2ShakeAmount);
-            float offsetY = Random.Range(-phase2ShakeAmount, phase2ShakeAmount);
+            float ox = Random.Range(-phase2ShakeAmount, phase2ShakeAmount);
+            float oy = Random.Range(-phase2ShakeAmount, phase2ShakeAmount);
 
-            transform.position = originalPos + new Vector3(offsetX, offsetY, 0);
-            elapsed += Time.deltaTime;
+            transform.position = originalPos + new Vector3(ox, oy, 0);
+            t += Time.deltaTime;
             yield return null;
         }
 
         transform.position = originalPos;
 
-        // boost stats
+        // upgrade stats
         moveSpeed = phase2MoveSpeed;
         boomerangSpeed = phase2BoomerangSpeed;
         boomerangCooldown *= phase2BoomerangCooldownMultiplier;
 
+        // trail becomes stronger in phase 2
         if (trailEffect != null)
             trailEffect.time = phase2TrailTime;
 
-        // buff all claw shooters on the boss
+        // buff all claws
         ClawShooter[] claws = GetComponentsInChildren<ClawShooter>();
-        foreach (var c in claws)
+        foreach (var claw in claws)
         {
-            c.attackCooldown *= phase2ClawCooldownMultiplier;
-            c.minAttackDistance *= phase2MinAttackDistanceMultiplier;
+            claw.attackCooldown *= phase2ClawCooldownMultiplier;
+            claw.minAttackDistance *= phase2MinAttackDistanceMultiplier;
         }
 
-        // visual rage mode tint
+        // red tint for rage mode
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (sr != null)
             sr.color = new Color(1f, 0.3f, 0.3f);
 
         isAttacking = false;
+    }
+
+    // ---------------- BLUR ----------------
+    void EnableDashBlur()
+    {
+        if (trailEffect != null)
+            trailEffect.time = trailTime;
+    }
+
+    void DisableDashBlur()
+    {
+        if (trailEffect == null) return;
+
+        // In phase 2, keep a small blur always on
+        if (phase2)
+            trailEffect.time = phase2TrailTime;
+        else
+            trailEffect.time = 0f;
     }
 }
