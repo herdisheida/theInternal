@@ -198,7 +198,7 @@ public class BossController : MonoBehaviour
             }
             GameManager.instance?.MarkPatientSaved();
             Die();
-            SceneManager.LoadScene("ZombieAnalysisScreen");
+            SceneManager.LoadScene("AnalysisScreen");
         }
     }
 

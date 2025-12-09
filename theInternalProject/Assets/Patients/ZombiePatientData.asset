@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfbc79a1b144141b8826d07c80bd5dac, type: 3}
   m_Name: ZombiePatientData
   m_EditorClassIdentifier: Assembly-CSharp::PatientData
-  patientName: Zane
+  patientName: Zombie
   selected: {fileID: -8489462254518878276, guid: dc6e00b495b0f4c4d89ee0cb3e136a57, type: 3}
   unselected: {fileID: 8439635505814947257, guid: d35f7806717b146bab90aaff3f145035, type: 3}
   infected: {fileID: -1621220576460722135, guid: 40faf5a89e26340dfbc406ea151fc4c7, type: 3}

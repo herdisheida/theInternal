@@ -5,7 +5,6 @@ public class PatientSlot: MonoBehaviour
 {
     public Image portraitImage;
     public PatientData data;
-    public string sceneName;
 
     public void Refresh(bool isSelected)
     {

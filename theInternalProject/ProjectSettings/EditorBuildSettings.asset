@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/ShootPatient.unity
     guid: 8abb0b93e782e495a8c8533f9eeb6e1b
   - enabled: 1
-    path: Assets/Scenes/ZombieAnalysisScreen.unity
+    path: Assets/Scenes/AnalysisScreen.unity
     guid: 76f9e6c4a8c78874989234b8c7ca0647
   - enabled: 1
     path: Assets/Scenes/Credits.unity
