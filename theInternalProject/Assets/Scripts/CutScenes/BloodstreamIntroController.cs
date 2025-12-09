@@ -76,7 +76,7 @@ public class BloodstreamIntroController : MonoBehaviour
 
         // big hop & rotation into the pod opening
         yield return StartCoroutine(DoctorBigHopIntoPod());
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.4f);
 
         // hide doctor (he's inside pod)
         doctor.gameObject.SetActive(false);
