@@ -2,6 +2,15 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+// TOOD HERDIS muna setja þetta í patient selection screen til að checka hvort allir patientar hafa verið spilaðir
+// if (GameManager.instance != null && AllPatientsResolved())
+// {
+//     UnityEngine.SceneManagement.SceneManager.LoadScene("EndingScene");
+// }
+
+
+
+
 public class EndingController : MonoBehaviour
 {
     [Header("UI")]
