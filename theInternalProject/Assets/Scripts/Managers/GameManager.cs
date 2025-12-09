@@ -122,5 +122,21 @@ public class GameManager : MonoBehaviour
         else if (saved == total) return EndingType.Good;
         else return EndingType.Partial;
     }
+
+    public bool AllPatientsResolved()
+    {
+        int total = GetTotalPatients();
+        int resolved = 0;
+
+        if (allPatients == null) return false;
+
+        foreach (var p in allPatients)
+        {
+            if (p != null && (p.status == PatientStatus.Saved || p.status == PatientStatus.Dead || p.status == PatientStatus.Infected))
+                resolved++;
+        }
+
+        return resolved == total;
+    }
 }
 
