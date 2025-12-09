@@ -31,7 +31,7 @@ public class EndingScreen : MonoBehaviour
 
     [Header("Timings")]
     public float fadeDuration = 0.8f;   // how long to fade in/out
-    public float holdDuration = 4f;     // how long text stays fully visible
+    public float holdDuration = 3f;     // how long text stays fully visible
     public bool loopLines = false;      // if true, keep cycling the lines
 
     void Start()
@@ -53,8 +53,6 @@ public class EndingScreen : MonoBehaviour
             StartCoroutine(ShowLinesRoutine(lines));
         }
 
-        // go to credits after all lines shown
-        StartCoroutine(GoToCreditsAfterDelay());
     }
 
     string[] SetupVisualsForEnding(EndingType ending)

@@ -393,7 +393,7 @@ MonoBehaviour:
   - SADJFKASJLDFLSADFSA
   - The WORLD IS ENDING
   fadeDuration: 0.8
-  holdDuration: 4
+  holdDuration: 3
   loopLines: 0
 --- !u!1 &1009239439
 GameObject:
