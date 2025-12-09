@@ -4,6 +4,8 @@ using System.Collections;
 public class BossController_Werewolf : MonoBehaviour
 {
     public Transform player;
+    public bool isAttacking = false;
+
 
     [Header("Movement")]
     public float moveSpeed = 2f;
@@ -120,9 +122,10 @@ public class BossController_Werewolf : MonoBehaviour
     // FULL BOOMERANG ROUTINE
     IEnumerator BoomerangAttackRoutine()
     {
-        if (!canBoomerang)
+        if (!canBoomerang || isAttacking)
             yield break;
 
+        isAttacking = true;   // STOP ClawShooter NOW
         canBoomerang = false;
 
         Vector3 originalPos = transform.position;
@@ -175,12 +178,13 @@ public class BossController_Werewolf : MonoBehaviour
 
         boomerangHitbox.SetActive(false);
 
-        // Disable blur
         if (trailEffect != null)
             trailEffect.time = 0f;
 
-        // Cooldown
         yield return new WaitForSeconds(boomerangCooldown);
+
+        isAttacking = false;   // allow ClawShooter again
         canBoomerang = true;
     }
+
 }
