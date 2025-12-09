@@ -1110,7 +1110,7 @@ MonoBehaviour:
   isAttacking: 0
   moveSpeed: 2
   moveDistance: 2
-  maxHealth: 100
+  maxHealth: 150
   healthBarFill: {fileID: 1104168307}
   healthBarRoot: {fileID: 0}
   smoothSpeed: 10
@@ -1124,7 +1124,7 @@ MonoBehaviour:
   trailTime: 0
   phase2: 0
   phase2ShakeDuration: 1
-  phase2ShakeAmount: 0.25
+  phase2ShakeAmount: 0.7
   phase2MoveSpeed: 3.5
   phase2BoomerangSpeed: 22
   phase2BoomerangCooldown: 2.5

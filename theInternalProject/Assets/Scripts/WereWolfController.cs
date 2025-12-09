@@ -4,8 +4,7 @@ using System.Collections;
 public class BossController_Werewolf : MonoBehaviour
 {
     public Transform player;
-    public bool isAttacking = false;
-
+    [HideInInspector] public bool isAttacking = false;
 
     [Header("Movement")]
     public float moveSpeed = 2f;
@@ -17,6 +16,7 @@ public class BossController_Werewolf : MonoBehaviour
     public int maxHealth = 100;
     private int currentHealth;
 
+    [Header("Health Bar")]
     public Transform healthBarFill;
     public GameObject healthBarRoot;
     public float smoothSpeed = 10f;
@@ -44,18 +44,14 @@ public class BossController_Werewolf : MonoBehaviour
     public float phase2ShakeDuration = 1f;
     public float phase2ShakeAmount = 0.25f;
 
-    // Stat buffs for phase 2
     public float phase2MoveSpeed = 3.5f;
     public float phase2BoomerangSpeed = 22f;
-    public float phase2BoomerangCooldown = 2.5f;
+    public float phase2BoomerangCooldownMultiplier = 0.6f;
     public float phase2TrailTime = 0.4f;
 
     [Header("Phase 2 Attack Buffs")]
-    public float phase2BoomerangCooldownMultiplier = 0.6f;  // 40 percent faster
-    public float phase2ClawCooldownMultiplier = 0.6f;       // 40 percent faster claws
-    public float phase2MinAttackDistanceMultiplier = 1.2f;  // attacks further away
-
-
+    public float phase2ClawCooldownMultiplier = 0.6f;
+    public float phase2MinAttackDistanceMultiplier = 1.2f;
 
     void Start()
     {
@@ -69,9 +65,7 @@ public class BossController_Werewolf : MonoBehaviour
         flash = GetComponent<DamageFlash>();
 
         if (trailEffect != null)
-        {
             trailEffect.time = 0f;
-        }
     }
 
     void Update()
@@ -79,13 +73,15 @@ public class BossController_Werewolf : MonoBehaviour
         MoveBoss();
         UpdateHealthBar();
 
-        if (canBoomerang)
+        if (canBoomerang && !isAttacking)
             TryBoomerangAttack();
     }
 
     // MOVEMENT
     void MoveBoss()
     {
+        if (isAttacking) return;
+
         movementTime += Time.deltaTime * moveSpeed;
         float offsetY = Mathf.Sin(movementTime) * moveDistance;
 
@@ -102,10 +98,18 @@ public class BossController_Werewolf : MonoBehaviour
         currentHealth -= amount;
         currentHealth = Mathf.Max(0, currentHealth);
 
+        // tiny hitstop for juice (optional singleton)
+        // HitStop.instance?.StopTime(0.05f);
+
+        // boss flash
         flash?.Flash();
 
-        // PHASE 2 TRIGGER
-        if (!phase2 && currentHealth <= maxHealth * 0.5f)
+        // shake health bar slightly
+        if (healthBarRoot != null)
+            StartCoroutine(ShakeHealthBar());
+
+        // trigger phase 2 once below 50 percent, only if not already attacking
+        if (!phase2 && !isAttacking && currentHealth <= maxHealth * 0.5f)
         {
             StartCoroutine(EnterPhase2());
         }
@@ -114,10 +118,10 @@ public class BossController_Werewolf : MonoBehaviour
             Die();
     }
 
-
     void UpdateHealthBar()
     {
         float ratio = (float)currentHealth / maxHealth;
+
         float newX = Mathf.Lerp(
             healthBarFill.localScale.x,
             fullBarWidth * ratio,
@@ -131,6 +135,23 @@ public class BossController_Werewolf : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+    }
+
+    IEnumerator ShakeHealthBar()
+    {
+        Vector3 original = healthBarRoot.transform.localPosition;
+        float t = 0f;
+
+        while (t < 0.15f)
+        {
+            float ox = Random.Range(-0.08f, 0.08f);
+            float oy = Random.Range(-0.08f, 0.08f);
+            healthBarRoot.transform.localPosition = original + new Vector3(ox, oy, 0);
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        healthBarRoot.transform.localPosition = original;
     }
 
     // ATTACK HANDLING
@@ -155,6 +176,10 @@ public class BossController_Werewolf : MonoBehaviour
 
         Vector3 originalPos = transform.position;
 
+        // squash a bit before dash
+        Vector3 originalScale = transform.localScale;
+        transform.localScale = new Vector3(originalScale.x * 1.1f, originalScale.y * 0.9f, originalScale.z);
+
         // shake telegraph
         float elapsed = 0f;
         while (elapsed < boomerangWarningShakeDuration)
@@ -169,8 +194,9 @@ public class BossController_Werewolf : MonoBehaviour
         }
 
         transform.position = originalPos;
+        transform.localScale = originalScale;
 
-        // a little trail effect
+        // enable motion blur
         if (trailEffect != null)
             trailEffect.time = trailTime;
 
@@ -179,7 +205,10 @@ public class BossController_Werewolf : MonoBehaviour
 
         boomerangHitbox.SetActive(true);
 
-        // Forward dash
+        // camera shake on start of dash
+        CameraShake.instance?.Shake(0.25f, 0.15f);
+
+        // forward dash
         while (Vector3.Distance(transform.position, dashTarget) > 0.1f)
         {
             transform.position = Vector3.MoveTowards(
@@ -190,7 +219,7 @@ public class BossController_Werewolf : MonoBehaviour
             yield return null;
         }
 
-        // Return dash
+        // return dash
         while (Vector3.Distance(transform.position, originalPos) > 0.1f)
         {
             transform.position = Vector3.MoveTowards(
@@ -201,29 +230,63 @@ public class BossController_Werewolf : MonoBehaviour
             yield return null;
         }
 
-        // shooting enabled when done with attack
-        isAttacking = false;
+        // in phase 2, do a quick second dash combo for more aggression
+        if (phase2)
+        {
+            yield return new WaitForSeconds(0.15f);
+
+            // recalc direction toward player again
+            direction = (player.position.x < transform.position.x) ? -1f : 1f;
+            dashTarget = transform.position + new Vector3(direction * (boomerangDistance * 0.8f), 0, 0);
+
+            CameraShake.instance?.Shake(0.3f, 0.18f);
+
+            // second forward dash
+            while (Vector3.Distance(transform.position, dashTarget) > 0.1f)
+            {
+                transform.position = Vector3.MoveTowards(
+                    transform.position,
+                    dashTarget,
+                    boomerangSpeed * Time.deltaTime
+                );
+                yield return null;
+            }
+
+            // return again
+            while (Vector3.Distance(transform.position, originalPos) > 0.1f)
+            {
+                transform.position = Vector3.MoveTowards(
+                    transform.position,
+                    originalPos,
+                    boomerangSpeed * Time.deltaTime
+                );
+                yield return null;
+            }
+        }
 
         boomerangHitbox.SetActive(false);
 
+        // disable blur
         if (trailEffect != null)
             trailEffect.time = 0f;
 
-        // no shooting during cooldown
-        yield return new WaitForSeconds(boomerangCooldown);
+        isAttacking = false;
 
+        // cooldown only blocks next boomerang, not claws
+        yield return new WaitForSeconds(boomerangCooldown);
         canBoomerang = true;
     }
 
+    // PHASE 2 TRANSFORMATION
     IEnumerator EnterPhase2()
     {
         phase2 = true;
-        isAttacking = true; // prevent attacks during transformation
+        isAttacking = true; // pause other attacks during transform
 
         Vector3 originalPos = transform.position;
         float elapsed = 0f;
 
-        // shake indicator for phase 2
+        // long dramatic shake
         while (elapsed < phase2ShakeDuration)
         {
             float offsetX = Random.Range(-phase2ShakeAmount, phase2ShakeAmount);
@@ -236,12 +299,15 @@ public class BossController_Werewolf : MonoBehaviour
 
         transform.position = originalPos;
 
-        // move stats in phase 2
+        // boost stats
         moveSpeed = phase2MoveSpeed;
         boomerangSpeed = phase2BoomerangSpeed;
         boomerangCooldown *= phase2BoomerangCooldownMultiplier;
 
-        // claw shooters adjustments
+        if (trailEffect != null)
+            trailEffect.time = phase2TrailTime;
+
+        // buff all claw shooters on the boss
         ClawShooter[] claws = GetComponentsInChildren<ClawShooter>();
         foreach (var c in claws)
         {
@@ -249,10 +315,11 @@ public class BossController_Werewolf : MonoBehaviour
             c.minAttackDistance *= phase2MinAttackDistanceMultiplier;
         }
 
-        isAttacking = false; // allow attacks again
+        // visual rage mode tint
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+            sr.color = new Color(1f, 0.3f, 0.3f);
+
+        isAttacking = false;
     }
-
-
-
-
 }
