@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BloodstreamIntroController : MonoBehaviour
 {
@@ -48,6 +49,11 @@ public class BloodstreamIntroController : MonoBehaviour
     public float spawnIntervalMax = 0.18f;
     public float spawnDuration = 8f; // how long to keep spawning in this cutscene
 
+    [Header("Background Transition")]
+    public Image startBackground;            // the first, non-scrolling BG (room / neutral)
+    public RawImage bloodBackground;         // the fleshy scrolling BG (RawImage)
+    public BackgroundScroller bloodScroller; // the script on that BG
+    public float backgroundFadeDuration = 1.5f;
 
     [Header("Scene Flow")]
     public string nextSceneName = "ObstacleGameplay"; // bloodstream level
