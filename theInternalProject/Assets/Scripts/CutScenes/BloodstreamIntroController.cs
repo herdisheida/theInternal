@@ -18,12 +18,12 @@ public class BloodstreamIntroController : MonoBehaviour
     public Transform podFlyOffTarget;     // off-screen right target
 
     [Header("Doctor Hop Settings")]
-    public float smallHopDuration = 0.4f;
-    public float smallHopHeight = 0.5f;
-    public int smallHopCount = 2;
+    public float smallHopDuration = 0.3f;
+    public float smallHopHeight = 0.3f;
+    public int smallHopCount = 8;
 
-    public float bigHopDuration = 0.6f;
-    public float bigHopHeight = 1.2f;
+    public float bigHopDuration = 0.9f;
+    public float bigHopHeight = 1.5f;
     public float bigHopRotation = -360f;   // full spin while jumping
 
     [Header("Pod Shrink")]

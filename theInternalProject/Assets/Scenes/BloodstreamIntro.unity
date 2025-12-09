@@ -999,13 +999,13 @@ MonoBehaviour:
   doctorGroundPoint: {fileID: 562974506}
   doctorOnPodPoint: {fileID: 1222731623}
   podFlyOffTarget: {fileID: 272998467}
-  smallHopDuration: 0.4
-  smallHopHeight: 0.5
-  smallHopCount: 2
-  bigHopDuration: 0.6
-  bigHopHeight: 1.2
+  smallHopDuration: 0.3
+  smallHopHeight: 0.3
+  smallHopCount: 8
+  bigHopDuration: 0.9
+  bigHopHeight: 1.5
   bigHopRotation: -360
-  shrinkDuration: 1.2
+  shrinkDuration: 2
   shrinkScale: 0.4
   podFlyDuration: 1.5
   bloodCellPrefab: {fileID: 5798910309913305696, guid: 16e37cd4028454a77a1a2229b7d4c283, type: 3}
@@ -1260,7 +1260,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1222731621}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
