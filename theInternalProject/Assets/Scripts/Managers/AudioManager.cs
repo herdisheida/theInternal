@@ -33,8 +33,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip buttonClickClip; // start, quit buttons
 
     [Header("Cut Scene SFX")]
-    public AudioClip WeaponOnlineClip; // gun power-up appears
-    public AudioClip ShrinkPodClip; // pod shrinking
+    public AudioClip weaponOnlineClip; // gun power-up appears
+    public AudioClip shrinkPodClip; // pod shrinking
+    public AudioClip closeDoorClip; // close pod door
 
 
     [Header("Player SFX")]
@@ -167,8 +168,9 @@ public class AudioManager : MonoBehaviour
     // Example: AudioManager.instance?.ButtonClick();
     public void ButtonClick()    => PlaySFX(buttonClickClip);
 
-    public void WeaponOnline()   => PlaySFX(WeaponOnlineClip);
-    public void ShrinkPod()      => PlaySFX(ShrinkPodClip);
+    public void WeaponOnline()   => PlaySFX(weaponOnlineClip);
+    public void ShrinkPod()      => PlaySFX(shrinkPodClip);
+    public void CloseDoor()      => PlaySFX(closeDoorClip);
     
     public void DamageTaken()    => PlaySFX(damageTakenClip);
     public void Dying()          => PlaySFX(dyingClip);

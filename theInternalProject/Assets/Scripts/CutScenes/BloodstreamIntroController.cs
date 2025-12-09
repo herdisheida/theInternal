@@ -70,31 +70,33 @@ public class BloodstreamIntroController : MonoBehaviour
         // Small pause before doctor appears
         yield return new WaitForSeconds(0.5f);
 
-        // 1) small hops toward the pod
+        // small hops toward the pod
         yield return StartCoroutine(DoctorSmallHops());
         yield return new WaitForSeconds(1f);
 
-        // 2) big hop & rotation into the pod opening
+        // big hop & rotation into the pod opening
         yield return StartCoroutine(DoctorBigHopIntoPod());
         yield return new WaitForSeconds(0.8f);
 
-        // 3) close pod + hide doctor
+        // hide doctor (he's inside pod)
         doctor.gameObject.SetActive(false);
+
+        // close the pod
         if (podSpriteRenderer != null && podClosedSprite != null)
             podSpriteRenderer.sprite = podClosedSprite;
-        // hide doctor (he's inside now)
+        yield return new WaitForSeconds(0.8f);
 
-        // 4) shrink the pod
+        // shrink the pod
         yield return StartCoroutine(ShrinkPodRoutine());
 
-        // 5) start spawning blood cells
+        // start spawning blood cells
         StartCoroutine(SpawnBloodCellsRoutine());
         yield return new WaitForSeconds(2f);
 
-        // 6) pod flies off into the bloodstream
+        // pod flies off into the bloodstream
         yield return StartCoroutine(PodFlyOffRoutine());
 
-        // 7) load the bloodstream gameplay scene
+        // 8) load the bloodstream gameplay scene
         SceneManager.LoadScene(nextSceneName);
     }
 

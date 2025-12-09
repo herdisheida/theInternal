@@ -301,6 +301,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109305382}
   m_CullTransparentMesh: 1
+--- !u!1001 &146752366
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4694619297270320214, guid: 052794737db8040bbb5307e9abe5f294, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.66035
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694619297270320214, guid: 052794737db8040bbb5307e9abe5f294, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.7926
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694619297270320214, guid: 052794737db8040bbb5307e9abe5f294, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694619297270320214, guid: 052794737db8040bbb5307e9abe5f294, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694619297270320214, guid: 052794737db8040bbb5307e9abe5f294, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694619297270320214, guid: 052794737db8040bbb5307e9abe5f294, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694619297270320214, guid: 052794737db8040bbb5307e9abe5f294, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694619297270320214, guid: 052794737db8040bbb5307e9abe5f294, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694619297270320214, guid: 052794737db8040bbb5307e9abe5f294, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694619297270320214, guid: 052794737db8040bbb5307e9abe5f294, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8163783812073374224, guid: 052794737db8040bbb5307e9abe5f294, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 052794737db8040bbb5307e9abe5f294, type: 3}
 --- !u!1 &272998465
 GameObject:
   m_ObjectHideFlags: 0
@@ -992,7 +1049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BloodstreamIntroController
   doctor: {fileID: 2028308826}
   pod: {fileID: 1446735003}
-  podSpriteRenderer: {fileID: 1152295150}
+  podSpriteRenderer: {fileID: 1446735004}
   podOpenSprite: {fileID: -8621978332058056043, guid: 25aa55f0681b148729825eff46ef821b, type: 3}
   podClosedSprite: {fileID: -4936297131196525391, guid: d22bf11d8f0bf4daca7a88bea885590f, type: 3}
   doctorStartPoint: {fileID: 903908348}
@@ -1005,11 +1062,11 @@ MonoBehaviour:
   bigHopDuration: 0.9
   bigHopHeight: 1.5
   bigHopRotation: -360
-  shrinkDuration: 2
+  shrinkDuration: 1
   shrinkScale: 0.4
   podFlyDuration: 1.5
   bloodCellPrefab: {fileID: 5798910309913305696, guid: 16e37cd4028454a77a1a2229b7d4c283, type: 3}
-  bloodSpawnDuration: 2.5
+  bloodSpawnDuration: 5
   startSpawnInterval: 0.4
   endSpawnInterval: 0.05
   bloodYRange: {x: -3, y: 3}
@@ -1146,96 +1203,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 171, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1152295148
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1152295149}
-  - component: {fileID: 1152295150}
-  m_Layer: 0
-  m_Name: ClosedPod
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1152295149
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1152295148}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: -2, z: 0}
-  m_LocalScale: {x: 19, y: 19, z: 19}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1152295150
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1152295148}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -4936297131196525391, guid: d22bf11d8f0bf4daca7a88bea885590f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.29, y: 0.29}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!1 &1222731621
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,7 +1304,7 @@ GameObject:
   - component: {fileID: 1446735003}
   - component: {fileID: 1446735004}
   m_Layer: 0
-  m_Name: OpenPod
+  m_Name: Pod
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1828,9 +1795,9 @@ SceneRoots:
   - {fileID: 736160012}
   - {fileID: 2028308826}
   - {fileID: 1446735003}
-  - {fileID: 1152295149}
   - {fileID: 952198162}
   - {fileID: 903908348}
   - {fileID: 562974506}
   - {fileID: 1222731623}
   - {fileID: 272998467}
+  - {fileID: 146752366}
