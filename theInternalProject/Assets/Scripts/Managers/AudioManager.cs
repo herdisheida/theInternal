@@ -34,6 +34,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("Cut Scene SFX")]
     public AudioClip WeaponOnlineClip; // gun power-up appears
+    public AudioClip ShrinkPodClip; // pod shrinking
 
 
     [Header("Player SFX")]
@@ -167,6 +168,7 @@ public class AudioManager : MonoBehaviour
     public void ButtonClick()    => PlaySFX(buttonClickClip);
 
     public void WeaponOnline()   => PlaySFX(WeaponOnlineClip);
+    public void ShrinkPod()      => PlaySFX(ShrinkPodClip);
     
     public void DamageTaken()    => PlaySFX(damageTakenClip);
     public void Dying()          => PlaySFX(dyingClip);

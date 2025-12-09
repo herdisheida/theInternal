@@ -58,6 +58,7 @@ MonoBehaviour:
   creditsMusic: {fileID: 8300000, guid: ec6eb95a2924b4700be5c359d2a668e3, type: 3}
   buttonClickClip: {fileID: 8300000, guid: ccac5e46673c84b52b31fc7ea8014b8f, type: 3}
   WeaponOnlineClip: {fileID: 8300000, guid: a4370b5d0579849d9b62b92f0b0f51f4, type: 3}
+  ShrinkPodClip: {fileID: 8300000, guid: ef90749e48dfd4a57bc18cbcdb67d27c, type: 3}
   damageTakenClip: {fileID: 0}
   dyingClip: {fileID: 0}
   attackClip: {fileID: 8300000, guid: 7922810297d526a4bb03e7db84f4ef17, type: 3}
