@@ -1052,7 +1052,7 @@ MonoBehaviour:
   podSpriteRenderer: {fileID: 1446735004}
   podOpenSprite: {fileID: -8621978332058056043, guid: 25aa55f0681b148729825eff46ef821b, type: 3}
   podClosedSprite: {fileID: -4936297131196525391, guid: d22bf11d8f0bf4daca7a88bea885590f, type: 3}
-  controlsKeyHint: {fileID: 0}
+  controlsKeyHint: {fileID: 1484867087}
   doctorStartPoint: {fileID: 903908348}
   doctorGroundPoint: {fileID: 562974506}
   doctorOnPodPoint: {fileID: 1222731623}
@@ -1399,7 +1399,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1484867088
 RectTransform:
   m_ObjectHideFlags: 0
