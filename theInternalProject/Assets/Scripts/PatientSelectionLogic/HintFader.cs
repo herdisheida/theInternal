@@ -4,7 +4,7 @@ using UnityEngine;
 public class HintFader : MonoBehaviour
 {
     public CanvasGroup hintGroup;
-    public float delayBeforeFade = 5f;
+    public float delayBeforeFade = 3f;
     public float fadeDuration = 1f;
 
     void Start()
