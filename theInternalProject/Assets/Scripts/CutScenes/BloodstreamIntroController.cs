@@ -189,6 +189,10 @@ public class BloodstreamIntroController : MonoBehaviour
         Vector3 originalScale = pod.localScale;
         Vector3 targetScale = originalScale * shrinkScale;
 
+        // original and target positions (keep X/Z, only change Y)
+        Vector3 originalPos = pod.position;
+        Vector3 targetPos = new Vector3(originalPos.x, 0f, originalPos.z);
+
         float t = 0f;
 
         AudioManager.instance?.ShrinkPod();
@@ -197,12 +201,21 @@ public class BloodstreamIntroController : MonoBehaviour
         {
             t += Time.deltaTime;
             float lerp = Mathf.Clamp01(t / shrinkDuration);
+
+            // shrink
             pod.localScale = Vector3.Lerp(originalScale, targetScale, lerp);
+
+            // move to center Y
+            pod.position = Vector3.Lerp(originalPos, targetPos, lerp);
+
             yield return null;
         }
 
+        // final snap
         pod.localScale = targetScale;
+        pod.position = targetPos;
     }
+
 
     IEnumerator PodFlyOffRoutine()
     {
