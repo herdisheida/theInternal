@@ -100,7 +100,7 @@ public class BloodstreamIntroController : MonoBehaviour
 
         // start spawning blood cells
         StartCoroutine(SpawnBloodCellsRoutine());
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(4f);
 
         // pod flies off into the bloodstream
         yield return StartCoroutine(PodFlyOffRoutine());
