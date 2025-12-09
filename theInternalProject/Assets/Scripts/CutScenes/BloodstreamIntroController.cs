@@ -35,7 +35,7 @@ public class BloodstreamIntroController : MonoBehaviour
 
     [Header("Blood Cells")]
     public GameObject bloodCellPrefab;
-    public float bloodSpawnDuration = 2.5f;
+    public float bloodSpawnDuration = 5f;
     public float startSpawnInterval = 0.4f;
     public float endSpawnInterval = 0.05f;
     public Vector2 bloodYRange = new Vector2(-3.8f, 3.8f);
@@ -72,25 +72,24 @@ public class BloodstreamIntroController : MonoBehaviour
 
         // 1) small hops toward the pod
         yield return StartCoroutine(DoctorSmallHops());
+        yield return new WaitForSeconds(1f);
 
         // 2) big hop & rotation into the pod opening
         yield return StartCoroutine(DoctorBigHopIntoPod());
+        yield return new WaitForSeconds(0.8f);
 
         // 3) close pod + hide doctor
+        doctor.gameObject.SetActive(false);
         if (podSpriteRenderer != null && podClosedSprite != null)
             podSpriteRenderer.sprite = podClosedSprite;
-
         // hide doctor (he's inside now)
-        doctor.gameObject.SetActive(false);
 
-        // 4) start spawning blood cells
-        StartCoroutine(SpawnBloodCellsRoutine());
-
-        // 5) shrink the pod
+        // 4) shrink the pod
         yield return StartCoroutine(ShrinkPodRoutine());
 
-        // slight delay so we see the shrunken pod + blood cells
-        yield return new WaitForSeconds(0.5f);
+        // 5) start spawning blood cells
+        StartCoroutine(SpawnBloodCellsRoutine());
+        yield return new WaitForSeconds(2f);
 
         // 6) pod flies off into the bloodstream
         yield return StartCoroutine(PodFlyOffRoutine());
