@@ -812,8 +812,8 @@ Camera:
   m_GameObject: {fileID: 745102770}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1109,7 +1109,6 @@ MonoBehaviour:
   - {fileID: -4298784790971482785, guid: c422262c5b9394df5b4f09db711e8241, type: 3}
   - {fileID: -3700744868951291603, guid: e0966a443e84f4412824c1bb85dc1b84, type: 3}
   - {fileID: 7885584584059260615, guid: f608cc6cc1952493d993b36784ca7f0f, type: 3}
-  bloodParent: {fileID: 0}
   spawnX: 10
   spawnYMin: -3.9
   spawnYMax: 3.9
@@ -1363,7 +1362,7 @@ Transform:
   m_GameObject: {fileID: 1446735002}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: -0.5, z: 0}
+  m_LocalPosition: {x: -5, y: 0, z: 0}
   m_LocalScale: {x: 19, y: 19, z: 19}
   m_ConstrainProportionsScale: 1
   m_Children: []
