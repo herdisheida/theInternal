@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: 58c97507348934365b693d6ca8139cb8
+guid: 9b130094dbd56446ca77a7a582b01466
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2455488159657730429
-    second: badEnding_0
-  - first:
-      213: 2573852886577450560
-    second: badEnding_1
-  - first:
-      213: -8772387807226465436
-    second: badEnding_2
+      213: -6981641179300335697
+    second: sprite_2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -43,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -52,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -119,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: badEnding_0
+      name: sprite_2_0
       rect:
         serializedVersion: 2
-        x: 287
-        y: 735
-        width: 98
-        height: 98
+        x: 0
+        y: 0
+        width: 640
+        height: 480
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,52 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 38e5c6d478a5cedd0800000000000000
-      internalID: -2455488159657730429
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: badEnding_1
-      rect:
-        serializedVersion: 2
-        x: 607
-        y: 735
-        width: 98
-        height: 98
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 04e0090409928b320800000000000000
-      internalID: 2573852886577450560
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: badEnding_2
-      rect:
-        serializedVersion: 2
-        x: 223
-        y: 223
-        width: 578
-        height: 450
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4637c4674c7324680800000000000000
-      internalID: -8772387807226465436
+      spriteID: faf6096765a3c1f90800000000000000
+      internalID: -6981641179300335697
       vertices: []
       indices: 
       edges: []
@@ -188,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -198,9 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      badEnding_0: -2455488159657730429
-      badEnding_1: 2573852886577450560
-      badEnding_2: -8772387807226465436
+      sprite_2_0: -6981641179300335697
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
