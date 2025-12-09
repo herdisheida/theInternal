@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &73746408
 RectTransform:
   m_ObjectHideFlags: 0
@@ -379,10 +379,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   endingImage: {fileID: 1175223058}
-  endingText: {fileID: 0}
-  goodEndingSprite: {fileID: 0}
-  partialEndingSprite: {fileID: 0}
-  badEndingSprite: {fileID: 0}
+  endingText: {fileID: 1828772174}
+  goodEndingSprite: {fileID: 21300000, guid: fac2316bdda884293a00c159996a17ea, type: 3}
+  partialEndingSprite: {fileID: 21300000, guid: 9cf2c202a9616412dbff4cfb61071cf5, type: 3}
+  badEndingSprite: {fileID: 21300000, guid: 9b130094dbd56446ca77a7a582b01466, type: 3}
   goodLines: []
   partialLines: []
   badLines: []
