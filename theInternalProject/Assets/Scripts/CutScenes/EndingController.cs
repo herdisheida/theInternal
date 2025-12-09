@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using SceneManagement;
 
 
 // TOOD HERDIS muna setja þetta í patient selection screen til að checka hvort allir patientar hafa verið spilaðir
@@ -154,5 +155,10 @@ public class EndingScreen : MonoBehaviour
         // make sure final alpha is exact
         c.a = end;
         endingText.color = c;
+    }
+
+    public void goToCredits()
+    {
+        SceneManager.LoadScene("Credits");
     }
 }
