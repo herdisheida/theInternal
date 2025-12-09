@@ -125,7 +125,7 @@ public class BossController_Werewolf : MonoBehaviour
         if (!canBoomerang || isAttacking)
             yield break;
 
-        isAttacking = true;   // STOP ClawShooter NOW
+        isAttacking = true;
         canBoomerang = false;
 
         Vector3 originalPos = transform.position;
@@ -176,15 +176,19 @@ public class BossController_Werewolf : MonoBehaviour
             yield return null;
         }
 
+        // BACK HOME → ALLOW SHOOTING AGAIN
+        isAttacking = false;
+
         boomerangHitbox.SetActive(false);
 
         if (trailEffect != null)
             trailEffect.time = 0f;
 
+        // Cooldown only blocks boomerang, NOT shooting now
         yield return new WaitForSeconds(boomerangCooldown);
 
-        isAttacking = false;   // allow ClawShooter again
         canBoomerang = true;
     }
+
 
 }
