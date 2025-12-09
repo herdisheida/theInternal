@@ -3,31 +3,57 @@ using UnityEngine.UI;
 
 public class PatientStatusUI : MonoBehaviour
 {
+    [Header("References")]
+    public PatientData patientData;
+    public Image displayImage;
+
+    private PatientStatus lastStatus;
+
     void Start()
     {
-        
+        if (patientData == null || displayImage == null)
+        {
+            Debug.LogWarning($"{name}: PatientStatusUI missing references.");
+            enabled = false;
+            return;
+        }
+
+        lastStatus = patientData.status;
+        RefreshVisual();
     }
 
     void Update()
     {
-        
+        // only update when status changes
+        if (patientData.status != lastStatus)
+        {
+            lastStatus = patientData.status;
+            RefreshVisual();
+        }
     }
 
-    void RefreshVisual(PatientData data, Image img)
+
+    public void RefreshVisual()
     {
-        switch (data.status)
+        if (patientData == null || displayImage == null)
+            return;
+
+        switch (patientData.status)
         {
             case PatientStatus.None:
-                img.sprite = data.unselected;
+                displayImage.sprite = patientData.unselected;
                 break;
+
             case PatientStatus.Infected:
-                img.sprite = data.infected;
+                displayImage.sprite = patientData.infected;
                 break;
+
             case PatientStatus.Dead:
-                img.sprite = data.dead;
+                displayImage.sprite = patientData.dead;
                 break;
+
             case PatientStatus.Saved:
-                img.sprite = data.saved;
+                displayImage.sprite = patientData.saved;
                 break;
         }
     }

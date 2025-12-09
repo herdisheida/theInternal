@@ -1,14 +1,30 @@
 using UnityEngine;
 
+
+public enum EndingType
+{
+    Bad,
+    Partial,
+    Good
+}
+
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [Header("All Patients in this run")]
+    public PatientData[] allPatients;   // assign your 3 PatientData assets
+
+
     [Header("Current Patient")]
     public PatientData currentPatient;   // who we’re working on right now
 
+
+
     void Awake()
     {
+        // singleton pattern
         if (instance == null)
         {
             instance = this;
@@ -33,7 +49,10 @@ public class GameManager : MonoBehaviour
 
 
 
-    // --------- STATE CHANGERS ---------
+    // ------------------ STATE CHANGERS ------------------
+
+
+
 
     // --------- Player dies in boss or obstacle fight ---------
     // GameManager.instance?.MarkPatientInfected();
@@ -66,4 +85,58 @@ public class GameManager : MonoBehaviour
         currentPatient.isSaved = true;
         Debug.Log($"Patient {currentPatient.patientName} marked SAVED.");
     }
+
+
+
+
+
+
+    // ------------------ PATIENT SUMMARY ------------------
+
+    public int GetSavedCount()
+    {
+        int count = 0;
+        if (allPatients == null) return 0;
+
+        foreach (var p in allPatients)
+        {
+            if (p != null && p.status == PatientStatus.Saved)
+                count++;
+        }
+        return count;
+    }
+
+    public int GetTotalPatients()
+    {
+        return (allPatients != null) ? allPatients.Length : 0;
+    }
+
+    public EndingType GetEndingType()
+    {
+        int total = GetTotalPatients();
+        int saved = GetSavedCount();
+
+        if (total <= 0) return EndingType.Bad; // no patients, default to Bad
+
+        if (saved == 0) return EndingType.Bad;
+        else if (saved == total) return EndingType.Good;
+        else return EndingType.Partial;
+    }
+
+    public bool AllPatientsResolved()
+    {
+        int total = GetTotalPatients();
+        int resolved = 0;
+
+        if (allPatients == null) return false;
+
+        foreach (var p in allPatients)
+        {
+            if (p != null && (p.status == PatientStatus.Saved || p.status == PatientStatus.Dead || p.status == PatientStatus.Infected))
+                resolved++;
+        }
+
+        return resolved == total;
+    }
 }
+

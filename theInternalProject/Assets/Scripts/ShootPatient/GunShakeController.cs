@@ -189,8 +189,6 @@ public class GunShakeController : MonoBehaviour
     IEnumerator HandleShotSequence()
     {
         hasShot = true;
-
-        GameManager.instance?.MarkPatientDead();
     
         // stop heavy breathing audio
         AudioManager.instance?.StopSFX();
@@ -201,11 +199,12 @@ public class GunShakeController : MonoBehaviour
         if (gunImage != null && shootGunSprite != null)
         {
             gunImage.sprite = shootGunSprite;
-            yield return new WaitForSeconds(shootFlashDuration);
+            GameManager.instance?.MarkPatientDead();
             gunImage.sprite = idleGunSprite;
         }
 
         EndShake();
+        yield return new WaitForSeconds(shootFlashDuration);
 
         // instantly go black + exhale + change scene
         yield return StartCoroutine(BlackScreen(3f));

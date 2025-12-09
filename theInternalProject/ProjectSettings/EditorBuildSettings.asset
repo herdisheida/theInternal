@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WeaponOnline.unity
     guid: cb725f55d79af404b804ea9b91d2190a
+  - enabled: 1
+    path: Assets/Scenes/EndingScene.unity
+    guid: f72f945008357460094104505b10ebe4
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

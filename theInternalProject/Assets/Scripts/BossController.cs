@@ -8,7 +8,7 @@ public class BossController : MonoBehaviour
     private PatientData patientData;
 
     [Header("Attack Start Delay")]
-    public float attackDelay = 3f;   // wait this long before any attacks
+    public float attackDelay = 3f;
     private float attackTimer = 0f;
     private bool attacksEnabled = false;
 
@@ -27,11 +27,8 @@ public class BossController : MonoBehaviour
 
     [Header("Health Bar Smoothness")]
     public float smoothSpeed = 10f;
-
-    // New variables to store the starting shape
     private float fullBarWidth;
     private float fillHeight;
-
     private SpriteRenderer fillSprite;
 
     [Header("Shooting Attack")]
@@ -42,6 +39,7 @@ public class BossController : MonoBehaviour
     public float burstInterval = 2f;
     private bool isBursting = false;
 
+    // ---------------- BITE ATTACK ----------------
     [Header("Bite Attack")]
     public GameObject biteHitbox;
     public float lungeDistance = 0.5f;
@@ -55,9 +53,10 @@ public class BossController : MonoBehaviour
     public float shakeDuration = 0.3f;
     public float shakeMagnitude = 0.1f;
 
+    // -------------- PHASE CONTROL ----------------
     [Header("Phase Control")]
     public bool phase2 = false;
-    public float phase2Threshold = 0.5f; // health below 50 percent
+    public float phase2Threshold = 0.5f;
 
     [Header("Phase 2 Vine Attack")]
     public GameObject vinePrefab;
@@ -72,21 +71,19 @@ public class BossController : MonoBehaviour
     public float spreadCooldown = 4f;
     private bool canSpread = true;
 
+
     void Start()
     {
         AudioManager.instance?.PlayZombieBossBattleMusic();
 
-        
         startPos = transform.position;
         currentHealth = maxHealth;
 
         if (biteHitbox != null)
             biteHitbox.SetActive(false);
 
-        // Prepare health bar scaling
         fullBarWidth = healthBarFill.localScale.x;
         fillHeight = healthBarFill.localScale.y;
-
         fillSprite = healthBarFill.GetComponent<SpriteRenderer>();
 
         if (PatientManager.Instance != null) {
@@ -99,32 +96,34 @@ public class BossController : MonoBehaviour
         MoveBoss();
         UpdateHealthBar();
 
-        // ----- delay attacks for a few seconds -----
+        // delay before attacks
         if (!attacksEnabled)
         {
             attackTimer += Time.deltaTime;
             if (attackTimer < attackDelay)
-                return;                    // boss moves only + no attacks yet
+                return;
             attacksEnabled = true;
         }
-        // ------------------------------------------
 
+        // ---- PHASE 1 ----
         if (!phase2)
         {
             if (!isBursting)
                 StartCoroutine(ShootBurst());
 
             float distance = Vector2.Distance(transform.position, player.position);
+
             if (distance < 7f && canBite)
                 StartCoroutine(BiteAttackRoutine());
         }
+
+        // ---- PHASE 2 ----
         else
         {
             if (canSpread)
                 StartCoroutine(SpreadShotRoutine());
         }
     }
-
 
     // ---------------- MOVEMENT ----------------
     void MoveBoss()
@@ -134,13 +133,9 @@ public class BossController : MonoBehaviour
         movementTime += Time.deltaTime * moveSpeed;
         float offsetY = Mathf.Sin(movementTime) * moveDistance;
 
-        transform.position = new Vector3(
-            transform.position.x,
-            startPos.y + offsetY,
-            transform.position.z
-        );
+        transform.position =
+            new Vector3(transform.position.x, startPos.y + offsetY, transform.position.z);
     }
-
 
     // ---------------- SHOOTING ----------------
     IEnumerator ShootBurst()
@@ -149,7 +144,7 @@ public class BossController : MonoBehaviour
 
         for (int i = 0; i < bulletsPerBurst; i++)
         {
-            Shoot();
+            Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
             yield return new WaitForSeconds(timeBetweenShots);
         }
 
@@ -157,9 +152,65 @@ public class BossController : MonoBehaviour
         isBursting = false;
     }
 
-    void Shoot()
+    // ---------------- BITE ATTACK ROUTINE ----------------
+    IEnumerator BiteAttackRoutine()
     {
-        Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        if (currentHealth <= 0) yield break;
+
+        canBite = false;
+        isBiting = true;
+        freezeMovement = true;
+
+        Vector3 originalPos = transform.position;
+
+        // TELEGRAPH SHAKE
+        float elapsed = 0f;
+        while (elapsed < shakeDuration)
+        {
+            float offsetX = Random.Range(-1f, 1f) * shakeMagnitude;
+            float offsetY = Random.Range(-0.5f, 0.5f) * shakeMagnitude;
+
+            transform.position = originalPos + new Vector3(offsetX, offsetY, 0);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = originalPos;
+
+        // LUNGE
+        float direction = (player.position.x < transform.position.x) ? -1f : 1f;
+        Vector3 bitePos = originalPos + new Vector3(direction * lungeDistance, 0, 0);
+
+        float t = 0;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * lungeSpeed;
+            transform.position = Vector3.Lerp(originalPos, bitePos, t);
+            yield return null;
+        }
+
+        // BITE HITBOX
+        biteHitbox.SetActive(true);
+        AudioManager.instance?.ZombieChomp();
+        yield return new WaitForSeconds(biteActiveTime);
+        biteHitbox.SetActive(false);
+
+        // RETURN TO POSITION
+        t = 0;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * lungeSpeed;
+            transform.position = Vector3.Lerp(bitePos, originalPos, t);
+            yield return null;
+        }
+
+        freezeMovement = false;
+        isBiting = false;
+
+        // COOLDOWN
+        yield return new WaitForSeconds(biteCooldown);
+        canBite = true;
     }
 
 
@@ -172,17 +223,11 @@ public class BossController : MonoBehaviour
         GetComponent<DamageFlash>().Flash();
 
         float hpPercent = (float)currentHealth / maxHealth;
-
-        // Shake camera under 25 percent HP
         if (hpPercent <= 0.25f)
-        {
             CameraShake.instance?.Shake(0.3f, 0.15f);
-        }
 
         if (!phase2 && currentHealth > 0 && currentHealth <= maxHealth * phase2Threshold)
-        {
             EnterPhase2();
-        }
 
         if (currentHealth <= 0)
         {
@@ -202,31 +247,20 @@ public class BossController : MonoBehaviour
         }
     }
 
-
-
     void UpdateHealthBar()
     {
         float ratio = (float)currentHealth / maxHealth;
-
-        // Smooth width animation only
         float currentX = healthBarFill.localScale.x;
         float targetX = fullBarWidth * ratio;
-        float smoothedX = Mathf.Lerp(currentX, targetX, Time.deltaTime * smoothSpeed);
 
-        // Apply scale BUT keep your manual height
-        healthBarFill.localScale = new Vector3(
-            smoothedX,
-            fillHeight,
-            healthBarFill.localScale.z
-        );
+        float smoothedX =
+            Mathf.Lerp(currentX, targetX, Time.deltaTime * smoothSpeed);
 
-        // Optional: turn bar red at low HP
-        if (fillSprite != null)
-        {
-            fillSprite.color = (ratio <= 0.25f ? Color.red : Color.green);
-        }
+        healthBarFill.localScale =
+            new Vector3(smoothedX, fillHeight, healthBarFill.localScale.z);
+
+        fillSprite.color = (ratio <= 0.25f ? Color.red : Color.green);
     }
-
 
     void Die()
     {
@@ -235,110 +269,26 @@ public class BossController : MonoBehaviour
         // SceneManager.LoadScene("PatientSelection");
     }
 
-
-    // ---------------- BITE ATTACK ----------------
-    IEnumerator BiteAttackRoutine()
-    {
-        if (currentHealth <= 0) yield break;
-
-        canBite = false;
-        isBiting = true;
-        freezeMovement = true;
-
-        Vector3 originalPos = transform.position;
-
-        // Telegraph shake
-        float elapsed = 0f;
-        while (elapsed < shakeDuration)
-        {
-            if (currentHealth <= 0) yield break;
-
-            float offsetX = Random.Range(-1f, 1f) * shakeMagnitude;
-            float offsetY = Random.Range(-0.5f, 0.5f) * shakeMagnitude;
-
-            transform.position = originalPos + new Vector3(offsetX, offsetY, 0);
-
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.position = originalPos;
-
-        float direction = (player.position.x < transform.position.x) ? -1f : 1f;
-        Vector3 bitePos = originalPos + new Vector3(direction * lungeDistance, 0, 0);
-
-        float t = 0;
-        while (t < 1f)
-        {
-            if (currentHealth <= 0) yield break;
-
-            t += Time.deltaTime * lungeSpeed;
-            transform.position = Vector3.Lerp(originalPos, bitePos, t);
-            yield return null;
-        }
-
-        AudioManager.instance?.ZombieChomp();
-        biteHitbox.SetActive(true);
-        yield return new WaitForSeconds(biteActiveTime);
-        biteHitbox.SetActive(false);
-
-        t = 0;
-        while (t < 1f)
-        {
-            if (currentHealth <= 0) yield break;
-
-            t += Time.deltaTime * lungeSpeed;
-            transform.position = Vector3.Lerp(bitePos, originalPos, t);
-            yield return null;
-        }
-
-        yield return new WaitForSeconds(biteCooldown);
-
-        freezeMovement = false;
-        isBiting = false;
-        canBite = true;
-    }
-
-
     // ---------------- PHASE 2 ----------------
     void EnterPhase2()
     {
-        if (currentHealth <= 0) return;
-
         phase2 = true;
-
-        isBursting = true;
-        canBite = false;
-        isBiting = false;
-
         StartCoroutine(VineAttackRoutine());
     }
 
     IEnumerator VineAttackRoutine()
     {
-        isUsingVines = true;
-
         while (phase2)
         {
-            if (currentHealth <= 0) yield break;
-
             float topY = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 1.3f, 0)).y;
 
-            Vector3 spawnPos = new Vector3(
-                player.position.x,
-                topY,
-                0f
-            );
-
+            Vector3 spawnPos = new Vector3(player.position.x, topY, 0f);
             GameObject vine = Instantiate(vinePrefab, spawnPos, Quaternion.identity);
             vine.GetComponent<VineAttack>().damage = (int)vineDamage;
 
             yield return new WaitForSeconds(vineInterval);
         }
-
-        isUsingVines = false;
     }
-
 
     IEnumerator SpreadShotRoutine()
     {
@@ -362,4 +312,3 @@ public class BossController : MonoBehaviour
         canSpread = true;
     }
 }
-
