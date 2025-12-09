@@ -1,5 +1,7 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 // TOOD HERDIS muna setja þetta í patient selection screen til að checka hvort allir patientar hafa verið spilaðir
@@ -10,57 +12,147 @@ using UnityEngine.UI;
 
 
 
-
-public class EndingController : MonoBehaviour
+public class EndingScreen : MonoBehaviour
 {
-    [Header("UI")]
-    public Text endingText;
-    public Image endingImage;
-    public Sprite goodSprite;
-    public Sprite partialSprite;
-    public Sprite badSprite;
+    [Header("UI References")]
+    public Image endingImage;                // big picture on screen
+    public TextMeshProUGUI endingText;       // text that fades in/out
+
+    [Header("Ending Sprites")]
+    public Sprite goodEndingSprite;
+    public Sprite partialEndingSprite;
+    public Sprite badEndingSprite;
+
+    [Header("Text Lines For Each Ending")]
+    [TextArea] public string[] goodLines;
+    [TextArea] public string[] partialLines;
+    [TextArea] public string[] badLines;
+
+    [Header("Timings")]
+    public float fadeDuration = 0.8f;   // how long to fade in/out
+    public float holdDuration = 4f;     // how long text stays fully visible
+    public bool loopLines = false;      // if true, keep cycling the lines
 
     void Start()
     {
-        var gameManager = GameManager.instance;
-
+        // default to BAD if something goes wrong
         EndingType ending = EndingType.Bad;
-        int saved = 0;
-        int total = 0;
 
-        if (gameManager != null)
+        if (GameManager.instance != null)
         {
-            ending = gameManager.GetEndingType();
-            saved = gameManager.GetSavedCount();
-            total = gameManager.GetTotalPatients();
+            ending = GameManager.instance.GetEndingType();
         }
+
+        // choose sprite + music + lines based on ending
+        string[] lines = SetupVisualsForEnding(ending);
+
+        // start text fade routine
+        if (endingText != null && lines != null && lines.Length > 0)
+        {
+            StartCoroutine(ShowLinesRoutine(lines));
+        }
+    }
+
+    string[] SetupVisualsForEnding(EndingType ending)
+    {
+        string[] linesToUse = null;
 
         switch (ending)
         {
             case EndingType.Good:
-                if (endingText != null)
-                    endingText.text = $"All {total} patients were saved.";
-                if (endingImage != null && goodSprite != null)
-                    endingImage.sprite = goodSprite;
+                if (endingImage != null && goodEndingSprite != null)
+                    endingImage.sprite = goodEndingSprite;
+
+                linesToUse = goodLines;
                 AudioManager.instance?.PlayGoodEndingMusic();
                 break;
 
             case EndingType.Partial:
-                if (endingText != null)
-                    endingText.text = $"{saved} out of {total} patients were saved.";
-                if (endingImage != null && partialSprite != null)
-                    endingImage.sprite = partialSprite;
+                if (endingImage != null && partialEndingSprite != null)
+                    endingImage.sprite = partialEndingSprite;
+
+                linesToUse = partialLines;
                 AudioManager.instance?.PlayPartialEndingMusic();
                 break;
 
             case EndingType.Bad:
             default:
-                if (endingText != null)
-                    endingText.text = "None of the patients survived.";
-                if (endingImage != null && badSprite != null)
-                    endingImage.sprite = badSprite;
+                if (endingImage != null && badEndingSprite != null)
+                    endingImage.sprite = badEndingSprite;
+
+                linesToUse = badLines;
                 AudioManager.instance?.PlayBadEndingMusic();
                 break;
         }
+
+        // make sure text starts invisible
+        if (endingText != null)
+        {
+            var c = endingText.color;
+            c.a = 0f;
+            endingText.color = c;
+        }
+
+        return linesToUse;
+    }
+
+    IEnumerator ShowLinesRoutine(string[] lines)
+    {
+        int index = 0;
+
+        while (true)
+        {
+            string line = lines[index];
+
+            // set text
+            endingText.text = line;
+
+            // fade IN
+            yield return StartCoroutine(FadeTextAlpha(0f, 1f, fadeDuration));
+
+            // hold
+            yield return new WaitForSeconds(holdDuration);
+
+            // fade OUT
+            yield return StartCoroutine(FadeTextAlpha(1f, 0f, fadeDuration));
+
+            // next line
+            index++;
+
+            if (index >= lines.Length)
+            {
+                if (loopLines)
+                {
+                    index = 0; // start over
+                }
+                else
+                {
+                    // stop after last line
+                    break;
+                }
+            }
+        }
+    }
+
+    IEnumerator FadeTextAlpha(float start, float end, float duration)
+    {
+        if (endingText == null || duration <= 0f)
+            yield break;
+
+        float t = 0f;
+        Color c = endingText.color;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float lerp = Mathf.Clamp01(t / duration);
+            c.a = Mathf.Lerp(start, end, lerp);
+            endingText.color = c;
+            yield return null;
+        }
+
+        // make sure final alpha is exact
+        c.a = end;
+        endingText.color = c;
     }
 }
