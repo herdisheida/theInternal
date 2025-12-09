@@ -11,6 +11,9 @@ public class BloodstreamIntroController : MonoBehaviour
     public Sprite podOpenSprite;
     public Sprite podClosedSprite;
 
+    [Header("Controls Hint UI")]
+    public GameObject controlsKeyHint;
+
     [Header("Positions")]
     public Transform doctorStartPoint;    // off-screen left
     public Transform doctorGroundPoint;   // in front of pod
@@ -47,7 +50,10 @@ public class BloodstreamIntroController : MonoBehaviour
 
     void Start()
     {
-        // Safety
+        if (controlsKeyHint != null)
+            controlsKeyHint.SetActive(false);
+
+        // safety
         if (doctor == null || pod == null || doctorStartPoint == null ||
             doctorGroundPoint == null || doctorOnPodPoint == null || podFlyOffTarget == null)
         {
@@ -92,6 +98,9 @@ public class BloodstreamIntroController : MonoBehaviour
         // start spawning blood cells
         StartCoroutine(SpawnBloodCellsRoutine());
         yield return new WaitForSeconds(2f);
+
+        // show controls hint (arrow/WASD keys)
+        if (controlsKeyHint != null) controlsKeyHint.SetActive(true);
 
         // pod flies off into the bloodstream
         yield return StartCoroutine(PodFlyOffRoutine());
