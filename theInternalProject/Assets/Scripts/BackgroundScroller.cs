@@ -40,8 +40,6 @@ public class BackgroundScroller : MonoBehaviour
         if (_img == null)
             yield break;
 
-        // temporarily stop scrolling while we fade
-        _isScrolling = false;
 
         Color c = _img.color;
         float originalAlpha = c.a;
@@ -64,8 +62,5 @@ public class BackgroundScroller : MonoBehaviour
 
         c.a = 1f;
         _img.color = c;
-
-        // now start scrolling
-        _isScrolling = true;
     }
 }
