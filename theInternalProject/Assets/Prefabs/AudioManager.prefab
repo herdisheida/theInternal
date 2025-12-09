@@ -60,7 +60,7 @@ MonoBehaviour:
   weaponOnlineClip: {fileID: 8300000, guid: a4370b5d0579849d9b62b92f0b0f51f4, type: 3}
   shrinkPodClip: {fileID: 8300000, guid: ef90749e48dfd4a57bc18cbcdb67d27c, type: 3}
   closeDoorClip: {fileID: 8300000, guid: 277d65c8995dd4ed892c366a47dc3508, type: 3}
-  walkingClip: {fileID: 0}
+  walkingClip: {fileID: 8300000, guid: 57ea33f4a6197427db10e883a30d517b, type: 3}
   jumpClip: {fileID: 8300000, guid: c3536c2c3ac27455fbb6bc22aeb0aec2, type: 3}
   damageTakenClip: {fileID: 0}
   dyingClip: {fileID: 0}

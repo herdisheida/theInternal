@@ -1283,7 +1283,7 @@ MonoBehaviour:
   podFlyOffTarget: {fileID: 272998467}
   smallHopDuration: 0.3
   smallHopHeight: 0.3
-  smallHopCount: 8
+  smallHopCount: 9
   bigHopDuration: 0.9
   bigHopHeight: 1.5
   bigHopRotation: -360
