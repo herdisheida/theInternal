@@ -40,14 +40,13 @@ public class BloodstreamIntroController : MonoBehaviour
     public GameObject bloodCellPrefab;     // prefab with SpriteRenderer + BloodCellMover
     public Sprite[] bloodCellSprites;      // different cell sprites
 
-    public Transform bloodParent;          // optional: container for hierarchy
     public float spawnX = 10f;             // just off the right side
     public float spawnYMin = -3.9f;
     public float spawnYMax = 3.9f;
 
-    public float spawnIntervalMin = 0.07f;
+    public float spawnIntervalMin = 0.1f;
     public float spawnIntervalMax = 0.18f;
-    public float spawnDuration = 5f; // how long to keep spawning in this cutscene
+    public float spawnDuration = 8f; // how long to keep spawning in this cutscene
 
 
     [Header("Scene Flow")]
@@ -105,7 +104,7 @@ public class BloodstreamIntroController : MonoBehaviour
 
         // start spawning blood cells
         StartCoroutine(SpawnBloodCellsRoutine());
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(6f);
 
         // pod flies off into the bloodstream
         yield return StartCoroutine(PodFlyOffRoutine());
@@ -246,9 +245,7 @@ public class BloodstreamIntroController : MonoBehaviour
         float y = Random.Range(spawnYMin, spawnYMax);
         Vector3 pos = new Vector3(spawnX, y, 0f);
 
-        Transform parent = bloodParent != null ? bloodParent : null;
-
-        GameObject cell = Instantiate(bloodCellPrefab, pos, Quaternion.identity, parent);
+        GameObject cell = Instantiate(bloodCellPrefab, pos, Quaternion.identity);
 
         // pick a random sprite for this cell
         if (bloodCellSprites != null && bloodCellSprites.Length > 0)

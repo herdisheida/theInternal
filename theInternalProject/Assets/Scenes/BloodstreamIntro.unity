@@ -1113,9 +1113,9 @@ MonoBehaviour:
   spawnX: 10
   spawnYMin: -3.9
   spawnYMax: 3.9
-  spawnIntervalMin: 0.07
+  spawnIntervalMin: 0.1
   spawnIntervalMax: 0.18
-  spawnDuration: 5
+  spawnDuration: 8
   nextSceneName: ObstacleGameplay
 --- !u!1 &953900838
 GameObject:
