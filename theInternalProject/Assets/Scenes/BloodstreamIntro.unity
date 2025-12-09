@@ -525,7 +525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1117,7 +1117,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &885845189
 Transform:
   m_ObjectHideFlags: 0
@@ -1304,10 +1304,8 @@ MonoBehaviour:
   spawnIntervalMin: 0.1
   spawnIntervalMax: 0.18
   spawnDuration: 8
-  startBackground: {fileID: 0}
-  bloodBackground: {fileID: 249197036}
-  bloodScroller: {fileID: 249197035}
-  backgroundFadeDuration: 1.5
+  bloodstreamBackground: {fileID: 249197035}
+  bgFadeDuration: 1.5
   nextSceneName: ObstacleGameplay
 --- !u!1 &953900838
 GameObject:
@@ -1523,7 +1521,7 @@ Transform:
   m_GameObject: {fileID: 1222731621}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: 3.6, z: 0}
+  m_LocalPosition: {x: -4.3, y: 3.6, z: 0}
   m_LocalScale: {x: 15, y: 15, z: 15}
   m_ConstrainProportionsScale: 1
   m_Children: []
