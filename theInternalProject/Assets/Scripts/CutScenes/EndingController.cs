@@ -129,8 +129,9 @@ public class EndingScreen : MonoBehaviour
                 }
                 else
                 {
-                    // stop after last line
-                    break;
+                    // go to credits after last line
+                    StartCoroutine(GoToCreditsAfterDelay());
+                    yield break;
                 }
             }
         }
