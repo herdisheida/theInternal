@@ -95,12 +95,12 @@ public class BloodstreamIntroController : MonoBehaviour
         // shrink the pod
         yield return StartCoroutine(ShrinkPodRoutine());
 
-        // start spawning blood cells
-        StartCoroutine(SpawnBloodCellsRoutine());
-        yield return new WaitForSeconds(2f);
-
         // show controls hint (arrow/WASD keys)
         if (controlsKeyHint != null) controlsKeyHint.SetActive(true);
+
+        // start spawning blood cells
+        StartCoroutine(SpawnBloodCellsRoutine());
+        yield return new WaitForSeconds(3.5f);
 
         // pod flies off into the bloodstream
         yield return StartCoroutine(PodFlyOffRoutine());
