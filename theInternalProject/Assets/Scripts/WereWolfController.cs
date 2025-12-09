@@ -63,9 +63,7 @@ public class BossController_Werewolf : MonoBehaviour
             TryBoomerangAttack();
     }
 
-    // -----------------------------------
     // MOVEMENT
-    // -----------------------------------
     void MoveBoss()
     {
         movementTime += Time.deltaTime * moveSpeed;
@@ -78,9 +76,7 @@ public class BossController_Werewolf : MonoBehaviour
         );
     }
 
-    // -----------------------------------
     // HEALTH
-    // -----------------------------------
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
@@ -110,9 +106,7 @@ public class BossController_Werewolf : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // -----------------------------------
     // ATTACK HANDLING
-    // -----------------------------------
     void TryBoomerangAttack()
     {
         float dist = Mathf.Abs(player.position.x - transform.position.x);
@@ -123,9 +117,7 @@ public class BossController_Werewolf : MonoBehaviour
         }
     }
 
-    // -----------------------------------
     // FULL BOOMERANG ROUTINE
-    // -----------------------------------
     IEnumerator BoomerangAttackRoutine()
     {
         if (!canBoomerang)

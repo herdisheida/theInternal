@@ -24,8 +24,6 @@ public class ClawShooter : MonoBehaviour
     private BossController_Werewolf wolf;
 
 
-
-
     void Update()
     {
         if (!isAttacking)
