@@ -1098,16 +1098,24 @@ MonoBehaviour:
   bigHopDuration: 0.9
   bigHopHeight: 1.5
   bigHopRotation: -360
-  shrinkDuration: 1
+  shrinkDuration: 1.2
   shrinkScale: 0.4
   podFlyDuration: 1.5
   bloodCellPrefab: {fileID: 5798910309913305696, guid: 16e37cd4028454a77a1a2229b7d4c283, type: 3}
-  bloodSpawnDuration: 5
-  startSpawnInterval: 0.4
-  endSpawnInterval: 0.05
-  bloodYRange: {x: -3, y: 3}
-  bloodSpawnX: 10
-  bloodCellSpeed: 4
+  bloodCellSprites:
+  - {fileID: 2433718539669662468, guid: 8aa0d37165adf4950abff5de603d13ce, type: 3}
+  - {fileID: 2736731883180808385, guid: 387ccb17569c44388ba03c88240a5472, type: 3}
+  - {fileID: -5608918049219210691, guid: 941c01f336ac748ff95da3252717933b, type: 3}
+  - {fileID: -4298784790971482785, guid: c422262c5b9394df5b4f09db711e8241, type: 3}
+  - {fileID: -3700744868951291603, guid: e0966a443e84f4412824c1bb85dc1b84, type: 3}
+  - {fileID: 7885584584059260615, guid: f608cc6cc1952493d993b36784ca7f0f, type: 3}
+  bloodParent: {fileID: 0}
+  spawnX: 10
+  spawnYMin: -3.9
+  spawnYMax: 3.9
+  spawnIntervalMin: 0.07
+  spawnIntervalMax: 0.18
+  spawnDuration: 5
   nextSceneName: ObstacleGameplay
 --- !u!1 &953900838
 GameObject:

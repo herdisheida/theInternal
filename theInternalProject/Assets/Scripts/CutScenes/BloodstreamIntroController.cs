@@ -36,14 +36,19 @@ public class BloodstreamIntroController : MonoBehaviour
     [Header("Pod Fly Off")]
     public float podFlyDuration = 1.5f;
 
-    [Header("Blood Cells")]
-    public GameObject bloodCellPrefab;
-    public float bloodSpawnDuration = 5f;
-    public float startSpawnInterval = 0.4f;
-    public float endSpawnInterval = 0.05f;
-    public Vector2 bloodYRange = new Vector2(-3.8f, 3.8f);
-    public float bloodSpawnX = 10f;
-    public float bloodCellSpeed = 4f;
+    [Header("Blood Cell Spawning")]
+    public GameObject bloodCellPrefab;     // prefab with SpriteRenderer + BloodCellMover
+    public Sprite[] bloodCellSprites;      // different cell sprites
+
+    public Transform bloodParent;          // optional: container for hierarchy
+    public float spawnX = 10f;             // just off the right side
+    public float spawnYMin = -3.9f;
+    public float spawnYMax = 3.9f;
+
+    public float spawnIntervalMin = 0.07f;
+    public float spawnIntervalMax = 0.18f;
+    public float spawnDuration = 5f; // how long to keep spawning in this cutscene
+
 
     [Header("Scene Flow")]
     public string nextSceneName = "ObstacleGameplay"; // bloodstream level
@@ -222,37 +227,38 @@ public class BloodstreamIntroController : MonoBehaviour
 
     IEnumerator SpawnBloodCellsRoutine()
     {
-        if (bloodCellPrefab == null) yield break;
-
         float elapsed = 0f;
 
-        while (elapsed < bloodSpawnDuration)
+        while (elapsed < spawnDuration)
         {
-            elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / bloodSpawnDuration);
+            SpawnOneBloodCell();
 
-            // spawn interval goes from slow to fast
-            float currentInterval = Mathf.Lerp(startSpawnInterval, endSpawnInterval, t);
-
-            // spawn a cell
-            SpawnBloodCell();
-
-            // wait until next spawn
-            yield return new WaitForSeconds(currentInterval);
+            float wait = Random.Range(spawnIntervalMin, spawnIntervalMax);
+            elapsed += wait;
+            yield return new WaitForSeconds(wait);
         }
     }
 
-    void SpawnBloodCell()
+    void SpawnOneBloodCell()
     {
-        float randomY = Random.Range(bloodYRange.x, bloodYRange.y);
-        Vector3 spawnPos = new Vector3(bloodSpawnX, randomY, 0f);
+        if (bloodCellPrefab == null) return;
 
-        GameObject cell = Instantiate(bloodCellPrefab, spawnPos, Quaternion.identity);
+        float y = Random.Range(spawnYMin, spawnYMax);
+        Vector3 pos = new Vector3(spawnX, y, 0f);
 
-        BloodCellMover mover = cell.GetComponent<BloodCellMover>();
-        if (mover != null)
+        Transform parent = bloodParent != null ? bloodParent : null;
+
+        GameObject cell = Instantiate(bloodCellPrefab, pos, Quaternion.identity, parent);
+
+        // pick a random sprite for this cell
+        if (bloodCellSprites != null && bloodCellSprites.Length > 0)
         {
-            mover.speed = bloodCellSpeed;
+            var sr = cell.GetComponent<SpriteRenderer>();
+            if (sr != null)
+            {
+                int index = Random.Range(0, bloodCellSprites.Length);
+                sr.sprite = bloodCellSprites[index];
+            }
         }
     }
 }
