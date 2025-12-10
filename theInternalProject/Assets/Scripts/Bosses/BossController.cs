@@ -73,6 +73,18 @@ public class BossController : MonoBehaviour
     public float spreadCooldown = 4f;
     private bool canSpread = true;
 
+    // -------------- DEATH ----------------
+    [Header("Death Animation")]
+    public GameObject zombieVineHang;
+    public float deathShakeDuration = 0.6f;
+    public float deathShakeMagnitude = 0.12f;
+    public float deathFallSpeed = 6f;
+    public float deathFallRotationSpeed = 180f;   // degrees per second
+    public float deathFallDistance = 6f;          // how far down he falls
+    public string deathNextScene = "AnalysisScreen";
+
+    private bool isDying = false;
+
 
     void Start()
     {
@@ -231,20 +243,23 @@ public class BossController : MonoBehaviour
         if (!phase2 && currentHealth > 0 && currentHealth <= maxHealth * phase2Threshold)
             StartCoroutine(EnterPhase2());
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !isDying)
         {
+            isDying = true;
+
             healthBarRoot?.SetActive(false);
-            if (patientData != null)
-            {
-                patientData.isSaved = true;
-                patientData.status = PatientStatus.Saved;
-            }
-            else
-            {
-                Debug.LogWarning("BossController: patientData is null");
-            }
+            // if (patientData != null)
+            // {
+            //     patientData.isSaved = true;
+            //     patientData.status = PatientStatus.Saved;
+            // }
+            // else
+            // {
+            //     Debug.LogWarning("BossController: patientData is null");
+            // }
+
             GameManager.instance?.MarkPatientSaved();
-            Die();
+            StartCoroutine(Die());
         }
     }
 
@@ -263,18 +278,67 @@ public class BossController : MonoBehaviour
         fillSprite.color = (ratio <= 0.25f ? Color.red : Color.green);
     }
 
-    void Die()
+    IEnumerator Die()
     {
-        StopAllCoroutines();
+        // stop all ongoing attacks/movement
+        attacksEnabled = false;
+        freezeMovement = true;
+        canBite = false;
+        canSpread = false;
+        isBursting = false;
+
+        // sound effect
         AudioManager.instance?.ZombieDeath();
 
-        Destroy(gameObject);
-        SceneManager.LoadScene("AnalysisScreen");
+        // small camera shake when he dies
+        CameraShake.instance?.Shake(0.4f, 0.2f);
+
+        Vector3 originalPos = transform.position;
+
+        // ---- SHAKE IN PLACE ----
+        float elapsed = 0f;
+        while (elapsed < deathShakeDuration)
+        {
+            float offsetX = Random.Range(-1f, 1f) * deathShakeMagnitude;
+            float offsetY = Random.Range(-1f, 1f) * deathShakeMagnitude;
+
+            transform.position = originalPos + new Vector3(offsetX, offsetY, 0f);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // snap back
+        transform.position = originalPos;
+
+        // ---- FALL OFF SCREEN ----
+        Destroy(zombieVineHang);
+        Vector3 targetPos = originalPos + Vector3.down * deathFallDistance;
+
+        while (transform.position.y > targetPos.y)
+        {
+            // move down
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                targetPos,
+                deathFallSpeed * Time.deltaTime
+            );
+
+            // spin while falling
+            transform.Rotate(0f, 0f, deathFallRotationSpeed * Time.deltaTime);
+
+            yield return null;
+        }
+
+        // change scene
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(deathNextScene);
     }
 
     // ---------------- PHASE 2 ----------------
     IEnumerator EnterPhase2()
     {
+        AudioManager.instance?.ZombieRoar();
         phase2 = true;
 
         Vector3 originalPos = transform.position;
@@ -293,7 +357,6 @@ public class BossController : MonoBehaviour
         transform.position = originalPos;
 
 
-        AudioManager.instance?.ZombieRoar();
         StartCoroutine(VineAttackRoutine());
     }
 

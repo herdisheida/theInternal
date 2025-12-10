@@ -944,6 +944,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1313933150 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6824211441945623543, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
+  m_PrefabInstance: {fileID: 6802443711107892526}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1392236536
 GameObject:
   m_ObjectHideFlags: 0
@@ -1531,7 +1536,7 @@ PrefabInstance:
       objectReference: {fileID: 1784275241}
     - target: {fileID: 3615863617986684596, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
       propertyPath: maxHealth
-      value: 100
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3615863617986684596, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
       propertyPath: healthBarFill
@@ -1541,6 +1546,10 @@ PrefabInstance:
       propertyPath: healthBarRoot
       value: 
       objectReference: {fileID: 1808480813}
+    - target: {fileID: 3615863617986684596, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
+      propertyPath: zombieVineHang
+      value: 
+      objectReference: {fileID: 1313933150}
     - target: {fileID: 3615863617986684596, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
       propertyPath: phase2ShakeAmount
       value: 1.2
