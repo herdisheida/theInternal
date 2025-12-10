@@ -84,7 +84,6 @@ public class BossController : MonoBehaviour
     public string deathNextScene = "AnalysisScreen";
 
     private bool isDying = false;
-    private bool isUsingVines = false;
 
 
     void Start()
@@ -283,7 +282,7 @@ public class BossController : MonoBehaviour
     {
         // stop all ongoing attacks/movement
         attacksEnabled = false;
-        // freezeMovement = true;
+        freezeMovement = true;
         canBite = false;
         canSpread = false;
         isBursting = false;
