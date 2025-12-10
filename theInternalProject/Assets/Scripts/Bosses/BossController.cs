@@ -243,7 +243,6 @@ public class BossController : MonoBehaviour
             }
             GameManager.instance?.MarkPatientSaved();
             Die();
-            SceneManager.LoadScene("AnalysisScreen");
         }
     }
 
@@ -266,7 +265,8 @@ public class BossController : MonoBehaviour
     {
         StopAllCoroutines();
         Destroy(gameObject);
-        // SceneManager.LoadScene("PatientSelection");
+
+        SceneManager.LoadScene("AnalysisScreen");
     }
 
     // ---------------- PHASE 2 ----------------
