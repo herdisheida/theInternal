@@ -544,27 +544,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3447872424490958614, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
       propertyPath: m_Color.b
-      value: 0.103003174
+      value: 0.003921569
       objectReference: {fileID: 0}
     - target: {fileID: 3447872424490958614, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
       propertyPath: m_Color.g
-      value: 0.027767893
+      value: 0.003921569
       objectReference: {fileID: 0}
     - target: {fileID: 3447872424490958614, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
       propertyPath: m_Color.r
-      value: 0.1509434
+      value: 0.10980393
       objectReference: {fileID: 0}
     - target: {fileID: 4512229608844423502, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
       propertyPath: m_Color.b
-      value: 0.10196079
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4512229608844423502, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
       propertyPath: m_Color.g
-      value: 0.027450982
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4512229608844423502, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
       propertyPath: m_Color.r
-      value: 0.14901961
+      value: 0.10980393
       objectReference: {fileID: 0}
     - target: {fileID: 6479943542984722666, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
       propertyPath: m_Name
@@ -649,7 +649,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: -1346112566969983906, guid: c33304b2f22900c4282221234b4b3dfe, type: 3}
+  m_Sprite: {fileID: -4985543720073301825, guid: dca310661763d2649bf34a42b5e79d7a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -670,7 +670,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.11, y: 3.47, z: 0}
-  m_LocalScale: {x: 1.5689265, y: 1.0448753, z: 0}
+  m_LocalScale: {x: 1.2355297, y: 1.0448753, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1104168307}
@@ -1030,7 +1030,7 @@ Transform:
   m_GameObject: {fileID: 1104168306}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.214, y: 0.04, z: 0}
+  m_LocalPosition: {x: -1.214, y: 0.16, z: 0}
   m_LocalScale: {x: 1.1685648, y: 1.2697145, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1248,7 +1248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5024912, g: 0.46070665, b: 0.8207547, a: 1}
+  m_Color: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

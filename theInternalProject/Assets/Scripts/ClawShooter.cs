@@ -21,21 +21,22 @@ public class ClawShooter : MonoBehaviour
     private bool canAttack = true;
     private bool isAttacking = false;
 
-    private BossController_Werewolf wolf; // reference to the boss
+    private BossController_Werewolf wolf;
 
     void Start()
     {
-        // automatically fetch boss controller
+        // assume this script is on a child of the werewolf
         wolf = GetComponentInParent<BossController_Werewolf>();
     }
 
     void Update()
     {
-        // BLOCK SHOOTING WHEN WOLF IS ATTACKING
+        if (player == null) return;
+
+        // do not shoot while wolf is doing boomerang or phase transform
         if (wolf != null && wolf.isAttacking)
             return;
 
-        // normal shooting logic
         if (!isAttacking)
         {
             float distance = Vector2.Distance(transform.position, player.position);
@@ -47,6 +48,7 @@ public class ClawShooter : MonoBehaviour
     IEnumerator ClawShootRoutine()
     {
         canAttack = false;
+        isAttacking = true;
 
         if (clawRenderer != null && attackClawSprite != null)
             clawRenderer.sprite = attackClawSprite;
@@ -62,6 +64,8 @@ public class ClawShooter : MonoBehaviour
 
         if (clawRenderer != null && idleClawSprite != null)
             clawRenderer.sprite = idleClawSprite;
+
+        isAttacking = false;
 
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
