@@ -151,8 +151,51 @@ public class BossController_Werewolf : MonoBehaviour
         // stop all ongoing attacks/movement
 
 
+        // sound effect
+        AudioManager.instance?.ZombieDeath();
+
+        // small camera shake when he dies
+        CameraShake.instance?.Shake(0.4f, 0.2f);
+
+        Vector3 originalPos = transform.position;
+
+        // ---- SHAKE IN PLACE ----
+        float elapsed = 0f;
+        while (elapsed < deathShakeDuration)
+        {
+            float offsetX = Random.Range(-1f, 1f) * deathShakeMagnitude;
+            float offsetY = Random.Range(-1f, 1f) * deathShakeMagnitude;
+
+            transform.position = originalPos + new Vector3(offsetX, offsetY, 0f);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // snap back
+        transform.position = originalPos;
+
+        // ---- FALL OFF SCREEN ----
+        Vector3 targetPos = originalPos + Vector3.down * deathFallDistance;
+
+        while (transform.position.y > targetPos.y)
+        {
+            // move down
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                targetPos,
+                deathFallSpeed * Time.deltaTime
+            );
+
+            // spin while falling
+            transform.Rotate(0f, 0f, deathFallRotationSpeed * Time.deltaTime);
+
+            yield return null;
+        }
+
 
         Destroy(gameObject);
+        // change scene
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(deathNextScene);    }
 
