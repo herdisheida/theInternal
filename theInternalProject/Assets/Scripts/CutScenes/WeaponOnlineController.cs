@@ -25,7 +25,7 @@ public class WeaponOnlineController : MonoBehaviour
 
     [Header("Scene Flow")]
     public int requiredShots = 3; // how many shots before continuing
-    public string nextSceneName = "BossBattle";
+    private string nextSceneName = "ZombieBoss";
 
     [Header("Player Entrance")]
     public Transform player;                // your PlayerCharacter transform
