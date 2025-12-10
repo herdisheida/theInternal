@@ -251,7 +251,7 @@ MonoBehaviour:
   attackDelay: 3
   moveSpeed: 2
   moveDistance: 2
-  maxHealth: 2
+  maxHealth: 100
   healthBarFill: {fileID: 0}
   healthBarRoot: {fileID: 0}
   smoothSpeed: 10
@@ -279,7 +279,7 @@ MonoBehaviour:
   spreadAngle: 45
   spreadCooldown: 4
   zombieVineHang: {fileID: 6824211441945623543}
-  deathShakeDuration: 0.8
+  deathShakeDuration: 1
   deathShakeMagnitude: 0.12
   deathFallSpeed: 6
   deathFallRotationSpeed: 180

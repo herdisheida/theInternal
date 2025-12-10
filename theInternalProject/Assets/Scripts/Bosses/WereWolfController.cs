@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
+
 
 public class BossController_Werewolf : MonoBehaviour
 {
@@ -54,6 +56,17 @@ public class BossController_Werewolf : MonoBehaviour
 
     public float phase2ClawCooldownMultiplier = 0.6f;
     public float phase2MinAttackDistanceMultiplier = 1.2f;
+
+
+    [Header("Death Animation")]
+    public float deathShakeDuration = 1f;
+    public float deathShakeMagnitude = 0.12f;
+    public float deathFallSpeed = 6f;
+    public float deathFallRotationSpeed = 180f;   // degrees per second
+    public float deathFallDistance = 6f;          // how far down he falls
+    public string deathNextScene = "AnalysisScreen";
+
+    private bool isDying = false;
 
 
     void Start()
@@ -113,7 +126,10 @@ public class BossController_Werewolf : MonoBehaviour
             StartCoroutine(EnterPhase2());
 
         if (currentHealth <= 0)
-            Die();
+        {
+            GameManager.instance?.MarkPatientSaved();
+            StartCoroutine(Die());
+        }
     }
 
     void UpdateHealthBar()
@@ -130,10 +146,58 @@ public class BossController_Werewolf : MonoBehaviour
         fillSprite.color = (ratio <= 0.25f ? Color.red : Color.green);
     }
 
-    void Die()
+    IEnumerator Die()
     {
+        // stop all ongoing attacks/movement
+
+
+        // sound effect
+        AudioManager.instance?.ZombieDeath();
+
+        // small camera shake when he dies
+        CameraShake.instance?.Shake(0.4f, 0.2f);
+
+        Vector3 originalPos = transform.position;
+
+        // ---- SHAKE IN PLACE ----
+        float elapsed = 0f;
+        while (elapsed < deathShakeDuration)
+        {
+            float offsetX = Random.Range(-1f, 1f) * deathShakeMagnitude;
+            float offsetY = Random.Range(-1f, 1f) * deathShakeMagnitude;
+
+            transform.position = originalPos + new Vector3(offsetX, offsetY, 0f);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // snap back
+        transform.position = originalPos;
+
+        // ---- FALL OFF SCREEN ----
+        Vector3 targetPos = originalPos + Vector3.down * deathFallDistance;
+
+        while (transform.position.y > targetPos.y)
+        {
+            // move down
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                targetPos,
+                deathFallSpeed * Time.deltaTime
+            );
+
+            // spin while falling
+            transform.Rotate(0f, 0f, deathFallRotationSpeed * Time.deltaTime);
+
+            yield return null;
+        }
+
+
         Destroy(gameObject);
-    }
+        // change scene
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(deathNextScene);    }
 
     IEnumerator ShakeHealthBar()
     {

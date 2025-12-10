@@ -80,11 +80,12 @@ public class BossController : MonoBehaviour
     public float deathShakeMagnitude = 0.12f;
     public float deathFallSpeed = 6f;
     public float deathFallRotationSpeed = 180f;   // degrees per second
-    public float deathFallDistance = 8f;          // how far down he falls
+    public float deathFallDistance = 6f;          // how far down he falls
     public string deathNextScene = "AnalysisScreen";
 
     private bool isDying = false;
     private Coroutine vineRoutine;
+    private Coroutine shootBurstRoutine;
 
 
 
@@ -290,9 +291,14 @@ public class BossController : MonoBehaviour
         isBursting = false;
         isUsingVines = false;
         if (vineRoutine != null) // stop vine attack
-    {
+        {
             StopCoroutine(vineRoutine);
             vineRoutine = null;
+        }
+        if (shootBurstRoutine != null) // stop shooting
+        {
+            StopCoroutine(shootBurstRoutine);
+            shootBurstRoutine = null;
         }
 
         // sound effect
