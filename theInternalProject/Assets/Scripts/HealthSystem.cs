@@ -217,4 +217,16 @@ public class HealthSystem : MonoBehaviour
         UpdateHealthBar();
         UpdateHealthText();
     }
+
+    // ---------------- KNOCKBACK ----------------
+    public void ApplyKnockback(Vector2 force)
+    {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb == null) return;
+
+        rb.linearVelocity = Vector2.zero;
+        rb.AddForce(force, ForceMode2D.Impulse);
+    }
+
+
 }

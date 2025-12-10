@@ -48,6 +48,14 @@ public class PlayerBullet : MonoBehaviour
                 return;
             }
 
+            Vampire vampireBoss = collision.GetComponent<Vampire>();
+            if (vampireBoss != null)
+            {
+                vampireBoss.TakeDamage(damage);
+                Destroy(gameObject);
+                return;
+            }
+
             Destroy(gameObject);
         }
 
