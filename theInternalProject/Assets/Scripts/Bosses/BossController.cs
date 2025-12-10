@@ -339,6 +339,7 @@ public class BossController : MonoBehaviour
         }
 
         // change scene
+        Destroy(gameObject);
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(deathNextScene);
     }

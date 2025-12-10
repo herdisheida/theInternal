@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
+
 
 public class BossController_Werewolf : MonoBehaviour
 {
@@ -54,6 +56,17 @@ public class BossController_Werewolf : MonoBehaviour
 
     public float phase2ClawCooldownMultiplier = 0.6f;
     public float phase2MinAttackDistanceMultiplier = 1.2f;
+
+
+    [Header("Death Animation")]
+    public float deathShakeDuration = 1f;
+    public float deathShakeMagnitude = 0.12f;
+    public float deathFallSpeed = 6f;
+    public float deathFallRotationSpeed = 180f;   // degrees per second
+    public float deathFallDistance = 8f;          // how far down he falls
+    public string deathNextScene = "AnalysisScreen";
+
+    private bool isDying = false;
 
 
     void Start()
@@ -113,7 +126,10 @@ public class BossController_Werewolf : MonoBehaviour
             StartCoroutine(EnterPhase2());
 
         if (currentHealth <= 0)
-            Die();
+        {
+            GameManager.instance?.MarkPatientSaved();
+            StartCoroutine(Die());
+        }
     }
 
     void UpdateHealthBar()
@@ -130,10 +146,15 @@ public class BossController_Werewolf : MonoBehaviour
         fillSprite.color = (ratio <= 0.25f ? Color.red : Color.green);
     }
 
-    void Die()
+    IEnumerator Die()
     {
+        // stop all ongoing attacks/movement
+
+
+
         Destroy(gameObject);
-    }
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(deathNextScene);    }
 
     IEnumerator ShakeHealthBar()
     {
