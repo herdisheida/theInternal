@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            ResetAllPatients();
         }
         else
         {
@@ -87,6 +88,15 @@ public class GameManager : MonoBehaviour
         currentPatient.status = PatientStatus.Saved;
         currentPatient.isSaved = true;
         Debug.Log($"Patient {currentPatient.patientName} marked SAVED.");
+    }
+    public void ResetAllPatients()
+    {
+        if (allPatients == null) return;
+
+        allPatients[0].status = PatientStatus.None;
+        allPatients[1].status = PatientStatus.None;
+        allPatients[2].status = PatientStatus.None;
+        Debug.Log($"All patients have been reset");
     }
 
 

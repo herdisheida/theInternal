@@ -42,7 +42,7 @@ public class HealthSystem : MonoBehaviour
     void Start()
     {
         // Initialize shared HP
-        if (sharedHealth < 0 || sharedHealth > maxHealth)
+        if (sharedHealth <= 0 || sharedHealth > maxHealth)
         {
             currentHealth = maxHealth;
             sharedHealth = currentHealth;
