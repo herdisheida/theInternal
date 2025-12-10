@@ -60,7 +60,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip zombieRoarClip; // phase 2
     public AudioClip zombieDeathClip;
  
-
+    [Header("Werewolf Enemy SFX")]
+    public AudioClip werewolfHowlingClip; // phase 2
+    public AudioClip werewolfGrowlClip;
 
     void Awake()
     {
@@ -192,6 +194,9 @@ public class AudioManager : MonoBehaviour
     public void DeepExhale()         => PlaySFX(deepExhaleClip);
 
     public void ZombieChomp()        => PlaySFX(zombieChompClip);
-    public void ZombieRoar()        => PlaySFX(zombieRoarClip);
+    public void ZombieRoar()         => PlaySFX(zombieRoarClip);
     public void ZombieDeath()        => PlaySFX(zombieDeathClip);
+
+    public void WerewolfHowling()    => PlaySFX(werewolfHowlingClip);
+    public void WerewolfGrowl()      => PlaySFX(werewolfGrowlClip);
 }

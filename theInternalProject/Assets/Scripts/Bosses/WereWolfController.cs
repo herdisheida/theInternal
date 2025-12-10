@@ -67,6 +67,7 @@ public class BossController_Werewolf : MonoBehaviour
     public string deathNextScene = "AnalysisScreen";
 
     private bool isDying = false;
+    private Coroutine BoomerangAttack; 
 
 
     void Start()
@@ -90,14 +91,14 @@ public class BossController_Werewolf : MonoBehaviour
         UpdateHealthBar();
 
         // Only try Boomerang if allowed and not currently doing another attack
-        if (canBoomerang && !isAttacking)
+        if (canBoomerang && !isAttacking && !isDying)
             TryBoomerangAttack();
     }
 
     // ---------------- MOVEMENT ----------------
     void MoveBoss()
     {
-        if (isAttacking) return;
+        if (isAttacking || isDying) return;
 
         movementTime += Time.deltaTime * moveSpeed;
         float offsetY = Mathf.Sin(movementTime) * moveDistance;
@@ -125,8 +126,9 @@ public class BossController_Werewolf : MonoBehaviour
         if (!phase2 && !isAttacking && currentHealth <= maxHealth * 0.5f)
             StartCoroutine(EnterPhase2());
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !isDying)
         {
+            isDying = true;
             GameManager.instance?.MarkPatientSaved();
             StartCoroutine(Die());
         }
@@ -149,10 +151,14 @@ public class BossController_Werewolf : MonoBehaviour
     IEnumerator Die()
     {
         // stop all ongoing attacks/movement
-
+        if (BoomerangAttack != null) 
+        {
+            StopCoroutine(BoomerangAttack);
+            BoomerangAttack = null;
+        }
 
         // sound effect
-        AudioManager.instance?.ZombieDeath();
+        AudioManager.instance?.WerewolfHowling();
 
         // small camera shake when he dies
         CameraShake.instance?.Shake(0.4f, 0.2f);
@@ -194,10 +200,11 @@ public class BossController_Werewolf : MonoBehaviour
         }
 
 
-        Destroy(gameObject);
         // change scene
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(deathNextScene);    }
+        StopAllCoroutines();
+        SceneManager.LoadScene(deathNextScene);
+    }
 
     IEnumerator ShakeHealthBar()
     {
@@ -335,6 +342,8 @@ public class BossController_Werewolf : MonoBehaviour
     // ---------------- PHASE 2 ----------------
     IEnumerator EnterPhase2()
     {
+        AudioManager.instance?.WerewolfHowling();
+
         phase2 = true;
         isAttacking = true;
 
