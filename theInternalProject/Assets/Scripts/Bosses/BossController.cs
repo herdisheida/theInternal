@@ -80,7 +80,7 @@ public class BossController : MonoBehaviour
     public float deathShakeMagnitude = 0.12f;
     public float deathFallSpeed = 6f;
     public float deathFallRotationSpeed = 180f;   // degrees per second
-    public float deathFallDistance = 8f;          // how far down he falls
+    public float deathFallDistance = 6f;          // how far down he falls
     public string deathNextScene = "AnalysisScreen";
 
     private bool isDying = false;

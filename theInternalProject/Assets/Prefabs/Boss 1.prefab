@@ -274,6 +274,12 @@ MonoBehaviour:
   phase2TrailTime: 0.4
   phase2ClawCooldownMultiplier: 0.6
   phase2MinAttackDistanceMultiplier: 1.2
+  deathShakeDuration: 1
+  deathShakeMagnitude: 0.12
+  deathFallSpeed: 6
+  deathFallRotationSpeed: 180
+  deathFallDistance: 6
+  deathNextScene: AnalysisScreen
 --- !u!114 &746539849068449630
 MonoBehaviour:
   m_ObjectHideFlags: 0
