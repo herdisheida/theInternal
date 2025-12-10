@@ -7,15 +7,13 @@ public class Vampire : MonoBehaviour
 
     // -------- MOVEMENT --------
     [Header("Movement")]
-    public float moveSpeed = 1.6f;
+    public float moveSpeed = 1.5f;
     public float hoverAmplitude = 1.2f;
-    public float hoverFrequency = 1.4f;
+    public float hoverFrequency = 1.5f;
+    private float moveTime = 0f;
 
-    private float hoverTime = 0f;
+    private bool busy = false;
     private Vector3 startPos;
-
-    private bool busy = false;  // prevents actions during attacks
-    private bool isDead = false;
 
     // -------- HEALTH --------
     [Header("Health")]
@@ -23,153 +21,140 @@ public class Vampire : MonoBehaviour
     private int currentHealth;
 
     public Transform healthBarFill;
-    private float fullWidth;
-    private float height;
     private SpriteRenderer barSprite;
+    private float fullWidth;
+    private float barHeight;
     private DamageFlash flash;
 
     // -------- WIND SLASH --------
-    [Header("Wind Slash Attack")]
+    [Header("Wind Slash")]
     public GameObject windSlashPrefab;
     public Transform shootPoint;
     public float windCooldown = 2f;
-    public float slashSpeed = 8f;
-    public float attackDistance = 12f;
+    public float slashSpeed = 7f;
+    public float windAttackDist = 12f;
     private bool canWind = true;
 
-    // -------- LIFE DRAIN --------
-    [Header("Life Drain Aura")]
-    public GameObject drainAura;
-    public float drainDuration = 2.5f;
-    public float followSpeed = 10f;
-    public float returnSpeed = 3f;
-    public float drainRange = 3.2f;
-    public int drainDamage = 1;
-    public float tickRate = 0.4f;
-    public float drainCooldown = 6f;
-    private bool canDrain = true;
-    public float auraDrainRadius = 3.2f;
-
-    private Vector3 auraHomePos;
-
     // -------- BAT SWARM --------
-    [Header("Bat Swarm Attack")]
-    public GameObject swarmPrefab;
-    public float swarmCooldown = 6f;
+    [Header("Bat Swarm")]
+    public GameObject batPrefab;
+    public int batsToSpawn = 4;
+    public float swarmCooldown = 7f;
     private bool canSwarm = true;
 
+    // -------- GRAVITY PULL --------
+    [Header("Gravity Pull")] 
+    public float pullDuration = 3f;
+    public float pullStrength = 7f;
+    public float pullRange = 15f;
+    public float gravityCooldown = 10f;
+
+    private bool canGravityPull = true;
+
+    private Vector2 externalForce = Vector2.zero;
+
     // -------- PHASE 2 --------
-    [Header("Phase 2")]
     public bool phase2 = false;
-    public float phase2MoveSpeed = 2.4f;
-    public float phase2SlashSpeedMult = 1.3f;
-    public float phase2WindCooldownMult = 0.7f;
 
     void Start()
     {
         startPos = transform.position;
+
         currentHealth = maxHealth;
 
-        fullWidth = healthBarFill.localScale.x;
-        height = healthBarFill.localScale.y;
-
         barSprite = healthBarFill.GetComponent<SpriteRenderer>();
-        flash = GetComponent<DamageFlash>();
+        fullWidth = healthBarFill.localScale.x;
+        barHeight = healthBarFill.localScale.y;
 
-        if (drainAura != null)
-        {
-            auraHomePos = drainAura.transform.localPosition;
-            drainAura.SetActive(false);
-        }
+        flash = GetComponent<DamageFlash>();
     }
 
     void Update()
     {
-        if (!busy && !isDead)
-        {
-            HoverMovement();
-        }
-
+        HoverMove();
         UpdateHealthBar();
 
-        if (busy || isDead) return;
+        if (busy) return;
 
+        // --- Phase 1 ---
         if (!phase2)
         {
-            TryWind();
+            TryWindSlash();
         }
         else
         {
-            TryWind();
-            TryLifeDrain();
-            TrySwarm();
+            // --- Phase 2 attacks ---
+            TryWindSlash();
+            TryBatSwarm();
+            TryGravityPull();
         }
+
+        // Apply gravity pull and knockback movement if present
+        if (externalForce.magnitude > 0.1f)
+        {
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
+            if (rb != null)
+            {
+                rb.MovePosition(rb.position + externalForce * Time.deltaTime);
+            }
+
+            // Smoothly decay the force
+            externalForce = Vector2.Lerp(externalForce, Vector2.zero, 4f * Time.deltaTime);
+        }
+
+
     }
 
-    // -------------------------------------------
-    // MOVEMENT
-    // -------------------------------------------
-    void HoverMovement()
+    // -------- MOVEMENT --------
+    void HoverMove()
     {
-        hoverTime += Time.deltaTime;
+        if (busy) return;
 
-        float offsetY = Mathf.Sin(hoverTime * hoverFrequency) * hoverAmplitude;
-        float offsetX = Mathf.Cos(hoverTime * 0.5f) * 0.5f;
+        moveTime += Time.deltaTime;
 
-        Vector3 target = new Vector3(
-            startPos.x + offsetX,
-            startPos.y + offsetY,
-            transform.position.z
-        );
-
-        transform.position = Vector3.Lerp(transform.position, target, Time.deltaTime * 2f);
+        float yOffset = Mathf.Sin(moveTime * hoverFrequency) * hoverAmplitude;
+        transform.position = new Vector3(startPos.x, startPos.y + yOffset, transform.position.z);
     }
 
-    // -------------------------------------------
-    // HEALTH SYSTEM
-    // -------------------------------------------
+    // -------- HEALTH --------
     public void TakeDamage(int amount)
     {
-        if (isDead) return;
-
         currentHealth -= amount;
         currentHealth = Mathf.Max(0, currentHealth);
 
         flash?.Flash();
 
         if (!phase2 && currentHealth <= maxHealth * 0.5f)
+        {
             StartCoroutine(EnterPhase2());
+        }
 
         if (currentHealth <= 0)
-            Die();
+        {
+            Destroy(gameObject);
+        }
     }
 
     void UpdateHealthBar()
     {
-        float p = (float)currentHealth / maxHealth;
+        float ratio = (float)currentHealth / maxHealth;
+        float newX = Mathf.Lerp(healthBarFill.localScale.x, fullWidth * ratio, Time.deltaTime * 10f);
 
-        float newX = Mathf.Lerp(healthBarFill.localScale.x, fullWidth * p, Time.deltaTime * 9f);
-        healthBarFill.localScale = new Vector3(newX, height, 1f);
-
-        barSprite.color = p <= 0.25f ? Color.red : Color.green;
+        healthBarFill.localScale = new Vector3(newX, barHeight, 1f);
+        barSprite.color = ratio < 0.25f ? Color.red : Color.green;
     }
 
-    void Die()
-    {
-        isDead = true;
-        Destroy(gameObject, 0.1f);
-    }
 
-    // -------------------------------------------
-    // WIND SLASH
-    // -------------------------------------------
-    void TryWind()
+    // ============================================================
+    //                       WIND SLASH
+    // ============================================================
+    void TryWindSlash()
     {
         if (!canWind) return;
 
         float dist = Mathf.Abs(player.position.x - transform.position.x);
-
-        if (dist < attackDistance)
+        if (dist < windAttackDist)
             StartCoroutine(WindSlashRoutine());
     }
 
@@ -178,10 +163,9 @@ public class Vampire : MonoBehaviour
         busy = true;
         canWind = false;
 
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.2f);
 
-        float dir = (player.position.x < transform.position.x ? -1f : 1f);
-
+        float dir = (player.position.x < transform.position.x) ? -1f : 1f;
         GameObject slash = Instantiate(windSlashPrefab, shootPoint.position, Quaternion.identity);
         slash.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(dir * slashSpeed, 0);
 
@@ -190,118 +174,107 @@ public class Vampire : MonoBehaviour
         canWind = true;
     }
 
-    // -------------------------------------------
-    // LIFE DRAIN AURA — FOLLOWS PLAYER
-    // -------------------------------------------
-    void TryLifeDrain()
-    {
-        if (canDrain)
-            StartCoroutine(DrainRoutine());
-    }
-   IEnumerator DrainRoutine()
-    {
-        canDrain = false;
-        busy = true;
 
-        // Enable aura
-        drainAura.SetActive(true);
-
-        // Vampire moves faster during drain
-        float drainSpeed = 3.5f;
-
-        float elapsed = 0f;
-
-        while (elapsed < drainDuration)
-        {
-            // Always follow the player
-            Vector3 targetPos = Vector3.MoveTowards(
-                transform.position,
-                player.position,
-                drainSpeed * Time.deltaTime
-            );
-
-            transform.position = targetPos;
-
-            // Damage if player is inside aura collider
-            float dist = Vector2.Distance(transform.position, player.position);
-
-            if (dist < auraDrainRadius)  // define radius at top of script
-            {
-                player.GetComponentInParent<HealthSystem>()?.TakeDamage(drainDamage);
-            }
-
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        // Disable after attack
-        drainAura.SetActive(false);
-
-        busy = false;
-
-        // Cooldown
-        yield return new WaitForSeconds(drainCooldown);
-        canDrain = true;
-    }
-
-
-
-    // -------------------------------------------
-    // BAT SWARM
-    // -------------------------------------------
-    void TrySwarm()
+    // ============================================================
+    //                       BAT SWARM
+    // ============================================================
+    void TryBatSwarm()
     {
         if (canSwarm)
-            StartCoroutine(SwarmRoutine());
+            StartCoroutine(BatSwarmRoutine());
     }
 
-    IEnumerator SwarmRoutine()
+    IEnumerator BatSwarmRoutine()
     {
-        canSwarm = false;
         busy = true;
+        canSwarm = false;
 
         yield return new WaitForSeconds(0.2f);
 
-        // Spawn multiple swarms
-        int swarmCount = phase2 ? 5 : 2;
-        for (int i = 0; i < swarmCount; i++)
+        // Spawn multiple bats
+        for (int i = 0; i < batsToSpawn; i++)
         {
-            Vector3 offset = new Vector3(Random.Range(-2f, 2f), Random.Range(-1f, 1f), 0);
-            Instantiate(swarmPrefab, transform.position + offset, Quaternion.identity);
+            Vector3 offset = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+            Instantiate(batPrefab, transform.position + offset, Quaternion.identity);
         }
 
         busy = false;
-
         yield return new WaitForSeconds(swarmCooldown);
         canSwarm = true;
     }
 
-    // -------------------------------------------
-    // ENTER PHASE 2
-    // -------------------------------------------
+
+    // ======================================================================
+    // GRAVITY PULL ATTACK (Phase 2)
+    // ======================================================================
+
+    void TryGravityPull()
+    {
+        if (canGravityPull)
+            StartCoroutine(GravityPullRoutine());
+    }
+
+    IEnumerator GravityPullRoutine()
+    {
+        Debug.Log("Vampire Gravity Pull!");
+        canGravityPull = false;
+        busy = true;
+
+        float timer = 0f;
+
+        while (timer < pullDuration)
+        {
+            float dist = Vector2.Distance(player.position, transform.position);
+
+            // Only pull the player if within range
+            if (dist < pullRange)
+            {
+                Vector2 dir = (transform.position - player.position).normalized;
+
+                // Apply pull force
+                HealthSystem hp = player.GetComponentInParent<HealthSystem>();
+                if (hp != null)
+                {
+                    hp.ApplyExternalForce(dir * pullStrength * Time.deltaTime);
+                }
+            }
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        busy = false;
+
+        // cooldown
+        yield return new WaitForSeconds(gravityCooldown);
+        canGravityPull = true;
+    }
+
+
+
+    // ============================================================
+    //                      PHASE 2 TRANSITION
+    // ============================================================
     IEnumerator EnterPhase2()
     {
         phase2 = true;
         busy = true;
 
-        Vector3 origin = transform.position;
-        float t = 0.8f;
+        // small shake
+        Vector3 orig = transform.position;
+        float t = 0.5f;
 
         while (t > 0)
         {
-            transform.position = origin + new Vector3(Random.Range(-0.1f, 0.1f), 0);
+            transform.position = orig + (Vector3)Random.insideUnitCircle * 0.15f;
             t -= Time.deltaTime;
             yield return null;
         }
 
-        transform.position = origin;
+        transform.position = orig;
 
-        // Buffs
-        moveSpeed = phase2MoveSpeed;
-        slashSpeed *= phase2SlashSpeedMult;
-        windCooldown *= phase2WindCooldownMult;
-
-        barSprite.color = Color.magenta;
+        // Visual effect
+        GetComponent<SpriteRenderer>().color = new Color(1f, 0.4f, 0.4f);
 
         busy = false;
     }

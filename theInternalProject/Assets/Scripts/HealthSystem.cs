@@ -33,6 +33,7 @@ public class HealthSystem : MonoBehaviour
     private bool isInvincible = false;
     public float blinkInterval = 0.07f;
     private SpriteRenderer[] spriteRenderers;
+    private Vector2 externalForce = Vector2.zero;
 
     void Awake()
     {
@@ -118,6 +119,11 @@ public class HealthSystem : MonoBehaviour
             if (sr != null) sr.enabled = true;
 
         isInvincible = false;
+    }
+
+    public void ApplyExternalForce(Vector2 force)
+    {
+        externalForce += force;  // stackable pulls or pushes
     }
 
 
@@ -227,6 +233,7 @@ public class HealthSystem : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         rb.AddForce(force, ForceMode2D.Impulse);
     }
+
 
 
 }
