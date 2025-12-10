@@ -186,7 +186,7 @@ public class AudioManager : MonoBehaviour
     public void PodFlyingOff()       => PlaySFX(podFlyingOffClip);
     
     public void DamageTaken()        => PlaySFX(damageTakenClip);
-    public void Dying()              => PlaySFX(dyingClip);
+    public void Death()              => PlaySFX(dyingClip);
     public void Attack()             => PlaySFX(attackClip);
 
     public void ShootPatient()       => PlaySFX(shootPatientClip);
