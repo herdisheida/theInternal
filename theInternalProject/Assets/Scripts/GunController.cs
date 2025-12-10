@@ -61,6 +61,8 @@ public class GunController : MonoBehaviour
         // bullet.SendMessage("SetDirection", firePoint.right, SendMessageOptions.DontRequireReceiver);   
 
         isLeftFirePoint = !isLeftFirePoint;
+
+
         AudioManager.instance?.Attack();
     }
 

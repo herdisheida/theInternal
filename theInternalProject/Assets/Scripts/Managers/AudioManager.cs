@@ -155,7 +155,6 @@ public class AudioManager : MonoBehaviour
     }
 
 
-
     // ---------------------- helper methods ----------------------
 
     // helper methods for playing background music

@@ -11,6 +11,7 @@ TagManager:
   - Background
   - Infection
   - Patient
+  - Bullets
   layers:
   - Default
   - TransparentFX
