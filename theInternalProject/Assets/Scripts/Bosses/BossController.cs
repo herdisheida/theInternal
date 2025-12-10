@@ -357,7 +357,6 @@ public class BossController : MonoBehaviour
         }
         transform.position = originalPos;
 
-        isUsingVines = true;
         StartCoroutine(VineAttackRoutine());
     }
 
