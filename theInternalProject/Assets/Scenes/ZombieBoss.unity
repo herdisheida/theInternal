@@ -1473,10 +1473,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1784275241}
     - target: {fileID: 3615863617986684596, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
-      propertyPath: maxHealth
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3615863617986684596, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
       propertyPath: healthBarFill
       value: 
       objectReference: {fileID: 1104168307}
@@ -1485,8 +1481,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1808480813}
     - target: {fileID: 5359322526546469424, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
-      propertyPath: m_Enabled
-      value: 1
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359322526546469424, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359322526546469424, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 3588073
       objectReference: {fileID: 0}
     - target: {fileID: 6553214280964255607, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
       propertyPath: m_Name

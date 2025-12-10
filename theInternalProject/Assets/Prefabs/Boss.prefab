@@ -248,17 +248,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossController
   player: {fileID: 0}
+  attackDelay: 3
   moveSpeed: 2
   moveDistance: 2
   maxHealth: 100
   healthBarFill: {fileID: 0}
   healthBarRoot: {fileID: 0}
+  smoothSpeed: 10
   firePoint: {fileID: 1427738371822303484}
   bulletPrefab: {fileID: 8294092606376788268, guid: 6af455a6fc270724f88e390dc69ecfa5, type: 3}
   bulletsPerBurst: 4
   timeBetweenShots: 0.15
   burstInterval: 2
-  smoothSpeed: 10
   biteHitbox: {fileID: 3667263573370242052}
   lungeDistance: 0.5
   lungeSpeed: 10
@@ -345,7 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5540e09001bc6d42971204828b204b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageFlash
-  spriteRenderer: {fileID: 5359322526546469424}
+  spriteRenderers: []
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.1
 --- !u!1 &6824211441945623543
