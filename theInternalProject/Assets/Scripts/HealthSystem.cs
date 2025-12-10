@@ -74,6 +74,8 @@ public class HealthSystem : MonoBehaviour
 
         sharedHealth = currentHealth;
 
+        AudioManager.instance?.DamageTaken();
+
         // Flash red
         DamageFlash flash = GetComponent<DamageFlash>();
         if (flash != null)
@@ -124,6 +126,7 @@ public class HealthSystem : MonoBehaviour
     // ---------------- DEATH ----------------
     public void Die()
     {
+        AudioManager.instance?.Death()
         if (healthBarRoot != null)
             healthBarRoot.SetActive(false);
 
