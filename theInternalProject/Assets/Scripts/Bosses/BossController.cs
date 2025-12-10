@@ -57,6 +57,8 @@ public class BossController : MonoBehaviour
     [Header("Phase Control")]
     public bool phase2 = false;
     public float phase2Threshold = 0.5f;
+    public float phase2ShakeDuration = 1f;
+    public float phase2ShakeAmount = 0.25f;
 
     [Header("Phase 2 Vine Attack")]
     public GameObject vinePrefab;
@@ -227,7 +229,7 @@ public class BossController : MonoBehaviour
             CameraShake.instance?.Shake(0.3f, 0.15f);
 
         if (!phase2 && currentHealth > 0 && currentHealth <= maxHealth * phase2Threshold)
-            EnterPhase2();
+            StartCoroutine(EnterPhase2());
 
         if (currentHealth <= 0)
         {
@@ -271,9 +273,26 @@ public class BossController : MonoBehaviour
     }
 
     // ---------------- PHASE 2 ----------------
-    void EnterPhase2()
+    IEnumerator EnterPhase2()
     {
         phase2 = true;
+
+        Vector3 originalPos = transform.position;
+        float t = 0f;
+
+        // shaking transition
+        while (t < phase2ShakeDuration)
+        {
+            float ox = Random.Range(-phase2ShakeAmount, phase2ShakeAmount);
+            float oy = Random.Range(-phase2ShakeAmount, phase2ShakeAmount);
+
+            transform.position = originalPos + new Vector3(ox, oy, 0);
+            t += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = originalPos;
+
+
         AudioManager.instance?.ZombieRoar();
         StartCoroutine(VineAttackRoutine());
     }
