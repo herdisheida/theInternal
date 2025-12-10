@@ -20,8 +20,10 @@ public class GunController : MonoBehaviour
     {
         currentBullets = maxBullets;
         isLeftFirePoint = true;
-        gunUI.UpdateAmmoUI(currentBullets, maxBullets);
-        gunUI.hideReloading();
+        if (gunUI != null) {
+            gunUI.UpdateAmmoUI(currentBullets, maxBullets);
+            gunUI.hideReloading();
+        }
     }
     void Update()
     {
