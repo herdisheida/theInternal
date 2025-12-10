@@ -6,9 +6,9 @@ public class VineAttack : MonoBehaviour
     public int damage = 10;
 
     [Header("Timing")]
-    public float warningTime = 2f;
-    public float stretchSpeed = 4f;
-    public float retractSpeed = 3f;
+    public float warningTime = 1f;
+    public float stretchSpeed = 2f;
+    public float retractSpeed = 6f;
 
     [Header("Warning Indicator")]
     public GameObject warningIndicatorPrefab;   // Assign in Inspector
