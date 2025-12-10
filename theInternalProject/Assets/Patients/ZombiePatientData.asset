@@ -23,3 +23,4 @@ MonoBehaviour:
   Background: {fileID: 0}
   isSaved: 0
   status: 0
+  infectionSprite: {fileID: 7443306363908782183, guid: ad065285958354dbcb4c7e10c46af656, type: 3}

@@ -494,14 +494,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 741950159}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d2ace7ca5646a3478a20004b986bc8b, type: 3}
+  m_Script: {fileID: 11500000, guid: 53d9a5b66020e2f4b9e8dad870028524, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PatientAnalasysUI
-  patientImage: {fileID: 72857686}
-  backgroundImage: {fileID: 383727663}
-  WerewolfContainer: {fileID: 0}
-  VampireContainer: {fileID: 0}
-  ZombieContainer: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::ChangeScene
 --- !u!1 &1067120738
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,7 +610,6 @@ GameObject:
   - component: {fileID: 1244073172}
   - component: {fileID: 1244073174}
   - component: {fileID: 1244073175}
-  - component: {fileID: 1244073176}
   - component: {fileID: 1244073177}
   m_Layer: 5
   m_Name: ZombieContainer
@@ -667,23 +661,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PatientSlot
   portraitImage: {fileID: 2135480968}
   data: {fileID: 11400000, guid: b9e940b781e414dc0aa84c87f8ac9111, type: 2}
---- !u!114 &1244073176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1244073171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d2ace7ca5646a3478a20004b986bc8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PatientAnalasysUI
-  patientImage: {fileID: 2135480968}
-  backgroundImage: {fileID: 2126558527}
-  WerewolfContainer: {fileID: 0}
-  VampireContainer: {fileID: 0}
-  ZombieContainer: {fileID: 0}
 --- !u!114 &1244073177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,14 +744,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1316382577}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d2ace7ca5646a3478a20004b986bc8b, type: 3}
+  m_Script: {fileID: 11500000, guid: 53d9a5b66020e2f4b9e8dad870028524, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PatientAnalasysUI
-  patientImage: {fileID: 148115861}
-  backgroundImage: {fileID: 1901270757}
-  WerewolfContainer: {fileID: 0}
-  VampireContainer: {fileID: 0}
-  ZombieContainer: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::ChangeScene
 --- !u!1 &1355910209
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,8 +798,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2ace7ca5646a3478a20004b986bc8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PatientAnalasysUI
-  patientImage: {fileID: 0}
-  backgroundImage: {fileID: 0}
+  patientImage: {fileID: 72857686}
+  backgroundImage: {fileID: 383727663}
   WerewolfContainer: {fileID: 1316382577}
   VampireContainer: {fileID: 741950159}
   ZombieContainer: {fileID: 1244073171}

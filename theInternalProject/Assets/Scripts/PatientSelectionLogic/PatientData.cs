@@ -18,6 +18,9 @@ public class PatientData : ScriptableObject
     public bool isSaved;
 
     public PatientStatus status;
+    public Sprite infectionSprite;
+    public RuntimeAnimatorController infectionAnimator;
+    public string infectionAnimationStringName;
 
 }
 
