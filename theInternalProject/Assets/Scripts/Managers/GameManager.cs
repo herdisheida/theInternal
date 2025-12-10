@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     [Header("Current Patient")]
     public PatientData currentPatient;   // who we’re working on right now
 
+    [Header("Patients that have been saved")]
+    public int patientSaved = 0;
+
 
 
     void Awake()
