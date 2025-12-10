@@ -90,14 +90,14 @@ public class BossController_Werewolf : MonoBehaviour
         UpdateHealthBar();
 
         // Only try Boomerang if allowed and not currently doing another attack
-        if (canBoomerang && !isAttacking)
+        if (canBoomerang && !isAttacking && !isDying)
             TryBoomerangAttack();
     }
 
     // ---------------- MOVEMENT ----------------
     void MoveBoss()
     {
-        if (isAttacking) return;
+        if (isAttacking || isDying) return;
 
         movementTime += Time.deltaTime * moveSpeed;
         float offsetY = Mathf.Sin(movementTime) * moveDistance;
@@ -125,8 +125,9 @@ public class BossController_Werewolf : MonoBehaviour
         if (!phase2 && !isAttacking && currentHealth <= maxHealth * 0.5f)
             StartCoroutine(EnterPhase2());
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !isDying)
         {
+            isDying = true;
             GameManager.instance?.MarkPatientSaved();
             StartCoroutine(Die());
         }
@@ -194,10 +195,11 @@ public class BossController_Werewolf : MonoBehaviour
         }
 
 
-        Destroy(gameObject);
         // change scene
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(deathNextScene);    }
+        StopAllCoroutines();
+        SceneManager.LoadScene(deathNextScene);
+    }
 
     IEnumerator ShakeHealthBar()
     {

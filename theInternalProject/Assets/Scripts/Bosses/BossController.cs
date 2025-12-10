@@ -346,6 +346,7 @@ public class BossController : MonoBehaviour
 
         // change scene
         yield return new WaitForSeconds(1f);
+        StopAllCouroutines();
         SceneManager.LoadScene(deathNextScene);
     }
 
