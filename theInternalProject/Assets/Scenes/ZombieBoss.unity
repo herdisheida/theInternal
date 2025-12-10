@@ -1667,7 +1667,7 @@ PrefabInstance:
       objectReference: {fileID: 1784275241}
     - target: {fileID: 3615863617986684596, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
       propertyPath: maxHealth
-      value: 100
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3615863617986684596, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
       propertyPath: healthBarFill
@@ -1676,7 +1676,7 @@ PrefabInstance:
     - target: {fileID: 3615863617986684596, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
       propertyPath: healthBarRoot
       value: 
-      objectReference: {fileID: 1104168306}
+      objectReference: {fileID: 1648086043}
     - target: {fileID: 3615863617986684596, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
       propertyPath: deathFallDistance
       value: 6

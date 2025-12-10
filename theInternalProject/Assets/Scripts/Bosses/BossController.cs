@@ -85,6 +85,7 @@ public class BossController : MonoBehaviour
 
     private bool isDying = false;
     private Coroutine vineRoutine;
+    private Coroutine shootBurstRoutine;
 
 
 
@@ -290,9 +291,14 @@ public class BossController : MonoBehaviour
         isBursting = false;
         isUsingVines = false;
         if (vineRoutine != null) // stop vine attack
-    {
+        {
             StopCoroutine(vineRoutine);
             vineRoutine = null;
+        }
+        if (shootBurstRoutine != null) // stop shooting
+        {
+            StopCoroutine(shootBurstRoutine);
+            shootBurstRoutine = null;
         }
 
         // sound effect
@@ -339,7 +345,6 @@ public class BossController : MonoBehaviour
         }
 
         // change scene
-        Destroy(gameObject);
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(deathNextScene);
     }
