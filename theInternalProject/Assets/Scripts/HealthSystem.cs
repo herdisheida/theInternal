@@ -85,7 +85,7 @@ public class HealthSystem : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            StartCoroutine(Die());
+            Die();
             AudioManager.instance?.FadeOutMusic(1.5f);
         }
         else
@@ -124,7 +124,7 @@ public class HealthSystem : MonoBehaviour
 
 
     // ---------------- DEATH ----------------
-    IEnumerator Die()
+    public void Die()
     {
         AudioManager.instance?.Death();
         if (healthBarRoot != null)
@@ -133,7 +133,7 @@ public class HealthSystem : MonoBehaviour
         gameObject.SetActive(false);
         GameManager.instance?.MarkPatientInfected();
 
-        yield return new WaitForSeconds(2f);
+        
         SceneManager.LoadScene("ShootPatient");
     }
 
