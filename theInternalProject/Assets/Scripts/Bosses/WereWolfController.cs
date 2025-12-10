@@ -126,6 +126,9 @@ public class BossController_Werewolf : MonoBehaviour
         if (!phase2 && !isAttacking && currentHealth <= maxHealth * 0.5f)
             StartCoroutine(EnterPhase2());
 
+
+        if (1 <= currentHealth && currentHealth <= 3) StopAllCoroutines();
+
         if (currentHealth <= 0 && !isDying)
         {
             isDying = true;
@@ -226,6 +229,8 @@ public class BossController_Werewolf : MonoBehaviour
     // ---------------- ATTACK LOGIC ----------------
     void TryBoomerangAttack()
     {
+        if (isDying) return;
+
         float dist = Mathf.Abs(player.position.x - transform.position.x);
 
         if (dist < 10f)
@@ -236,7 +241,7 @@ public class BossController_Werewolf : MonoBehaviour
     IEnumerator BoomerangAttackRoutine()
     {
         // Check BEFORE enabling blur or effects
-        if (!canBoomerang || isAttacking)
+        if (!canBoomerang || isAttacking || isDying)
             yield break;
 
         isAttacking = true;
