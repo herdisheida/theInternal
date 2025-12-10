@@ -194,6 +194,8 @@ MonoBehaviour:
   healthBarRoot: {fileID: 0}
   healthBarFill: {fileID: 0}
   smoothSpeed: 10
+  pulseSpeed: 6
+  pulseScaleAmount: 0.15
   healthText: {fileID: 0}
   healthWorldText: {fileID: 0}
   invincibilityPeriod: 0.9
