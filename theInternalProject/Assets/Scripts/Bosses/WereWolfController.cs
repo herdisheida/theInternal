@@ -337,8 +337,8 @@ public class BossController_Werewolf : MonoBehaviour
     // ---------------- PHASE 2 ----------------
     IEnumerator EnterPhase2()
     {
-        AudioManager.instance?.WerewolfRoar();
-        
+        AudioManager.instance?.WerewolfHowling();
+
         phase2 = true;
         isAttacking = true;
 

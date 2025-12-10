@@ -72,6 +72,8 @@ MonoBehaviour:
   zombieChompClip: {fileID: 8300000, guid: bf0c62b17c83840a282f70e4f0051b34, type: 3}
   zombieRoarClip: {fileID: 8300000, guid: 680e0849606864416bfc834b27499c9f, type: 3}
   zombieDeathClip: {fileID: 8300000, guid: 38e13d47e52d6419bb780ce18f56b297, type: 3}
+  werewolfHowlingClip: {fileID: 8300000, guid: 591ad1e72a164408cbaba4679964d605, type: 3}
+  werewolfDeathClip: {fileID: 0}
 --- !u!82 &5469112575120005823
 AudioSource:
   m_ObjectHideFlags: 0
