@@ -959,6 +959,11 @@ Transform:
   - {fileID: 1285919815}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &364207850 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 4796045130027009545, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
+  m_PrefabInstance: {fileID: 218653329}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &467943687
 GameObject:
   m_ObjectHideFlags: 0
@@ -1198,6 +1203,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 052794737db8040bbb5307e9abe5f294, type: 3}
+--- !u!61 &988880486 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 422553559509716480, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
+  m_PrefabInstance: {fileID: 218653329}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1097493608 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 6070565989724477573, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
+  m_PrefabInstance: {fileID: 218653329}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1104168306
 GameObject:
   m_ObjectHideFlags: 0
@@ -1797,45 +1812,29 @@ PrefabInstance:
       propertyPath: gunUI
       value: 
       objectReference: {fileID: 328812024}
-    - target: {fileID: 2749585140649661399, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
-      propertyPath: minSfxInterval
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3139167726226304750, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 3409462471403445576, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: topBorder
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1912825343}
     - target: {fileID: 3409462471403445576, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: leftBorder
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1097493608}
     - target: {fileID: 3409462471403445576, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: rightBorder
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 364207850}
     - target: {fileID: 3409462471403445576, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: bottomBorder
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4315159835419543337, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
-      propertyPath: healthBarFill
-      value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 988880486}
     - target: {fileID: 4315159835419543337, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: healthBarRoot
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1204587514}
     - target: {fileID: 4729519753121233426, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: m_Name
       value: PlayerCharacter
-      objectReference: {fileID: 0}
-    - target: {fileID: 7339443703009614014, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1846,6 +1845,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1427738371822303484, guid: e0fd5e1c25ba1e0479623f8d33ccee5a, type: 3}
   m_PrefabInstance: {fileID: 107775631}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1912825343 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7507139623795160318, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
+  m_PrefabInstance: {fileID: 218653329}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2023348736
 GameObject:
