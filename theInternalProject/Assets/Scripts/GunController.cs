@@ -47,7 +47,6 @@ public class GunController : MonoBehaviour
 
     void Shoot()
     {
-        AudioManager.instance?.Attack();
         Transform firePoint = isLeftFirePoint ? leftFirePoint.transform : rightFirePoint.transform;
         GameObject bullet = Instantiate(
             bulletPrefab, 
@@ -60,6 +59,7 @@ public class GunController : MonoBehaviour
         // bullet.SendMessage("SetDirection", firePoint.right, SendMessageOptions.DontRequireReceiver);   
 
         isLeftFirePoint = !isLeftFirePoint;
+        AudioManager.instance?.Attack();
     }
 
     

@@ -76,14 +76,15 @@ public class BossController : MonoBehaviour
     // -------------- DEATH ----------------
     [Header("Death Animation")]
     public GameObject zombieVineHang;
-    public float deathShakeDuration = 0.6f;
+    public float deathShakeDuration = 1f;
     public float deathShakeMagnitude = 0.12f;
     public float deathFallSpeed = 6f;
     public float deathFallRotationSpeed = 180f;   // degrees per second
-    public float deathFallDistance = 6f;          // how far down he falls
+    public float deathFallDistance = 8f;          // how far down he falls
     public string deathNextScene = "AnalysisScreen";
 
     private bool isDying = false;
+    private bool isUsingVines = false;
 
 
     void Start()
@@ -282,10 +283,11 @@ public class BossController : MonoBehaviour
     {
         // stop all ongoing attacks/movement
         attacksEnabled = false;
-        freezeMovement = true;
+        // freezeMovement = true;
         canBite = false;
         canSpread = false;
         isBursting = false;
+        isUsingVines = false;
 
         // sound effect
         AudioManager.instance?.ZombieDeath();
@@ -356,7 +358,7 @@ public class BossController : MonoBehaviour
         }
         transform.position = originalPos;
 
-
+        isUsingVines = true;
         StartCoroutine(VineAttackRoutine());
     }
 
@@ -364,6 +366,9 @@ public class BossController : MonoBehaviour
     {
         while (phase2)
         {
+            if (!isUsingVines) isUsingVines = true;
+            else yield return null;
+
             float topY = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 1.3f, 0)).y;
 
             Vector3 spawnPos = new Vector3(player.position.x, topY, 0f);

@@ -1537,6 +1537,14 @@ PrefabInstance:
       propertyPath: healthBarRoot
       value: 
       objectReference: {fileID: 1808480813}
+    - target: {fileID: 3615863617986684596, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
+      propertyPath: deathFallDistance
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615863617986684596, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
+      propertyPath: deathShakeDuration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6553214280964255607, guid: e8406f3405cc03a4eabea8a8538a9d09, type: 3}
       propertyPath: m_Name
       value: Boss
