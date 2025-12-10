@@ -84,6 +84,8 @@ public class BossController : MonoBehaviour
     public string deathNextScene = "AnalysisScreen";
 
     private bool isDying = false;
+    private Coroutine vineRoutine;
+
 
 
     void Start()
@@ -287,6 +289,11 @@ public class BossController : MonoBehaviour
         canSpread = false;
         isBursting = false;
         isUsingVines = false;
+        if (vineRoutine != null) // stop vine attack
+    {
+            StopCoroutine(vineRoutine);
+            vineRoutine = null;
+        }
 
         // sound effect
         AudioManager.instance?.ZombieDeath();
@@ -362,7 +369,7 @@ public class BossController : MonoBehaviour
 
     IEnumerator VineAttackRoutine()
     {
-        while (phase2)
+        while (phase2 && !isDying)
         {
             if (!isUsingVines) yield break;
 
