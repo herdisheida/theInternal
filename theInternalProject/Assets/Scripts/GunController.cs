@@ -2,13 +2,15 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
-    public GameObject bulletPrefab;
+   public GameObject bulletPrefab;
     public float fireRate = 0.2f;
     public int maxBullets = 30;
     public float reloadTimer = 3f;
+
     private bool isReloading = false;
     private float timer;
     private int currentBullets;
+
     public GameObject leftFirePoint;
     public GameObject rightFirePoint;
     private bool isLeftFirePoint;
