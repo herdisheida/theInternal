@@ -67,7 +67,7 @@ public class BossController_Werewolf : MonoBehaviour
     public string deathNextScene = "AnalysisScreen";
 
     private bool isDying = false;
-    private Coroutine BoomerangAttackRoutine; 
+    private Coroutine BoomerangAttack; 
 
 
     void Start()
@@ -151,12 +151,12 @@ public class BossController_Werewolf : MonoBehaviour
     IEnumerator Die()
     {
         // stop all ongoing attacks/movement
-        if (BoomerangAttackRoutine != null) 
+        if (BoomerangAttack != null) 
         {
-            StopCoroutine(BoomerangAttackRoutine);
-            BoomerangAttackRoutine = null;
+            StopCoroutine(BoomerangAttack);
+            BoomerangAttack = null;
         }
-        
+
         // sound effect
         AudioManager.instance?.WerewolfHowling();
 
