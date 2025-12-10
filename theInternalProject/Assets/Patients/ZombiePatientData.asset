@@ -17,10 +17,11 @@ MonoBehaviour:
   unselected: {fileID: 8439635505814947257, guid: d35f7806717b146bab90aaff3f145035, type: 3}
   infected: {fileID: -1621220576460722135, guid: 40faf5a89e26340dfbc406ea151fc4c7, type: 3}
   dead: {fileID: -5328564077077918766, guid: 3fa306401f7594bfd8ee26c4f630ba8e, type: 3}
-  saved: {fileID: 0}
   analysisInfected: {fileID: -2344715550444604041, guid: bee74f1025cd775438a9c97c0f845ae2, type: 3}
   analysisSafe: {fileID: 1302723820812287101, guid: 02f78cbb07e633449abf6a62a98e0655, type: 3}
-  Background: {fileID: 0}
   isSaved: 0
-  status: 0
+  status: 3
+  bossSceneName: ZombieBoss
   infectionSprite: {fileID: 7443306363908782183, guid: ad065285958354dbcb4c7e10c46af656, type: 3}
+  infectionAnimator: {fileID: 9100000, guid: eb5e20cda2cd4429cb3d496230a7e3a6, type: 2}
+  infectionAnimationStringName: ZombieVirusMovement

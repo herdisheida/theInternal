@@ -17,10 +17,11 @@ MonoBehaviour:
   unselected: {fileID: 1494535622982306016, guid: b9e0422f8b27ce0429d5f9a2d95fc754, type: 3}
   infected: {fileID: -8255004875826537473, guid: eeca140986211ff4b97f4140101dccc3, type: 3}
   dead: {fileID: -8022856845431401898, guid: 815c9075afb337d4cb608f32d940a1af, type: 3}
-  saved: {fileID: 0}
   analysisInfected: {fileID: 2307325069011065007, guid: ec496ecdffd0c2143bf90ec7db7f092b, type: 3}
   analysisSafe: {fileID: -1539622295439426562, guid: 759a82deaee7b74449685844569a18fc, type: 3}
-  Background: {fileID: 0}
   isSaved: 0
   status: 0
+  bossSceneName: VampireBoss
   infectionSprite: {fileID: -8215553570260872407, guid: eafcb01b5c2784a4c9c60db01abf6144, type: 3}
+  infectionAnimator: {fileID: 0}
+  infectionAnimationStringName: 

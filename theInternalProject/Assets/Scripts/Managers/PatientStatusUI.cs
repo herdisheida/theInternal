@@ -51,10 +51,6 @@ public class PatientStatusUI : MonoBehaviour
             case PatientStatus.Dead:
                 displayImage.sprite = patientData.dead;
                 break;
-
-            case PatientStatus.Saved:
-                displayImage.sprite = patientData.saved;
-                break;
         }
     }
 }

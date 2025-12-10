@@ -32,6 +32,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EndingScene.unity
     guid: f72f945008357460094104505b10ebe4
+  - enabled: 1
+    path: Assets/Scenes/Werewolfboss.unity
+    guid: 8bd0db074a564a841ab2cc36a035fd38
+  - enabled: 1
+    path: Assets/Scenes/VampireBoss.unity
+    guid: 970f183873de51d4784d11c39e3c28e4
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

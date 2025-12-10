@@ -54,11 +54,6 @@ public class PatientAnalasysUI : MonoBehaviour
             if (patient.analysisInfected != null)
                 patientImage.sprite = patient.analysisInfected;
         }
-
-        if (backgroundImage != null && patient.Background != null)
-        {
-            backgroundImage.sprite = patient.Background;
-        }
     }
     IEnumerator GoToCreditsAfterDelay()
     {

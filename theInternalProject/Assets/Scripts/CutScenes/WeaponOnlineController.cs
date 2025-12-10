@@ -25,7 +25,7 @@ public class WeaponOnlineController : MonoBehaviour
 
     [Header("Scene Flow")]
     public int requiredShots = 3; // how many shots before continuing
-    private string nextSceneName = "ZombieBoss";
+    private string nextSceneName;
 
     [Header("Player Entrance")]
     public Transform player;                // your PlayerCharacter transform
@@ -43,7 +43,8 @@ public class WeaponOnlineController : MonoBehaviour
 
     void Start()
     {
-        
+        PatientData patient = GameManager.instance?.currentPatient;
+        nextSceneName = patient.bossSceneName;
 
         // HUD hidden
         if (hudGroup != null)

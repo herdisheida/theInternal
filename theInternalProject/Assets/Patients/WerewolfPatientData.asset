@@ -17,10 +17,11 @@ MonoBehaviour:
   unselected: {fileID: -5106396905415437222, guid: f6f64b2afe194bf4db3b581bad4c4fd8, type: 3}
   infected: {fileID: 3415214611565262916, guid: 49d1a759257a69542abd12db52c57e8a, type: 3}
   dead: {fileID: -7306661346976735226, guid: 5a1c91f84921be34581eb943e46c2672, type: 3}
-  saved: {fileID: 0}
   analysisInfected: {fileID: 4780670941878997232, guid: e1d0daa769eed474dacac403794a7a59, type: 3}
   analysisSafe: {fileID: -1725552967179731972, guid: 05f1b93d65cf9a9468a9fd46b5a6ecd5, type: 3}
-  Background: {fileID: 0}
   isSaved: 0
   status: 0
-  infectionSprite: {fileID: -160791940615762721, guid: dba47250308e540d99111be13abf5a26, type: 3}
+  bossSceneName: Werewolfboss
+  infectionSprite: {fileID: -6444834828608747849, guid: d52ff952376754c6b8b831191603626a, type: 3}
+  infectionAnimator: {fileID: 0}
+  infectionAnimationStringName: 
