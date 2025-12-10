@@ -1519,6 +1519,10 @@ PrefabInstance:
       propertyPath: healthBarRoot
       value: 
       objectReference: {fileID: 467943687}
+    - target: {fileID: 4315159835419543337, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
+      propertyPath: deathSpriteRenderer
+      value: 
+      objectReference: {fileID: 3626916397498700004, guid: b33b8c799603f42f4b38767385677bba, type: 3}
     - target: {fileID: 4729519753121233426, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: m_Name
       value: PlayerCharacter

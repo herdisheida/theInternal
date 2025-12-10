@@ -34,6 +34,10 @@ public class HealthSystem : MonoBehaviour
     public float blinkInterval = 0.07f;
     private SpriteRenderer[] spriteRenderers;
 
+    [Header("Death Settings")]
+    public SpriteRenderer deathSpriteRenderer;
+    public float deathFadeDuration = 1.5f;
+
     void Awake()
     {
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
@@ -127,13 +131,13 @@ public class HealthSystem : MonoBehaviour
     public void Die()
     {
         AudioManager.instance?.Death();
+    
         if (healthBarRoot != null)
             healthBarRoot.SetActive(false);
 
         gameObject.SetActive(false);
         GameManager.instance?.MarkPatientInfected();
 
-        
         SceneManager.LoadScene("ShootPatient");
     }
 
