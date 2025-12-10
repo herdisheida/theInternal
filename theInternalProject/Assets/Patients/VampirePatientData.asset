@@ -22,6 +22,6 @@ MonoBehaviour:
   isSaved: 0
   status: 0
   bossSceneName: VampireBoss
-  infectionSprite: {fileID: -8215553570260872407, guid: eafcb01b5c2784a4c9c60db01abf6144, type: 3}
+  infectionSprite: {fileID: -2724522316812545801, guid: 0386ab99b405f41c38509bc839402fcb, type: 3}
   infectionAnimator: {fileID: 0}
   infectionAnimationStringName: 
