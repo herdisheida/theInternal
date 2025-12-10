@@ -153,7 +153,7 @@ public class BossController_Werewolf : MonoBehaviour
 
 
         // sound effect
-        AudioManager.instance?.ZombieDeath();
+        AudioManager.instance?.WerewolfDeath();
 
         // small camera shake when he dies
         CameraShake.instance?.Shake(0.4f, 0.2f);
@@ -337,6 +337,8 @@ public class BossController_Werewolf : MonoBehaviour
     // ---------------- PHASE 2 ----------------
     IEnumerator EnterPhase2()
     {
+        AudioManager.instance?.WerewolfRoar();
+        
         phase2 = true;
         isAttacking = true;
 
