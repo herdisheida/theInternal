@@ -365,7 +365,7 @@ public class BossController : MonoBehaviour
     {
         while (phase2)
         {
-            if (!isUsingVines) yield return null;
+            if (!isUsingVines) yield break;
 
             float topY = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 1.3f, 0)).y;
 
