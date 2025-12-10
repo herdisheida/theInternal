@@ -52,13 +52,16 @@ public class GunController : MonoBehaviour
     void Shoot()
     {
         Transform firePoint = isLeftFirePoint ? leftFirePoint.transform : rightFirePoint.transform;
+        
         GameObject bullet = Instantiate(
             bulletPrefab, 
             firePoint.position, 
             firePoint.rotation
         );
+
         currentBullets--;
-        gunUI.UpdateAmmoUI(currentBullets, maxBullets);
+
+        if (gunUI != null) gunUI.UpdateAmmoUI(currentBullets, maxBullets);
         // Avoid compile-time dependency on BulletController; call SetDirection at runtime instead.
         // bullet.SendMessage("SetDirection", firePoint.right, SendMessageOptions.DontRequireReceiver);   
 
@@ -72,14 +75,14 @@ public class GunController : MonoBehaviour
     System.Collections.IEnumerator Reload()
     {
         isReloading = true;
-        gunUI.showReloading();
+        if (gunUI != null) gunUI.showReloading();
 
         yield return new WaitForSeconds(reloadTimer);
 
         currentBullets = maxBullets;
-        gunUI.UpdateAmmoUI(currentBullets, maxBullets);
+        if (gunUI != null) gunUI.UpdateAmmoUI(currentBullets, maxBullets);
 
         isReloading = false;
-        gunUI.hideReloading();
+        if (gunUI != null) gunUI.hideReloading();
     }
 }
