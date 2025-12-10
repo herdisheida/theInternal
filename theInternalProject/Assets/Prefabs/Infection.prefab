@@ -124,7 +124,7 @@ Animator:
   m_GameObject: {fileID: 3341388141512193241}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: eb5e20cda2cd4429cb3d496230a7e3a6, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -180,8 +180,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1373827247
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 7443306363908782183, guid: ad065285958354dbcb4c7e10c46af656, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -207,3 +207,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InfectionSprites
   spriteRenderer: {fileID: 6267679204349386230}
+  animator: {fileID: 7326787598668202316}

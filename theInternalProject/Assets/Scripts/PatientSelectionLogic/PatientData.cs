@@ -19,6 +19,8 @@ public class PatientData : ScriptableObject
 
     public PatientStatus status;
     public Sprite infectionSprite;
+    public RuntimeAnimatorController infectionAnimator;
+    public string infectionAnimationStringName;
 
 }
 

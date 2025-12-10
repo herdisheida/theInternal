@@ -434,6 +434,7 @@ GameObject:
   - component: {fileID: 741950160}
   - component: {fileID: 741950162}
   - component: {fileID: 741950163}
+  - component: {fileID: 741950164}
   m_Layer: 5
   m_Name: VampireContainer
   m_TagString: Untagged
@@ -484,6 +485,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PatientSlot
   portraitImage: {fileID: 72857686}
   data: {fileID: 11400000, guid: 447ed8633429c4f70ba59e00ec758005, type: 2}
+--- !u!114 &741950164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741950159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d9a5b66020e2f4b9e8dad870028524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChangeScene
 --- !u!1 &1067120738
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,6 +684,7 @@ GameObject:
   - component: {fileID: 1316382578}
   - component: {fileID: 1316382580}
   - component: {fileID: 1316382581}
+  - component: {fileID: 1316382582}
   m_Layer: 5
   m_Name: WerewolfContainer
   m_TagString: Untagged
@@ -721,6 +735,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PatientSlot
   portraitImage: {fileID: 148115861}
   data: {fileID: 11400000, guid: 946d4417ca413421e802d55482df187c, type: 2}
+--- !u!114 &1316382582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316382577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d9a5b66020e2f4b9e8dad870028524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChangeScene
 --- !u!1 &1355910209
 GameObject:
   m_ObjectHideFlags: 0
