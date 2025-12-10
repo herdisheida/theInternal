@@ -126,7 +126,7 @@ public class HealthSystem : MonoBehaviour
     // ---------------- DEATH ----------------
     IEnumerator Die()
     {
-        AudioManager.instance?.Death()
+        AudioManager.instance?.Death();
         if (healthBarRoot != null)
             healthBarRoot.SetActive(false);
 
