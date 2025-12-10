@@ -57,6 +57,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("Zombie Enemy SFX")]
     public AudioClip zombieChompClip;
+    public AudioClip zombieRoarClip; // phase 2
     public AudioClip zombieDeathClip;
  
 
@@ -173,24 +174,25 @@ public class AudioManager : MonoBehaviour
 
     // helper methods for SFX
     // Example: AudioManager.instance?.ButtonClick();
-    public void ButtonClick()    => PlaySFX(buttonClickClip);
+    public void ButtonClick()        => PlaySFX(buttonClickClip);
 
-    public void WeaponOnline()   => PlaySFX(weaponOnlineClip);
+    public void WeaponOnline()       => PlaySFX(weaponOnlineClip);
 
-    public void ShrinkPod()      => PlaySFX(shrinkPodClip);
-    public void CloseDoor()      => PlaySFX(closeDoorClip);
-    public void Walking()        => PlaySFX(walkingClip);
-    public void JumpToPod()      => PlaySFX(jumpClip);
-    public void PodFlyingOff()   => PlaySFX(podFlyingOffClip);
+    public void ShrinkPod()          => PlaySFX(shrinkPodClip);
+    public void CloseDoor()          => PlaySFX(closeDoorClip);
+    public void Walking()            => PlaySFX(walkingClip);
+    public void JumpToPod()          => PlaySFX(jumpClip);
+    public void PodFlyingOff()       => PlaySFX(podFlyingOffClip);
     
-    public void DamageTaken()    => PlaySFX(damageTakenClip);
-    public void Dying()          => PlaySFX(dyingClip);
-    public void Attack()         => PlaySFX(attackClip);
+    public void DamageTaken()        => PlaySFX(damageTakenClip);
+    public void Dying()              => PlaySFX(dyingClip);
+    public void Attack()             => PlaySFX(attackClip);
 
-    public void ShootPatient()   => PlaySFX(shootPatientClip);
-    public void HeavyBreathing()    => PlaySFX(heavyBreathingClip);
+    public void ShootPatient()       => PlaySFX(shootPatientClip);
+    public void HeavyBreathing()     => PlaySFX(heavyBreathingClip);
     public void DeepExhale()         => PlaySFX(deepExhaleClip);
 
-    public void ZombieChomp()    => PlaySFX(zombieChompClip);
-    public void ZombieDeath()     => PlaySFX(zombieDeathClip);
+    public void ZombieChomp()        => PlaySFX(zombieChompClip);
+    public void ZombieRoar()        => PlaySFX(zombieRoarClip);
+    public void ZombieDeath()        => PlaySFX(zombieDeathClip);
 }

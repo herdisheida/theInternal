@@ -264,8 +264,9 @@ public class BossController : MonoBehaviour
     void Die()
     {
         StopAllCoroutines();
-        Destroy(gameObject);
+        AudioManager.instance?.ZombieDeath();
 
+        Destroy(gameObject);
         SceneManager.LoadScene("AnalysisScreen");
     }
 
@@ -273,6 +274,7 @@ public class BossController : MonoBehaviour
     void EnterPhase2()
     {
         phase2 = true;
+        AudioManager.instance?.ZombieRoar();
         StartCoroutine(VineAttackRoutine());
     }
 
