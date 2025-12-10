@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VineAttack
   damage: 10
-  warningTime: 2.3
+  warningTime: 1
   stretchSpeed: 2
   retractSpeed: 6
   warningIndicatorPrefab: {fileID: 96068019287669006, guid: eb2d7bddc31fc7f44a4d586c291f70b5, type: 3}
