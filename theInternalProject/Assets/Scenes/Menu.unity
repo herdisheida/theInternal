@@ -153,8 +153,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.015717}
-  m_SizeDelta: {x: 749.9189, y: 449.75}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 720, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5338766
 MonoBehaviour:
@@ -865,6 +865,43 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 172}
   m_SizeDelta: {x: 480.6259, y: 92.7355}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &307813181
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 307813182}
+  m_Layer: 5
+  m_Name: NoMouseImg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &307813182
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307813181}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1114681411}
+  - {fileID: 537223831}
+  m_Father: {fileID: 2037348317}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 317, y: 147}
+  m_SizeDelta: {x: 80, y: 80}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &338386131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1571,16 +1608,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 537223830}
-  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
+  m_LocalRotation: {x: -0, y: -0, z: 0.38268343, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.8000001, y: 0.8000001, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 2037348317}
+  m_Father: {fileID: 307813182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 334.00003, y: 153.19998}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0.000015258789}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &537223832
@@ -2346,11 +2383,11 @@ RectTransform:
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 2037348317}
+  m_Father: {fileID: 307813182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 334, y: 154}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0.80000305}
   m_SizeDelta: {x: 100, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1114681412
@@ -3266,8 +3303,7 @@ RectTransform:
   m_Children:
   - {fileID: 1490102240}
   - {fileID: 532725580}
-  - {fileID: 1114681411}
-  - {fileID: 537223831}
+  - {fileID: 307813182}
   m_Father: {fileID: 730308783}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3455,22 +3491,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 487002705838810223, guid: cc699d17bcaac4f94975390b23a8202c, type: 3}
-      propertyPath: allPatients.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 487002705838810223, guid: cc699d17bcaac4f94975390b23a8202c, type: 3}
-      propertyPath: 'allPatients.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: b9e940b781e414dc0aa84c87f8ac9111, type: 2}
-    - target: {fileID: 487002705838810223, guid: cc699d17bcaac4f94975390b23a8202c, type: 3}
-      propertyPath: 'allPatients.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 946d4417ca413421e802d55482df187c, type: 2}
-    - target: {fileID: 487002705838810223, guid: cc699d17bcaac4f94975390b23a8202c, type: 3}
-      propertyPath: 'allPatients.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 447ed8633429c4f70ba59e00ec758005, type: 2}
     - target: {fileID: 5114881657323757011, guid: cc699d17bcaac4f94975390b23a8202c, type: 3}
       propertyPath: m_Name
       value: GameManager

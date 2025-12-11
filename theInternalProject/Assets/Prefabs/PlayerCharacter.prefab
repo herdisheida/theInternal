@@ -201,6 +201,8 @@ MonoBehaviour:
   invincibilityPeriod: 0.9
   preBlinkDelay: 0.1
   blinkInterval: 0.1
+  deathSpriteRenderer: {fileID: 3626916397498700004, guid: b33b8c799603f42f4b38767385677bba, type: 3}
+  deathFadeDuration: 1.5
 --- !u!114 &1235428796783345502
 MonoBehaviour:
   m_ObjectHideFlags: 0

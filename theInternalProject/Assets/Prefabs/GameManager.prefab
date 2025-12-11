@@ -44,4 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26009f857bba9401e9cbcbf6e04e59bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  allPatients:
+  - {fileID: 11400000, guid: b9e940b781e414dc0aa84c87f8ac9111, type: 2}
+  - {fileID: 11400000, guid: 946d4417ca413421e802d55482df187c, type: 2}
+  - {fileID: 11400000, guid: 447ed8633429c4f70ba59e00ec758005, type: 2}
   currentPatient: {fileID: 0}
+  patientSaved: 0
