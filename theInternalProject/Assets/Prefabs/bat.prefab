@@ -180,10 +180,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BatSwarm
   moveSpeed: 4
-  damage: 1
+  damage: 7
   lifeTime: 4
   randomWanderStrength: 1
-  fadeDuration: 1
+  fadeDuration: 2
 --- !u!95 &8612319648480164038
 Animator:
   serializedVersion: 7
