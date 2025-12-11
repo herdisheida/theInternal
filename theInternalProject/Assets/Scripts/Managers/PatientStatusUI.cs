@@ -50,6 +50,7 @@ public class PatientStatusUI : MonoBehaviour
         if (patientData == null || patientImage == null)
             return;
 
+        // update patient
         switch (patientData.status)
         {
             case PatientStatus.Infected:
@@ -61,19 +62,20 @@ public class PatientStatusUI : MonoBehaviour
                 break;
         }
 
+        // update background
         if (backgroundImagePlaceholder != null)
         {
-            switch (patientData.patientName)
+            switch (patientData.patientType)
             {
-                case PatientStatus.Zombie:
+                case PatientType.Zombie:
                     backgroundImagePlaceholder.sprite = zombieBg;
                     break;
 
-                case PatientStatus.Werewolf:
+                case PatientType.Werewolf:
                     backgroundImagePlaceholder.sprite = werewolfBg;
                     break;
 
-                case PatientStatus.Vampire:
+                case PatientType.Vampire:
                     backgroundImagePlaceholder.sprite = vampireBg;
                     break;
             }
