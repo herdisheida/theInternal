@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 
 // TOOD HERDIS muna setja þetta í patient selection screen til að checka hvort allir patientar hafa verið spilaðir
@@ -19,29 +20,30 @@ public class EndingScreen : MonoBehaviour
     public Image endingImage;                // big picture on screen
     public TextMeshProUGUI endingText;       // text that fades in/out
 
-    [Header("Ending Sprites")]
-    public Sprite goodEndingSprite;
-    public Sprite partialEndingSprite;
-    public Sprite badEndingSprite;
-
     [Header("Text Lines For Each Ending")]
     [TextArea] public string[] goodLines;
-    [TextArea] public string[] partialLines;
+    [TextArea] public string[] partialyGoodLines;
+    [TextArea] public string[] partialyBadLines;
     [TextArea] public string[] badLines;
 
     [Header("Timings")]
     public float fadeDuration = 0.8f;   // how long to fade in/out
     public float holdDuration = 3f;     // how long text stays fully visible
     public bool loopLines = false;      // if true, keep cycling the lines
+    private EndingType ending;
+    private int savedCount;
+    private bool isBad = true;
+
 
     void Start()
     {
         // default to BAD if something goes wrong
-        EndingType ending = EndingType.Bad;
+        ending = EndingType.Bad;
 
         if (GameManager.instance != null)
         {
             ending = GameManager.instance.GetEndingType();
+            savedCount = GameManager.instance.GetSavedCount();
         }
 
         // choose sprite + music + lines based on ending
@@ -55,6 +57,19 @@ public class EndingScreen : MonoBehaviour
 
     }
 
+    void Update()
+    {
+        if (ending == EndingType.Bad)
+        {
+            isBad = true;
+        }
+        else
+        {
+            isBad = false;
+        }
+
+    } 
+
     string[] SetupVisualsForEnding(EndingType ending)
     {
         string[] linesToUse = null;
@@ -62,26 +77,29 @@ public class EndingScreen : MonoBehaviour
         switch (ending)
         {
             case EndingType.Good:
-                if (endingImage != null && goodEndingSprite != null)
-                    endingImage.sprite = goodEndingSprite;
+                if (endingImage != null) 
 
                 linesToUse = goodLines;
                 AudioManager.instance?.PlayGoodEndingMusic();
                 break;
 
-            case EndingType.Partial:
-                if (endingImage != null && partialEndingSprite != null)
-                    endingImage.sprite = partialEndingSprite;
+            case EndingType.PartialyGood:
+                if (endingImage != null)
 
-                linesToUse = partialLines;
+                linesToUse = partialyGoodLines;
+                AudioManager.instance?.PlayPartialEndingMusic();
+                break;
+            
+            case EndingType.PartialyBad:
+                if (endingImage != null)
+
+                linesToUse = partialyBadLines;
                 AudioManager.instance?.PlayPartialEndingMusic();
                 break;
 
             case EndingType.Bad:
             default:
-                if (endingImage != null && badEndingSprite != null)
-                    endingImage.sprite = badEndingSprite;
-
+                if (endingImage != null)
                 linesToUse = badLines;
                 AudioManager.instance?.PlayBadEndingMusic();
                 break;
@@ -164,6 +182,13 @@ public class EndingScreen : MonoBehaviour
     IEnumerator GoToCreditsAfterDelay()
     {
         yield return new WaitForSeconds(2f);
+        savedCount = GameManager.instance != null 
+            ? GameManager.instance.GetSavedCount()
+            : 0;
+        if (savedCount == 0) {
+            SceneManager.LoadScene("Suicide");
+            yield break;
+        }
         SceneManager.LoadScene("Credits");
     }
 }

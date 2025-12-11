@@ -41,6 +41,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BloodstreamIntro.unity
     guid: 0adfeb408ba594e85a25b8e144b67cac
+    path: Assets/Scenes/Suicide.unity
+    guid: c4e0857f15c035845b8ce125a7aa6aad
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
