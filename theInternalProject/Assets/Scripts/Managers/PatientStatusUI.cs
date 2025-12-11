@@ -47,7 +47,7 @@ public class PatientStatusUI : MonoBehaviour
                 displayImage.sprite = patientData.unselected;
                 break;
 
-            case PatientStatus.None:
+            case PatientStatus.Selected:
                 displayImage.sprite = patientData.selected;
                 break;
 
