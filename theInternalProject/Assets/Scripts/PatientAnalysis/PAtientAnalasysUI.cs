@@ -1,18 +1,17 @@
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using System.Collections;
 
 
 public class PatientAnalasysUI : MonoBehaviour
 {
-    public Image patientImage;
-    public Image backgroundImage;
+    public PatientImageSwitch werewolfSwitch;
+    public PatientImageSwitch vampireSwitch;
+    public PatientImageSwitch zombieSwitch;
 
     public GameObject WerewolfContainer;
     public GameObject VampireContainer;
     public GameObject ZombieContainer;
 
+    PatientImageSwitch activeSwitch;
     public void Start()
     {
         if (GameManager.instance == null)
@@ -26,38 +25,38 @@ public class PatientAnalasysUI : MonoBehaviour
         }
 
         string patientName = patient.patientName;
-        bool isSaved = patient.isSaved || patient.status == PatientStatus.Saved;
+        bool isSaved = patient.status == PatientStatus.Saved;
 
         WerewolfContainer.SetActive(false);
         VampireContainer.SetActive(false);
         ZombieContainer.SetActive(false);
+        activeSwitch = null;
         
         if (patientName == "Zombie")
         {
             ZombieContainer.SetActive(true);
+            activeSwitch = zombieSwitch;
         }
         else if (patientName == "Werewolf") {
             WerewolfContainer.SetActive(true);
+            activeSwitch = werewolfSwitch;
         }
         else
         {
             VampireContainer.SetActive(true);
+            activeSwitch = vampireSwitch;
         }
+
+        activeSwitch.patient = patient;
 
         if (isSaved)
         {
-            if (patient.analysisSafe != null) 
-                patientImage.sprite = patient.analysisSafe;
+            activeSwitch.SavedImage();
         }
         else
         {
-            if (patient.analysisInfected != null)
-                patientImage.sprite = patient.analysisInfected;
+            activeSwitch.NotSavedImage();
         }
-    }
-    IEnumerator GoToCreditsAfterDelay()
-    {
-        yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene("Credits");
+
     }
 }
