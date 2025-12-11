@@ -32,3 +32,28 @@ How many of them you save (0–3) affects the doctor’s **diary entry** and the
 |--------------------------|-----------------------------|
 | `WASD`/ `Arrow Keys`     | Move your medical pod       |
 | `Space`                  | Shoot medicine bullets      |
+
+
+--- 
+## How to Launch the Game (From GitHub)
+
+1. Clone the repository
+```bash
+  git clone https://github.com/your-username/the-internal.git
+```
+2. Enter the folder
+```bash
+  cd the-internal
+```
+3. Open the project in Unity
+* Open the Unity Hub
+* Click *Add project from disk*.
+* Navigate to the folder you cloned (the entire the-internal directory).
+* Select it and click Open Project.
+* Unity will load the project and import all assets.
+
+3. Launch the game from the Unity Editor
+* In Unity, open the scene:
+  ```Scenes → Menu```
+* Click the Play button at the top of the editor.
+* The game will start from the main menu.
