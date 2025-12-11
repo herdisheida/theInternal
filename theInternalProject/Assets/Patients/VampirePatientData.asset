@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: VampirePatientData
   m_EditorClassIdentifier: Assembly-CSharp::PatientData
   patientName: Vampire
-  selected: {fileID: 21300000, guid: 3c4daa66cc982704d97078b649f7ac69, type: 3}
+  patientType: 0
+  selected: {fileID: 8885614858120531087, guid: 3c4daa66cc982704d97078b649f7ac69, type: 3}
   unselected: {fileID: 1494535622982306016, guid: b9e0422f8b27ce0429d5f9a2d95fc754, type: 3}
   infected: {fileID: -8255004875826537473, guid: eeca140986211ff4b97f4140101dccc3, type: 3}
   dead: {fileID: -8022856845431401898, guid: 815c9075afb337d4cb608f32d940a1af, type: 3}
