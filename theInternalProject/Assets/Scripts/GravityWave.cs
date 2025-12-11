@@ -27,11 +27,9 @@ public class GravityWave : MonoBehaviour
 
         transform.localScale = new Vector3(scale, scale, 1f);
 
-        // Update collider radius (scaled)
         if (col != null)
             col.radius = scale * 0.5f;
 
-        // Destroy when max size reached
         if (scale >= maxRadius)
             Destroy(gameObject);
     }

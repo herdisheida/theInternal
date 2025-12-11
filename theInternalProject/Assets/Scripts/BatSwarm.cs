@@ -29,7 +29,7 @@ public class BatSwarm : MonoBehaviour
     {
         if (player == null) return;
 
-        // Update random direction periodically
+        // random direction change
         changeDirectionTimer -= Time.deltaTime;
         if (changeDirectionTimer <= 0)
         {
@@ -37,7 +37,7 @@ public class BatSwarm : MonoBehaviour
             changeDirectionTimer = changeDirectionInterval;
         }
 
-        // Move toward player with random wandering
+        // move towards player with some randomness
         Vector3 targetDirection = (player.position - transform.position).normalized;
         Vector3 moveDirection = (targetDirection + randomDirection * randomWanderStrength).normalized;
 
@@ -60,6 +60,7 @@ public class BatSwarm : MonoBehaviour
         float elapsedTime = 0f;
         Color startColor = spriteRenderer.color;
 
+        // Fade out over fadeDuration
         while (elapsedTime < fadeDuration)
         {
             float alpha = Mathf.Lerp(startColor.a, 0, elapsedTime / fadeDuration);

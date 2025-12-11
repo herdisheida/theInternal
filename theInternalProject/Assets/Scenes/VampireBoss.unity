@@ -395,6 +395,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1427738371822303484, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.81
+      objectReference: {fileID: 0}
     - target: {fileID: 4147585047010402501, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
       propertyPath: m_Size.x
       value: 2.3933954
@@ -445,7 +449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7916299091387696680, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
       propertyPath: phase2
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7916299091387696680, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
       propertyPath: player
@@ -485,15 +489,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7916299091387696680, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
       propertyPath: pullDuration
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7916299091387696680, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
       propertyPath: pullStrength
-      value: 31.99
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7916299091387696680, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
       propertyPath: windCooldown
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7916299091387696680, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
       propertyPath: healthBarFill
@@ -511,6 +515,14 @@ PrefabInstance:
       propertyPath: CircleWavePrefab
       value: 
       objectReference: {fileID: 4842515579273989020, guid: 2398d6d064bc4d4488559a10d5d14146, type: 3}
+    - target: {fileID: 7916299091387696680, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
+      propertyPath: circleWavePrefab
+      value: 
+      objectReference: {fileID: 4842515579273989020, guid: 2398d6d064bc4d4488559a10d5d14146, type: 3}
+    - target: {fileID: 7916299091387696680, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
+      propertyPath: timeBetweenWaves
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7916299091387696680, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
       propertyPath: gravityWavePrefab
       value: 
@@ -533,7 +545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7957974831376436071, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.30612573
+      value: -0.45
       objectReference: {fileID: 0}
     - target: {fileID: 7957974831376436071, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
       propertyPath: m_LocalPosition.z
@@ -570,7 +582,8 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4903590193229554467, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
     - {fileID: 7501478823943555091, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6038492917093226218, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6553214280964255607, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}

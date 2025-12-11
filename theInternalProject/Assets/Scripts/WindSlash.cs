@@ -17,7 +17,6 @@ public class WindSlash : MonoBehaviour
 
     void Update()
     {
-        // Only move THIS projectile, not the boss
         transform.position += (Vector3)velocity * Time.deltaTime;
     }
 
@@ -30,7 +29,6 @@ public class WindSlash : MonoBehaviour
             {
                 hp.TakeDamage(damage);
                 
-                // Apply knockback through HealthSystem
                 float direction = Mathf.Sign(transform.position.x - collision.transform.position.x);
                 hp.ApplyKnockback(new Vector2(-direction * 10f, 3f));
             }

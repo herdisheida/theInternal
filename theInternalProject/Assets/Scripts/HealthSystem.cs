@@ -20,8 +20,8 @@ public class HealthSystem : MonoBehaviour
     private SpriteRenderer healthBarSprite;
 
     [Header("Low HP Pulse")]
-    public float pulseSpeed = 6f;         // how fast it pulses
-    public float pulseScaleAmount = 0.15f; // pulse height amount
+    public float pulseSpeed = 6f;        
+    public float pulseScaleAmount = 0.15f; 
 
     [Header("Health Text (Optional)")]
     public TextMeshProUGUI healthText;
@@ -42,7 +42,6 @@ public class HealthSystem : MonoBehaviour
 
     void Start()
     {
-        // Initialize shared HP
         if (sharedHealth < 0 || sharedHealth > maxHealth)
         {
             currentHealth = maxHealth;
@@ -55,7 +54,6 @@ public class HealthSystem : MonoBehaviour
 
         UpdateAllHealthDisplays();
 
-        // Cache fill sprite
         healthBarSprite = healthBarFill.GetComponent<SpriteRenderer>();
     }
 
@@ -65,7 +63,7 @@ public class HealthSystem : MonoBehaviour
     }
 
 
-    // ---------------- DAMAGE ----------------
+    // damage
     public void TakeDamage(int amount)
     {
         if (isInvincible) return;
@@ -127,7 +125,7 @@ public class HealthSystem : MonoBehaviour
     }
 
 
-    // ---------------- DEATH ----------------
+    //death 
     public void Die()
     {
         if (healthBarRoot != null)
@@ -139,7 +137,7 @@ public class HealthSystem : MonoBehaviour
     }
 
 
-    // ---------------- HEALTH BAR ----------------
+    // health bar
     void UpdateHealthBar()
     {
         if (healthBarRoot == null || healthBarFill == null)
@@ -150,16 +148,14 @@ public class HealthSystem : MonoBehaviour
 
         float ratio = (float)currentHealth / maxHealth;
 
-        // -----------------------------------------
-        // LOW HP EFFECTS ( < 25 percent )
-        // -----------------------------------------
+        // low HP pulse effect
         if (ratio <= 0.25f)
         {
             // turn red
             if (healthBarSprite != null)
                 healthBarSprite.color = Color.red;
 
-            // pulse height (bar heartbeat)
+            // pulse height
             float pulse = 1f + Mathf.Sin(Time.time * pulseSpeed) * pulseScaleAmount;
 
             healthBarFill.localScale = new Vector3(
@@ -173,7 +169,7 @@ public class HealthSystem : MonoBehaviour
         }
         else
         {
-            // NORMAL — no pulse, normal green
+            // normal color
             if (healthBarSprite != null)
                 healthBarSprite.color = Color.green;
 
@@ -188,13 +184,8 @@ public class HealthSystem : MonoBehaviour
             ScreenVignettePulse.instance?.StopPulse();
         }
 
-
-        // -----------------------------------------
-        // WIDTH SMOOTH SHRINK
-        // -----------------------------------------
-
         float currentX = healthBarFill.localScale.x;
-        float targetX = ratio;  // full width is "1"
+        float targetX = ratio; 
 
         float newX = Mathf.Lerp(currentX, targetX, Time.deltaTime * smoothSpeed);
 
@@ -208,7 +199,7 @@ public class HealthSystem : MonoBehaviour
 
 
 
-    // ---------------- HEALTH TEXT ----------------
+    // health text
     void UpdateHealthText()
     {
         if (healthText != null)
@@ -224,7 +215,7 @@ public class HealthSystem : MonoBehaviour
         UpdateHealthText();
     }
 
-    // ---------------- KNOCKBACK ----------------
+    // should be knockback force
     public void ApplyKnockback(Vector2 force)
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
