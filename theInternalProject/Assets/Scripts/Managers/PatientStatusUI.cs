@@ -27,6 +27,8 @@ public class PatientStatusUI : MonoBehaviour
 
     void Update()
     {
+        if (patientData == null && GameManager.instance != null) { patientData = GameManager.instance.currentPatient; }
+
         // only update when status changes
         if (patientData.status != lastStatus)
         {
