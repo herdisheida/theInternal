@@ -635,7 +635,7 @@ MonoBehaviour:
   patientData: {fileID: 0}
   patientImage: {fileID: 1722436195}
   backgroundImagePlaceholder: {fileID: 411518027}
-  zombieBg: {fileID: -4443282803476574749, guid: f830872e679814736bfb33d8897b5b55, type: 3}
+  zombieBg: {fileID: 5043667188538911803, guid: 6383ffff313574e01bedf14f162ba06e, type: 3}
   werewolfBg: {fileID: -4911976874903256999, guid: 9c73c5432d94d40eaaf4dbf59dccfa84, type: 3}
   vampireBg: {fileID: 256624889976937111, guid: eedbe2912dbcc4f318dcbac76326056f, type: 3}
 --- !u!1 &1539025785

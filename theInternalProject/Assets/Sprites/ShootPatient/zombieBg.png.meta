@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f830872e679814736bfb33d8897b5b55
+guid: 6383ffff313574e01bedf14f162ba06e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4443282803476574749
-    second: Screenshot 2025-12-11 at 10.40.41_0
+      213: 5043667188538911803
+    second: zombieBg 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,10 +116,10 @@ TextureImporter:
       name: zombieBg
       rect:
         serializedVersion: 2
-        x: 210
+        x: 212
         y: 0
-        width: 800
-        height: 600
+        width: 1316
+        height: 836
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3ed4d2ee4d94652c0800000000000000
-      internalID: -4443282803476574749
+      spriteID: b3ca722e594bef540800000000000000
+      internalID: 5043667188538911803
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: a2e15b31e104e410c99d8637d0a89363
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      zombieBg: -4443282803476574749
+      zombieBg: 5043667188538911803
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
