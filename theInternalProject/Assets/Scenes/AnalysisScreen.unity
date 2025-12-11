@@ -435,6 +435,7 @@ GameObject:
   - component: {fileID: 741950162}
   - component: {fileID: 741950163}
   - component: {fileID: 741950164}
+  - component: {fileID: 741950165}
   m_Layer: 5
   m_Name: VampireContainer
   m_TagString: Untagged
@@ -497,6 +498,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53d9a5b66020e2f4b9e8dad870028524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChangeScene
+--- !u!114 &741950165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741950159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5870a51501fdf4fce8a792bc95903288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PatientImageSwitch
+  portraitImage: {fileID: 72857686}
+  patient: {fileID: 11400000, guid: 447ed8633429c4f70ba59e00ec758005, type: 2}
 --- !u!1 &1067120738
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,6 +626,7 @@ GameObject:
   - component: {fileID: 1244073174}
   - component: {fileID: 1244073175}
   - component: {fileID: 1244073177}
+  - component: {fileID: 1244073178}
   m_Layer: 5
   m_Name: ZombieContainer
   m_TagString: Untagged
@@ -673,6 +689,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53d9a5b66020e2f4b9e8dad870028524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChangeScene
+--- !u!114 &1244073178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244073171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5870a51501fdf4fce8a792bc95903288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PatientImageSwitch
+  portraitImage: {fileID: 2135480968}
+  patient: {fileID: 11400000, guid: 946d4417ca413421e802d55482df187c, type: 2}
 --- !u!1 &1316382577
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,6 +715,7 @@ GameObject:
   - component: {fileID: 1316382580}
   - component: {fileID: 1316382581}
   - component: {fileID: 1316382582}
+  - component: {fileID: 1316382583}
   m_Layer: 5
   m_Name: WerewolfContainer
   m_TagString: Untagged
@@ -747,6 +778,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53d9a5b66020e2f4b9e8dad870028524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChangeScene
+--- !u!114 &1316382583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316382577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5870a51501fdf4fce8a792bc95903288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PatientImageSwitch
+  portraitImage: {fileID: 148115861}
+  patient: {fileID: 11400000, guid: 946d4417ca413421e802d55482df187c, type: 2}
 --- !u!1 &1355910209
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,8 +843,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2ace7ca5646a3478a20004b986bc8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PatientAnalasysUI
-  patientImage: {fileID: 72857686}
-  backgroundImage: {fileID: 383727663}
+  werewolfSwitch: {fileID: 1316382583}
+  vampireSwitch: {fileID: 741950165}
+  zombieSwitch: {fileID: 1244073178}
   WerewolfContainer: {fileID: 1316382577}
   VampireContainer: {fileID: 741950159}
   ZombieContainer: {fileID: 1244073171}
