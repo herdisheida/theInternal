@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 48ede4c474f0d4cb486129b920630689
+guid: 3d257261f6cb640dfb63b05f124654f6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5795249268356815901
-    second: WerewolfVirusDark3_0
+      213: 7666217261631634030
+    second: Screenshot 2025-12-11 at 10.40.47_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WerewolfVirusDark3_0
+      name: werewolfBg
       rect:
         serializedVersion: 2
-        x: 0
+        x: 352
         y: 0
-        width: 64
-        height: 63
+        width: 800
+        height: 600
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d1c1049418cdc6050800000000000000
-      internalID: 5795249268356815901
+      spriteID: e6a758a6bffd36a60800000000000000
+      internalID: 7666217261631634030
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      WerewolfVirusDark3_0: 5795249268356815901
+      werewolfBg: 7666217261631634030
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

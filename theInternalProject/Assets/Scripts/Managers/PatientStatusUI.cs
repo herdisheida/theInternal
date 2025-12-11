@@ -5,16 +5,23 @@ public class PatientStatusUI : MonoBehaviour
 {
     [Header("References")]
     public PatientData patientData;
-    public Image displayImage;
+    public Image patientImage;
 
     private PatientStatus lastStatus;
+
+    [Header("Background References")]
+    public Image backgroundImagePlaceholder;
+    public Sprite zombieBg;
+    public Sprite werewolfBg;
+    public Sprite vampireBg;
+
 
     void Start()
     {
         // get current patient data
         if (patientData == null && GameManager.instance != null) { patientData = GameManager.instance.currentPatient; }
 
-        if (patientData == null || displayImage == null)
+        if (patientData == null || patientImage == null)
         {
             Debug.LogWarning($"{name}: PatientStatusUI missing references.");
             enabled = false;
@@ -40,18 +47,39 @@ public class PatientStatusUI : MonoBehaviour
 
     public void RefreshVisual()
     {
-        if (patientData == null || displayImage == null)
+        if (patientData == null || patientImage == null)
             return;
 
-        switch (patientData.status)
-        {
-            case PatientStatus.Infected:
-                displayImage.sprite = patientData.infected;
-                break;
+        // update patient
+        patientImage.sprite = patientData.infected;
+        // switch (patientData.status)
+        // {
+        //     case PatientStatus.Infected:
+        //         patientImage.sprite = patientData.infected;
+        //         break;
 
-            case PatientStatus.Dead:
-                displayImage.sprite = patientData.dead;
-                break;
+        //     case PatientStatus.Dead:
+        //         patientImage.sprite = patientData.dead;
+        //         break;
+        // }
+
+        // update background
+        if (backgroundImagePlaceholder != null)
+        {
+            switch (patientData.patientType)
+            {
+                case PatientType.Zombie:
+                    backgroundImagePlaceholder.sprite = zombieBg;
+                    break;
+
+                case PatientType.Werewolf:
+                    backgroundImagePlaceholder.sprite = werewolfBg;
+                    break;
+
+                case PatientType.Vampire:
+                    backgroundImagePlaceholder.sprite = vampireBg;
+                    break;
+            }
         }
     }
 }
