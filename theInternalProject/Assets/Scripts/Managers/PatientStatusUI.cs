@@ -71,7 +71,7 @@ public class PatientStatusUI : MonoBehaviour
                     backgroundImagePlaceholder.sprite = zombieBg;
                     break;
 
-                case PatientStatus.Zombie:
+                case PatientStatus.Werewolf:
                     backgroundImagePlaceholder.sprite = werewolfBg;
                     break;
 
