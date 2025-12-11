@@ -4,13 +4,16 @@ using UnityEngine.UI;
 public class PatientStatusUI : MonoBehaviour
 {
     [Header("References")]
-    public PatientData patientData = GameManager.instance?.currentPatient;
+    public PatientData patientData;
     public Image displayImage;
 
     private PatientStatus lastStatus;
 
     void Start()
     {
+        // get current patient data
+        if (patientData == null && GameManager.instance != null) { patientData = GameManager.instance.currentPatient; }
+
         if (patientData == null || displayImage == null)
         {
             Debug.LogWarning($"{name}: PatientStatusUI missing references.");
@@ -44,12 +47,20 @@ public class PatientStatusUI : MonoBehaviour
                 displayImage.sprite = patientData.unselected;
                 break;
 
+            case PatientStatus.None:
+                displayImage.sprite = patientData.selected;
+                break;
+
             case PatientStatus.Infected:
                 displayImage.sprite = patientData.infected;
                 break;
 
             case PatientStatus.Dead:
                 displayImage.sprite = patientData.dead;
+                break;
+
+            case PatientStatus.Saved:
+                displayImage.sprite = patientData.saved;
                 break;
         }
     }
