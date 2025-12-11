@@ -26,34 +26,48 @@ public class PlayerController : MonoBehaviour
         float moveInputX = Input.GetAxisRaw("Horizontal");
         float moveInputY = Input.GetAxisRaw("Vertical");
         
+        var hp = GetComponent<HealthSystem>();
+        if (hp != null && hp.IsStunned)
+        {
+            moveInput = Vector2.zero;     // No movement
+            return;                       // Skip input this frame
+        }
+
         moveInput = new Vector2(moveInputX, moveInputY).normalized;
+
 
     }
 
     void FixedUpdate()
     {
-        Vector2 targetPosition = rb.position + moveSpeed * moveInput * Time.fixedDeltaTime;
+        // 1, Get external force
+        HealthSystem hp = GetComponent<HealthSystem>();
+        Vector2 extraForce = hp != null ? hp.ConsumeExternalForce() : Vector2.zero;
 
-        // top & bottom bounds
+        // 2, Base movement
+        Vector2 movement = moveSpeed * moveInput * Time.fixedDeltaTime;
+
+        // 3, Apply both
+        Vector2 targetPosition = rb.position + movement + extraForce * Time.fixedDeltaTime;
+
+        // Bounds
         if (topBorder != null && bottomBorder != null)
         {
             float maxY = topBorder.bounds.min.y - padding;
             float minY = bottomBorder.bounds.max.y + padding;
-
             targetPosition.y = Mathf.Clamp(targetPosition.y, minY, maxY);
         }
 
-        // left & right bounds
         if (leftBorder != null && rightBorder != null)
         {
             float minX = leftBorder.bounds.max.x + padding;
             float maxX = rightBorder.bounds.min.x - padding;
-
             targetPosition.x = Mathf.Clamp(targetPosition.x, minX, maxX);
         }
 
         rb.MovePosition(targetPosition);
     }
+
 
     
 }
