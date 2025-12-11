@@ -64,7 +64,7 @@ public class PatientStatusUI : MonoBehaviour
         switch (patientData.patientType)
         {
             case PatientType.Zombie:
-                rt.localScale = Vector3.one; // normal size
+                rt.localScale = new Vector3(2.4f, 2.4f, 2.4f);
                 backgroundImagePlaceholder.sprite = zombieBg;
                 break;
 
@@ -74,8 +74,8 @@ public class PatientStatusUI : MonoBehaviour
                 break;
 
             case PatientType.Vampire:
-                rt.localScale = Vector3.one; // normal size
-                rt.anchoredPosition = new Vector2(0f, 51f);    // move vampire up by 51
+                rt.localScale = new Vector3(2.4f, 2.4f, 2.4f);
+                rt.anchoredPosition = new Vector2(-79f, 13f);    // move vampire up by 51
                 backgroundImagePlaceholder.sprite = vampireBg;
                 break;
         }
