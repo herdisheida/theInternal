@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class PatientStatusUI : MonoBehaviour
 {
     [Header("References")]
-    public PatientData patientData;
+    public PatientData patientData = GameManager.instance?.currentPatient;
     public Image displayImage;
 
     private PatientStatus lastStatus;
