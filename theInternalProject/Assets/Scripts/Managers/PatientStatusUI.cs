@@ -50,21 +50,32 @@ public class PatientStatusUI : MonoBehaviour
         if (patientData == null || patientImage == null)
             return;
 
-        // update patient
+        // get infected patient
         patientImage.sprite = patientData.infected;
 
-        // update background
+        // scale patient based on type
+         RectTransform rt = patientImage.rectTransform;
+
+        // reset before applying new values
+        rt.localScale = Vector3.one;
+        rt.anchoredPosition = Vector2.zero;
+
+        // update based on patient type
         switch (patientData.patientType)
         {
             case PatientType.Zombie:
+                rt.localScale = Vector3.one; // normal size
                 backgroundImagePlaceholder.sprite = zombieBg;
                 break;
 
             case PatientType.Werewolf:
+                rt.localScale = new Vector3(1.3f, 1.3f, 1f);
                 backgroundImagePlaceholder.sprite = werewolfBg;
                 break;
 
             case PatientType.Vampire:
+                rt.localScale = Vector3.one; // normal size
+                rt.anchoredPosition = new Vector2(0f, 51f);    // move vampire up by 51
                 backgroundImagePlaceholder.sprite = vampireBg;
                 break;
         }
