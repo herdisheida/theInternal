@@ -64,7 +64,8 @@ public class PatientStatusUI : MonoBehaviour
         switch (patientData.patientType)
         {
             case PatientType.Zombie:
-                rt.localScale = new Vector3(2.4f, 2.4f, 2.4f);
+                rt.localScale = new Vector3(2.4f, 2.4f, 2.4f);  // size
+                rt.anchoredPosition = new Vector2(-110f, -24f);  // pos
                 backgroundImagePlaceholder.sprite = zombieBg;
                 break;
 
