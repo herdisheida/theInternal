@@ -275,7 +275,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PatientSlot
   portraitImage: {fileID: 325578409}
   data: {fileID: 11400000, guid: 946d4417ca413421e802d55482df187c, type: 2}
-  sceneName: AnalysisScreen
 --- !u!1 &325578407
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,7 +613,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PatientSlot
   portraitImage: {fileID: 327164127}
   data: {fileID: 11400000, guid: 447ed8633429c4f70ba59e00ec758005, type: 2}
-  sceneName: AnalysisScreen
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1278,7 +1276,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PatientSlot
   portraitImage: {fileID: 1311870543}
   data: {fileID: 11400000, guid: b9e940b781e414dc0aa84c87f8ac9111, type: 2}
-  sceneName: AnalysisScreen
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
