@@ -20,6 +20,8 @@ public class PatientData : ScriptableObject
     public RuntimeAnimatorController infectionAnimator;
     public string infectionAnimationStringName;
 
+    public Vector2 analysisOffset;
+    public float analysisScale;
 
 }
 
