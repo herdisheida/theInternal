@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -12267028374178595, guid: 8331d7bae79f3974bbae29bdbd637121, type: 3}
+  m_Sprite: {fileID: 1222193367851286850, guid: a420dce8691959c4fa4c69d58bbef651, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -351,7 +351,7 @@ MonoBehaviour:
     people only looking to me for help.
 
 '
-  fadeDuration: 1
+  fadeDuration: 0.7
   holdDuration: 15
   loopLines: 0
 --- !u!1 &1009239439
@@ -402,7 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -761,8 +761,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 100.46387, y: 44.03714}
-  m_SizeDelta: {x: -378.0757, y: 113.3051}
+  m_AnchoredPosition: {x: 55.441467, y: 6.5849}
+  m_SizeDelta: {x: -199.7026, y: 53.4914}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1828772174
 MonoBehaviour:
@@ -811,8 +811,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 75
-  m_fontSizeBase: 75
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
