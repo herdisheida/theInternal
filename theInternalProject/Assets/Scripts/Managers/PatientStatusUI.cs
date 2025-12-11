@@ -7,16 +7,14 @@ public class PatientStatusUI : MonoBehaviour
     public PatientData patientData;
     public Image patientImage;
 
+    private PatientStatus lastStatus;
+
     [Header("Background References")]
     public Image backgroundImagePlaceholder;
     public Sprite zombieBg;
     public Sprite werewolfBg;
     public Sprite vampireBg;
 
-
-
-
-    private PatientStatus lastStatus;
 
     void Start()
     {
