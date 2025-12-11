@@ -15,6 +15,11 @@ When infected survivors arrive at his hospital, he does the unthinkable: shrinks
 
 
 --- 
+## How to play game on Web
+
+Here is an itch.io link: https://herdis-heida.itch.io/the-internal?secret=tR4fZmda9fRWfLIQH5rOZa3eWg
+
+--- 
 ## How to Launch the Game (From GitHub)
 
 1. Clone the repository
