@@ -20,8 +20,10 @@ public class GameManager : MonoBehaviour
     [Header("Current Patient")]
     public PatientData currentPatient;   // who we’re working on right now
 
-    [Header("Patients that have been saved")]
-    public int patientSaved = 0;
+    [Header("Patients levels played and or saved")]
+    public int patientsSaved = 0;
+    public int patientLevelsPlayed = 0;
+
 
 
 
@@ -65,7 +67,7 @@ public class GameManager : MonoBehaviour
         if (currentPatient == null) return;
 
         currentPatient.status = PatientStatus.Infected;
-        currentPatient.isSaved = false;
+        patientLevelsPlayed++;
         Debug.Log($"Patient {currentPatient.patientName} marked INFECTED.");
     }
 
@@ -75,7 +77,6 @@ public class GameManager : MonoBehaviour
         if (currentPatient == null) return;
 
         currentPatient.status = PatientStatus.Dead;
-        currentPatient.isSaved = false;
         Debug.Log($"Patient {currentPatient.patientName} marked DEAD.");
     }
 
@@ -86,7 +87,8 @@ public class GameManager : MonoBehaviour
         if (currentPatient == null) return;
 
         currentPatient.status = PatientStatus.Saved;
-        currentPatient.isSaved = true;
+        patientsSaved++;
+        patientLevelsPlayed++;
         Debug.Log($"Patient {currentPatient.patientName} marked SAVED.");
     }
     public void ResetAllPatients()

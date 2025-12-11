@@ -831,7 +831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c28e7a2fb6b946b5b13229587a55efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PatientStatusUI
-  patientData: {fileID: 11400000, guid: b9e940b781e414dc0aa84c87f8ac9111, type: 2}
+  patientData: {fileID: 0}
   displayImage: {fileID: 1722436195}
 --- !u!212 &1722436198
 SpriteRenderer:
@@ -878,7 +878,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1830722085
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: -6687728516929675107, guid: 40faf5a89e26340dfbc406ea151fc4c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

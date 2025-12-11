@@ -22,7 +22,7 @@ public class PatientSlot: MonoBehaviour
         {
             return false;
         }
-        if (data.isSaved)
+        if (data.status == PatientStatus.Saved)
         {
             return false;
         }

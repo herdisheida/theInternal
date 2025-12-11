@@ -12,8 +12,6 @@ public class PatientData : ScriptableObject
     public Sprite dead;
     public Sprite analysisInfected;
     public Sprite analysisSafe;
-    public bool isSaved;
-
     public PatientStatus status;
     public string bossSceneName;
     public Sprite infectionSprite;
