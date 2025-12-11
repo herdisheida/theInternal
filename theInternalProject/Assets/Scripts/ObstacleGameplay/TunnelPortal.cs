@@ -8,37 +8,28 @@ public class TunnelPortal : MonoBehaviour
     private string weaponCutScene = "WeaponOnline";
     private string bossBattleScene;
 
-    void Start()
-    {
-        gm = GameManager.instance;
-    }
-
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
 
-        if (gm == null)
+        if (GameManager.instance == null)
         {
             Debug.LogWarning("TunnelPortal: GameManager instance not found.");
             return;
         }
-        if (gm.currentPatient == null)
+        if (GameManager.instance?.currentPatient == null)
         {
             Debug.LogWarning("TunnelPortal: currentPatient is null in GameManager.");
             return;
         }
 
-        if (gm.patientLevelsPlayed == 0)
+        if (GameManager.instance?.patientLevelsPlayed == 0)
         {
             AudioManager.instance?.FadeOutMusic(3f);
             SceneManager.LoadScene(weaponCutScene);
         } else {
-            bossBattleScene = gm.currentPatient.bossSceneName;
+            bossBattleScene = GameManager.instance?.currentPatient.bossSceneName;
             AudioManager.instance?.StopMusic();
             SceneManager.LoadScene(bossBattleScene);
         }
