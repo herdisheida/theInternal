@@ -9,6 +9,9 @@ public class PatientSlot: MonoBehaviour
     public void Refresh(bool isSelected)
     {
         if (data == null || portraitImage == null) return;
+        
+        if (data.status == PatientStatus.Dead) return;
+        
         portraitImage.sprite = isSelected? data.selected: data.unselected;
     }
 
@@ -26,10 +29,11 @@ public class PatientSlot: MonoBehaviour
         {
             return false;
         }
+        
         Sprite currentSprite = portraitImage.sprite;
 
-        if (currentSprite == data.dead) return false;
         if (currentSprite == data.infected) return false;
+        if (currentSprite == data.dead) return false;
 
         return true;
     }
