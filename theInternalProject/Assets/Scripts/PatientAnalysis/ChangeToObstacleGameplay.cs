@@ -11,7 +11,15 @@ public class ChangeScene : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 AudioManager.instance?.StopMusic();
-                SceneManager.LoadScene("BloodstreamIntro");
+
+                if (GameManager.instance?.patientLevelsPlayed == 0) 
+                {
+                    SceneManager.LoadScene("BloodstreamIntro");
+                }
+                else
+                {
+                    SceneManager.LoadScene("ObstacleGameplay");
+                }
             }
             else if (Input.GetKeyDown(KeyCode.Backspace))
             {
