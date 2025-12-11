@@ -17,22 +17,15 @@ public class PatientSelectionUI : MonoBehaviour
         ChangeSpritesByCondition();
         
         int firstSelectableIndex = -1;
-        bool allDone = true; 
 
         for (int i = 0; i < PatientSlots.Length; i++)
         {
             var status = PatientSlots[i].data.status;
             if (status != PatientStatus.Dead && status != PatientStatus.Saved)
             {
-                allDone = false;
                 if (firstSelectableIndex == -1)
                     firstSelectableIndex = i;
             }
-        }
-        if (allDone)
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("EndingScene");
-            return;
         }
         
         currentIndex = firstSelectableIndex;
