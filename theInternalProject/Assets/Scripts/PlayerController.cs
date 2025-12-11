@@ -26,7 +26,15 @@ public class PlayerController : MonoBehaviour
         float moveInputX = Input.GetAxisRaw("Horizontal");
         float moveInputY = Input.GetAxisRaw("Vertical");
         
+        var hp = GetComponent<HealthSystem>();
+        if (hp != null && hp.IsStunned)
+        {
+            moveInput = Vector2.zero;     // No movement
+            return;                       // Skip input this frame
+        }
+
         moveInput = new Vector2(moveInputX, moveInputY).normalized;
+
 
     }
 

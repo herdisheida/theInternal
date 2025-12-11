@@ -33,6 +33,10 @@ public class HealthSystem : MonoBehaviour
     private bool isInvincible = false;
     public float blinkInterval = 0.07f;
     private SpriteRenderer[] spriteRenderers;
+    
+    private float stunTimer = 0f;
+    public bool IsStunned => stunTimer > 0f;
+
     private Vector2 externalForce = Vector2.zero;
 
     void Awake()
@@ -184,6 +188,19 @@ public class HealthSystem : MonoBehaviour
             ScreenVignettePulse.instance?.StopPulse();
         }
 
+        if (stunTimer > 0f)
+        {
+            stunTimer -= Time.deltaTime;
+
+            // Fade back to normal
+            if (stunTimer <= 0f)
+            {
+                foreach (var sr in spriteRenderers)
+                    sr.color = Color.white;
+            }
+        }
+
+
         float currentX = healthBarFill.localScale.x;
         float targetX = ratio; 
 
@@ -231,6 +248,16 @@ public class HealthSystem : MonoBehaviour
         externalForce = Vector2.Lerp(externalForce, Vector2.zero, 5f * Time.deltaTime);
         return f;
     }
+
+    public void ApplyStun(float duration)
+    {
+        stunTimer = duration;
+
+        // Optional: flash yellow to show stun
+        foreach (var sr in spriteRenderers)
+            sr.color = new Color(1f, 1f, 0.4f);
+    }
+
 
 
 

@@ -504,6 +504,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1104168307}
     - target: {fileID: 7916299091387696680, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
+      propertyPath: swarmCooldown
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7916299091387696680, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
       propertyPath: batSwarmPrefab
       value: 
       objectReference: {fileID: 4884432528796443162, guid: 71a34957f6e72264ab31aa74aa636951, type: 3}

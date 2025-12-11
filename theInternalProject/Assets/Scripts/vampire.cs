@@ -168,6 +168,23 @@ public class Vampire : MonoBehaviour
         slash.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(dir * slashSpeed, 0);
 
         busy = false;
+
+        // TELEGRAPH: shake + particles + tiny camera pulse
+        CameraShake.instance?.Shake(0.1f, 0.05f);
+
+        float telegraphTime = 0.25f;
+        float t = 0f;
+        Vector3 original = transform.position;
+
+        while (t < telegraphTime)
+        {
+            transform.position = original + (Vector3)Random.insideUnitCircle * 0.05f;
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = original;
+
     }
 
 
