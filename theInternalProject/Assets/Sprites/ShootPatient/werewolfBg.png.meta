@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3d257261f6cb640dfb63b05f124654f6
+guid: 9c73c5432d94d40eaaf4dbf59dccfa84
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7666217261631634030
-    second: Screenshot 2025-12-11 at 10.40.47_0
+      213: -4911976874903256999
+    second: werewolfBg 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,10 +116,10 @@ TextureImporter:
       name: werewolfBg
       rect:
         serializedVersion: 2
-        x: 352
+        x: 0
         y: 0
-        width: 800
-        height: 600
+        width: 1532
+        height: 908
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e6a758a6bffd36a60800000000000000
-      internalID: 7666217261631634030
+      spriteID: 950457a9e0725dbb0800000000000000
+      internalID: -4911976874903256999
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 560d921db664b4261b31f7bb6a496358
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      werewolfBg: 7666217261631634030
+      werewolfBg: -4911976874903256999
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

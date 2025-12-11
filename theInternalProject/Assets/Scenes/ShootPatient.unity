@@ -495,7 +495,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 256624889976937111, guid: eedbe2912dbcc4f318dcbac76326056f, type: 3}
+  m_Sprite: {fileID: -4911976874903256999, guid: 9c73c5432d94d40eaaf4dbf59dccfa84, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -636,7 +636,7 @@ MonoBehaviour:
   patientImage: {fileID: 1722436195}
   backgroundImagePlaceholder: {fileID: 411518027}
   zombieBg: {fileID: -4443282803476574749, guid: f830872e679814736bfb33d8897b5b55, type: 3}
-  werewolfBg: {fileID: 7666217261631634030, guid: 3d257261f6cb640dfb63b05f124654f6, type: 3}
+  werewolfBg: {fileID: -4911976874903256999, guid: 9c73c5432d94d40eaaf4dbf59dccfa84, type: 3}
   vampireBg: {fileID: 256624889976937111, guid: eedbe2912dbcc4f318dcbac76326056f, type: 3}
 --- !u!1 &1539025785
 GameObject:
@@ -672,7 +672,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 210, y: -112}
+  m_AnchoredPosition: {x: 246, y: -112}
   m_SizeDelta: {x: 116, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1539025787
@@ -819,14 +819,14 @@ RectTransform:
   m_GameObject: {fileID: 1722436193}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.4, y: 2.4, z: 2.4}
+  m_LocalScale: {x: 2.9, y: 2.9, z: 2.9}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 375259254}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -79, y: -36}
+  m_AnchoredPosition: {x: -58, y: 9}
   m_SizeDelta: {x: 100, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1722436195
@@ -849,7 +849,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8255004875826537473, guid: eeca140986211ff4b97f4140101dccc3, type: 3}
+  m_Sprite: {fileID: 3415214611565262916, guid: 49d1a759257a69542abd12db52c57e8a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

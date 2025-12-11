@@ -69,13 +69,14 @@ public class PatientStatusUI : MonoBehaviour
                 break;
 
             case PatientType.Werewolf:
-                rt.localScale = new Vector3(1.3f, 1.3f, 1f);
+                rt.localScale = new Vector3(2.9f, 2.9f, 2.9f);  // size
+                rt.anchoredPosition = new Vector2(-58f, 9f);  // pos
                 backgroundImagePlaceholder.sprite = werewolfBg;
                 break;
 
             case PatientType.Vampire:
-                rt.localScale = new Vector3(2.4f, 2.4f, 2.4f);
-                rt.anchoredPosition = new Vector2(-79f, 13f);    // move vampire up by 51
+                rt.localScale = new Vector3(2.4f, 2.4f, 2.4f);  // size
+                rt.anchoredPosition = new Vector2(-79f, 13f);  // pos
                 backgroundImagePlaceholder.sprite = vampireBg;
                 break;
         }
