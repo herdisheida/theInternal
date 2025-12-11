@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class WindSlash : MonoBehaviour
 {
     private Vector2 velocity;
@@ -26,18 +25,14 @@ public class WindSlash : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            // Damage
             var hp = collision.GetComponentInParent<HealthSystem>();
             if (hp != null)
-                hp.TakeDamage(damage);
-
-            // Knockback
-            Rigidbody2D rb = collision.GetComponentInParent<Rigidbody2D>();
-            if (rb != null)
             {
+                hp.TakeDamage(damage);
+                
+                // Apply knockback through HealthSystem
                 float direction = Mathf.Sign(transform.position.x - collision.transform.position.x);
-                Vector2 knockForce = new Vector2(-direction * 10f, 3f); 
-                rb.AddForce(knockForce, ForceMode2D.Impulse);
+                hp.ApplyKnockback(new Vector2(-direction * 10f, 3f));
             }
 
             Destroy(gameObject);

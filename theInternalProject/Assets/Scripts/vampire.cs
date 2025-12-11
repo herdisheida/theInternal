@@ -53,6 +53,15 @@ public class Vampire : MonoBehaviour
 
     private Vector2 externalForce = Vector2.zero;
 
+    [Header("Gravity pull Wave")]
+    public GameObject CircleWavePrefab;
+    public int wavesPerPull = 3;
+    public float timeBetweenWaves = 0.7f;
+
+
+
+
+
     // -------- PHASE 2 --------
     public bool phase2 = false;
 
@@ -113,9 +122,25 @@ public class Vampire : MonoBehaviour
 
         moveTime += Time.deltaTime;
 
+        // VERTICAL float motion
         float yOffset = Mathf.Sin(moveTime * hoverFrequency) * hoverAmplitude;
-        transform.position = new Vector3(startPos.x, startPos.y + yOffset, transform.position.z);
+
+        // SMALL horizontal breathing movement (feels alive)
+        float xOffset = Mathf.Cos(moveTime * 0.7f) * 0.3f;
+
+        // Fixed right-side anchor position
+        float rightSideX = 6.5f;   // adjust to your arena layout
+
+        Vector3 targetPos = new Vector3(
+            rightSideX + xOffset,
+            startPos.y + yOffset,
+            transform.position.z
+        );
+
+        transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 3f);
     }
+
+
 
     // -------- HEALTH --------
     public void TakeDamage(int amount)
@@ -216,27 +241,28 @@ public class Vampire : MonoBehaviour
 
     IEnumerator GravityPullRoutine()
     {
-        Debug.Log("Vampire Gravity Pull!");
         canGravityPull = false;
         busy = true;
 
         float timer = 0f;
+        int wavesEmitted = 0;
 
         while (timer < pullDuration)
         {
             float dist = Vector2.Distance(player.position, transform.position);
 
-            // Only pull the player if within range
-            if (dist < pullRange)
+            // gravity pull 
             {
                 Vector2 dir = (transform.position - player.position).normalized;
+                var hp = player.GetComponentInParent<HealthSystem>();
+                hp?.ApplyExternalForce(dir * pullStrength * Time.deltaTime);
+            }
 
-                // Apply pull force
-                HealthSystem hp = player.GetComponentInParent<HealthSystem>();
-                if (hp != null)
-                {
-                    hp.ApplyExternalForce(dir * pullStrength * Time.deltaTime);
-                }
+            // Circle Waves
+            if (wavesEmitted < wavesPerPull && timer >= wavesEmitted * timeBetweenWaves)
+            {
+                Instantiate(CircleWavePrefab, transform.position, Quaternion.identity);
+                wavesEmitted++;
             }
 
             timer += Time.deltaTime;
@@ -245,10 +271,10 @@ public class Vampire : MonoBehaviour
 
         busy = false;
 
-        // cooldown
         yield return new WaitForSeconds(gravityCooldown);
         canGravityPull = true;
     }
+
 
 
 

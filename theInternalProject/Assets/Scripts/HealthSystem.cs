@@ -230,9 +230,17 @@ public class HealthSystem : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb == null) return;
 
-        rb.linearVelocity = Vector2.zero;
-        rb.AddForce(force, ForceMode2D.Impulse);
+        // Apply knockback when windslash hits
+        rb.linearVelocity = force;
     }
+
+    public Vector2 ConsumeExternalForce()
+    {
+        Vector2 f = externalForce;
+        externalForce = Vector2.Lerp(externalForce, Vector2.zero, 5f * Time.deltaTime);
+        return f;
+    }
+
 
 
 

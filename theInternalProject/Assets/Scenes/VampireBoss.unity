@@ -460,6 +460,14 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7916299091387696680, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
+      propertyPath: slashSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7916299091387696680, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
+      propertyPath: batsToSpawn
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7916299091387696680, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
       propertyPath: drainDamage
       value: 5
       objectReference: {fileID: 0}
@@ -480,6 +488,14 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7916299091387696680, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
+      propertyPath: pullStrength
+      value: 31.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 7916299091387696680, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
+      propertyPath: windCooldown
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7916299091387696680, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
       propertyPath: healthBarFill
       value: 
       objectReference: {fileID: 1104168307}
@@ -487,6 +503,18 @@ PrefabInstance:
       propertyPath: batSwarmPrefab
       value: 
       objectReference: {fileID: 4884432528796443162, guid: 71a34957f6e72264ab31aa74aa636951, type: 3}
+    - target: {fileID: 7916299091387696680, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
+      propertyPath: windAttackDist
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7916299091387696680, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
+      propertyPath: CircleWavePrefab
+      value: 
+      objectReference: {fileID: 4842515579273989020, guid: 2398d6d064bc4d4488559a10d5d14146, type: 3}
+    - target: {fileID: 7916299091387696680, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
+      propertyPath: gravityWavePrefab
+      value: 
+      objectReference: {fileID: 4842515579273989020, guid: 2398d6d064bc4d4488559a10d5d14146, type: 3}
     - target: {fileID: 7957974831376436071, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9567266
@@ -501,7 +529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7957974831376436071, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.05
+      value: 6.46
       objectReference: {fileID: 0}
     - target: {fileID: 7957974831376436071, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
       propertyPath: m_LocalPosition.y
@@ -667,6 +695,11 @@ Transform:
   - {fileID: 1104168307}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &319127442 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 4796045130027009545, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
+  m_PrefabInstance: {fileID: 218653329}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &337355051
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,11 +910,11 @@ PrefabInstance:
     - target: {fileID: 3409462471403445576, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: leftBorder
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 767642551}
     - target: {fileID: 3409462471403445576, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: rightBorder
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 319127442}
     - target: {fileID: 3409462471403445576, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: bottomBorder
       value: 
@@ -911,6 +944,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1244538808713842361, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
   m_PrefabInstance: {fileID: 761730001}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &767642551 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 6070565989724477573, guid: c6a1f8ca8d236425fa4b9fee98205ab6, type: 3}
+  m_PrefabInstance: {fileID: 218653329}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1104168306
 GameObject:
