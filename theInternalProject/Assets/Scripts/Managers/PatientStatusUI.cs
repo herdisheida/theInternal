@@ -43,14 +43,6 @@ public class PatientStatusUI : MonoBehaviour
 
         switch (patientData.status)
         {
-            case PatientStatus.None:
-                displayImage.sprite = patientData.unselected;
-                break;
-
-            case PatientStatus.Selected:
-                displayImage.sprite = patientData.selected;
-                break;
-
             case PatientStatus.Infected:
                 displayImage.sprite = patientData.infected;
                 break;
