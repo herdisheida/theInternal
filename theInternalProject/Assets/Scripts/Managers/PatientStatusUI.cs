@@ -52,34 +52,21 @@ public class PatientStatusUI : MonoBehaviour
 
         // update patient
         patientImage.sprite = patientData.infected;
-        // switch (patientData.status)
-        // {
-        //     case PatientStatus.Infected:
-        //         patientImage.sprite = patientData.infected;
-        //         break;
-
-        //     case PatientStatus.Dead:
-        //         patientImage.sprite = patientData.dead;
-        //         break;
-        // }
 
         // update background
-        if (backgroundImagePlaceholder != null)
+        switch (patientData.patientType)
         {
-            switch (patientData.patientType)
-            {
-                case PatientType.Zombie:
-                    backgroundImagePlaceholder.sprite = zombieBg;
-                    break;
+            case PatientType.Zombie:
+                backgroundImagePlaceholder.sprite = zombieBg;
+                break;
 
-                case PatientType.Werewolf:
-                    backgroundImagePlaceholder.sprite = werewolfBg;
-                    break;
+            case PatientType.Werewolf:
+                backgroundImagePlaceholder.sprite = werewolfBg;
+                break;
 
-                case PatientType.Vampire:
-                    backgroundImagePlaceholder.sprite = vampireBg;
-                    break;
-            }
+            case PatientType.Vampire:
+                backgroundImagePlaceholder.sprite = vampireBg;
+                break;
         }
     }
 }
