@@ -5,7 +5,16 @@ public class PatientStatusUI : MonoBehaviour
 {
     [Header("References")]
     public PatientData patientData;
-    public Image displayImage;
+    public Image patientImage;
+
+    [Header("Background References")]
+    public Image backgroundImagePlaceholder;
+    public Sprite zombieBg;
+    public Sprite werewolfBg;
+    public Sprite vampireBg;
+
+
+
 
     private PatientStatus lastStatus;
 
@@ -14,7 +23,7 @@ public class PatientStatusUI : MonoBehaviour
         // get current patient data
         if (patientData == null && GameManager.instance != null) { patientData = GameManager.instance.currentPatient; }
 
-        if (patientData == null || displayImage == null)
+        if (patientData == null || patientImage == null)
         {
             Debug.LogWarning($"{name}: PatientStatusUI missing references.");
             enabled = false;
@@ -40,18 +49,36 @@ public class PatientStatusUI : MonoBehaviour
 
     public void RefreshVisual()
     {
-        if (patientData == null || displayImage == null)
+        if (patientData == null || patientImage == null)
             return;
 
         switch (patientData.status)
         {
             case PatientStatus.Infected:
-                displayImage.sprite = patientData.infected;
+                patientImage.sprite = patientData.infected;
                 break;
 
             case PatientStatus.Dead:
-                displayImage.sprite = patientData.dead;
+                patientImage.sprite = patientData.dead;
                 break;
+        }
+
+        if (backgroundImagePlaceholder != null)
+        {
+            switch (patientData.patientName)
+            {
+                case PatientStatus.Zombie:
+                    backgroundImagePlaceholder.sprite = zombieBg;
+                    break;
+
+                case PatientStatus.Zombie:
+                    backgroundImagePlaceholder.sprite = werewolfBg;
+                    break;
+
+                case PatientStatus.Vampire:
+                    backgroundImagePlaceholder.sprite = vampireBg;
+                    break;
+            }
         }
     }
 }

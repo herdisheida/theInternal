@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cbe547d81ff66476cbbd04f0d7388ccf
+guid: eedbe2912dbcc4f318dcbac76326056f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2751406487082976676
-    second: HospitalBackground_0
+      213: 256624889976937111
+    second: Screenshot 2025-12-11 at 10.40.50_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HospitalBackground_0
+      name: vampireBg
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2160
-        height: 1620
+        x: 210
+        y: 92
+        width: 800
+        height: 600
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c5ab6b8a06a01d9d0800000000000000
-      internalID: -2751406487082976676
+      spriteID: 79a599f4af6bf8300800000000000000
+      internalID: 256624889976937111
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HospitalBackground_0: -2751406487082976676
+      vampireBg: 256624889976937111
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

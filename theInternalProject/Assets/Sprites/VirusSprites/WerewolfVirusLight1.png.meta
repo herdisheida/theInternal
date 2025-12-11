@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cbe547d81ff66476cbbd04f0d7388ccf
+guid: 4f774f8b69ad742db93bc9fdaec2ed0d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2751406487082976676
-    second: HospitalBackground_0
+      213: 2776646426596363893
+    second: WerewolfVirusLight1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HospitalBackground_0
+      name: WerewolfVirusLight1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2160
-        height: 1620
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c5ab6b8a06a01d9d0800000000000000
-      internalID: -2751406487082976676
+      spriteID: 57e4224b631a88620800000000000000
+      internalID: 2776646426596363893
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HospitalBackground_0: -2751406487082976676
+      WerewolfVirusLight1_0: 2776646426596363893
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

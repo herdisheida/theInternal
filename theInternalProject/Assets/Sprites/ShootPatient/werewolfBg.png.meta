@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cbe547d81ff66476cbbd04f0d7388ccf
+guid: 3d257261f6cb640dfb63b05f124654f6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2751406487082976676
-    second: HospitalBackground_0
+      213: 7666217261631634030
+    second: Screenshot 2025-12-11 at 10.40.47_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HospitalBackground_0
+      name: werewolfBg
       rect:
         serializedVersion: 2
-        x: 0
+        x: 352
         y: 0
-        width: 2160
-        height: 1620
+        width: 800
+        height: 600
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c5ab6b8a06a01d9d0800000000000000
-      internalID: -2751406487082976676
+      spriteID: e6a758a6bffd36a60800000000000000
+      internalID: 7666217261631634030
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HospitalBackground_0: -2751406487082976676
+      werewolfBg: 7666217261631634030
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

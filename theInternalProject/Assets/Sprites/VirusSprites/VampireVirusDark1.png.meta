@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cbe547d81ff66476cbbd04f0d7388ccf
+guid: 6dbc22de89ba848e284a65bef1f02436
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2751406487082976676
-    second: HospitalBackground_0
+      213: -4687625132790435959
+    second: VampireVirusDark1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HospitalBackground_0
+      name: VampireVirusDark1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2160
-        height: 1620
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c5ab6b8a06a01d9d0800000000000000
-      internalID: -2751406487082976676
+      spriteID: 98f25df17c532feb0800000000000000
+      internalID: -4687625132790435959
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HospitalBackground_0: -2751406487082976676
+      VampireVirusDark1_0: -4687625132790435959
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
