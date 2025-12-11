@@ -4,7 +4,8 @@ using UnityEngine;
 public enum EndingType
 {
     Bad,
-    Partial,
+    PartialyGood,
+    PartialyBad,
     Good
 }
 
@@ -135,7 +136,8 @@ public class GameManager : MonoBehaviour
 
         if (saved == 0) return EndingType.Bad;
         else if (saved == total) return EndingType.Good;
-        else return EndingType.Partial;
+        else if (saved == 2) return EndingType.PartialyGood;
+        else return EndingType.PartialyBad;
     }
 
     public bool AllPatientsResolved()
