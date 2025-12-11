@@ -207,7 +207,7 @@ public class GunShakeController : MonoBehaviour
         yield return new WaitForSeconds(shootFlashDuration);
 
         // instantly go black + exhale + change scene
-        yield return StartCoroutine(BlackScreen(3f));
+        yield return StartCoroutine(BlackScreen(3.5f));
         // load next scene
         SceneManager.LoadScene(nextSceneName);
     }
