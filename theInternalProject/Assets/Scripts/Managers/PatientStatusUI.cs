@@ -51,16 +51,17 @@ public class PatientStatusUI : MonoBehaviour
             return;
 
         // update patient
-        switch (patientData.status)
-        {
-            case PatientStatus.Infected:
-                patientImage.sprite = patientData.infected;
-                break;
+        patientImage.sprite = patientData.infected;
+        // switch (patientData.status)
+        // {
+        //     case PatientStatus.Infected:
+        //         patientImage.sprite = patientData.infected;
+        //         break;
 
-            case PatientStatus.Dead:
-                patientImage.sprite = patientData.dead;
-                break;
-        }
+        //     case PatientStatus.Dead:
+        //         patientImage.sprite = patientData.dead;
+        //         break;
+        // }
 
         // update background
         if (backgroundImagePlaceholder != null)
