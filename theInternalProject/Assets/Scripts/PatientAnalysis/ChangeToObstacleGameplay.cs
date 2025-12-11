@@ -28,7 +28,14 @@ public class ChangeScene : MonoBehaviour
         }
         else
         {
-            StartCoroutine(GoBackToSelection());
+            if (GameManager.instance?.patientLevelsPlayed == 3)
+            {
+                StartCoroutine(GoToEnding());
+            }
+            else
+            { 
+                StartCoroutine(GoBackToSelection());
+            }
         }
     }
 
@@ -36,5 +43,11 @@ public class ChangeScene : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("PatientSelection");
+    }
+
+    IEnumerator GoToEnding()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("EndingScene");
     }
 }
