@@ -168,6 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de0557daeccaff0459aadfe9771a80ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossShooting
-  speed: 5
+  speed: 10
   lifetime: 4
   damage: 10

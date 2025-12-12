@@ -79,7 +79,7 @@ public class Vampire : MonoBehaviour
 
     void Update()
     {
-        if (isDead) return;  // ← prevents hover, external force and attack checks
+        if (isDead) return; // make sure it doesnt move when dead
 
         HoverMotion();
         UpdateHealthBar();
@@ -186,7 +186,7 @@ public class Vampire : MonoBehaviour
 
         busy = false;
 
-        // TELEGRAPH: shake + particles + tiny camera pulse
+        // shake and particles
         CameraShake.instance?.Shake(0.1f, 0.05f);
 
         float telegraphTime = 0.25f;
@@ -315,7 +315,5 @@ public class Vampire : MonoBehaviour
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(deathNextScene);
     }
-
-
 
 }
