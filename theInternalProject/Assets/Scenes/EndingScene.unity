@@ -322,17 +322,17 @@ MonoBehaviour:
   goodLines:
   - 'Diary entry 748
 
-    Today I saved all of my three patients. I now believe that
-    we are turning things around and am hopeful for the future. Now I''m going to
-    try my hardest to save as many people as I can.
+    Today I saved all of my three patients. I believe that
+    we are turning things around and am hopeful for the future. I''m going to continue
+    trying my hardest to save as many people as I can.
 
 '
   partialyGoodLines:
   - 'Diary entry 748
 
     Today I saved two patients. I wish I could''ve saved the
-    third but there was nothing I could do. Still I''m going to continue saving as
-    many patients as I can to see if my assistance changes anything in these trying
+    third but there was nothing I could do. Still I''m going to continue to save
+    as many patients as I can to see if my assistance changes anything in these trying
     times.'
   partialyBadLines:
   - 'Diary entry 748
@@ -761,8 +761,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 55.441467, y: -12.7702}
-  m_SizeDelta: {x: -199.7026, y: 1.6045}
+  m_AnchoredPosition: {x: 55.441467, y: 8.1795}
+  m_SizeDelta: {x: -199.7026, y: 57.7662}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1828772174
 MonoBehaviour:
