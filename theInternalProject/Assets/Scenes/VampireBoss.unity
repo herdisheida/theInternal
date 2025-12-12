@@ -1035,10 +1035,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 218653330}
     - target: {fileID: 4315159835419543337, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
-      propertyPath: healthText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4315159835419543337, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: healthBarFill
       value: 
       objectReference: {fileID: 1534020877}
