@@ -652,8 +652,8 @@ MonoBehaviour:
   dialogueText: {fileID: 149409553}
   lines:
   - The apocalypse has been raging for two months now.
-  - "I\u2019ve saved who I could\u2026\nfar fewer than I wish I had."
-  - "Still\u2026\nI can\u2019t let myself stop.\nNot yet."
+  - "I\u2019ve saved who I could\u2026\nfar fewer than I wish."
+  - "Still\u2026\nI can\u2019t stop.\nNot yet!"
   timeBetweenLines: 4.5
   nextSceneName: PatientSelection
 --- !u!1 &1629847173
