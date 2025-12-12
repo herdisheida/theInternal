@@ -67,6 +67,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip werewolfHowlingClip; // phase 2
     public AudioClip werewolfGrowlClip;
     public AudioClip werewolfBarkClip;
+    public AudioClip werewolfChompClip;
 
     [Header("Vampire Enemy SFX")]
     public AudioClip vampireScreamClip;
@@ -212,6 +213,7 @@ public class AudioManager : MonoBehaviour
     public void WerewolfHowling()    => PlaySFX(werewolfHowlingClip);
     public void WerewolfGrowl()      => PlaySFX(werewolfGrowlClip);
     public void WerewolfBark()       => PlaySFX(werewolfBarkClip);
+    public void WerewolfChomp()      => PlaySFX(werewolfChompClip);
 
     public void VampireScream()      => PlaySFX(vampireScreamClip);
     public void VampireGrowl()       => PlaySFX(vampireGrowlClip);
