@@ -78,6 +78,11 @@ public class HealthSystem : MonoBehaviour
         UpdateHealthBar();
     }
 
+    public static void ResetSharedHealth()
+    {
+        sharedHealth = -1; // forces Start() to refill to maxHealth
+    }
+
 
     // damage
     public void TakeDamage(int amount)
@@ -339,9 +344,6 @@ public class HealthSystem : MonoBehaviour
         foreach (var sr in spriteRenderers)
             sr.color = new Color(1f, 1f, 0.4f);
     }
-
-
-
 
 
 }

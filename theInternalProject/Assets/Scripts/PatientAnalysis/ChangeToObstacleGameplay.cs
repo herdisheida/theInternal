@@ -18,6 +18,7 @@ public class ChangeScene : MonoBehaviour
                 }
                 else
                 {
+                    HealthSystem.ResetSharedHealth(); // reset health for next patient
                     SceneManager.LoadScene("ObstacleGameplay");
                 }
             }
