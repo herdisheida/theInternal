@@ -12,34 +12,25 @@ using Unity.VisualScripting;
 //     UnityEngine.SceneManagement.SceneManager.LoadScene("EndingScene");
 // }
 
-
-
-public class EndingScreen : MonoBehaviour
-{
-    [Header("UI References")]
-    public Image endingImage;                // big picture on screen
-    public TextMeshProUGUI endingText;       // text that fades in/out
-
-    [Header("Text Lines For Each Ending")]
-    [TextArea] public string[] goodLines;
-    [TextArea] public string[] partialyGoodLines;
-    [TextArea] public string[] partialyBadLines;
-    [TextArea] public string[] badLines;
+public class PatientAnalysisText : MonoBehaviour
+{    
+    [Header("Text Lines Per Patient")]
+    [TextArea] public string[] ZombieLinesInfected;
+    [TextArea] public string[] ZombieLinesSaved;
+    [TextArea] public string[] WerewolfLinesInfected;
+    [TextArea] public string[] WerewolfLinesSaved;
+    [TextArea] public string[] VampireLinesInfected;
+    [TextArea] public string[] VampireLinesSaved;
 
     [Header("Timings")]
     public float fadeDuration = 0.8f;   // how long to fade in/out
     public float holdDuration = 3f;     // how long text stays fully visible
     public bool loopLines = false;      // if true, keep cycling the lines
-    private EndingType ending;
-    private int savedCount;
-    // private bool isBad = true;
-
+    
+    private PatientData currentPatient = PatientManager.selectedPatient;
 
     void Start()
     {
-        // default to BAD if something goes wrong
-        ending = EndingType.PartialyGood;
-
         if (GameManager.instance != null)
         {
             ending = GameManager.instance.GetEndingType();
@@ -57,23 +48,9 @@ public class EndingScreen : MonoBehaviour
 
     }
 
-    // void Update()
-    // {
-    //     if (ending == EndingType.Bad)
-    //     {
-    //         isBad = true;
-    //     }
-    //     else
-    //     {
-    //         isBad = false;
-    //     }
-
-    // } 
-
     string[] SetupVisualsForEnding(EndingType ending)
     {
         string[] linesToUse = null;
-
         switch (ending)
         {
             case EndingType.Good:
