@@ -213,14 +213,7 @@ public class GunShakeController : MonoBehaviour
         // instantly go black + exhale + change scene
         yield return StartCoroutine(BlackScreen(3.5f, false));
         // load next scene
-        if (GameManager.instance.patientLevelsPlayed >= 3)
-        {
-            SceneManager.LoadScene(endScene);
-        }
-        else
-        {
-            SceneManager.LoadScene(nextSceneName);
-        }
+        SceneManager.LoadScene(nextSceneName);
     }
 
     void EndShake()
