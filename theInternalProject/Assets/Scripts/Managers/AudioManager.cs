@@ -78,6 +78,7 @@ public class AudioManager : MonoBehaviour
     [Header("Volumes")]
     [Header("Music Volumes")]
     [Range(0f, 1f)] public float obstacleMusicVol = 0.7f;
+    [Range(0f, 1f)] public float vampireMusicVol = 0.7f;
     [Header("SFX Volumes")]
     [Range(0f, 1f)] public float uiVol = 0.8f;
 
@@ -212,7 +213,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayZombieBossBattleMusic()        => PlayMusic(zombieBossBattleMusic);
     public void PlayWerewolfBossBattleMusic()      => PlayMusic(werewolfBossBattleMusic);
-    public void PlayVampireBossBattleMusic()       => PlayMusic(vampireBossBattleMusic);
+    public void PlayVampireBossBattleMusic()       => PlayMusic(vampireBossBattleMusic, vampireMusicVol);
 
     public void PlayGoodEndingMusic()        => PlayMusic(goodEndingMusic);
     public void PlayBadEndingMusic()         => PlayMusic(badEndingMusic);
