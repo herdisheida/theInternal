@@ -45,6 +45,7 @@ public class PatientDialogScript : MonoBehaviour
         }
         CharacterName.text = analizedPatient.patientName;
         string[] linesToUse = null;
+        string[] 
 
         if (analizedPatient.status == PatientStatus.Saved)
         {
