@@ -32,7 +32,7 @@ public class EndingScreen : MonoBehaviour
     public bool loopLines = false;      // if true, keep cycling the lines
     private EndingType ending;
     private int savedCount;
-    // private bool isBad = true;
+    private bool isBad = true;
 
 
     void Start()
@@ -57,18 +57,18 @@ public class EndingScreen : MonoBehaviour
 
     }
 
-    // void Update()
-    // {
-    //     if (ending == EndingType.Bad)
-    //     {
-    //         isBad = true;
-    //     }
-    //     else
-    //     {
-    //         isBad = false;
-    //     }
+    void Update()
+    {
+        if (ending == EndingType.Bad)
+        {
+            isBad = true;
+        }
+        else
+        {
+            isBad = false;
+        }
 
-    // } 
+    } 
 
     string[] SetupVisualsForEnding(EndingType ending)
     {
@@ -112,6 +112,7 @@ public class EndingScreen : MonoBehaviour
             c.a = 0f;
             endingText.color = c;
         }
+        linesToUse = badLines;
         return linesToUse;
     }
 
