@@ -82,8 +82,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 3588073
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 1668523502516627403, guid: ed386e3bd41aa4ca7a8d66de224462f0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -201,8 +201,11 @@ MonoBehaviour:
   invincibilityPeriod: 0.9
   preBlinkDelay: 0.1
   blinkInterval: 0.1
-  deathSpriteRenderer: {fileID: 3626916397498700004, guid: b33b8c799603f42f4b38767385677bba, type: 3}
-  deathFadeDuration: 1.5
+  deathShakeDuration: 0.6
+  deathShakeMagnitude: 0.2
+  deathFallDistance: 6
+  deathFallSpeed: 6
+  deathFallRotationSpeed: 360
 --- !u!114 &1235428796783345502
 MonoBehaviour:
   m_ObjectHideFlags: 0

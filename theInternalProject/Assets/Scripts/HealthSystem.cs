@@ -39,9 +39,19 @@ public class HealthSystem : MonoBehaviour
 
     private Vector2 externalForce = Vector2.zero;
 
-    [Header("Death Settings")]
-    public SpriteRenderer deathSpriteRenderer;
-    public float deathFadeDuration = 1.5f;
+
+
+    [Header("Death Animation")]
+    public float deathShakeDuration = 0.6f;
+    public float deathShakeMagnitude = 0.2f;
+    public float deathFallDistance = 6f;
+    public float deathFallSpeed = 6f;
+    public float deathFallRotationSpeed = 360f; // degrees per second
+
+    private bool isDead = false;
+
+
+
 
     void Awake()
     {
@@ -93,8 +103,7 @@ public class HealthSystem : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Die();
-            AudioManager.instance?.FadeOutMusic(1.5f);
+            StartCoroutine(DeathRoutine());
         }
         else
         {
@@ -137,16 +146,71 @@ public class HealthSystem : MonoBehaviour
 
 
     //death 
-    public void Die()
+    private IEnumerator DeathRoutine()
     {
         AudioManager.instance?.Death();
     
-        if (healthBarRoot != null)
-            healthBarRoot.SetActive(false);
+        // Disable controls, NOT the whole GameObject
+        var playerController = GetComponent<PlayerController>();
+        if (playerController != null)
+            playerController.enabled = false;
+        var gunController = GetComponent<GunController>();
+        if (gunController != null)
+            gunController.enabled = false;
+        // disable borders (so player can fall off screen)
 
-        gameObject.SetActive(false);
+
+        // health bar off
+        if (healthBarRoot != null) healthBarRoot.SetActive(false);
+
+        // stop taking more damage
+        isInvincible = true;
+    
+        // camera shake
+        CameraShake.instance?.Shake(0.3f, 0.15f);
+
+        Vector3 originalPos = transform.position;
+        
+
+
+        // ---- SHAKE IN PLACE ----
+        float elapsed = 0f;
+        while (elapsed < deathShakeDuration)
+        {
+            float offsetX = Random.Range(-1f, 1f) * deathShakeMagnitude;
+            float offsetY = Random.Range(-1f, 1f) * deathShakeMagnitude;
+
+            transform.position = originalPos + new Vector3(offsetX, offsetY, 0f);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+            
+        // snap back
+        transform.position = originalPos;
+
+        // ---- FALL / YEET OFF SCREEN ----
+        Vector3 targetPos = originalPos + Vector3.down * deathFallDistance;
+
+        while (transform.position.y > targetPos.y)
+        {
+            // move down
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                targetPos,
+                deathFallSpeed * Time.deltaTime
+            );
+
+            // spin while falling
+            transform.Rotate(0f, 0f, deathFallRotationSpeed * Time.deltaTime);
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
         GameManager.instance?.MarkPatientInfected();
-
+        AudioManager.instance?.FadeOutMusic(1.5f);
         SceneManager.LoadScene("ShootPatient");
     }
 

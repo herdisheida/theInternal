@@ -204,18 +204,6 @@ PrefabInstance:
       propertyPath: bottomBorder
       value: 
       objectReference: {fileID: 1886781212}
-    - target: {fileID: 3957775815832412039, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
-      propertyPath: m_SortingLayer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3957775815832412039, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3957775815832412039, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 3588073
-      objectReference: {fileID: 0}
     - target: {fileID: 4315159835419543337, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: healthBarFill
       value: 
