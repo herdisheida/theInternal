@@ -1,9 +1,12 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Vampire : MonoBehaviour
 {
     public Transform player;
+    private bool isDead = false;
+
 
     // movement settings
     [Header("Movement")]
@@ -47,6 +50,15 @@ public class Vampire : MonoBehaviour
     public int wavesPerPull = 3;
     public float timeBetweenWaves = 0.6f;
 
+    [Header("Death Animation")]
+    public GameObject zombieVineHang;
+    public float deathShakeDuration = 1f;
+    public float deathShakeMagnitude = 0.12f;
+    public float deathFallSpeed = 6f;
+    public float deathFallRotationSpeed = 180f;   // degrees per second
+    public float deathFallDistance = 6f;          // how far down he falls
+    public string deathNextScene = "AnalysisScreen";
+
     private Vector2 externalForce = Vector2.zero;
 
     // phase 2
@@ -67,6 +79,8 @@ public class Vampire : MonoBehaviour
 
     void Update()
     {
+        if (isDead) return;  // ← prevents hover, external force and attack checks
+
         HoverMotion();
         UpdateHealthBar();
 
@@ -80,19 +94,21 @@ public class Vampire : MonoBehaviour
         }
     }
 
+
     // movement
     void HoverMotion()
     {
+        if (isDead) return;
+
         moveTime += Time.deltaTime;
 
-        // hover up and down + slight side to side
         float yOffset = Mathf.Sin(moveTime * hoverFrequency) * hoverAmplitude;
         float xOffset = Mathf.Cos(moveTime * 0.6f) * 0.4f;
 
         float rightX = 6.5f;
-
         transform.position = new Vector3(rightX + xOffset, startPos.y + yOffset, transform.position.z);
     }
+
 
 
     // health
@@ -112,7 +128,8 @@ public class Vampire : MonoBehaviour
         }
 
         if (currentHealth <= 0)
-            Destroy(gameObject);
+            TriggerDeath();
+
     }
 
     void UpdateHealthBar()
@@ -239,4 +256,66 @@ public class Vampire : MonoBehaviour
 
         busy = false;
     }
+
+    public void TriggerDeath()
+    {
+        if (isDead) return;
+        isDead = true;
+
+        // stop everything BEFORE starting the death sequence
+        StopAllCoroutines();
+
+        StartCoroutine(DeathSequence());
+    }
+
+    IEnumerator DeathSequence()
+    {
+        busy = true;
+
+        // disable hitbox & physics
+        Collider2D col = GetComponent<Collider2D>();
+        if (col) col.enabled = false;
+
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb) rb.simulated = false;
+
+        AudioManager.instance?.ZombieDeath();
+        CameraShake.instance?.Shake(0.4f, 0.2f);
+
+        Vector3 originalPos = transform.position;
+
+        // SHAKE
+        float elapsed = 0f;
+        while (elapsed < deathShakeDuration)
+        {
+            float x = Random.Range(-1f, 1f) * deathShakeMagnitude;
+            float y = Random.Range(-1f, 1f) * deathShakeMagnitude;
+
+            transform.position = originalPos + new Vector3(x, y, 0);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = originalPos;
+
+        // FALL
+        Vector3 targetPos = originalPos + Vector3.down * deathFallDistance;
+        while (transform.position.y > targetPos.y)
+        {
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                targetPos,
+                deathFallSpeed * Time.deltaTime
+            );
+
+            transform.Rotate(0, 0, deathFallRotationSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(deathNextScene);
+    }
+
+
+
 }

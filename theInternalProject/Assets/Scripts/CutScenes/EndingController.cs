@@ -38,7 +38,7 @@ public class EndingScreen : MonoBehaviour
     void Start()
     {
         // default to BAD if something goes wrong
-        ending = EndingType.Bad;
+        ending = EndingType.PartialyGood;
 
         if (GameManager.instance != null)
         {
@@ -112,7 +112,7 @@ public class EndingScreen : MonoBehaviour
             c.a = 0f;
             endingText.color = c;
         }
-
+        linesToUse = badLines;
         return linesToUse;
     }
 
@@ -181,7 +181,7 @@ public class EndingScreen : MonoBehaviour
 
     IEnumerator GoToCreditsAfterDelay()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.2f);
         savedCount = GameManager.instance != null 
             ? GameManager.instance.GetSavedCount()
             : 0;
