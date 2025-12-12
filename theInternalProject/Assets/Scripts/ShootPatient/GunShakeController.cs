@@ -206,6 +206,9 @@ public class GunShakeController : MonoBehaviour
 
         EndShake();
         yield return new WaitForSeconds(shootFlashDuration);
+    
+        // play exhale sound after the shot
+        AudioManager.instance?.DeepExhale();
 
         // instantly go black + exhale + change scene
         yield return StartCoroutine(BlackScreen(3.5f));
@@ -256,9 +259,6 @@ public class GunShakeController : MonoBehaviour
             c.a = 1f; // fully opaque black
             fadeImage.color = c;
         }
-
-        // play exhale sound after the shot
-        AudioManager.instance?.DeepExhale();
 
         // Short pause to let the exhale play
         yield return new WaitForSeconds(blackHoldDuration);
