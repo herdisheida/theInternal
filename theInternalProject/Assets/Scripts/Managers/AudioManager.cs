@@ -64,6 +64,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip werewolfGrowlClip;
     public AudioClip werewolfBarkClip;
 
+    [Header("Vampire Enemy SFX")]
+    // (add vampire SFX here in future)
+
     void Awake()
     {
         // singleton pattern
