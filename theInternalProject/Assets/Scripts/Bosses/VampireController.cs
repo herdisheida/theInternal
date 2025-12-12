@@ -317,6 +317,7 @@ public class Vampire : MonoBehaviour
             yield return null;
         }
 
+        AudioManager.instance?.FadeOutSFX(1f);
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(deathNextScene);
     }
