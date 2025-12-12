@@ -51,7 +51,6 @@ public class Vampire : MonoBehaviour
     public float timeBetweenWaves = 0.6f;
 
     [Header("Death Animation")]
-    public GameObject zombieVineHang;
     public float deathShakeDuration = 1f;
     public float deathShakeMagnitude = 0.12f;
     public float deathFallSpeed = 6f;
