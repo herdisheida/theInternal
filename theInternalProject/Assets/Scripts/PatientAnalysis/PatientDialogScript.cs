@@ -48,16 +48,32 @@ public class PatientDialogScript : MonoBehaviour
 
         if (analizedPatient.status == PatientStatus.Saved)
         {
-            switch (CharacterName.text)
+            switch (analizedPatient.patientType) 
             {
-                
+                case PatientType.Zombie:
+                    linesToUse = ZombieSavedLines;
+                    break;
+                case PatientType.Werewolf:
+                    linesToUse = WerewolfSavedLines;
+                    break;
+                case PatientType.Vampire:
+                    linesToUse = VampireSavedLines;
+                    break;
             }
         }
         else
             {
-                switch (CharacterName.text)
+                switch (analizedPatient.patientType) 
             {
-                
+                case PatientType.Zombie:
+                    linesToUse = ZombieSavedLines;
+                    break;
+                case PatientType.Werewolf:
+                    linesToUse = WerewolfSavedLines;
+                    break;
+                case PatientType.Vampire:
+                    linesToUse = VampireSavedLines;
+                    break;
             }
             }
 
