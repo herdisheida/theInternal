@@ -153,8 +153,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 99.0552, y: 5.5415}
-  m_SizeDelta: {x: 356.5487, y: 199.6217}
+  m_AnchoredPosition: {x: 90.05016, y: 5.5415}
+  m_SizeDelta: {x: 321.9141, y: 199.6217}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &149409553
 MonoBehaviour:
@@ -649,6 +649,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77d4b01177e37477282d3842f8c3500e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  dialogueText: {fileID: 149409553}
+  lines:
+  - The apocalypse has been raging for two months now.
+  - "I\u2019ve saved who I could\u2026\nfar fewer than I wish I had."
+  - "Still\u2026\nI can\u2019t let myself stop.\nNot yet."
+  timeBetweenLines: 4.5
+  nextSceneName: PatientSelection
 --- !u!1 &1629847173
 GameObject:
   m_ObjectHideFlags: 0

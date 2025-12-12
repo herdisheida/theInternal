@@ -21,6 +21,7 @@ public class IntroTextSequence : MonoBehaviour
 
     void Start()
     {
+        AudioManager.instance?.PlayHospitalLobbyMusic();
         if (dialogueText == null || lines.Length == 0)
         {
             Debug.LogWarning("IntroTextSequence: Missing text or lines.");
