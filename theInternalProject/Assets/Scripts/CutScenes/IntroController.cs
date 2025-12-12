@@ -34,6 +34,8 @@ public class IntroTextSequence : MonoBehaviour
 
     IEnumerator PlaySequence()
     {
+        yield return new WaitForSeconds(0.5f); // initial delay
+
         while (currentIndex < lines.Length)
         {
             dialogueText.text = lines[currentIndex];
