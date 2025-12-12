@@ -101,7 +101,7 @@ public class GunShakeController : MonoBehaviour
         if (idleGunSprite == null && gunImage != null) { idleGunSprite = gunImage.sprite; }
 
         // start with black screen for 1 seconds
-        yield return StartCoroutine(BlackScreen(0.6f));
+        yield return StartCoroutine(BlackScreen(0.6f, true));
 
         // after black screen, start shaking
         StartShake();
@@ -211,7 +211,7 @@ public class GunShakeController : MonoBehaviour
         AudioManager.instance?.DeepExhale();
 
         // instantly go black + exhale + change scene
-        yield return StartCoroutine(BlackScreen(3.5f));
+        yield return StartCoroutine(BlackScreen(3.5f, false));
         // load next scene
         if (GameManager.instance.patientLevelsPlayed >= 3)
         {
@@ -250,7 +250,7 @@ public class GunShakeController : MonoBehaviour
     }
 
 
-    IEnumerator BlackScreen(float blackHoldDuration)
+    IEnumerator BlackScreen(float blackHoldDuration, bool fadeBack = true)
     {
         // instantly turn screen black
         if (fadeImage != null)
@@ -264,7 +264,7 @@ public class GunShakeController : MonoBehaviour
         yield return new WaitForSeconds(blackHoldDuration);
 
         // fade back to transparent
-        if (fadeImage != null)
+        if (fadeBack == true && fadeImage != null)
         {
             Color c = fadeImage.color;
             c.a = 0f;
