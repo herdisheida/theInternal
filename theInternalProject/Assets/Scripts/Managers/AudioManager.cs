@@ -74,6 +74,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip vampireGrowlClip;
 
 
+
+    [Header("Volumes")]
+    [Header("Music Volumes")]
+    [Range(0f, 1f)] public float obstacleMusicVol = 0.7f;
     [Header("SFX Volumes")]
     [Range(0f, 1f)] public float uiVol = 0.8f;
 
@@ -107,7 +111,7 @@ public class AudioManager : MonoBehaviour
 
     // Play a specific music clip (chosen from Inspector or passed in).
     // Example: AudioManager.instance?.PlayMusic(AudioManager.instance.bossBattleMusic);
-    public void PlayMusic(AudioClip clip)
+    public void PlayMusic(AudioClip clip, float volume = 1f, bool loop = true)
     {
         if (musicSource == null || clip == null) return;
 
@@ -115,7 +119,8 @@ public class AudioManager : MonoBehaviour
         if (musicSource.isPlaying && musicSource.clip == clip) return;
 
         musicSource.clip = clip;
-        musicSource.loop = true;
+        musicSource.loop = loop;
+        musicSource.volume = Mathf.Clamp01(volume);
         musicSource.Play();
     }
 
@@ -203,7 +208,7 @@ public class AudioManager : MonoBehaviour
     // Example: AudioManager.instance?.PlayHospitalLobbyMusic();
     public void PlayMenuScreenMusic()        => PlayMusic(menuScreenMusic);
     public void PlayHospitalLobbyMusic()     => PlayMusic(hospitalLobbyMusic);
-    public void PlayObstacleGameplayMusic()  => PlayMusic(obstacleGameplayMusic);
+    public void PlayObstacleGameplayMusic()  => PlayMusic(obstacleGameplayMusic, obstacleMusicVol);
 
     public void PlayZombieBossBattleMusic()        => PlayMusic(zombieBossBattleMusic);
     public void PlayWerewolfBossBattleMusic()      => PlayMusic(werewolfBossBattleMusic);
