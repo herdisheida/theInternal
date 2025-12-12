@@ -43,18 +43,32 @@ public class PatientDialogScript : MonoBehaviour
             Debug.LogError("GameManager.currentPatient is null");
             return;
         }
+        CharacterName.text = analizedPatient.patientName;
+        string[] linesToUse = null;
+
+        if (analizedPatient.status == PatientStatus.Saved)
+        {
+            switch (CharacterName.text)
+            {
+                
+            }
+        }
+        else
+            {
+                switch (CharacterName.text)
+            {
+                
+            }
+            }
+
     }
 
     // void Update()
     // {
     //     CharacterName.text = analizedPatient.patientName;
-    //     if (analizedPatient.status == PatientStatus.Saved)
+    //     switch case(CharacterName.text)
     //     {
-    //         TemplateText.text = GetSavedLinesFor(analizedPatient);
-    //     }
-    //     else
-    //     {
-    //         TemplateText.text = 
+            
     //     }
     // }
 }
