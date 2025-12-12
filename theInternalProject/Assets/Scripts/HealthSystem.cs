@@ -40,7 +40,6 @@ public class HealthSystem : MonoBehaviour
     private Vector2 externalForce = Vector2.zero;
 
 
-
     [Header("Death Animation")]
     public float deathShakeDuration = 0.6f;
     public float deathShakeMagnitude = 0.2f;
@@ -49,8 +48,6 @@ public class HealthSystem : MonoBehaviour
     public float deathFallRotationSpeed = 360f; // degrees per second
 
     private bool isDead = false;
-
-
 
 
     void Awake()
