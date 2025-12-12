@@ -75,6 +75,7 @@ MonoBehaviour:
   werewolfHowlingClip: {fileID: 8300000, guid: 0484477cd2687483da1320372c247ad6, type: 3}
   werewolfGrowlClip: {fileID: 8300000, guid: 591ad1e72a164408cbaba4679964d605, type: 3}
   werewolfBarkClip: {fileID: 8300000, guid: a92f9a0d1c81e481aa4d08e10bc38f19, type: 3}
+  vampireScreamClip: {fileID: 8300000, guid: 9d30bc148ed7f4f839fe93879ee3355f, type: 3}
 --- !u!82 &5469112575120005823
 AudioSource:
   m_ObjectHideFlags: 0
