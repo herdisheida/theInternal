@@ -6,29 +6,39 @@ When infected survivors arrive at his hospital, he does the unthinkable: shrinks
 
 ---
 
-## Story & Premise
-
-The apocalypse has been raging for years. The doctor has been saving whoever he can, but things are getting worse.
-
-At the start of each run, you’re introduced to **three patients**:
-- One with a **zombie infection**
-- One with a **werewolf infection**
-- One with a **vampire infection**
-
-You listen to their stories, then choose who to treat.  
-The doctor shrinks down, jumps into his medical pod, and **dives inside the patient** to battle the infection directly.
-
-How many of them you save (0–3) affects the doctor’s **diary entry** and the **ending** you get:
-- **3/3 saved** – hopeful, “we are turning things around”
-- **2/3 saved** – bittersweet, still trying
-- **1/3 saved** – losing hope, but continuing
-- **0/3 saved** – the doctor can’t go on anymore…
-
----
-
 ## 🕹 Controls
 
 | Input                    | Action                      |
 |--------------------------|-----------------------------|
 | `WASD`/ `Arrow Keys`     | Move your medical pod       |
 | `Space`                  | Shoot medicine bullets      |
+
+
+--- 
+## How to play game on Web
+
+Here is an itch.io link: https://herdis-heida.itch.io/the-internal?secret=tR4fZmda9fRWfLIQH5rOZa3eWg
+
+--- 
+## How to Launch the Game (From GitHub)
+
+1. Clone the repository
+```bash
+  git clone https://github.com/your-username/the-internal.git
+```
+2. Enter the folder
+```bash
+  cd the-internal
+```
+3. Open the project in Unity
+* Open the Unity Hub
+* Click *Add project from disk*.
+* Navigate to the folder you cloned (the entire the-internal directory).
+* Select it and click Open Project.
+* Unity will load the project and import all assets.
+
+3. Launch the game from the Unity Editor
+* In Unity, open the scene:
+  ```Scenes → Menu```
+* Click the Play button at the top of the editor.
+* The game will start from the main menu.

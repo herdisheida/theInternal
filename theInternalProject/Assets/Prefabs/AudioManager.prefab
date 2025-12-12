@@ -52,6 +52,8 @@ MonoBehaviour:
   hospitalLobbyMusic: {fileID: 8300000, guid: 526572bcd4aee4a74b1267ad61781ec3, type: 3}
   obstacleGameplayMusic: {fileID: 8300000, guid: 54fc760a0f3f5416198c3571fd35901e, type: 3}
   zombieBossBattleMusic: {fileID: 8300000, guid: d39d165e9b51f4c028a16c2251e99597, type: 3}
+  werewolfBossBattleMusic: {fileID: 8300000, guid: d39d165e9b51f4c028a16c2251e99597, type: 3}
+  vampireBossBattleMusic: {fileID: 8300000, guid: d39d165e9b51f4c028a16c2251e99597, type: 3}
   goodEndingMusic: {fileID: 0}
   badEndingMusic: {fileID: 0}
   partialEndingMusic: {fileID: 0}
@@ -65,7 +67,7 @@ MonoBehaviour:
   podFlyingOffClip: {fileID: 8300000, guid: 44da8c0cddd3a445aaabb9390099d874, type: 3}
   damageTakenClip: {fileID: 8300000, guid: 23560c4a7b02d49ab8068d0f9cfd314c, type: 3}
   dyingClip: {fileID: 8300000, guid: 6dbe2e7e3152a400e925bede59fc2430, type: 3}
-  attackClip: {fileID: 8300000, guid: 70022652dffc747bfa578d94ca5e147c, type: 3}
+  attackClip: {fileID: 8300000, guid: 6b7a8f82e1edd414b88b4d5892edbde5, type: 3}
   shootPatientClip: {fileID: 8300000, guid: 379d64f29535246b5be5844d5288e989, type: 3}
   heavyBreathingClip: {fileID: 8300000, guid: 6ca6794b8d36744088f5edcf70728e10, type: 3}
   deepExhaleClip: {fileID: 8300000, guid: 513b4a4ab1ffc4cd38598a2256fed6e1, type: 3}
@@ -75,6 +77,9 @@ MonoBehaviour:
   werewolfHowlingClip: {fileID: 8300000, guid: 0484477cd2687483da1320372c247ad6, type: 3}
   werewolfGrowlClip: {fileID: 8300000, guid: 591ad1e72a164408cbaba4679964d605, type: 3}
   werewolfBarkClip: {fileID: 8300000, guid: a92f9a0d1c81e481aa4d08e10bc38f19, type: 3}
+  werewolfChompClip: {fileID: 8300000, guid: 57140ee36efae420c9dad96eb8d42bbe, type: 3}
+  vampireScreamClip: {fileID: 8300000, guid: 9d30bc148ed7f4f839fe93879ee3355f, type: 3}
+  vampireGrowlClip: {fileID: 8300000, guid: ec33a73aeeff044438db3f03ad340667, type: 3}
 --- !u!82 &5469112575120005823
 AudioSource:
   m_ObjectHideFlags: 0

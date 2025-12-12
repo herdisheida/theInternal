@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using System.Collections;
 
 
 
@@ -19,7 +18,11 @@ public class AudioManager : MonoBehaviour
     public AudioClip menuScreenMusic;
     public AudioClip hospitalLobbyMusic;
     public AudioClip obstacleGameplayMusic;
+
     public AudioClip zombieBossBattleMusic;
+    public AudioClip werewolfBossBattleMusic;
+    public AudioClip vampireBossBattleMusic;
+
 
     public AudioClip goodEndingMusic;    // save all patients
     public AudioClip badEndingMusic;     // save no patients
@@ -64,6 +67,12 @@ public class AudioManager : MonoBehaviour
     public AudioClip werewolfHowlingClip; // phase 2
     public AudioClip werewolfGrowlClip;
     public AudioClip werewolfBarkClip;
+    public AudioClip werewolfChompClip;
+
+    [Header("Vampire Enemy SFX")]
+    public AudioClip vampireScreamClip;
+    public AudioClip vampireGrowlClip;
+
 
     void Awake()
     {
@@ -157,6 +166,31 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void FadeOutSFX(float duration = 0.5f)
+    {
+        if (sfxSource != null)
+            StartCoroutine(FadeOutSFXRoutine(duration));
+    }
+
+    private IEnumerator FadeOutSFXRoutine(float duration)
+    {
+        if (sfxSource == null || !sfxSource.isPlaying)
+            yield break;
+
+        float startVolume = sfxSource.volume;
+        float t = 0f;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            sfxSource.volume = Mathf.Lerp(startVolume, 0f, t / duration);
+            yield return null;
+        }
+
+        sfxSource.Stop();
+        sfxSource.volume = startVolume; // restore for next SFX
+    }
+    
 
     // ---------------------- helper methods ----------------------
 
@@ -165,7 +199,10 @@ public class AudioManager : MonoBehaviour
     public void PlayMenuScreenMusic()        => PlayMusic(menuScreenMusic);
     public void PlayHospitalLobbyMusic()     => PlayMusic(hospitalLobbyMusic);
     public void PlayObstacleGameplayMusic()  => PlayMusic(obstacleGameplayMusic);
+
     public void PlayZombieBossBattleMusic()        => PlayMusic(zombieBossBattleMusic);
+    public void PlayWerewolfBossBattleMusic()      => PlayMusic(werewolfBossBattleMusic);
+    public void PlayVampireBossBattleMusic()       => PlayMusic(vampireBossBattleMusic);
 
     public void PlayGoodEndingMusic()        => PlayMusic(goodEndingMusic);
     public void PlayBadEndingMusic()         => PlayMusic(badEndingMusic);
@@ -201,4 +238,8 @@ public class AudioManager : MonoBehaviour
     public void WerewolfHowling()    => PlaySFX(werewolfHowlingClip);
     public void WerewolfGrowl()      => PlaySFX(werewolfGrowlClip);
     public void WerewolfBark()       => PlaySFX(werewolfBarkClip);
+    public void WerewolfChomp()      => PlaySFX(werewolfChompClip);
+
+    public void VampireScream()      => PlaySFX(vampireScreamClip);
+    public void VampireGrowl()       => PlaySFX(vampireGrowlClip);
 }

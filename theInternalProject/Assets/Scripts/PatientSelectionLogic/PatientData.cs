@@ -20,9 +20,17 @@ public class PatientData : ScriptableObject
     public RuntimeAnimatorController infectionAnimator;
     public string infectionAnimationStringName;
 
-    public Vector2 analysisOffset;
-    public float analysisScale;
+    [Header("Dead Sprite position and size")]
+    public Vector2 deadSpriteOffset;
+    public Vector2 deadSpriteScale = Vector2.one;
 
+    [Header("Selected Sprite position and size")]
+    public Vector2 selectedSpriteOffset;
+    public Vector2 selectedSpriteScale = Vector2.one;
+
+    [Header("Unselected Sprite position and size")]
+    public Vector2 unselectedSpriteOffset;
+    public Vector2 unselectedSpriteScale = Vector2.one;
 }
 
 public enum PatientStatus

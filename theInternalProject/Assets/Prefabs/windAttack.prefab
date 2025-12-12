@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WindSlash
   lifeTime: 3
-  damage: 1
+  damage: 15
   stunDuration: 0.4
 --- !u!70 &5463998337687137158
 CapsuleCollider2D:

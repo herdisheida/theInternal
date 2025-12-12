@@ -51,7 +51,6 @@ public class Vampire : MonoBehaviour
     public float timeBetweenWaves = 0.6f;
 
     [Header("Death Animation")]
-    public GameObject zombieVineHang;
     public float deathShakeDuration = 1f;
     public float deathShakeMagnitude = 0.12f;
     public float deathFallSpeed = 6f;
@@ -66,6 +65,8 @@ public class Vampire : MonoBehaviour
 
     void Start()
     {
+        AudioManager.instance?.PlayVampireBossBattleMusic();
+
         startPos = transform.position;
         currentHealth = maxHealth;
 
@@ -79,7 +80,7 @@ public class Vampire : MonoBehaviour
 
     void Update()
     {
-        if (isDead) return;  // ← prevents hover, external force and attack checks
+        if (isDead) return; // make sure it doesnt move when dead
 
         HoverMotion();
         UpdateHealthBar();
@@ -105,7 +106,7 @@ public class Vampire : MonoBehaviour
         float yOffset = Mathf.Sin(moveTime * hoverFrequency) * hoverAmplitude;
         float xOffset = Mathf.Cos(moveTime * 0.6f) * 0.4f;
 
-        float rightX = 6.5f;
+        float rightX = 5.5f;
         transform.position = new Vector3(rightX + xOffset, startPos.y + yOffset, transform.position.z);
     }
 
@@ -123,6 +124,7 @@ public class Vampire : MonoBehaviour
         if (!phase2 && currentHealth <= maxHealth * 0.5f)
         {
             phase2 = true;
+            AudioManager.instance?.VampireGrowl();
             StopAllCoroutines();
             StartCoroutine(PhaseTwoAttackLoop());
         }
@@ -186,7 +188,7 @@ public class Vampire : MonoBehaviour
 
         busy = false;
 
-        // TELEGRAPH: shake + particles + tiny camera pulse
+        // shake and particles
         CameraShake.instance?.Shake(0.1f, 0.05f);
 
         float telegraphTime = 0.25f;
@@ -259,18 +261,20 @@ public class Vampire : MonoBehaviour
 
     public void TriggerDeath()
     {
-        if (isDead) return;
         isDead = true;
 
         // stop everything BEFORE starting the death sequence
         StopAllCoroutines();
 
+        AudioManager.instance?.FadeOutMusic(1f);
         StartCoroutine(DeathSequence());
     }
 
     IEnumerator DeathSequence()
     {
         busy = true;
+
+        AudioManager.instance?.VampireScream();
 
         // disable hitbox & physics
         Collider2D col = GetComponent<Collider2D>();
@@ -312,10 +316,9 @@ public class Vampire : MonoBehaviour
             yield return null;
         }
 
+        AudioManager.instance?.FadeOutSFX(1f);
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(deathNextScene);
     }
-
-
 
 }

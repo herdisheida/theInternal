@@ -177,6 +177,9 @@ MonoBehaviour:
   leftBorder: {fileID: 0}
   rightBorder: {fileID: 0}
   padding: 0.7
+  maxLeanAngle: 10
+  leanSpeed: 8
+  gunTransform: {fileID: 888786683695271911}
 --- !u!114 &4315159835419543337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,8 +204,11 @@ MonoBehaviour:
   invincibilityPeriod: 0.9
   preBlinkDelay: 0.1
   blinkInterval: 0.1
-  deathSpriteRenderer: {fileID: 3626916397498700004, guid: b33b8c799603f42f4b38767385677bba, type: 3}
-  deathFadeDuration: 1.5
+  deathShakeDuration: 0.6
+  deathShakeMagnitude: 0.2
+  deathFallDistance: 6
+  deathFallSpeed: 6
+  deathFallRotationSpeed: 360
 --- !u!114 &1235428796783345502
 MonoBehaviour:
   m_ObjectHideFlags: 0

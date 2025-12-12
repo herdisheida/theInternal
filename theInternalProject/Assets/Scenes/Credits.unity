@@ -235,8 +235,17 @@ MonoBehaviour:
     sound effect - https://pixabay.com/sound-effects/search/heavy%20breathing/\nButton
     click - https://pixabay.com/sound-effects/search/button-click/\nZombie Chomb
     sound effect - https://www.myinstants.com/en/instant/chomp-55139/\nGun sound
-    effect (player attack) - https://www.youtube.com/watch?v=4Y-s73hf5Cw\n\nImages:\nFleshy
-    background - https://www.shutterstock.com/video/clip-1007681740-animated-hellish-inferno-extreme-intense-super-heated\n"
+    effect (player attack) - https://www.youtube.com/watch?v=4Y-s73hf5Cw\nSuper Mario
+    lvl up Sound effect\nShrink Sound effect - https://motionarray.com/sound-effects/shrink-1926944/\nClose
+    Door sound effect - https://pixabay.com/sound-effects/search/door/\nJump to pod
+    sound effect - https://pixabay.com/sound-effects/search/jump/\nCartoon sound
+    effects - https://www.myinstants.com/en/search/?name=cartoon%20running\nSpace
+    ship flying sound effect - https://pixabay.com/sound-effects/search/spaceship/\nWerewolf
+    sound effect - https://pixabay.com/sound-effects/search/wolf/\nWerewolf growl
+    - https://www.youtube.com/watch?v=_MjKshi-HZo\nRobot shutting down - https://www.youtube.com/watch?v=_TBexXFaZyc\nDog
+    fight sound - https://www.youtube.com/watch?v=d-5fV8Q5TIM\nVampire sound effect
+    - https://www.myinstants.com/en/search/?name=vampire\n\nImages:\nFleshy background
+    - https://www.shutterstock.com/video/clip-1007681740-animated-hellish-inferno-extreme-intense-super-heated\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ae54e4a9236384581b2bd9316f43a841, type: 2}
   m_sharedMaterial: {fileID: 4653624503363158687, guid: ae54e4a9236384581b2bd9316f43a841, type: 2}
@@ -1108,7 +1117,7 @@ Canvas:
   m_GameObject: {fileID: 1091972362}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
