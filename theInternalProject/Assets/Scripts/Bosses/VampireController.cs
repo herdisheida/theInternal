@@ -261,7 +261,6 @@ public class Vampire : MonoBehaviour
 
     public void TriggerDeath()
     {
-        if (isDead) return;
         isDead = true;
 
         // stop everything BEFORE starting the death sequence
