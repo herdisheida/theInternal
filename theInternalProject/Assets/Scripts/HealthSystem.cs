@@ -103,7 +103,7 @@ public class HealthSystem : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            StartCoroutine(DeathRoutine());
+            Die();
         }
         else
         {
@@ -146,32 +146,45 @@ public class HealthSystem : MonoBehaviour
 
 
     //death 
-    private IEnumerator DeathRoutine()
+    public void Die()
     {
-        AudioManager.instance?.Death();
-    
-        // Disable controls, NOT the whole GameObject
+        if (isDead) return;
+        isDead = true;
+
+        // disable movement scripts
         var playerController = GetComponent<PlayerController>();
         if (playerController != null)
             playerController.enabled = false;
         var gunController = GetComponent<GunController>();
         if (gunController != null)
             gunController.enabled = false;
-        // disable borders (so player can fall off screen)
 
+        // disable colliders so player can fly off-screen
+        foreach (var col in GetComponentsInChildren<Collider2D>())
+            col.enabled = false;
 
-        // health bar off
+        // disable HP bar
         if (healthBarRoot != null) healthBarRoot.SetActive(false);
-
         // stop taking more damage
         isInvincible = true;
+
+        AudioManager.instance?.Death();
+        AudioManager.instance?.FadeOutMusic(1.5f);
+
+        // mark patient
+        GameManager.instance?.MarkPatientInfected();
+
+        StartCoroutine(DeathRoutine());
+    }
+
+    private IEnumerator DeathRoutine()
+    {
     
         // camera shake
         CameraShake.instance?.Shake(0.3f, 0.15f);
 
         Vector3 originalPos = transform.position;
         
-
 
         // ---- SHAKE IN PLACE ----
         float elapsed = 0f;
@@ -209,8 +222,6 @@ public class HealthSystem : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        GameManager.instance?.MarkPatientInfected();
-        AudioManager.instance?.FadeOutMusic(1.5f);
         SceneManager.LoadScene("ShootPatient");
     }
 
