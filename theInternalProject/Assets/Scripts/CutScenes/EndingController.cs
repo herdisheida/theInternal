@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
 
 
 // TOOD HERDIS muna setja þetta í patient selection screen til að checka hvort allir patientar hafa verið spilaðir
@@ -38,6 +37,7 @@ public class EndingScreen : MonoBehaviour
     void Start()
     {
         // default to BAD if something goes wrong
+        Debug.Log("Parti");
         ending = EndingType.PartialyGood;
 
         if (GameManager.instance != null)
@@ -112,7 +112,6 @@ public class EndingScreen : MonoBehaviour
             c.a = 0f;
             endingText.color = c;
         }
-        linesToUse = badLines;
         return linesToUse;
     }
 
