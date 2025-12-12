@@ -242,6 +242,7 @@ public class BossController_Werewolf : MonoBehaviour
     // ---------------- BOOMERANG ATTACK ----------------
     IEnumerator BoomerangAttackRoutine()
     {
+        AudioManager.instance?.WerewolfGrowl();
         AudioManager.instance?.WerewolfChomp();
 
         // Check BEFORE enabling blur or effects
