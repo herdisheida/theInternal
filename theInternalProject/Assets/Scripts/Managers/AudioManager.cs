@@ -18,7 +18,11 @@ public class AudioManager : MonoBehaviour
     public AudioClip menuScreenMusic;
     public AudioClip hospitalLobbyMusic;
     public AudioClip obstacleGameplayMusic;
+
     public AudioClip zombieBossBattleMusic;
+    public AudioClip werewolfBossBattleMusic;
+    public AudioClip vampireBossBattleMusic;
+
 
     public AudioClip goodEndingMusic;    // save all patients
     public AudioClip badEndingMusic;     // save no patients
@@ -169,7 +173,10 @@ public class AudioManager : MonoBehaviour
     public void PlayMenuScreenMusic()        => PlayMusic(menuScreenMusic);
     public void PlayHospitalLobbyMusic()     => PlayMusic(hospitalLobbyMusic);
     public void PlayObstacleGameplayMusic()  => PlayMusic(obstacleGameplayMusic);
+
     public void PlayZombieBossBattleMusic()        => PlayMusic(zombieBossBattleMusic);
+    public void PlayWerewolfBossBattleMusic()      => PlayMusic(werewolfBossBattleMusic);
+    public void PlayVampireBossBattleMusic()       => PlayMusic(vampireBossBattleMusic);
 
     public void PlayGoodEndingMusic()        => PlayMusic(goodEndingMusic);
     public void PlayBadEndingMusic()         => PlayMusic(badEndingMusic);

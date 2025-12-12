@@ -65,6 +65,8 @@ public class Vampire : MonoBehaviour
 
     void Start()
     {
+        AudioManager.instance?.PlayVampireBossBattleMusic();
+
         startPos = transform.position;
         currentHealth = maxHealth;
 

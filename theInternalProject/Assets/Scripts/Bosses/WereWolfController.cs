@@ -72,6 +72,8 @@ public class BossController_Werewolf : MonoBehaviour
 
     void Start()
     {
+        AudioManager.instance?.PlayWerewolfBossBattleMusic();
+
         startPos = transform.position;
         currentHealth = maxHealth;
 
