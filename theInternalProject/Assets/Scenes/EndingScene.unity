@@ -761,8 +761,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 55.441467, y: 6.5849}
-  m_SizeDelta: {x: -199.7026, y: 53.4914}
+  m_AnchoredPosition: {x: 55.441467, y: -12.7702}
+  m_SizeDelta: {x: -199.7026, y: 1.6045}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1828772174
 MonoBehaviour:
@@ -784,7 +784,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "TEMPLATE TEXT (sem mun swappa\xF0ur)"
+  m_text: "TEMPLATE TEXT (sem mun swappa\xF0ur)\nbla bla bla \nbe ble ble\ner a\xF0
+    gera \xFEetta til a\xF0 sj\xE1 \xED hva\xF0a l\xEDnu \xFEetta mun lenda\xED\n\xFEannig
+    dontworry about it :D\n\xFEetta mun ekki byrtast"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ae54e4a9236384581b2bd9316f43a841, type: 2}
   m_sharedMaterial: {fileID: 4653624503363158687, guid: ae54e4a9236384581b2bd9316f43a841, type: 2}
@@ -823,7 +825,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 40
+  m_lineSpacing: 60
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
