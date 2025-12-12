@@ -16,6 +16,18 @@ public class PlayerController : MonoBehaviour
     public BoxCollider2D rightBorder;
     public float padding = 0.7f; // avoid player being inside the border
 
+    [Header("Lean / Tilt")]
+    public float maxLeanAngle = 10f;
+    public float leanSpeed = 8f;
+    private float currentLean;
+    private float leanVelocity;
+    
+    [Header("Gun")]
+    public Transform gunTransform; 
+
+
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -25,17 +37,27 @@ public class PlayerController : MonoBehaviour
     {
         float moveInputX = Input.GetAxisRaw("Horizontal");
         float moveInputY = Input.GetAxisRaw("Vertical");
-        
-        var hp = GetComponent<HealthSystem>();
+
+        HealthSystem hp = GetComponent<HealthSystem>();
         if (hp != null && hp.IsStunned)
         {
-            moveInput = Vector2.zero;     // No movement
-            return;                       // Skip input this frame
+            moveInput = Vector2.zero;
+            return;
         }
 
         moveInput = new Vector2(moveInputX, moveInputY).normalized;
 
+        // lean calculation
+        float targetLean = -moveInput.x * maxLeanAngle;
+        currentLean = Mathf.SmoothDamp(
+            currentLean,
+            targetLean,
+            ref leanVelocity,
+            0.1f
+        );
 
+        // apply lean to player
+        transform.rotation = Quaternion.Euler(0f, 0f, currentLean);
     }
 
     void FixedUpdate()
@@ -68,6 +90,13 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(targetPosition);
     }
 
-
+    void LateUpdate()
+    {
+        // force gun to stay upright and shoot straight
+        if (gunTransform != null)
+        {
+            gunTransform.rotation = Quaternion.identity;
+        }
+    }
     
 }
