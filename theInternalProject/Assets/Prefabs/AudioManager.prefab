@@ -67,7 +67,7 @@ MonoBehaviour:
   podFlyingOffClip: {fileID: 8300000, guid: 44da8c0cddd3a445aaabb9390099d874, type: 3}
   damageTakenClip: {fileID: 8300000, guid: 23560c4a7b02d49ab8068d0f9cfd314c, type: 3}
   dyingClip: {fileID: 8300000, guid: 6dbe2e7e3152a400e925bede59fc2430, type: 3}
-  attackClip: {fileID: 8300000, guid: 70022652dffc747bfa578d94ca5e147c, type: 3}
+  attackClip: {fileID: 8300000, guid: 6b7a8f82e1edd414b88b4d5892edbde5, type: 3}
   shootPatientClip: {fileID: 8300000, guid: 379d64f29535246b5be5844d5288e989, type: 3}
   heavyBreathingClip: {fileID: 8300000, guid: 6ca6794b8d36744088f5edcf70728e10, type: 3}
   deepExhaleClip: {fileID: 8300000, guid: 513b4a4ab1ffc4cd38598a2256fed6e1, type: 3}
