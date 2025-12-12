@@ -123,6 +123,7 @@ public class Vampire : MonoBehaviour
         if (!phase2 && currentHealth <= maxHealth * 0.5f)
         {
             phase2 = true;
+            AudioManager.instance?.VampireGrowl();
             StopAllCoroutines();
             StartCoroutine(PhaseTwoAttackLoop());
         }
@@ -265,12 +266,15 @@ public class Vampire : MonoBehaviour
         // stop everything BEFORE starting the death sequence
         StopAllCoroutines();
 
+        AudioManager.instance?.FadeOutMusic(1f);
         StartCoroutine(DeathSequence());
     }
 
     IEnumerator DeathSequence()
     {
         busy = true;
+
+        AudioManager.instance?.VampireScream();
 
         // disable hitbox & physics
         Collider2D col = GetComponent<Collider2D>();
