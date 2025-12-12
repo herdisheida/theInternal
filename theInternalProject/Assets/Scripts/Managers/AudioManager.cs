@@ -166,6 +166,31 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void FadeOutSFX(float duration = 0.5f)
+    {
+        if (sfxSource != null)
+            StartCoroutine(FadeOutSFXRoutine(duration));
+    }
+
+    private IEnumerator FadeOutSFXRoutine(float duration)
+    {
+        if (sfxSource == null || !sfxSource.isPlaying)
+            yield break;
+
+        float startVolume = sfxSource.volume;
+        float t = 0f;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            sfxSource.volume = Mathf.Lerp(startVolume, 0f, t / duration);
+            yield return null;
+        }
+
+        sfxSource.Stop();
+        sfxSource.volume = startVolume; // restore for next SFX
+    }
+    
 
     // ---------------------- helper methods ----------------------
 
