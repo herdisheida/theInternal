@@ -4,10 +4,10 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
+using System.Reflection;
 
 public class PatientDialogScript : MonoBehaviour
 {
-    
     [Header("UI References")]
     public Image TextBox;
     public TextMeshProUGUI CharacterName;
@@ -22,6 +22,16 @@ public class PatientDialogScript : MonoBehaviour
     [TextArea] public string[] ZombieSavedLines;
     [TextArea] public string[] WerewolfSavedLines;
     [TextArea] public string[] VampireSavedLines;
+
+    [Header("Charcter names for patients and doctor infected")]
+    [TextArea] public string[] ZombieInfectedCharcterLines;
+    [TextArea] public string[] WerewolfInfectedCharcterLines;
+    [TextArea] public string[] VampireInfectedCharacterLines;
+
+    [Header("Charcter names for patients and doctor saved")]
+    [TextArea] public string[] ZombieSavedcharacterLines;
+    [TextArea] public string[] WerewolfSavedCharacterLines;
+    [TextArea] public string[] VampireSavedCharacterLines;
 
     [Header("Timings")]
     public float fadeDuration = 0.2f;
@@ -45,7 +55,7 @@ public class PatientDialogScript : MonoBehaviour
         }
         CharacterName.text = analizedPatient.patientName;
         string[] linesToUse = null;
-        string[] 
+        string[] characterName = null;
 
         if (analizedPatient.status == PatientStatus.Saved)
         {
@@ -53,12 +63,15 @@ public class PatientDialogScript : MonoBehaviour
             {
                 case PatientType.Zombie:
                     linesToUse = ZombieSavedLines;
+                    characterName = ZombieInfectedCharcterLines;
                     break;
                 case PatientType.Werewolf:
                     linesToUse = WerewolfSavedLines;
+                    characterName = WerewolfInfectedCharcterLines;
                     break;
                 case PatientType.Vampire:
                     linesToUse = VampireSavedLines;
+                    characterName = VampireInfectedCharacterLines;
                     break;
             }
         }
@@ -68,24 +81,20 @@ public class PatientDialogScript : MonoBehaviour
             {
                 case PatientType.Zombie:
                     linesToUse = ZombieSavedLines;
+                    characterName = ZombieSavedcharacterLines;
                     break;
                 case PatientType.Werewolf:
                     linesToUse = WerewolfSavedLines;
+                    characterName = WerewolfSavedCharacterLines;
                     break;
                 case PatientType.Vampire:
                     linesToUse = VampireSavedLines;
+                    characterName = VampireSavedCharacterLines;
                     break;
             }
-            }
-
+        }
+            TemplateText.text = (linesToUse != null && linesToUse.Length > 0) 
+            ? linesToUse[0]
+            : "";
     }
-
-    // void Update()
-    // {
-    //     CharacterName.text = analizedPatient.patientName;
-    //     switch case(CharacterName.text)
-    //     {
-            
-    //     }
-    // }
 }

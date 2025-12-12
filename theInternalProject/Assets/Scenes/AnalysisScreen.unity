@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 259162634}
   - component: {fileID: 259162633}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: DialogController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -434,15 +434,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f720843682cb944a53cc0929569eba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  TextBox: {fileID: 0}
-  CharacterName: {fileID: 0}
-  TemplateText: {fileID: 0}
-  ZombieInfectedLines: []
-  WerewolfInfectedLines: []
-  VampireInfectedLines: []
-  ZombieSavedLines: []
-  WerewolfSavedLines: []
-  VampireSavedLines: []
+  TextBox: {fileID: 2106531355}
+  CharacterName: {fileID: 146079839}
+  TemplateText: {fileID: 432816396}
+  ZombieInfectedLines:
+  - 'Could you describe to me what happened?
+
+'
+  - "I was sleeping in my car when a zombie broke the window and grabbed my leg.
+    \r\n"
+  - It dragged my leg out the car window and took a big bite out of my leg.
+  - 'I kicked open the door and got away.
+
+'
+  - 'Then I found my way here.
+
+'
+  - 'I see, I''ll try my best.
+
+'
+  WerewolfInfectedLines:
+  - Could you describe to me what happened?
+  - I-I was eating with my friend!
+  - There was this- uh- werewolf that came and-
+  - My friend attacked it and told me to run for it-
+  - "I-I\u2026 I left him."
+  - I see, I'll try my best.
+  VampireInfectedLines:
+  - 'Could you describe to me what happened?
+
+'
+  - "\u2026"
+  - I was scavenging.
+  - ' A vampire bit me.'
+  - I came here.
+  - ...
+  - I see, I'll try my best.
+  ZombieSavedLines:
+  - Thank you for the help! I don't know what I would've done without your assistance.
+  - No problem, please go to our safe room, 206, for the time being.
+  WerewolfSavedLines:
+  - Thank you for the help, it was hard trying to control the infection.
+  - No problem, please go to room 206 for the time being.
+  VampireSavedLines:
+  - Thank you very much for the assistance.
+  - No problem, please go to room 206 for the time being.
+  ZombieInfectedCharcterLines:
+  - Doctor
+  - Zane
+  - Zane
+  - Zane
+  - Zane
+  - Doctor
+  WerewolfInfectedCharcterLines:
+  - Doctor
+  - Wade
+  - Wade
+  - Wade
+  - Wade
+  - Doctor
+  VampireInfectedCharacterLines:
+  - Doctor
+  - Valorie
+  - Valorie
+  - Valorie
+  - Valorie
+  - Doctor
+  - Doctor
+  ZombieSavedcharacterLines:
+  - Zane
+  - Doctor
+  WerewolfSavedCharacterLines: []
+  VampireSavedCharacterLines:
+  - Valorie
+  - Doctor
   fadeDuration: 0.2
   holdDuration: 3
   loopLines: 0
