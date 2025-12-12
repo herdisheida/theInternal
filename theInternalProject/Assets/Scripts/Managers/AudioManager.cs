@@ -74,6 +74,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip vampireGrowlClip;
 
 
+    [Header("SFX Volumes")]
+    [Range(0f, 1f)] public float uiVol = 0.8f;
+
+
     void Awake()
     {
         // singleton pattern
@@ -151,11 +155,12 @@ public class AudioManager : MonoBehaviour
 
     // ---------------------- sound effects ----------------------
 
-    void PlaySFX(AudioClip clip)
+    void PlaySFX(AudioClip clip, float volume = 1f)
     {
         if (sfxSource == null || clip == null) return;
         if (!sfxSource.isActiveAndEnabled) return; // prevents errors if AudioSource is disabled
-        sfxSource.PlayOneShot(clip);
+        
+        sfxSource.PlayOneShot(clip, Mathf.Clamp01(volume));
     }
 
     public void StopSFX()
