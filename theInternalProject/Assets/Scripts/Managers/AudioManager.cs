@@ -77,8 +77,8 @@ public class AudioManager : MonoBehaviour
 
     [Header("Volumes")]
     [Header("Music Volumes")]
-    [Range(0f, 1f)] public float obstacleMusicVol = 0.7f;
-    [Range(0f, 1f)] public float vampireMusicVol = 0.7f;
+    [Range(0f, 1f)] public float obstacleMusicVol = 0.5f;
+    [Range(0f, 1f)] public float vampireMusicVol = 0.65f;
     [Header("SFX Volumes")]
     [Range(0f, 1f)] public float uiVol = 0.8f;
 
