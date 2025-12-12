@@ -14,7 +14,6 @@ public class PatientSelectionUI : MonoBehaviour
 
     public void Start()
     {
-        ChangeSpritesByCondition();
         
         int firstSelectableIndex = -1;
 
@@ -37,7 +36,6 @@ public class PatientSelectionUI : MonoBehaviour
 
     private void Update()
     {
-        ChangeSpritesByCondition();
         if (Input.GetKeyDown(KeyCode.RightArrow)|| Input.GetKeyDown(KeyCode.D))
         {
             MoveRight();
@@ -114,19 +112,5 @@ public class PatientSelectionUI : MonoBehaviour
         GameManager.instance?.SetCurrentPatient(PatientSlots[currentIndex].data);
         UnityEngine.SceneManagement.SceneManager.LoadScene("AnalysisScreen");
         
-    }
-    private void ChangeSpritesByCondition()
-    {
-        for (int i = 0; i < PatientSlots.Length; i++)
-        {
-            if (PatientSlots[i].data.status == PatientStatus.Saved)
-            {
-                PatientSlots[i].portraitImage.gameObject.SetActive(false);
-            }
-            else if (PatientSlots[i].data.status == PatientStatus.Dead)
-            {
-                PatientSlots[i].portraitImage.sprite = PatientSlots[i].data.dead;
-            }
-        }
     }
 }
