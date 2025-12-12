@@ -27,7 +27,7 @@ MonoBehaviour:
   infectionAnimationStringName: 
   deadSpriteOffset: {x: -20, y: -95}
   deadSpriteScale: {x: 1.2, y: 1.5}
-  selectedSpriteOffset: {x: 18, y: 50}
+  selectedSpriteOffset: {x: 8, y: 51}
   selectedSpriteScale: {x: 1.3, y: 1.8}
-  unselectedSpriteScale: {x: 1.5, y: 1.8}
   unselectedSpriteOffset: {x: 18, y: 50}
+  unselectedSpriteScale: {x: 1.5, y: 1.8}
