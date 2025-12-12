@@ -46,7 +46,7 @@ public class HealthSystem : MonoBehaviour
     public float deathShakeMagnitude = 0.2f;
     public float deathFallDistance = 6f;
     public float deathFallSpeed = 6f;
-    public float deathFallRotationSpeed = -360f; // degrees per second
+    public float deathFallRotationSpeed = 360f; // degrees per second
 
     private bool isDead = false;
 
