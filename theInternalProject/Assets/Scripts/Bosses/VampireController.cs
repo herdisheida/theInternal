@@ -106,7 +106,7 @@ public class Vampire : MonoBehaviour
         float yOffset = Mathf.Sin(moveTime * hoverFrequency) * hoverAmplitude;
         float xOffset = Mathf.Cos(moveTime * 0.6f) * 0.4f;
 
-        float rightX = 6.5f;
+        float rightX = 5.5f;
         transform.position = new Vector3(rightX + xOffset, startPos.y + yOffset, transform.position.z);
     }
 
