@@ -133,6 +133,7 @@ public class BossController_Werewolf : MonoBehaviour
         {
             isDying = true;
             GameManager.instance?.MarkPatientSaved();
+            GameManager.instance.PatientsSavedDict["Werewolf"] = true;
             StartCoroutine(Die());
         }
     }

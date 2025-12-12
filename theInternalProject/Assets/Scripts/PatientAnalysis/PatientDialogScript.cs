@@ -28,7 +28,6 @@ public class PatientDialogScript : MonoBehaviour
     public float holdDuration = 3f;
     public bool loopLines = false; 
     public PatientData analizedPatient;
-
     public bool isSaved; 
 
     void Start() {

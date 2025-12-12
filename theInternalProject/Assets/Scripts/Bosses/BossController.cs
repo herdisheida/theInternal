@@ -250,6 +250,7 @@ public class BossController : MonoBehaviour
         {
             isDying = true;
 
+
             healthBarRoot?.SetActive(false);
             // if (patientData != null)
             // {
@@ -262,6 +263,7 @@ public class BossController : MonoBehaviour
             // }
 
             GameManager.instance?.MarkPatientSaved();
+            GameManager.instance.PatientsSavedDict["Zombie"] = true;
             StartCoroutine(Die());
         }
     }
