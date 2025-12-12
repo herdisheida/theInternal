@@ -1709,7 +1709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 275b9d90479cb4021bcfc09e6a482366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  sceneToLoadOnStart: PatientSelection
+  sceneToLoadOnStart: IntroScene
 --- !u!1 &656863180
 GameObject:
   m_ObjectHideFlags: 0
