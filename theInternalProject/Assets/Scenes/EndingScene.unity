@@ -323,7 +323,7 @@ MonoBehaviour:
   - 'Diary entry 748
 
     Today I saved all of my three patients. I believe that
-    we are turning things around and am hopeful for the future. I''m going to continue
+    we are turning things around and I''m hopeful for the future. I''m going to continue
     trying my hardest to save as many people as I can.
 
 '
@@ -335,22 +335,14 @@ MonoBehaviour:
     as many patients as I can to see if my assistance changes anything in these trying
     times.'
   partialyBadLines:
-  - 'Diary entry 748
-
-    Today I saved only one of my three patients. It''s getting
-    hard to stay motivated seeing all these people so desperate for help and not
-    being able to guarantee their safety. I''ve decided to keep trying but I''m not
-    hopeful.
-
-'
+  - "Diary entry 748\nToday I saved only one of the three patients. It\u2019s becoming
+    harder to stay motivated when so many people come to me desperate for help and
+    I can\u2019t guarantee their safety. I\u2019ll keep trying\u2026 but hope is
+    slipping away.\n"
   badLines:
-  - 'Diary entry 748
-
-    Today I couldn''t save any of the patients that came to
-    my hospital looking for help. I''ve decided I can''t go on killing poor innocent
-    people only looking to me for help.
-
-'
+  - "Diary entry 748\nI couldn't save any of the patients that came to my hospital
+    today. I can\u2019t keep doing this\u2026 ending the lives of innocent people
+    who only wanted help."
   fadeDuration: 0.7
   holdDuration: 15
   loopLines: 0
