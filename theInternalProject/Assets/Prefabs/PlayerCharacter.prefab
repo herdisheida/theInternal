@@ -177,6 +177,9 @@ MonoBehaviour:
   leftBorder: {fileID: 0}
   rightBorder: {fileID: 0}
   padding: 0.7
+  maxLeanAngle: 10
+  leanSpeed: 8
+  gunTransform: {fileID: 888786683695271911}
 --- !u!114 &4315159835419543337
 MonoBehaviour:
   m_ObjectHideFlags: 0

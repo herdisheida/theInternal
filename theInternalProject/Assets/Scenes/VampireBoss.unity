@@ -783,7 +783,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: -4985543720073301825, guid: dca310661763d2649bf34a42b5e79d7a, type: 3}
+  m_Sprite: {fileID: 550057062699495777, guid: e5f19a5892e187747a9ee8e9227fa191, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -803,7 +803,7 @@ Transform:
   m_GameObject: {fileID: 312592564}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.11, y: 3.47, z: 0}
+  m_LocalPosition: {x: -0.11, y: 3.81, z: 0}
   m_LocalScale: {x: 1.2355297, y: 1.0448753, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1035,10 +1035,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 218653330}
     - target: {fileID: 4315159835419543337, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
-      propertyPath: healthText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4315159835419543337, guid: ffaa3c1aa6ef047e4876a810eda5e5c8, type: 3}
       propertyPath: healthBarFill
       value: 
       objectReference: {fileID: 1534020877}
@@ -1148,8 +1144,8 @@ Transform:
   m_GameObject: {fileID: 1104168306}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.214, y: 0.16, z: 0}
-  m_LocalScale: {x: 1.1685648, y: 1.2697145, z: 0}
+  m_LocalPosition: {x: -1.214, y: -0.192, z: 0}
+  m_LocalScale: {x: 1.1685648, y: 1.7141145, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 312592566}
@@ -1409,7 +1405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
+  m_Color: {r: 0.5660378, g: 0.37112856, b: 0.48246625, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
