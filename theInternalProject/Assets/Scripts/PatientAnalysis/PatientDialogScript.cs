@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 
 public class PatientDialogScript : MonoBehaviour
 {
+    
     [Header("UI References")]
     public Image TextBox;
     public TextMeshProUGUI CharacterName;
@@ -26,7 +27,9 @@ public class PatientDialogScript : MonoBehaviour
     public float fadeDuration = 0.2f;
     public float holdDuration = 3f;
     public bool loopLines = false; 
-    private PatientData analizedPatient;
+    public PatientData analizedPatient;
+
+    public bool isSaved; 
 
     void Start() {
         if (GameManager.instance == null)
@@ -43,4 +46,16 @@ public class PatientDialogScript : MonoBehaviour
         }
     }
 
+    // void Update()
+    // {
+    //     CharacterName.text = analizedPatient.patientName;
+    //     if (analizedPatient.status == PatientStatus.Saved)
+    //     {
+    //         TemplateText.text = GetSavedLinesFor(analizedPatient);
+    //     }
+    //     else
+    //     {
+    //         TemplateText.text = 
+    //     }
+    // }
 }

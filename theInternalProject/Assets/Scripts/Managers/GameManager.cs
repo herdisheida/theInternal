@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -24,8 +25,6 @@ public class GameManager : MonoBehaviour
     [Header("Patients levels played and or saved")]
     public int patientsSaved = 0;
     public int patientLevelsPlayed = 0;
-
-
 
 
     void Awake()
