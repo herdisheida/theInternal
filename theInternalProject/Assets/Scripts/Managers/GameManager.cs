@@ -76,6 +76,14 @@ public class GameManager : MonoBehaviour
         if (currentPatient == null) return;
         if (currentPatient.status != PatientStatus.None) return;
 
+        // Can't mark infected if already dead or saved
+        if (currentPatient.status == PatientStatus.Dead || currentPatient.status == PatientStatus.Saved)
+        {
+            Debug.Log($"Cannot mark INFECTED: {currentPatient.patientName} is already {currentPatient.status}");
+            return;
+        }
+
+
         currentPatient.status = PatientStatus.Infected;
         patientLevelsPlayed++;
         Debug.Log($"Patient {currentPatient.patientName} marked INFECTED.");
@@ -87,6 +95,13 @@ public class GameManager : MonoBehaviour
         if (currentPatient == null) return;
         if (currentPatient.status != PatientStatus.None) return;
 
+        // Can't kill someone already saved ( doctor is not a psycho )
+        if (currentPatient.status == PatientStatus.Saved)
+        {
+            Debug.Log($"Cannot mark DEAD: {currentPatient.patientName} is already {currentPatient.status}");
+            return;
+        }
+
         currentPatient.status = PatientStatus.Dead;
         Debug.Log($"Patient {currentPatient.patientName} marked DEAD.");
     }
@@ -96,17 +111,21 @@ public class GameManager : MonoBehaviour
     public void MarkPatientSaved()
     {
         if (currentPatient == null) return;
-        if (currentPatient.status == PatientStatus.Saved ||
-        currentPatient.status == PatientStatus.Dead ||
-        currentPatient.status == PatientStatus.Infected)
+
+        if (currentPatient.status == PatientStatus.Dead || currentPatient.status == PatientStatus.Infected)
         {
+            Debug.Log($"Cannot mark SAVED: {currentPatient.patientName} is already {currentPatient.status}");
             return;
         }
+
         currentPatient.status = PatientStatus.Saved;
         patientsSaved++;
         patientLevelsPlayed++;
         Debug.Log($"Patient {currentPatient.patientName} marked SAVED.");
     }
+
+
+
     public void ResetAllPatients()
     {
         if (allPatients == null) return;
@@ -116,10 +135,6 @@ public class GameManager : MonoBehaviour
         allPatients[2].status = PatientStatus.None;
         Debug.Log($"All patients have been reset");
     }
-
-
-
-
 
 
     // ------------------ PATIENT SUMMARY ------------------

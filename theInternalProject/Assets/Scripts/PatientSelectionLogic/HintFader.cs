@@ -12,6 +12,8 @@ public class HintFader : MonoBehaviour
     float idleTimer;
     Coroutine fadeCoroutine;
 
+    bool permanentlyHidden = false;
+
 
     void Awake()
     {
@@ -23,6 +25,7 @@ public class HintFader : MonoBehaviour
 
     void Update()
     {
+        if (permanentlyHidden || hintGroup == null) return;
         
         bool relevantInput = 
         Input.GetKey(KeyCode.Space) ||
@@ -32,7 +35,9 @@ public class HintFader : MonoBehaviour
         if (relevantInput){
 
             idleTimer = 0f;
-
+            
+            permanentlyHidden = true;
+            
             if (hintGroup != null) hintGroup.alpha = 0f;
 
             if (fadeCoroutine != null)
