@@ -131,6 +131,8 @@ public class Vampire : MonoBehaviour
 
         if (currentHealth <= 0)
             TriggerDeath();
+            GameManager.instance?.MarkPatientSaved();
+            GameManager.instance.PatientsSavedDict["Vampire"] = true;
 
     }
 

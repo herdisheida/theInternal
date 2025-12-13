@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -25,7 +27,13 @@ public class GameManager : MonoBehaviour
     public int patientsSaved = 0;
     public int patientLevelsPlayed = 0;
 
-
+    public Dictionary<string, bool> PatientsSavedDict = new Dictionary<string, bool>
+    {
+        {"Zombie", false},
+        {"Werewolf", false},
+        {"Vampire", false},
+    };
+    public bool dialogOver = false;
 
 
     void Awake()
