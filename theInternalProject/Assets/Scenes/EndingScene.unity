@@ -320,25 +320,18 @@ MonoBehaviour:
   endingImage: {fileID: 1175223058}
   endingText: {fileID: 1828772174}
   goodLines:
-  - 'Diary entry 748
-
-    Today I saved all of my three patients. I believe that
-    we are turning things around and I''m hopeful for the future. I''m going to continue
-    trying my hardest to save as many people as I can.
-
-'
+  - "Diary entry 748\nToday I saved all of my three patients. For the first time
+    in a while, things feel like they\u2019re turning around. I'm hopeful for the
+    future. I'll continue to save as many people as I can.\n"
   partialyGoodLines:
-  - 'Diary entry 748
-
-    Today I saved two patients. I wish I could''ve saved the
-    third but there was nothing I could do. Still I''m going to continue to save
-    as many patients as I can to see if my assistance changes anything in these trying
-    times.'
+  - "Diary entry 748\nToday I saved two patients. I wish I could've saved the third
+    but there was nothing I could do. Even so, I\u2019ll keep doing my best, maybe
+    my efforts will still make a difference in these difficult times."
   partialyBadLines:
-  - "Diary entry 748\nToday I saved only one of the three patients. It\u2019s becoming
+  - "Diary entry 748\nToday I saved only one of my three patients. It\u2019s becoming
     harder to stay motivated when so many people come to me desperate for help and
-    I can\u2019t guarantee their safety. I\u2019ll keep trying\u2026 but hope is
-    slipping away.\n"
+    I can\u2019t promise their safety. I\u2019ll keep trying\u2026 but hope is slipping
+    away."
   badLines:
   - "Diary entry 748\nI couldn't save any of the patients that came to my hospital
     today. I can\u2019t keep doing this\u2026 ending the lives of innocent people
