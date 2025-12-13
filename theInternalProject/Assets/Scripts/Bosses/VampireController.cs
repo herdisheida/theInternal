@@ -269,6 +269,7 @@ public class Vampire : MonoBehaviour
         StopAllCoroutines();
 
         AudioManager.instance?.FadeOutMusic(1f);
+        GameManager.instance?.MarkPatientSaved();
         StartCoroutine(DeathSequence());
     }
 

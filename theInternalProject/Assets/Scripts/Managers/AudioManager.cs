@@ -74,6 +74,16 @@ public class AudioManager : MonoBehaviour
     public AudioClip vampireGrowlClip;
 
 
+
+    [Header("Volumes")]
+    [Header("Music Volumes")]
+    [Range(0f, 1f)] public float obstacleMusicVol = 0.5f;
+    [Range(0f, 1f)] public float werewolfMusicVol = 0.6f;
+    [Range(0f, 1f)] public float vampireMusicVol = 0.65f;
+    [Header("SFX Volumes")]
+    [Range(0f, 1f)] public float uiVol = 0.8f;
+
+
     void Awake()
     {
         // singleton pattern
@@ -103,7 +113,7 @@ public class AudioManager : MonoBehaviour
 
     // Play a specific music clip (chosen from Inspector or passed in).
     // Example: AudioManager.instance?.PlayMusic(AudioManager.instance.bossBattleMusic);
-    public void PlayMusic(AudioClip clip)
+    public void PlayMusic(AudioClip clip, float volume = 1f, bool loop = true)
     {
         if (musicSource == null || clip == null) return;
 
@@ -111,7 +121,8 @@ public class AudioManager : MonoBehaviour
         if (musicSource.isPlaying && musicSource.clip == clip) return;
 
         musicSource.clip = clip;
-        musicSource.loop = true;
+        musicSource.loop = loop;
+        musicSource.volume = Mathf.Clamp01(volume);
         musicSource.Play();
     }
 
@@ -151,11 +162,12 @@ public class AudioManager : MonoBehaviour
 
     // ---------------------- sound effects ----------------------
 
-    void PlaySFX(AudioClip clip)
+    void PlaySFX(AudioClip clip, float volume = 1f)
     {
         if (sfxSource == null || clip == null) return;
         if (!sfxSource.isActiveAndEnabled) return; // prevents errors if AudioSource is disabled
-        sfxSource.PlayOneShot(clip);
+        
+        sfxSource.PlayOneShot(clip, Mathf.Clamp01(volume));
     }
 
     public void StopSFX()
@@ -198,11 +210,11 @@ public class AudioManager : MonoBehaviour
     // Example: AudioManager.instance?.PlayHospitalLobbyMusic();
     public void PlayMenuScreenMusic()        => PlayMusic(menuScreenMusic);
     public void PlayHospitalLobbyMusic()     => PlayMusic(hospitalLobbyMusic);
-    public void PlayObstacleGameplayMusic()  => PlayMusic(obstacleGameplayMusic);
+    public void PlayObstacleGameplayMusic()  => PlayMusic(obstacleGameplayMusic, obstacleMusicVol);
 
     public void PlayZombieBossBattleMusic()        => PlayMusic(zombieBossBattleMusic);
-    public void PlayWerewolfBossBattleMusic()      => PlayMusic(werewolfBossBattleMusic);
-    public void PlayVampireBossBattleMusic()       => PlayMusic(vampireBossBattleMusic);
+    public void PlayWerewolfBossBattleMusic()      => PlayMusic(werewolfBossBattleMusic, werewolfMusicVol);
+    public void PlayVampireBossBattleMusic()       => PlayMusic(vampireBossBattleMusic, vampireMusicVol);
 
     public void PlayGoodEndingMusic()        => PlayMusic(goodEndingMusic);
     public void PlayBadEndingMusic()         => PlayMusic(badEndingMusic);

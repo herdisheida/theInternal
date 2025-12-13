@@ -52,8 +52,8 @@ MonoBehaviour:
   hospitalLobbyMusic: {fileID: 8300000, guid: 526572bcd4aee4a74b1267ad61781ec3, type: 3}
   obstacleGameplayMusic: {fileID: 8300000, guid: 54fc760a0f3f5416198c3571fd35901e, type: 3}
   zombieBossBattleMusic: {fileID: 8300000, guid: d39d165e9b51f4c028a16c2251e99597, type: 3}
-  werewolfBossBattleMusic: {fileID: 8300000, guid: d39d165e9b51f4c028a16c2251e99597, type: 3}
-  vampireBossBattleMusic: {fileID: 8300000, guid: d39d165e9b51f4c028a16c2251e99597, type: 3}
+  werewolfBossBattleMusic: {fileID: 8300000, guid: df9f06dd65bb2424fad53970bd37d6f9, type: 3}
+  vampireBossBattleMusic: {fileID: 8300000, guid: ae6fdd4c33bca44afac0451eb6417acb, type: 3}
   goodEndingMusic: {fileID: 0}
   badEndingMusic: {fileID: 0}
   partialEndingMusic: {fileID: 0}
@@ -80,6 +80,10 @@ MonoBehaviour:
   werewolfChompClip: {fileID: 8300000, guid: 57140ee36efae420c9dad96eb8d42bbe, type: 3}
   vampireScreamClip: {fileID: 8300000, guid: 9d30bc148ed7f4f839fe93879ee3355f, type: 3}
   vampireGrowlClip: {fileID: 8300000, guid: ec33a73aeeff044438db3f03ad340667, type: 3}
+  obstacleMusicVol: 0.7
+  werewolfMusicVol: 0.6
+  vampireMusicVol: 0.65
+  uiVol: 0.8
 --- !u!82 &5469112575120005823
 AudioSource:
   m_ObjectHideFlags: 0

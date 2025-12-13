@@ -23,11 +23,11 @@ MonoBehaviour:
   status: 0
   bossSceneName: VampireBoss
   infectionSprite: {fileID: -2724522316812545801, guid: 0386ab99b405f41c38509bc839402fcb, type: 3}
-  infectionAnimator: {fileID: 0}
-  infectionAnimationStringName: 
+  infectionAnimator: {fileID: 9100000, guid: 11c3aaa55db804e20925e6f65235465b, type: 2}
+  infectionAnimationStringName: VampireVirusMovement
   deadSpriteOffset: {x: -20, y: -95}
   deadSpriteScale: {x: 1.2, y: 1.5}
-  selectedSpriteOffset: {x: 18, y: 50}
+  selectedSpriteOffset: {x: 8, y: 51}
   selectedSpriteScale: {x: 1.3, y: 1.8}
-  unselectedSpriteScale: {x: 1.5, y: 1.8}
   unselectedSpriteOffset: {x: 18, y: 50}
+  unselectedSpriteScale: {x: 1.5, y: 1.8}
