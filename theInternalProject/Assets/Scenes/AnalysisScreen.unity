@@ -253,8 +253,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: patient-1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 16ad2aa0df9744bd2a2acd860b0ab007, type: 2}
+  m_sharedMaterial: {fileID: -6844373092621765932, guid: 16ad2aa0df9744bd2a2acd860b0ab007, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -662,8 +662,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Text descriptions
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 16ad2aa0df9744bd2a2acd860b0ab007, type: 2}
+  m_sharedMaterial: {fileID: -6844373092621765932, guid: 16ad2aa0df9744bd2a2acd860b0ab007, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
