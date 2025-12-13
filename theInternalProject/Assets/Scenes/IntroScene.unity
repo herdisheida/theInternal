@@ -651,10 +651,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   dialogueText: {fileID: 149409553}
   lines:
-  - The apocalypse has been raging for two months now.
-  - "I\u2019ve saved who I could\u2026\nfar fewer than I wish."
-  - "Still\u2026\nI can\u2019t stop.\nNot yet!"
-  timeBetweenLines: 4.5
+  - The apocalypse has been raging for two months.
+  - "I\u2019ve saved who I could\u2026"
+  - far fewer than I wish.
+  - "Still\u2026 I can\u2019t stop."
+  - Not yet!
+  timeBetweenLines: 4
   nextSceneName: PatientSelection
 --- !u!1 &1629847173
 GameObject:
