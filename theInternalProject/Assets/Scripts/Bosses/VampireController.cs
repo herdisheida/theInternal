@@ -218,6 +218,7 @@ public class Vampire : MonoBehaviour
         // spawn bats around vampire
         for (int i = 0; i < batsToSpawn; i++)
         {
+            if (isDead) break;
             Vector3 offset = new Vector3(Random.Range(-1.2f, 1.2f), Random.Range(-1f, 1f), 0);
             Instantiate(batPrefab, transform.position + offset, Quaternion.identity);
         }
