@@ -30,30 +30,18 @@ public class ChangeScene : MonoBehaviour
             }
             else
             {
-                if (GameManager.instance?.patientLevelsPlayed == 3)
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    StartCoroutine(GoToEnding());
-                }
-                else
-                { 
-                    StartCoroutine(GoBackToSelection());
+                    if (GameManager.instance?.patientLevelsPlayed == 3)
+                    {
+                        SceneManager.LoadScene("EndingScene");
+                    }
+                    else
+                    {
+                        SceneManager.LoadScene("PatientSelection");
+                    }
                 }
             }
         }
-    }
-
-    IEnumerator GoBackToSelection()
-    {
-        AudioManager.instance?.StopMusic(); // stop music after boss battle
-        AudioManager.instance?.PlayHospitalLobbyMusic(); // play lobby music while patient thanks player
-
-        yield return new WaitForSeconds(7.5f); // feedback/msg from patient duration after being saved
-        SceneManager.LoadScene("PatientSelection");
-    }
-
-    IEnumerator GoToEnding()
-    {
-        yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene("EndingScene");
     }
 }
