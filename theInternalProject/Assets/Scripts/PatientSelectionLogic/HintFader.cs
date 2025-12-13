@@ -26,6 +26,8 @@ public class HintFader : MonoBehaviour
     void Update()
     {
         if (permanentlyHidden || hintGroup == null) return;
+
+        if (GameManager.instance?.patientLevelsPlayed > 0) return; // only show hints on first patient
         
         bool relevantInput = 
         Input.GetKey(KeyCode.Space) ||
