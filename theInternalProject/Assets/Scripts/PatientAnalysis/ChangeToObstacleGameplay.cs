@@ -44,16 +44,4 @@ public class ChangeScene : MonoBehaviour
             }
         }
     }
-
-    // IEnumerator GoBackToSelection()
-    // {
-    //     yield return new WaitForSeconds(2f);
-    //     SceneManager.LoadScene("PatientSelection");
-    // }
-
-    // IEnumerator GoToEnding()
-    // {
-    //     yield return new WaitForSeconds(2f);
-    //     SceneManager.LoadScene("EndingScene");
-    // }
 }

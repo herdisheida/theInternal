@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class PatientAnalasysUI : MonoBehaviour
 {
-    public PatientImageSwitch werewolfSwitch;
+    public PatientImageSwitch werewolfSwitch; // Switch depending on condition
     public PatientImageSwitch vampireSwitch;
     public PatientImageSwitch zombieSwitch;
 
-    public GameObject WerewolfContainer;
+    public GameObject WerewolfContainer; // Keeps all the data per patient
     public GameObject VampireContainer;
     public GameObject ZombieContainer;
 
@@ -24,15 +24,15 @@ public class PatientAnalasysUI : MonoBehaviour
             Debug.LogError("currentPatient is null!");
         }
 
-        string patientName = patient.patientName;
+        string patientName = patient.patientName; // Get analyzed patient
         bool isSaved = patient.status == PatientStatus.Saved;
 
-        WerewolfContainer.SetActive(false);
+        WerewolfContainer.SetActive(false); // Disable all containers before enabling the accuret/correct ones
         VampireContainer.SetActive(false);
         ZombieContainer.SetActive(false);
         activeSwitch = null;
         
-        if (patientName == "Zombie")
+        if (patientName == "Zombie") // Activate the correct UI based on the patient type
         {
             ZombieContainer.SetActive(true);
             activeSwitch = zombieSwitch;
@@ -49,7 +49,7 @@ public class PatientAnalasysUI : MonoBehaviour
 
         activeSwitch.patient = patient;
 
-        if (isSaved)
+        if (isSaved) // Checks condition and shows the patients correct portait
         {
             activeSwitch.SavedImage();
         }

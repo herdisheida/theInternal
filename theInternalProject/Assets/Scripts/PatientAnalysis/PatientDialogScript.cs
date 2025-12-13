@@ -40,7 +40,6 @@ public class PatientDialogScript : MonoBehaviour
     public PatientData analizedPatient;
     public bool isSaved; 
     public int dialogNumber;
-
     public bool started;
 
     void Start() {
@@ -49,7 +48,7 @@ public class PatientDialogScript : MonoBehaviour
             Debug.LogError("No GameManager in scene!");
             return;
         }
-        GameManager.instance.dialogOver = false;
+        GameManager.instance.dialogOver = false; // Initialize per call to AnalysisScreen
         started = false;
         dialogNumber = 0;
     }
@@ -62,10 +61,10 @@ public class PatientDialogScript : MonoBehaviour
             Debug.LogError("GameManager.currentPatient is null");
             return;
         }
-        string[] linesToUse = null;
+        string[] linesToUse = null; // Kepps the current lines and names when in the Analysis Screen
         string[] characterName = null;
 
-        if (analizedPatient.status == PatientStatus.Saved)
+        if (analizedPatient.status == PatientStatus.Saved) // makes sure to add the correct lines and names for each instance
         {
             switch (analizedPatient.patientType) 
             {
@@ -101,8 +100,7 @@ public class PatientDialogScript : MonoBehaviour
                     break;
             }
         }
-        Debug.Log("dialog start!");
-        if (!started)
+        if (!started) // Initialize so that the dialog starts when entering the patient
         {
             started = true;
             dialogNumber = 0;
@@ -110,17 +108,17 @@ public class PatientDialogScript : MonoBehaviour
             CharacterName.text = characterName[0];
             dialogNumber = 1;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && dialogNumber < linesToUse.Length && linesToUse != null) {
-            TemplateText.text = (linesToUse != null && linesToUse.Length > 0) 
+        if (Input.GetKeyDown(KeyCode.Space) && dialogNumber < linesToUse.Length && linesToUse != null) { 
+            TemplateText.text = (linesToUse != null && linesToUse.Length > 0) // All lines 
             ? linesToUse[dialogNumber] 
             : "";
-            CharacterName.text = (characterName != null && characterName.Length > 0) 
+            CharacterName.text = (characterName != null && characterName.Length > 0) // All character names desplayed
             ? characterName[dialogNumber]
             : "";
             dialogNumber++;
             if (dialogNumber >= linesToUse.Length)
             {
-                StartCoroutine(SetDialogOverNextFrame());
+                StartCoroutine(SetDialogOverNextFrame()); 
             }
         }
     }
