@@ -10,7 +10,7 @@ public class BossController_Werewolf : MonoBehaviour
 
     [Header("Movement")]
     public float moveSpeed = 2f;
-    public float moveDistance = 2f;
+    public float moveDistance = 3f;
     private Vector3 startPos;
     private float movementTime = 0f;
 
@@ -92,12 +92,12 @@ public class BossController_Werewolf : MonoBehaviour
         MoveBoss();
         UpdateHealthBar();
 
-        // Only try Boomerang if allowed and not currently doing another attack
+        // only try Boomerang if allowed and not currently doing another attack
         if (canBoomerang && !isAttacking && !isDying)
             TryBoomerangAttack();
     }
 
-    // ---------------- MOVEMENT ----------------
+    // basic movement
     void MoveBoss()
     {
         if (isAttacking || isDying) return;
@@ -112,7 +112,7 @@ public class BossController_Werewolf : MonoBehaviour
         );
     }
 
-    // ---------------- HEALTH ----------------
+    // health and damage
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
@@ -156,7 +156,7 @@ public class BossController_Werewolf : MonoBehaviour
 
     IEnumerator Die()
     {
-        // stop all ongoing attacks/movement
+        // stop aeverything
         if (BoomerangAttack != null) 
         {
             StopCoroutine(BoomerangAttack);
@@ -171,7 +171,7 @@ public class BossController_Werewolf : MonoBehaviour
 
         Vector3 originalPos = transform.position;
 
-        // ---- SHAKE IN PLACE ----
+        // shake in its boots
         float elapsed = 0f;
         while (elapsed < deathShakeDuration)
         {
@@ -187,7 +187,7 @@ public class BossController_Werewolf : MonoBehaviour
         // snap back
         transform.position = originalPos;
 
-        // ---- FALL OFF SCREEN ----
+        // fall off screen
         Vector3 targetPos = originalPos + Vector3.down * deathFallDistance;
 
         while (transform.position.y > targetPos.y)
@@ -229,7 +229,7 @@ public class BossController_Werewolf : MonoBehaviour
         healthBarRoot.transform.localPosition = original;
     }
 
-    // ---------------- ATTACK LOGIC ----------------
+    // attacks
     void TryBoomerangAttack()
     {
         if (isDying) return;
@@ -240,7 +240,7 @@ public class BossController_Werewolf : MonoBehaviour
             StartCoroutine(BoomerangAttackRoutine());
     }
 
-    // ---------------- BOOMERANG ATTACK ----------------
+    // bommerang / dash attack
     IEnumerator BoomerangAttackRoutine()
     {
         AudioManager.instance?.WerewolfGrowl();
@@ -307,7 +307,7 @@ public class BossController_Werewolf : MonoBehaviour
             yield return null;
         }
 
-        // PHASE 2 BONUS DASH
+        // for phase 2 only, do a second dash
         if (phase2)
         {
             yield return new WaitForSeconds(0.15f);
@@ -350,7 +350,7 @@ public class BossController_Werewolf : MonoBehaviour
         canBoomerang = true;
     }
 
-    // ---------------- PHASE 2 ----------------
+    // phase 2 transformation
     IEnumerator EnterPhase2()
     {
         AudioManager.instance?.WerewolfGrowl();
@@ -399,7 +399,7 @@ public class BossController_Werewolf : MonoBehaviour
         isAttacking = false;
     }
 
-    // ---------------- BLUR ----------------
+    // extr effects
     void EnableDashBlur()
     {
         if (trailEffect != null)

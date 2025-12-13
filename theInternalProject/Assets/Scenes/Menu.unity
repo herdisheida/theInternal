@@ -899,7 +899,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 317, y: 147}
+  m_AnchoredPosition: {x: 306, y: 158}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &338386131
@@ -1709,7 +1709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 275b9d90479cb4021bcfc09e6a482366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  sceneToLoadOnStart: PatientSelection
+  sceneToLoadOnStart: IntroScene
 --- !u!1 &656863180
 GameObject:
   m_ObjectHideFlags: 0
@@ -3150,6 +3150,10 @@ PrefabInstance:
     - target: {fileID: 4694619297270320214, guid: 052794737db8040bbb5307e9abe5f294, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469112575120005823, guid: 052794737db8040bbb5307e9abe5f294, type: 3}
+      propertyPath: m_Volume
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8163783812073374224, guid: 052794737db8040bbb5307e9abe5f294, type: 3}
       propertyPath: m_Name

@@ -322,35 +322,27 @@ MonoBehaviour:
   goodLines:
   - 'Diary entry 748
 
-    Today I saved all of my three patients. I now believe that
-    we are turning things around and am hopeful for the future. Now I''m going to
-    try my hardest to save as many people as I can.
+    Today I saved all of my three patients. I believe that
+    we are turning things around and I''m hopeful for the future. I''m going to continue
+    trying my hardest to save as many people as I can.
 
 '
   partialyGoodLines:
   - 'Diary entry 748
 
     Today I saved two patients. I wish I could''ve saved the
-    third but there was nothing I could do. Still I''m going to continue saving as
-    many patients as I can to see if my assistance changes anything in these trying
+    third but there was nothing I could do. Still I''m going to continue to save
+    as many patients as I can to see if my assistance changes anything in these trying
     times.'
   partialyBadLines:
-  - 'Diary entry 748
-
-    Today I saved only one of my three patients. It''s getting
-    hard to stay motivated seeing all these people so desperate for help and not
-    being able to guarantee their safety. I''ve decided to keep trying but I''m not
-    hopeful.
-
-'
+  - "Diary entry 748\nToday I saved only one of the three patients. It\u2019s becoming
+    harder to stay motivated when so many people come to me desperate for help and
+    I can\u2019t guarantee their safety. I\u2019ll keep trying\u2026 but hope is
+    slipping away.\n"
   badLines:
-  - 'Diary entry 748
-
-    Today I couldn''t save any of the patients that came to
-    my hospital looking for help. I''ve decided I can''t go on killing poor innocent
-    people only looking to me for help.
-
-'
+  - "Diary entry 748\nI couldn't save any of the patients that came to my hospital
+    today. I can\u2019t keep doing this\u2026 ending the lives of innocent people
+    who only wanted help."
   fadeDuration: 0.7
   holdDuration: 15
   loopLines: 0
@@ -761,8 +753,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 55.441467, y: 6.5849}
-  m_SizeDelta: {x: -199.7026, y: 53.4914}
+  m_AnchoredPosition: {x: 55.441467, y: 8.1795}
+  m_SizeDelta: {x: -199.7026, y: 57.7662}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1828772174
 MonoBehaviour:
@@ -784,7 +776,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "TEMPLATE TEXT (sem mun swappa\xF0ur)"
+  m_text: "TEMPLATE TEXT (sem mun swappa\xF0ur)\nbla bla bla \nbe ble ble\ner a\xF0
+    gera \xFEetta til a\xF0 sj\xE1 \xED hva\xF0a l\xEDnu \xFEetta mun lenda\xED\n\xFEannig
+    dontworry about it :D\n\xFEetta mun ekki byrtast"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ae54e4a9236384581b2bd9316f43a841, type: 2}
   m_sharedMaterial: {fileID: 4653624503363158687, guid: ae54e4a9236384581b2bd9316f43a841, type: 2}
@@ -823,7 +817,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 40
+  m_lineSpacing: 60
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0

@@ -233,6 +233,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1821951904}
+    - target: {fileID: 746539849068449630, guid: e0fd5e1c25ba1e0479623f8d33ccee5a, type: 3}
+      propertyPath: minAttackDistance
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6553214280964255607, guid: e0fd5e1c25ba1e0479623f8d33ccee5a, type: 3}
       propertyPath: m_Name
       value: WerewolfBoss
@@ -243,7 +247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7957974831376436071, guid: e0fd5e1c25ba1e0479623f8d33ccee5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.54
+      value: -0.35
       objectReference: {fileID: 0}
     - target: {fileID: 7957974831376436071, guid: e0fd5e1c25ba1e0479623f8d33ccee5a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -282,9 +286,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1821951904}
     - target: {fileID: 8712038530808369221, guid: e0fd5e1c25ba1e0479623f8d33ccee5a, type: 3}
+      propertyPath: moveDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8712038530808369221, guid: e0fd5e1c25ba1e0479623f8d33ccee5a, type: 3}
       propertyPath: healthBarFill
       value: 
       objectReference: {fileID: 1104168307}
+    - target: {fileID: 8712038530808369221, guid: e0fd5e1c25ba1e0479623f8d33ccee5a, type: 3}
+      propertyPath: phase2MinAttackDistanceMultiplier
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
