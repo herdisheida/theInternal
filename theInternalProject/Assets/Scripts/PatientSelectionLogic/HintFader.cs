@@ -1,41 +1,70 @@
+using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HintFader : MonoBehaviour
 {
     public CanvasGroup hintGroup;
-    public float delayBeforeFade = 0f;
-    public float idleTime = 1f;
-    public float fadeDuration = 0f;
+    public float showAfterIdleSeconds = 0.8f;
+    public float fadeDuration = 0.25f;
 
-    void Start()
+    float idleTimer;
+    Coroutine fadeCoroutine;
+
+
+    void Awake()
     {
-        StartCoroutine(FadeInDelayed());
+        if (hintGroup != null)
+        {
+            hintGroup.alpha = 0f;
+        }
     }
 
     void Update()
     {
-        if (idleTime == 0 || hintGroup.alpha ==  0){
-            StopCoroutine(FadeInDelayed());
+        
+        bool relevantInput = 
+        Input.GetKey(KeyCode.Space) ||
+        Input.GetKey(KeyCode.LeftArrow) ||
+        Input.GetKey(KeyCode.RightArrow);
+
+        if (relevantInput){
+
+            idleTimer = 0f;
+
+            if (hintGroup != null) hintGroup.alpha = 0f;
+
+            if (fadeCoroutine != null)
+            {
+                StopCoroutine(fadeCoroutine);
+                fadeCoroutine = null;
+            }
+            return;
         }
-        else
+        
+        idleTimer += Time.deltaTime;
+
+        if (idleTimer >= showAfterIdleSeconds && hintGroup != null && hintGroup.alpha < 1f && fadeCoroutine == null)
         {
-            idleTime += Time.deltaTime;
+            fadeCoroutine = StartCoroutine(FadeIn());
         }
     }
 
-    IEnumerator FadeInDelayed()
+    IEnumerator FadeIn()
     {
-        yield return new WaitForSeconds(delayBeforeFade);
-        
-        float tim = 0f;
-        while (tim < fadeDuration)
+        float t = 0f;
+        float startA = hintGroup.alpha;
+
+        while (t < fadeDuration)
         {
-            tim += Time.deltaTime;
-            float a = tim / fadeDuration;
+            t += Time.deltaTime;
+            float a = (fadeDuration <= 0) ? 1f : Mathf.Lerp(startA, 1f, t / fadeDuration);
             hintGroup.alpha = a;
             yield return null;
         }
+
         hintGroup.alpha = 1f;
+        fadeCoroutine = null;
     }
 }
