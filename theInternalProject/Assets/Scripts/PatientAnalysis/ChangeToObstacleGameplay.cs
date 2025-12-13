@@ -42,7 +42,7 @@ public class ChangeScene : MonoBehaviour
 
     IEnumerator GoBackToSelection()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f); // after saving patient, wait 5 seconds
         SceneManager.LoadScene("PatientSelection");
     }
 
