@@ -67,6 +67,13 @@ public class GameManager : MonoBehaviour
     {
         if (currentPatient == null) return;
 
+        if (IsPatientResolved(currentPatient))
+        {
+            Debug.Log($"Cannot mark INFECTED: {currentPatient.patientName} is already {currentPatient.status}");
+            return;
+        }
+
+
         currentPatient.status = PatientStatus.Infected;
         patientLevelsPlayed++;
         Debug.Log($"Patient {currentPatient.patientName} marked INFECTED.");
@@ -87,11 +94,20 @@ public class GameManager : MonoBehaviour
     {
         if (currentPatient == null) return;
 
+        if (IsPatientResolved(currentPatient))
+        {
+            Debug.Log($"Cannot mark SAVED: {currentPatient.patientName} is already {currentPatient.status}");
+            return;
+        }
+
         currentPatient.status = PatientStatus.Saved;
         patientsSaved++;
         patientLevelsPlayed++;
         Debug.Log($"Patient {currentPatient.patientName} marked SAVED.");
     }
+
+
+
     public void ResetAllPatients()
     {
         if (allPatients == null) return;
@@ -102,9 +118,13 @@ public class GameManager : MonoBehaviour
         Debug.Log($"All patients have been reset");
     }
 
-
-
-
+    // Helper to check if a patient is resolved (saved or not saved [dead/infected])
+        // used to error if boss died right after player or player right after boss
+    private bool IsPatientResolved(PatientData p)
+    {
+        return p.status == PatientStatus.Saved
+            || p.status == PatientStatus.Infected;
+    }
 
 
     // ------------------ PATIENT SUMMARY ------------------
