@@ -23,8 +23,8 @@ MonoBehaviour:
   status: 0
   bossSceneName: Werewolfboss
   infectionSprite: {fileID: -6444834828608747849, guid: d52ff952376754c6b8b831191603626a, type: 3}
-  infectionAnimator: {fileID: 0}
-  infectionAnimationStringName: 
+  infectionAnimator: {fileID: 9100000, guid: 732b589fada7848dfac0d0648e78d93b, type: 2}
+  infectionAnimationStringName: WerewolfVirusMovement
   deadSpriteOffset: {x: -30, y: -20}
   deadSpriteScale: {x: 2.5, y: 1.3}
   selectedSpriteOffset: {x: 0, y: -10}
