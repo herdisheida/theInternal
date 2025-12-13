@@ -23,7 +23,7 @@ MonoBehaviour:
   status: 0
   bossSceneName: ZombieBoss
   infectionSprite: {fileID: 7443306363908782183, guid: ad065285958354dbcb4c7e10c46af656, type: 3}
-  infectionAnimator: {fileID: 9100000, guid: eb5e20cda2cd4429cb3d496230a7e3a6, type: 2}
+  infectionAnimator: {fileID: 9100000, guid: 1bbd52e4609ee4634baae7b0cabda8f9, type: 2}
   infectionAnimationStringName: ZombieVirusMovement
   deadSpriteOffset: {x: -20, y: -40}
   deadSpriteScale: {x: 1, y: 1}
