@@ -7,35 +7,37 @@ public class ChangeScene : MonoBehaviour
     public void Update()
     {
         PatientData patient = GameManager.instance?.currentPatient;
-        if (patient.status != PatientStatus.Saved)
-        {
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                AudioManager.instance?.StopMusic();
+        if (GameManager.instance.dialogOver) {
+            if (patient.status != PatientStatus.Saved)
+            {
+                if (Input.GetKeyDown(KeyCode.Space)) {
+                    AudioManager.instance?.StopMusic();
 
-                if (GameManager.instance?.patientLevelsPlayed == 0) 
-                {
-                    SceneManager.LoadScene("BloodstreamIntro");
+                    if (GameManager.instance?.patientLevelsPlayed == 0) 
+                    {
+                        SceneManager.LoadScene("BloodstreamIntro");
+                    }
+                    else
+                    {
+                        HealthSystem.ResetSharedHealth(); // reset health for next patient
+                        SceneManager.LoadScene("ObstacleGameplay");
+                    }
                 }
-                else
+                else if (Input.GetKeyDown(KeyCode.Backspace))
                 {
-                    HealthSystem.ResetSharedHealth(); // reset health for next patient
-                    SceneManager.LoadScene("ObstacleGameplay");
+                    SceneManager.LoadScene("PatientSelection");
                 }
-            }
-            else if (Input.GetKeyDown(KeyCode.Backspace))
-            {
-                SceneManager.LoadScene("PatientSelection");
-            }
-        }
-        else
-        {
-            if (GameManager.instance?.patientLevelsPlayed == 3)
-            {
-                StartCoroutine(GoToEnding());
             }
             else
-            { 
-                StartCoroutine(GoBackToSelection());
+            {
+                if (GameManager.instance?.patientLevelsPlayed == 3)
+                {
+                    StartCoroutine(GoToEnding());
+                }
+                else
+                { 
+                    StartCoroutine(GoBackToSelection());
+                }
             }
         }
     }

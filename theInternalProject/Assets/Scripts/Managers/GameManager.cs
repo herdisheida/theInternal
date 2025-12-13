@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
         {"Werewolf", false},
         {"Vampire", false},
     };
+    public bool dialogOver = false;
 
 
     void Awake()

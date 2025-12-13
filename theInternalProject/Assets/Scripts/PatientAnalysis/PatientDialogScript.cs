@@ -24,13 +24,13 @@ public class PatientDialogScript : MonoBehaviour
     [TextArea] public string[] VampireSavedLines;
 
     [Header("Charcter names for patients and doctor infected")]
-    [TextArea] public string[] ZombieInfectedCharcterLines;
-    [TextArea] public string[] WerewolfInfectedCharcterLines;
+    [TextArea] public string[] ZombieInfectedCharacterLines;
+    [TextArea] public string[] WerewolfInfectedCharacterLines;
     [TextArea] public string[] VampireInfectedCharacterLines;
 
     [Header("Charcter names for patients and doctor saved")]
-    [TextArea] public string[] ZombieSavedcharacterLines;
-    [TextArea] public string[] WerewolfSavedCharacterLines;
+    [TextArea] public string[] ZombieSavedCharcterLines;
+    [TextArea] public string[] WerewolfSavedCharcterLines;
     [TextArea] public string[] VampireSavedCharacterLines;
 
     [Header("Timings")]
@@ -39,6 +39,9 @@ public class PatientDialogScript : MonoBehaviour
     public bool loopLines = false; 
     public PatientData analizedPatient;
     public bool isSaved; 
+    public int dialogNumber = 0;
+
+    public bool started;
 
     void Start() {
         if (GameManager.instance == null)
@@ -46,6 +49,9 @@ public class PatientDialogScript : MonoBehaviour
             Debug.LogError("No GameManager in scene!");
             return;
         }
+    }
+    void Update()
+    {
         analizedPatient = GameManager.instance.currentPatient;
 
         if (analizedPatient == null)
@@ -53,7 +59,6 @@ public class PatientDialogScript : MonoBehaviour
             Debug.LogError("GameManager.currentPatient is null");
             return;
         }
-        CharacterName.text = analizedPatient.patientName;
         string[] linesToUse = null;
         string[] characterName = null;
 
@@ -63,29 +68,11 @@ public class PatientDialogScript : MonoBehaviour
             {
                 case PatientType.Zombie:
                     linesToUse = ZombieSavedLines;
-                    characterName = ZombieInfectedCharcterLines;
+                    characterName = ZombieSavedCharcterLines;
                     break;
                 case PatientType.Werewolf:
                     linesToUse = WerewolfSavedLines;
-                    characterName = WerewolfInfectedCharcterLines;
-                    break;
-                case PatientType.Vampire:
-                    linesToUse = VampireSavedLines;
-                    characterName = VampireInfectedCharacterLines;
-                    break;
-            }
-        }
-        else
-            {
-                switch (analizedPatient.patientType) 
-            {
-                case PatientType.Zombie:
-                    linesToUse = ZombieSavedLines;
-                    characterName = ZombieSavedcharacterLines;
-                    break;
-                case PatientType.Werewolf:
-                    linesToUse = WerewolfSavedLines;
-                    characterName = WerewolfSavedCharacterLines;
+                    characterName = WerewolfSavedCharcterLines;
                     break;
                 case PatientType.Vampire:
                     linesToUse = VampireSavedLines;
@@ -93,8 +80,45 @@ public class PatientDialogScript : MonoBehaviour
                     break;
             }
         }
+        else
+            {
+            switch (analizedPatient.patientType) 
+            {
+                case PatientType.Zombie:
+                    linesToUse = ZombieInfectedLines;
+                    characterName = ZombieInfectedCharacterLines;
+                    break;
+                case PatientType.Werewolf:
+                    linesToUse = WerewolfInfectedLines;
+                    characterName = WerewolfInfectedCharacterLines;
+                    break;
+                case PatientType.Vampire:
+                    linesToUse = VampireInfectedLines;
+                    characterName = VampireInfectedCharacterLines;
+                    break;
+            }
+        }
+        Debug.Log("dialog start!");
+        if (!started)
+        {
+            started = true;
+            dialogNumber = 0;
+            TemplateText.text = linesToUse[0];
+            CharacterName.text = characterName[0];
+            dialogNumber = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.Space) && dialogNumber <= linesToUse.Length && linesToUse != null) {
             TemplateText.text = (linesToUse != null && linesToUse.Length > 0) 
-            ? linesToUse[0]
+            ? linesToUse[dialogNumber] 
             : "";
+            CharacterName.text = (characterName != null && characterName.Length > 0) 
+            ? characterName[dialogNumber]
+            : "";
+            dialogNumber++;
+        }
+        else if (dialogNumber >= linesToUse.Length)
+        {
+            GameManager.instance.dialogOver = true;
+        }
     }
 }
