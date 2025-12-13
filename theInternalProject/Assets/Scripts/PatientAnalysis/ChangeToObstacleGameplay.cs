@@ -44,7 +44,10 @@ public class ChangeScene : MonoBehaviour
 
     IEnumerator GoBackToSelection()
     {
-        yield return new WaitForSeconds(5f); // after saving patient, wait 5 seconds
+        AudioManager.instance?.StopMusic(); // stop music after boss battle
+        AudioManager.instance?.PlayHospitalLobbyMusic(); // play lobby music while patient thanks player
+
+        yield return new WaitForSeconds(7.5f); // feedback/msg from patient duration after being saved
         SceneManager.LoadScene("PatientSelection");
     }
 
