@@ -39,7 +39,7 @@ public class PatientDialogScript : MonoBehaviour
     public bool loopLines = false; 
     public PatientData analizedPatient;
     public bool isSaved; 
-    public int dialogNumber = 0;
+    public int dialogNumber;
 
     public bool started;
 
@@ -49,6 +49,9 @@ public class PatientDialogScript : MonoBehaviour
             Debug.LogError("No GameManager in scene!");
             return;
         }
+        GameManager.instance.dialogOver = false;
+        started = false;
+        dialogNumber = 0;
     }
     void Update()
     {
@@ -107,7 +110,7 @@ public class PatientDialogScript : MonoBehaviour
             CharacterName.text = characterName[0];
             dialogNumber = 1;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && dialogNumber <= linesToUse.Length && linesToUse != null) {
+        if (Input.GetKeyDown(KeyCode.Space) && dialogNumber < linesToUse.Length && linesToUse != null) {
             TemplateText.text = (linesToUse != null && linesToUse.Length > 0) 
             ? linesToUse[dialogNumber] 
             : "";
@@ -115,10 +118,15 @@ public class PatientDialogScript : MonoBehaviour
             ? characterName[dialogNumber]
             : "";
             dialogNumber++;
+            if (dialogNumber >= linesToUse.Length)
+            {
+                StartCoroutine(SetDialogOverNextFrame());
+            }
         }
-        else if (dialogNumber >= linesToUse.Length)
-        {
-            GameManager.instance.dialogOver = true;
-        }
+    }
+    IEnumerator SetDialogOverNextFrame() // Makes sure to start game after next button press
+    {
+        yield return null;
+        GameManager.instance.dialogOver = true;
     }
 }

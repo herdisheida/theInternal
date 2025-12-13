@@ -30,27 +30,30 @@ public class ChangeScene : MonoBehaviour
             }
             else
             {
-                if (GameManager.instance?.patientLevelsPlayed == 3)
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    StartCoroutine(GoToEnding());
-                }
-                else
-                { 
-                    StartCoroutine(GoBackToSelection());
+                    if (GameManager.instance?.patientLevelsPlayed == 3)
+                    {
+                        SceneManager.LoadScene("EndingScene");
+                    }
+                    else
+                    {
+                        SceneManager.LoadScene("PatientSelection");
+                    }
                 }
             }
         }
     }
 
-    IEnumerator GoBackToSelection()
-    {
-        yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene("PatientSelection");
-    }
+    // IEnumerator GoBackToSelection()
+    // {
+    //     yield return new WaitForSeconds(2f);
+    //     SceneManager.LoadScene("PatientSelection");
+    // }
 
-    IEnumerator GoToEnding()
-    {
-        yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene("EndingScene");
-    }
+    // IEnumerator GoToEnding()
+    // {
+    //     yield return new WaitForSeconds(2f);
+    //     SceneManager.LoadScene("EndingScene");
+    // }
 }

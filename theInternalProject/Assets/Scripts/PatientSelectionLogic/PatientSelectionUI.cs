@@ -111,6 +111,5 @@ public class PatientSelectionUI : MonoBehaviour
     {
         GameManager.instance?.SetCurrentPatient(PatientSlots[currentIndex].data);
         UnityEngine.SceneManagement.SceneManager.LoadScene("AnalysisScreen");
-        
     }
 }

@@ -57,6 +57,5 @@ public class PatientAnalasysUI : MonoBehaviour
         {
             activeSwitch.NotSavedImage();
         }
-
     }
 }

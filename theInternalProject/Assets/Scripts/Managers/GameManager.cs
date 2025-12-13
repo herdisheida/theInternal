@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
     public void MarkPatientInfected()
     {
         if (currentPatient == null) return;
+        if (currentPatient.status != PatientStatus.None) return;
 
         currentPatient.status = PatientStatus.Infected;
         patientLevelsPlayed++;
@@ -84,6 +85,7 @@ public class GameManager : MonoBehaviour
     public void MarkPatientDead()
     {
         if (currentPatient == null) return;
+        if (currentPatient.status != PatientStatus.None) return;
 
         currentPatient.status = PatientStatus.Dead;
         Debug.Log($"Patient {currentPatient.patientName} marked DEAD.");
@@ -94,7 +96,12 @@ public class GameManager : MonoBehaviour
     public void MarkPatientSaved()
     {
         if (currentPatient == null) return;
-
+        if (currentPatient.status == PatientStatus.Saved ||
+        currentPatient.status == PatientStatus.Dead ||
+        currentPatient.status == PatientStatus.Infected)
+        {
+            return;
+        }
         currentPatient.status = PatientStatus.Saved;
         patientsSaved++;
         patientLevelsPlayed++;
