@@ -320,22 +320,20 @@ MonoBehaviour:
   endingImage: {fileID: 1175223058}
   endingText: {fileID: 1828772174}
   goodLines:
-  - "Diary entry 748\nToday I saved all of my three patients. For the first time
-    in a while, things feel like they\u2019re turning around. I'm hopeful for the
-    future. I'll continue to save as many people as I can.\n"
+  - "Diary entry 748\n\nToday I saved all of my three patients. For the first time
+    in a while, things feel like they\u2019re turning around.\n\nI'm hopeful for
+    the future. I'll continue to save as many people as I can.\n"
   partialyGoodLines:
-  - "Diary entry 748\nToday I saved two patients. I wish I could've saved the third
-    but there was nothing I could do. Even so, I\u2019ll keep doing my best, maybe
+  - "Diary entry 748\n\nToday I saved two patients. I wish I could've saved the third
+    but there was nothing I could do.\n\nEven so, I\u2019ll keep doing my best, maybe
     my efforts will still make a difference in these difficult times."
   partialyBadLines:
-  - "Diary entry 748\nToday I saved only one of my three patients. It\u2019s becoming
-    harder to stay motivated when so many people come to me desperate for help and
-    I can\u2019t promise their safety. I\u2019ll keep trying\u2026 but hope is slipping
-    away."
+  - "Diary entry 748\n\nOnly one patient survived totday. With each loss, it gets
+    harder to believe things will get better.\n\nI\u2019ll keep trying\u2026 but
+    hope is slipping away."
   badLines:
-  - "Diary entry 748\nI couldn't save any of the patients that came to my hospital
-    today. I can\u2019t keep doing this\u2026 ending the lives of innocent people
-    who only wanted help."
+  - "Diary entry 748\n\nI couldn't save anyona today.\n\nI can\u2019t keep doing
+    this\u2026\nending the lives of innocent people who only wanted help."
   fadeDuration: 0.7
   holdDuration: 15
   loopLines: 0
@@ -746,8 +744,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 55.441467, y: 8.1795}
-  m_SizeDelta: {x: -199.7026, y: 57.7662}
+  m_AnchoredPosition: {x: 55.441467, y: 8.2809}
+  m_SizeDelta: {x: -199.7026, y: 58.0379}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1828772174
 MonoBehaviour:
@@ -769,12 +767,30 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "TEMPLATE TEXT (sem mun swappa\xF0ur)\nbla bla bla \nbe ble ble\ner a\xF0
-    gera \xFEetta til a\xF0 sj\xE1 \xED hva\xF0a l\xEDnu \xFEetta mun lenda\xED\n\xFEannig
-    dontworry about it :D\n\xFEetta mun ekki byrtast"
+  m_text: 'DIARY ENTRY xxx
+
+    Template: i got a pony today
+
+    the pony was very
+    sad :(
+
+    he did not know that he was a pony
+
+    and he thought he was a horse
+
+    so
+    when he went to the herd
+
+    he did not stand as tall as the rest
+
+    and out
+    of the blue got kicked in the butt and that''s the story of the pony
+
+
+'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ae54e4a9236384581b2bd9316f43a841, type: 2}
-  m_sharedMaterial: {fileID: 4653624503363158687, guid: ae54e4a9236384581b2bd9316f43a841, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d72f48ef5fe854127b158636a907b96b, type: 2}
+  m_sharedMaterial: {fileID: -3136993280642398951, guid: d72f48ef5fe854127b158636a907b96b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -810,7 +826,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 60
+  m_lineSpacing: 80
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
