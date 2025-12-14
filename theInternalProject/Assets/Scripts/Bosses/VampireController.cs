@@ -68,7 +68,7 @@ public class Vampire : MonoBehaviour
 
     void Awake()
     {
-        player_hp = GetComponentInParent<HealthSystem>();
+        player_hp = player.GetComponentInParent<HealthSystem>();
     }
 
     void Start()

@@ -55,8 +55,8 @@ MonoBehaviour:
   zombieBossBattleMusic: {fileID: 8300000, guid: d39d165e9b51f4c028a16c2251e99597, type: 3}
   werewolfBossBattleMusic: {fileID: 8300000, guid: df9f06dd65bb2424fad53970bd37d6f9, type: 3}
   vampireBossBattleMusic: {fileID: 8300000, guid: ae6fdd4c33bca44afac0451eb6417acb, type: 3}
-  goodEndingMusic: {fileID: 0}
-  badEndingMusic: {fileID: 0}
+  goodEndingMusic: {fileID: 8300000, guid: 7a4c26b5ff5fe4b188ea4cd7ecb8f9a0, type: 3}
+  badEndingMusic: {fileID: 8300000, guid: f132e9e754d7048faa88479993aac34d, type: 3}
   partialEndingMusic: {fileID: 0}
   creditsMusic: {fileID: 8300000, guid: ec6eb95a2924b4700be5c359d2a668e3, type: 3}
   buttonClickClip: {fileID: 8300000, guid: ccac5e46673c84b52b31fc7ea8014b8f, type: 3}
