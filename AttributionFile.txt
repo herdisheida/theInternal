@@ -6,11 +6,18 @@ Pixel Font: https://fonts.google.com/specimen/Pixelify+Sans?query=pixel
 Reenie Beenie Font - https://fonts.google.com/specimen/Reenie+Beanie?preview.text=Diary%20entry%20748%20Today%20I%20saved%20all%20of%20my%20three%20patients.%20For%20the%20first%20time%20in%20a%20while,%20things%20feel%20like%20they%E2%80%99re%20turning%20around.%20I%27m%20hopeful%20for%20the%20future.%20I%27ll%20continue%20to%20save%20as%20many%20people%20as%20I%20can.&query=handwritten
 Caveat Font - https://fonts.google.com/specimen/Caveat?query=cav
 
+
+
 Music/Soundtracks:
 Deltarune Soundtracks
 Zombie boss battle - https://www.youtube.com/watch?v=Qgez3yzhSC0
 Vampire boss battle music - https://www.youtube.com/watch?v=dUNOfNad59Q
 Werewolf boss battle music - https://www.youtube.com/watch?v=fjKssef12cQ
+Good Ending music - https://open.spotify.com/track/7rALnSGyjvKMekxmkqE54d?si=cZJvUB7fShiu0YWLAvL1zg
+Bad Ending music - https://open.spotify.com/track/6kopsmzjQPyj6i3L2lkC1L?si=03kxHnblRm2bSSl0nt-Nrg
+Partial Ending music - https://open.spotify.com/track/357kw4tJibUqJDnxXQCXoK?si=wJOSUK-sRhepxd7jLkCNDQ
+
+
 
 Sound Effects:
 Gun sound effect - https://www.youtube.com/watch?v=lGNwnstqAO4
@@ -31,6 +38,10 @@ Robot shutting down - https://www.youtube.com/watch?v=_TBexXFaZyc
 Dog fight sound - https://www.youtube.com/watch?v=d-5fV8Q5TIM
 Vampire sound effect - https://www.myinstants.com/en/search/?name=vampire
 Werewolf chomp sound effect - https://pixabay.com/sound-effects/search/dog%20bite/
+Reload - https://pixabay.com/sound-effects/search/cartoon/
+
+
 
 Images:
 Fleshy background - https://www.shutterstock.com/video/clip-1007681740-animated-hellish-inferno-extreme-intense-super-heated
+
