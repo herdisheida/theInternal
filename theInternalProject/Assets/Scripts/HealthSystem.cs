@@ -153,6 +153,9 @@ public class HealthSystem : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
+        // mark patient
+        GameManager.instance?.MarkPatientInfected();
+
         // disable movement scripts
         var playerController = GetComponent<PlayerController>();
         if (playerController != null)
@@ -172,9 +175,6 @@ public class HealthSystem : MonoBehaviour
 
         AudioManager.instance?.Death();
         AudioManager.instance?.FadeOutMusic(1.5f);
-
-        // mark patient
-        GameManager.instance?.MarkPatientInfected();
 
         StartCoroutine(DeathRoutine());
     }

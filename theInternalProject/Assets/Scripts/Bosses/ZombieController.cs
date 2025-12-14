@@ -252,15 +252,6 @@ public class BossController : MonoBehaviour
 
 
             healthBarRoot?.SetActive(false);
-            // if (patientData != null)
-            // {
-            //     patientData.isSaved = true;
-            //     patientData.status = PatientStatus.Saved;
-            // }
-            // else
-            // {
-            //     Debug.LogWarning("BossController: patientData is null");
-            // }
 
             GameManager.instance?.MarkPatientSaved();
             GameManager.instance.PatientsSavedDict["Zombie"] = true;
