@@ -50,6 +50,7 @@ MonoBehaviour:
   sfxSource: {fileID: 5959252056732647028}
   menuScreenMusic: {fileID: 8300000, guid: 427f6ad408d80442383fb1424d36de46, type: 3}
   hospitalLobbyMusic: {fileID: 8300000, guid: 526572bcd4aee4a74b1267ad61781ec3, type: 3}
+  patientSavedMusic: {fileID: 8300000, guid: 85c60445bb6a1468f8776f6f0d29cdef, type: 3}
   obstacleGameplayMusic: {fileID: 8300000, guid: 54fc760a0f3f5416198c3571fd35901e, type: 3}
   zombieBossBattleMusic: {fileID: 8300000, guid: d39d165e9b51f4c028a16c2251e99597, type: 3}
   werewolfBossBattleMusic: {fileID: 8300000, guid: df9f06dd65bb2424fad53970bd37d6f9, type: 3}
