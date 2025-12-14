@@ -29,8 +29,8 @@ public class EndingScreen : MonoBehaviour
 
     void Start()
     {
-        // default to BAD if something goes wrong
-        Debug.Log("Parti");
+        // default to partially good if something goes wrong
+        Debug.Log("partially good");
         ending = EndingType.PartialyGood;
 
         if (GameManager.instance != null)
@@ -38,6 +38,9 @@ public class EndingScreen : MonoBehaviour
             ending = GameManager.instance.GetEndingType();
             savedCount = GameManager.instance.GetSavedCount();
         }
+
+        // music
+        AudioManager.instance?.StopMusic();
 
         // choose sprite + music + lines based on ending
         string[] lines = SetupVisualsForEnding(ending);
