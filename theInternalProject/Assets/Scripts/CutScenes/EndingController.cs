@@ -115,7 +115,7 @@ public class EndingScreen : MonoBehaviour
 
     IEnumerator ShowLinesRoutine(string[] lines)
     {
-        yield return new WaitForSeconds(2f); // initial delay before starting
+        yield return new WaitForSeconds(1f); // initial delay before starting
         
         int index = 0;
 
