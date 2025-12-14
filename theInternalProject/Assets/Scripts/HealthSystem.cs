@@ -30,7 +30,7 @@ public class HealthSystem : MonoBehaviour
     [Header("Invincibility Frames")]
     public float invincibilityPeriod = 0.9f;
     public float preBlinkDelay = 0.1f;
-    private bool isInvincible = false;
+    public bool isInvincible = false; // player cant take damage during this time
     public float blinkInterval = 0.07f;
     private SpriteRenderer[] spriteRenderers;
     
