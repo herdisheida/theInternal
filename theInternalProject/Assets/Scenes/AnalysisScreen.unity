@@ -443,7 +443,7 @@ MonoBehaviour:
 '
   - "I was sleeping in my car when a zombie broke the window and grabbed my leg.
     \r\n"
-  - It dragged my leg out the car window and took a big bite out of my leg.
+  - It dragged my leg out the car window and took a big bite.
   - 'I kicked open the door and got away.
 
 '
@@ -466,7 +466,7 @@ MonoBehaviour:
 '
   - "\u2026"
   - I was scavenging.
-  - ' A vampire bit me.'
+  - A vampire bit me.
   - I came here.
   - ...
   - I see, I'll try my best.
