@@ -132,6 +132,7 @@ public class PatientDialogScript : MonoBehaviour
             }
         }
     }
+    
     IEnumerator SetDialogOverNextFrame() // Makes sure to start game after next button press
     {
         yield return null;
