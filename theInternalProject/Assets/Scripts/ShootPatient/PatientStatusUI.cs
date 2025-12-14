@@ -76,7 +76,7 @@ public class PatientStatusUI : MonoBehaviour
                 break;
 
             case PatientType.Vampire:
-                rt.localScale = new Vector3(2.4f, 2.4f, 2.4f);  // size
+                rt.localScale = new Vector3(2.6f, 2.6f, 2.6f);  // size
                 rt.anchoredPosition = new Vector2(-79f, 13f);  // pos
                 backgroundImagePlaceholder.sprite = vampireBg;
                 break;

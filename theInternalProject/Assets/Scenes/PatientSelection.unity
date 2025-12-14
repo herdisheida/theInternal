@@ -309,7 +309,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -68.9, y: 34.2}
+  m_AnchoredPosition: {x: -71.8, y: 39.1}
   m_SizeDelta: {x: 11458, y: 2850}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &287769253
@@ -534,7 +534,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -80.700005, y: 48.59999}
+  m_AnchoredPosition: {x: -86.1, y: 52.20001}
   m_SizeDelta: {x: 2818, y: 2850}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &486728415
@@ -938,7 +938,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.500001, y: 41.559803}
+  m_AnchoredPosition: {x: -0.40000367, y: 44.159813}
   m_SizeDelta: {x: 94.7063, y: 25.0806}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &944636827
@@ -1002,7 +1002,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 5
   m_wordSpacing: 0
-  m_lineSpacing: 54
+  m_lineSpacing: 40
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -1105,8 +1105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   hintGroup: {fileID: 962492697}
-  delayBeforeFade: 1
-  idleTime: 1
+  showAfterIdleSeconds: 0.8
   fadeDuration: 1
 --- !u!225 &962492697
 CanvasGroup:
@@ -1154,7 +1153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -59.1, y: 48.600002}
+  m_AnchoredPosition: {x: -58.200005, y: 52.200012}
   m_SizeDelta: {x: 2818, y: 2850}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1004286675
