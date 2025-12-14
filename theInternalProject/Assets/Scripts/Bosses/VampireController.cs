@@ -277,17 +277,18 @@ public class Vampire : MonoBehaviour
     {
         busy = true;
 
-        AudioManager.instance?.VampireScream();
-
         // disable hitbox & physics
         Collider2D col = GetComponent<Collider2D>();
         if (col) col.enabled = false;
-
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb) rb.simulated = false;
 
-        AudioManager.instance?.ZombieDeath();
-        CameraShake.instance?.Shake(0.4f, 0.2f);
+        // audio
+        AudioManager.instance?.FadeOutMusic(2f);
+        AudioManager.instance?.VampireScream();
+
+        // small camera shake when he dies
+        CameraShake.instance?.Shake(0.6f, 0.4f);
 
         Vector3 originalPos = transform.position;
 

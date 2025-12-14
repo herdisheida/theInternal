@@ -294,11 +294,12 @@ public class BossController : MonoBehaviour
             shootBurstRoutine = null;
         }
 
-        // sound effect
+        // sound
+        AudioManager.instance?.FadeOutMusic(2f);
         AudioManager.instance?.ZombieDeath();
 
         // small camera shake when he dies
-        CameraShake.instance?.Shake(0.4f, 0.2f);
+        CameraShake.instance?.Shake(0.6f, 0.4f);
 
         Vector3 originalPos = transform.position;
 
