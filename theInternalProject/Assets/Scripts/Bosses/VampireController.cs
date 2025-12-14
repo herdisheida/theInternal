@@ -63,16 +63,15 @@ public class Vampire : MonoBehaviour
     // phase 2
     public bool phase2 = false;
 
-    private HealthSystem player_hp; // player
 
-
-    void Awake()
-    {
-        player_hp = player.GetComponentInParent<HealthSystem>();
-    }
+    // reference to player health to make invincible on death
+    private HealthSystem playerHP;
 
     void Start()
     {
+        if (player != null)
+            playerHP = player.GetComponent<HealthSystem>();
+
         AudioManager.instance?.PlayVampireBossBattleMusic();
 
         startPos = transform.position;
@@ -271,7 +270,7 @@ public class Vampire : MonoBehaviour
     public void TriggerDeath()
     {
         isDead = true;
-        player_hp.isInvincible = true; // make player invincible upon boss death
+        playerHP?.SetInvincible(true);
 
         // stop everything BEFORE starting the death sequence
         StopAllCoroutines();

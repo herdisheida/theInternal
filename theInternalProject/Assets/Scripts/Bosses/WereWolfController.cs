@@ -69,15 +69,16 @@ public class BossController_Werewolf : MonoBehaviour
     private bool isDying = false;
     private Coroutine BoomerangAttack; 
 
-    private HealthSystem player_hp; // player
 
-    void Awake()
-    {
-        player_hp = GetComponentInParent<HealthSystem>();
-    }
+    // reference to player health to make invincible on death
+    private HealthSystem playerHP;
+
 
     void Start()
     {
+        if (player != null)
+            playerHP = player.GetComponent<HealthSystem>();
+
         AudioManager.instance?.PlayWerewolfBossBattleMusic();
 
         startPos = transform.position;
@@ -140,7 +141,7 @@ public class BossController_Werewolf : MonoBehaviour
         if (currentHealth <= 0 && !isDying)
         {
             isDying = true;
-            player_hp.isInvincible = true; // make player invincible upon boss death
+            playerHP?.SetInvincible(true);
 
             GameManager.instance?.MarkPatientSaved();
             GameManager.instance.PatientsSavedDict["Werewolf"] = true;

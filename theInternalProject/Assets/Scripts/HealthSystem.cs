@@ -349,4 +349,8 @@ public class HealthSystem : MonoBehaviour
     }
 
 
+    public void SetInvincible(bool value) // helper for bosses
+    {
+        isInvincible = value;
+    }
 }

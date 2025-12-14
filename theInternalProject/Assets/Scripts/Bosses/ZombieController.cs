@@ -88,16 +88,15 @@ public class BossController : MonoBehaviour
     private Coroutine shootBurstRoutine;
 
 
-    private HealthSystem player_hp; // player
-
-
-    void Awake()
-    {
-        player_hp = GetComponentInParent<HealthSystem>();
-    }
+    // reference to player health to make invincible on death
+    private HealthSystem playerHP;
 
     void Start()
     {
+        if (player != null)
+            playerHP = player.GetComponent<HealthSystem>();
+
+
         AudioManager.instance?.PlayZombieBossBattleMusic();
 
         startPos = transform.position;
@@ -256,8 +255,7 @@ public class BossController : MonoBehaviour
         if (currentHealth <= 0 && !isDying)
         {
             isDying = true;
-            player_hp.isInvincible = true; // make player invincible upon boss death
-
+            playerHP?.SetInvincible(true);
 
             healthBarRoot?.SetActive(false);
 
