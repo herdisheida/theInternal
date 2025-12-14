@@ -335,7 +335,6 @@ MonoBehaviour:
   - "Diary entry 748\n\nI couldn't save anyone today.\n\nI can\u2019t keep doing
     this\u2026\nending the lives of innocent people who only wanted help."
   fadeDuration: 0.7
-  holdDuration: 15
   loopLines: 0
 --- !u!1 &1009239439
 GameObject:
@@ -891,7 +890,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 80
+  m_lineSpacing: 92
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0

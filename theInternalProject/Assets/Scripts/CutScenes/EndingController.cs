@@ -20,12 +20,10 @@ public class EndingScreen : MonoBehaviour
 
     [Header("Timings")]
     public float fadeDuration = 0.8f;   // how long to fade in/out
-    public float holdDuration = 3f;     // how long text stays fully visible
+    // public float holdDuration = 3f;     // how long text stays fully visible
     public bool loopLines = false;      // if true, keep cycling the lines
     private EndingType ending;
     private int savedCount;
-    private bool isBad = true;
-
 
     void Start()
     {
@@ -50,21 +48,21 @@ public class EndingScreen : MonoBehaviour
         {
             StartCoroutine(ShowLinesRoutine(lines));
         }
-
     }
 
     void Update()
     {
-        if (ending == EndingType.Bad)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            isBad = true;
+            if (savedCount == 0) {
+            SceneManager.LoadScene("Suicide");
         }
-        else
-        {
-            isBad = false;
+            else
+            {
+                SceneManager.LoadScene("Credits");
+            }
         }
-
-    } 
+    }
 
     string[] SetupVisualsForEnding(EndingType ending)
     {
@@ -127,11 +125,11 @@ public class EndingScreen : MonoBehaviour
             // fade IN
             yield return StartCoroutine(FadeTextAlpha(0f, 1f, fadeDuration));
 
-            // hold
-            yield return new WaitForSeconds(holdDuration);
+            // // hold
+            // yield return new WaitForSeconds(holdDuration);
 
-            // fade OUT
-            yield return StartCoroutine(FadeTextAlpha(1f, 0f, fadeDuration));
+            // // fade OUT
+            // yield return StartCoroutine(FadeTextAlpha(1f, 0f, fadeDuration));
 
             // next line
             index++;
@@ -142,12 +140,12 @@ public class EndingScreen : MonoBehaviour
                 {
                     index = 0; // start over
                 }
-                else
-                {
-                    // go to credits after last line
-                    StartCoroutine(GoToCreditsAfterDelay());
-                    yield break;
-                }
+                // else
+                // {
+                //     // go to credits after last line
+                //     StartCoroutine(GoToCreditsAfterDelay());
+                //     yield break;
+                // }
             }
         }
     }
@@ -174,16 +172,12 @@ public class EndingScreen : MonoBehaviour
         endingText.color = c;
     }
 
-    IEnumerator GoToCreditsAfterDelay()
-    {
-        yield return new WaitForSeconds(0.2f);
-        savedCount = GameManager.instance != null 
-            ? GameManager.instance.GetSavedCount()
-            : 0;
-        if (savedCount == 0) {
-            SceneManager.LoadScene("Suicide");
-            yield break;
-        }
-        SceneManager.LoadScene("Credits");
-    }
+    // IEnumerator GoToCreditsAfterDelay()
+    // {
+    //     yield return new WaitForSeconds(0.2f);
+    //     savedCount = GameManager.instance != null 
+    //         ? GameManager.instance.GetSavedCount()
+    //         : 0;
+        
+    // }
 }
