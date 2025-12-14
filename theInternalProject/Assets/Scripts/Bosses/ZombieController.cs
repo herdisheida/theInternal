@@ -4,6 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class BossController : MonoBehaviour
 {
+
+    [Header("Scene Start Delay")]
+    public float sceneStartDelay = 1f;
+
+    private float sceneTimer = 0f;
+    private bool sceneStarted = false;
+
     public Transform player;
     private PatientData patientData;
 
@@ -39,7 +46,7 @@ public class BossController : MonoBehaviour
     public float burstInterval = 2f;
     private bool isBursting = false;
 
-    // ---------------- BITE ATTACK ----------------
+    // the bite attack
     [Header("Bite Attack")]
     public GameObject biteHitbox;
     public float lungeDistance = 0.5f;
@@ -53,7 +60,7 @@ public class BossController : MonoBehaviour
     public float shakeDuration = 0.3f;
     public float shakeMagnitude = 0.1f;
 
-    // -------------- PHASE CONTROL ----------------
+    // phases
     [Header("Phase Control")]
     public bool phase2 = false;
     public float phase2Threshold = 0.5f;
@@ -73,7 +80,7 @@ public class BossController : MonoBehaviour
     public float spreadCooldown = 4f;
     private bool canSpread = true;
 
-    // -------------- DEATH ----------------
+    // death animation
     [Header("Death Animation")]
     public GameObject zombieVineHang;
     public float deathShakeDuration = 1f;
@@ -116,10 +123,20 @@ public class BossController : MonoBehaviour
 
     void Update()
     {
+        // scene delay logic
+        if (!sceneStarted)
+        {
+            sceneTimer += Time.deltaTime;
+            if (sceneTimer >= sceneStartDelay)
+                sceneStarted = true;
+            else
+                return; // block all logic until delay finishes
+        }
+
         MoveBoss();
         UpdateHealthBar();
 
-        // delay before attacks
+        // delay before attacks start
         if (!attacksEnabled)
         {
             attackTimer += Time.deltaTime;
@@ -128,7 +145,7 @@ public class BossController : MonoBehaviour
             attacksEnabled = true;
         }
 
-        // ---- PHASE 1 ----
+        // phase 1 attacks
         if (!phase2)
         {
             if (!isBursting)
@@ -139,8 +156,7 @@ public class BossController : MonoBehaviour
             if (distance < 7f && canBite)
                 StartCoroutine(BiteAttackRoutine());
         }
-
-        // ---- PHASE 2 ----
+        // phase 2 attacks
         else
         {
             if (canSpread)
@@ -148,7 +164,8 @@ public class BossController : MonoBehaviour
         }
     }
 
-    // ---------------- MOVEMENT ----------------
+
+    // movement
     void MoveBoss()
     {
         if (freezeMovement) return;
@@ -160,7 +177,7 @@ public class BossController : MonoBehaviour
             new Vector3(transform.position.x, startPos.y + offsetY, transform.position.z);
     }
 
-    // ---------------- SHOOTING ----------------
+    // shooting
     IEnumerator ShootBurst()
     {
         isBursting = true;
@@ -175,7 +192,7 @@ public class BossController : MonoBehaviour
         isBursting = false;
     }
 
-    // ---------------- BITE ATTACK ROUTINE ----------------
+    // bite attack
     IEnumerator BiteAttackRoutine()
     {
         if (currentHealth <= 0) yield break;
@@ -186,7 +203,7 @@ public class BossController : MonoBehaviour
 
         Vector3 originalPos = transform.position;
 
-        // TELEGRAPH SHAKE
+        // shake telegraph
         float elapsed = 0f;
         while (elapsed < shakeDuration)
         {
@@ -201,7 +218,7 @@ public class BossController : MonoBehaviour
 
         transform.position = originalPos;
 
-        // LUNGE
+        // lunge toward player
         float direction = (player.position.x < transform.position.x) ? -1f : 1f;
         Vector3 bitePos = originalPos + new Vector3(direction * lungeDistance, 0, 0);
 
@@ -213,13 +230,13 @@ public class BossController : MonoBehaviour
             yield return null;
         }
 
-        // BITE HITBOX
+        // bite hitbox active
         biteHitbox.SetActive(true);
         AudioManager.instance?.ZombieChomp();
         yield return new WaitForSeconds(biteActiveTime);
         biteHitbox.SetActive(false);
 
-        // RETURN TO POSITION
+        // return to original position
         t = 0;
         while (t < 1f)
         {
@@ -237,7 +254,7 @@ public class BossController : MonoBehaviour
     }
 
 
-    // ---------------- HEALTH ----------------
+    //health system
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
@@ -309,7 +326,7 @@ public class BossController : MonoBehaviour
 
         Vector3 originalPos = transform.position;
 
-        // ---- SHAKE IN PLACE ----
+        // just shake
         float elapsed = 0f;
         while (elapsed < deathShakeDuration)
         {
@@ -325,7 +342,7 @@ public class BossController : MonoBehaviour
         // snap back
         transform.position = originalPos;
 
-        // ---- FALL OFF SCREEN ----
+        // dramatic fall
         Destroy(zombieVineHang);
         Vector3 targetPos = originalPos + Vector3.down * deathFallDistance;
 
@@ -350,7 +367,7 @@ public class BossController : MonoBehaviour
         SceneManager.LoadScene(deathNextScene);
     }
 
-    // ---------------- PHASE 2 ----------------
+    // phase 2 entry
     IEnumerator EnterPhase2()
     {
         AudioManager.instance?.ZombieRoar();

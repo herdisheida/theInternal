@@ -4,6 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class Vampire : MonoBehaviour
 {
+
+    [Header("Scene Start Delay")]
+    public float sceneStartDelay = 1f;
+
+    private float sceneTimer = 0f;
+    private bool sceneStarted = false;
+
     public Transform player;
     private bool isDead = false;
 
@@ -82,11 +89,22 @@ public class Vampire : MonoBehaviour
         barHeight = healthBarFill.localScale.y;
         flash = GetComponent<DamageFlash>();
 
-        StartCoroutine(PhaseOneAttackLoop());
+        StartCoroutine(StartAttacksAfterSceneDelay());
+
+        // StartCoroutine(PhaseOneAttackLoop());
     }
 
     void Update()
     {
+        if (!sceneStarted)
+        {
+            sceneTimer += Time.deltaTime;
+            if (sceneTimer >= sceneStartDelay)
+                sceneStarted = true;
+            else
+                return;
+        }
+
         if (isDead) return; // make sure it doesnt move when dead
 
         HoverMotion();
@@ -151,6 +169,13 @@ public class Vampire : MonoBehaviour
         healthBarFill.localScale = new Vector3(newX, barHeight, 1f);
         barSprite.color = ratio < 0.25f ? Color.red : Color.green;
     }
+
+    IEnumerator StartAttacksAfterSceneDelay()
+    {
+        yield return new WaitForSeconds(sceneStartDelay);
+        StartCoroutine(PhaseOneAttackLoop());
+    }
+
 
 
     // phase 1 attack loop (only wind slash)

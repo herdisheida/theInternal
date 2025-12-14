@@ -1,16 +1,21 @@
 using UnityEngine;
+using System.Collections;
 
 public class ClawAttack : MonoBehaviour
 {
     [Header("Damage Settings")]
     public int damage = 20;
 
+    [Header("Scene Start Delay")]
+    public float sceneStartDelay = 1.4f;
+
     [Header("Attack Sprite Effects")]
-    public Sprite idleSprite;       // normal hand/claw sprite
-    public Sprite attackSprite;     // slashing / claw extended sprite
-    public float attackSpriteTime = 0.15f; // how long to show attack sprite
+    public Sprite idleSprite;
+    public Sprite attackSprite;
+    public float attackSpriteTime = 0.15f;
 
     private SpriteRenderer sr;
+    private bool canDamage = false;
 
     void Start()
     {
@@ -18,33 +23,35 @@ public class ClawAttack : MonoBehaviour
 
         if (sr != null && idleSprite != null)
             sr.sprite = idleSprite;
+
+        StartCoroutine(EnableDamageAfterDelay());
+    }
+
+    IEnumerator EnableDamageAfterDelay()
+    {
+        yield return new WaitForSeconds(sceneStartDelay);
+        canDamage = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Deal damage
+        if (!canDamage)
+            return;
+
         HealthSystem hs = collision.GetComponentInParent<HealthSystem>();
         if (hs != null)
-        {
             hs.TakeDamage(damage);
-        }
 
-        // Play sprite animation if valid
         if (sr != null && attackSprite != null)
             StartCoroutine(PlayClawAnimation());
     }
 
-    private System.Collections.IEnumerator PlayClawAnimation()
+    private IEnumerator PlayClawAnimation()
     {
-        // Switch to claw attack sprite
         sr.sprite = attackSprite;
-
-        // Wait a little bit
         yield return new WaitForSeconds(attackSpriteTime);
 
-        // Return to idle sprite
         if (idleSprite != null)
             sr.sprite = idleSprite;
     }
 }
-
