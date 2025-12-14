@@ -137,7 +137,5 @@ public class PatientDialogScript : MonoBehaviour
     {
         yield return null;
         GameManager.instance.dialogOver = true;
-
-        if (GameManager.instance.dialogOver = true) AudioManager.instance?.StopMusic();
     }
 }
