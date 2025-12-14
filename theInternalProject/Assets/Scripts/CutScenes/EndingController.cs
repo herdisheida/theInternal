@@ -5,13 +5,6 @@ using TMPro;
 using UnityEngine.SceneManagement;
 
 
-// TOOD HERDIS muna setja þetta í patient selection screen til að checka hvort allir patientar hafa verið spilaðir
-// if (GameManager.instance != null && AllPatientsResolved())
-// {
-//     UnityEngine.SceneManagement.SceneManager.LoadScene("EndingScene");
-// }
-
-
 
 public class EndingScreen : MonoBehaviour
 {
