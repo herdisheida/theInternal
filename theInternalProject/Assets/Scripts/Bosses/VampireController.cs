@@ -269,6 +269,7 @@ public class Vampire : MonoBehaviour
 
         AudioManager.instance?.FadeOutMusic(1f);
         GameManager.instance?.MarkPatientSaved();
+        GameManager.instance.PatientsSavedDict["Vampire"] = true;
         StartCoroutine(DeathSequence());
     }
 
