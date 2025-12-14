@@ -16,7 +16,13 @@ public class GunController : MonoBehaviour
     private bool isLeftFirePoint;
 
     public GunUI gunUI;
-    
+
+    private HealthSystem hp;
+
+    void Awake()
+    {
+        hp = GetComponentInParent<HealthSystem>();
+    }
 
     void Start()
     {
@@ -27,8 +33,10 @@ public class GunController : MonoBehaviour
             gunUI.hideReloading();
         }
     }
+
     void Update()
     {
+        if (hp != null && hp.isDead) return;
         
         if (isReloading)
         {

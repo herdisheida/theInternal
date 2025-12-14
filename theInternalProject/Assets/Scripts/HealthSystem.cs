@@ -47,7 +47,7 @@ public class HealthSystem : MonoBehaviour
     public float deathFallSpeed = 6f;
     public float deathFallRotationSpeed = 360f; // degrees per second
 
-    private bool isDead = false;
+    public bool isDead = false;
 
 
     void Awake()
@@ -160,9 +160,12 @@ public class HealthSystem : MonoBehaviour
         var playerController = GetComponent<PlayerController>();
         if (playerController != null)
             playerController.enabled = false;
-        var gunController = GetComponent<GunController>();
+        // disable gun scripts (they are on a child)
+        var gunController = GetComponentInChildren<GunController>(true);
         if (gunController != null)
-            gunController.enabled = false;
+            // gunController.enabled = false;
+            Destroy(gunController.gameObject);
+
 
         // disable colliders so player can fly off-screen
         foreach (var col in GetComponentsInChildren<Collider2D>())

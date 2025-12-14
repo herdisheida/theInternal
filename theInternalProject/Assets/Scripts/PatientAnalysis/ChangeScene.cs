@@ -29,7 +29,7 @@ public class ChangeScene : MonoBehaviour
                 }
             }
             else
-            {
+            {   
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     if (GameManager.instance?.patientLevelsPlayed == 3)
