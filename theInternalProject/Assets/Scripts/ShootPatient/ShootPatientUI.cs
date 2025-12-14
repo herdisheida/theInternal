@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PatientStatusUI : MonoBehaviour
+public class ShootPatientUI : MonoBehaviour
 {
     [Header("References")]
     public PatientData patientData;
@@ -18,12 +18,22 @@ public class PatientStatusUI : MonoBehaviour
 
     void Start()
     {
+        if (GameManager.instance == null) {
+            Debug.LogError("No GameManager in scene!");
+            return;
+        }
+
+        if (GameManager.instance.currentPatient == null) {
+            Debug.LogError("No current patient in GameManager!");
+            return;
+        }
+
         // get current patient data
         if (patientData == null && GameManager.instance != null) { patientData = GameManager.instance.currentPatient; }
 
         if (patientData == null || patientImage == null)
         {
-            Debug.LogWarning($"{name}: PatientStatusUI missing references.");
+            Debug.LogWarning($"{name}: ShootPatientUI missing references.");
             enabled = false;
             return;
         }
