@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class GunController : MonoBehaviour
 {
@@ -80,12 +81,14 @@ public class GunController : MonoBehaviour
     }
 
     
-    System.Collections.IEnumerator Reload()
+    IEnumerator Reload()
     {
         isReloading = true;
         if (gunUI != null) gunUI.showReloading();
 
         yield return new WaitForSeconds(reloadTimer);
+
+        AudioManager.instance?.Reload();
 
         currentBullets = maxBullets;
         if (gunUI != null) gunUI.UpdateAmmoUI(currentBullets, maxBullets);

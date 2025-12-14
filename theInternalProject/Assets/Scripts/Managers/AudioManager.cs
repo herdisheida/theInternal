@@ -54,6 +54,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip damageTakenClip;
     public AudioClip dyingClip;
     public AudioClip attackClip;        // medicine bullet shooting
+    public AudioClip reloadClip;
 
     [Header("Player Shoot Patient SFX")]
     public AudioClip shootPatientClip;    // shoot infected patient
@@ -241,6 +242,7 @@ public class AudioManager : MonoBehaviour
     public void DamageTaken()        => PlaySFX(damageTakenClip);
     public void Death()              => PlaySFX(dyingClip);
     public void Attack()             => PlaySFX(attackClip);
+    public void Reload()             => PlaySFX(reloadClip);
 
     public void ShootPatient()       => PlaySFX(shootPatientClip);
     public void HeavyBreathing()     => PlaySFX(heavyBreathingClip);
