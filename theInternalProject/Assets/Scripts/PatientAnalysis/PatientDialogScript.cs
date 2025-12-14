@@ -66,6 +66,10 @@ public class PatientDialogScript : MonoBehaviour
 
         if (analizedPatient.status == PatientStatus.Saved) // makes sure to add the correct lines and names for each instance
         {
+            
+            // after entering and winning boss fight in patient
+            AudioManager.instance?.PlayPatientSavedMusic();
+
             switch (analizedPatient.patientType) 
             {
                 case PatientType.Zombie:
@@ -83,7 +87,9 @@ public class PatientDialogScript : MonoBehaviour
             }
         }
         else
-            {
+        {
+                // Infected lines (before entering patient)
+
             switch (analizedPatient.patientType) 
             {
                 case PatientType.Zombie:
@@ -126,5 +132,7 @@ public class PatientDialogScript : MonoBehaviour
     {
         yield return null;
         GameManager.instance.dialogOver = true;
+
+        if (GameManager.instance.dialogOver = true) AudioManager.instance?.StopMusic();
     }
 }
