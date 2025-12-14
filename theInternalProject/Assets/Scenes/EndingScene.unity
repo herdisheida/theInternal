@@ -718,6 +718,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2065831753065413071, guid: 052794737db8040bbb5307e9abe5f294, type: 3}
+      propertyPath: goodEndingMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 85c60445bb6a1468f8776f6f0d29cdef, type: 3}
+    - target: {fileID: 2065831753065413071, guid: 052794737db8040bbb5307e9abe5f294, type: 3}
+      propertyPath: patientSavedMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 85c60445bb6a1468f8776f6f0d29cdef, type: 3}
     - target: {fileID: 4694619297270320214, guid: 052794737db8040bbb5307e9abe5f294, type: 3}
       propertyPath: m_LocalPosition.x
       value: 302.10342
