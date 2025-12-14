@@ -140,11 +140,12 @@ public class BossController_Werewolf : MonoBehaviour
         if (currentHealth <= 0 && !isDying)
         {
             isDying = true;
+            player_hp.isInvincible = true; // make player invincible upon boss death
+
             GameManager.instance?.MarkPatientSaved();
             GameManager.instance.PatientsSavedDict["Werewolf"] = true;
             StartCoroutine(Die());
 
-            player_hp.isInvincible = true; // make player invincible upon boss death
         }
     }
 

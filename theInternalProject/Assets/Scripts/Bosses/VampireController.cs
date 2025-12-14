@@ -271,6 +271,7 @@ public class Vampire : MonoBehaviour
     public void TriggerDeath()
     {
         isDead = true;
+        player_hp.isInvincible = true; // make player invincible upon boss death
 
         // stop everything BEFORE starting the death sequence
         StopAllCoroutines();
@@ -279,8 +280,6 @@ public class Vampire : MonoBehaviour
         GameManager.instance?.MarkPatientSaved();
         GameManager.instance.PatientsSavedDict["Vampire"] = true;
         StartCoroutine(DeathSequence());
-
-        player_hp.isInvincible = true; // make player invincible upon boss death
     }
 
     IEnumerator DeathSequence()
