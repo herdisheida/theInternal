@@ -27,7 +27,6 @@ public class EndingScreen : MonoBehaviour
 
     [Header("Timings")]
     public float fadeDuration = 0.8f;   // how long to fade in/out
-    // public float holdDuration = 3f;     // how long text stays fully visible
     public bool loopLines = false;      // if true, keep cycling the lines
     private EndingType ending;
     private int savedCount;
@@ -129,27 +128,13 @@ public class EndingScreen : MonoBehaviour
             // fade IN
             yield return StartCoroutine(FadeTextAlpha(0f, 1f, fadeDuration));
 
-            // // hold
-            // yield return new WaitForSeconds(holdDuration);
-
-            // // fade OUT
-            // yield return StartCoroutine(FadeTextAlpha(1f, 0f, fadeDuration));
-
             // next line
             index++;
 
             if (index >= lines.Length)
             {
-                if (loopLines)
-                {
-                    index = 0; // start over
-                }
-                // else
-                // {
-                //     // go to credits after last line
-                //     StartCoroutine(GoToCreditsAfterDelay());
-                //     yield break;
-                // }
+                if (loopLines) index = 0; // start over
+                    else yield break;
             }
         }
     }
