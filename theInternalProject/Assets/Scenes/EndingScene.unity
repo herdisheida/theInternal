@@ -539,11 +539,11 @@ MonoBehaviour:
     but there was nothing I could do.\n\nEven so, I\u2019ll keep doing my best, maybe
     my efforts will still make a difference in these difficult times."
   partialyBadLines:
-  - "Diary entry 748\n\nOnly one patient survived totday. With each loss, it gets
+  - "Diary entry 748\n\nOnly one patient survived today. With each loss, it gets
     harder to believe things will get better.\n\nI\u2019ll keep trying\u2026 but
     hope is slipping away."
   badLines:
-  - "Diary entry 748\n\nI couldn't save anyona today.\n\nI can\u2019t keep doing
+  - "Diary entry 748\n\nI couldn't save anyone today.\n\nI can\u2019t keep doing
     this\u2026\nending the lives of innocent people who only wanted help."
   fadeDuration: 0.2
   loopLines: 0

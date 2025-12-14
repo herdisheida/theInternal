@@ -38,6 +38,7 @@ public class IntroTextSequence : MonoBehaviour
 
         while (currentIndex < lines.Length)
         {
+            if (currentIndex > 0) AudioManager.instance?.ButtonClick();
             dialogueText.text = lines[currentIndex];
             currentIndex++;
 
