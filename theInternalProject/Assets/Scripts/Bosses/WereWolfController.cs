@@ -69,6 +69,12 @@ public class BossController_Werewolf : MonoBehaviour
     private bool isDying = false;
     private Coroutine BoomerangAttack; 
 
+    private HealthSystem player_hp; // player
+
+    void Awake()
+    {
+        player_hp = GetComponentInParent<HealthSystem>();
+    }
 
     void Start()
     {
@@ -137,6 +143,8 @@ public class BossController_Werewolf : MonoBehaviour
             GameManager.instance?.MarkPatientSaved();
             GameManager.instance.PatientsSavedDict["Werewolf"] = true;
             StartCoroutine(Die());
+
+            player_hp.isInvincible = true; // make player invincible upon boss death
         }
     }
 

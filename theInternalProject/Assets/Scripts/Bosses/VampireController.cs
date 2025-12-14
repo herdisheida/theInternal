@@ -63,6 +63,14 @@ public class Vampire : MonoBehaviour
     // phase 2
     public bool phase2 = false;
 
+    private HealthSystem player_hp; // player
+
+
+    void Awake()
+    {
+        player_hp = GetComponentInParent<HealthSystem>();
+    }
+
     void Start()
     {
         AudioManager.instance?.PlayVampireBossBattleMusic();
@@ -271,6 +279,8 @@ public class Vampire : MonoBehaviour
         GameManager.instance?.MarkPatientSaved();
         GameManager.instance.PatientsSavedDict["Vampire"] = true;
         StartCoroutine(DeathSequence());
+
+        player_hp.isInvincible = true; // make player invincible upon boss death
     }
 
     IEnumerator DeathSequence()
