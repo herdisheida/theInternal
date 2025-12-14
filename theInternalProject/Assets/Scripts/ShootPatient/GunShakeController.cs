@@ -200,10 +200,10 @@ public class GunShakeController : MonoBehaviour
         if (gunImage != null && shootGunSprite != null)
         {
             gunImage.sprite = shootGunSprite;
-            GameManager.instance?.MarkPatientDead();
             gunImage.sprite = idleGunSprite;
         }
 
+        GameManager.instance?.MarkPatientDead();
         EndShake();
         yield return new WaitForSeconds(shootFlashDuration);
     
