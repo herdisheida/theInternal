@@ -228,13 +228,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Script Writer:\nHera\nHerd\xEDs\nBrynhildur\nJ\xFAl\xEDa\n\nAnimation/Graphics:\nHera\nHerd\xEDs\nBrynhildur\nJ\xFAl\xEDa\n\nDevelopers:\nHera\nHerd\xEDs\nBrynhildur\nJ\xFAl\xEDa\n\nAssets:\nMostly
-    all created by our team\n\nFonts:\nPixel Font: https://fonts.google.com/specimen/Pixelify+Sans?query=pixel\nReenie
+  m_text: "Script Writer:\nHera\nHerd\xEDs\nBrynhildur\nJ\xFAl\xEDa\n\nAnimation/Graphics:\nHera\nHerd\xEDs\nBrynhildur\nJ\xFAl\xEDa\n\nDevelopers:\nHera\nHerd\xEDs\nBrynhildur\nJ\xFAl\xEDa\n\n\nAssets:\nMostly
+    all created by our team\n\n\nFonts:\nPixel Font: https://fonts.google.com/specimen/Pixelify+Sans?query=pixel\nReenie
     Beenie Font - https://fonts.google.com/specimen/Reenie+Beanie?preview.text=Diary%20entry%20748%20Today%20I%20saved%20all%20of%20my%20three%20patients.%20For%20the%20first%20time%20in%20a%20while,%20things%20feel%20like%20they%E2%80%99re%20turning%20around.%20I%27m%20hopeful%20for%20the%20future.%20I%27ll%20continue%20to%20save%20as%20many%20people%20as%20I%20can.&query=handwritten\nCaveat
-    Font - https://fonts.google.com/specimen/Caveat?query=cav\n\nMusic/Soundtracks:\nDeltarune
+    Font - https://fonts.google.com/specimen/Caveat?query=cav\n\n\n\nMusic/Soundtracks:\nDeltarune
     Soundtracks\nZombie boss battle - https://www.youtube.com/watch?v=Qgez3yzhSC0\nVampire
     boss battle music - https://www.youtube.com/watch?v=dUNOfNad59Q\nWerewolf boss
-    battle music - https://www.youtube.com/watch?v=fjKssef12cQ\n\nSound Effects:\nGun
+    battle music - https://www.youtube.com/watch?v=fjKssef12cQ\n\n\n\nSound Effects:\nGun
     sound effect - https://www.youtube.com/watch?v=lGNwnstqAO4\nExhale sound effect
     - https://pixabay.com/sound-effects/search/exhale/\nHeavy breathing sound effect
     - https://pixabay.com/sound-effects/search/heavy%20breathing/\nButton click -
@@ -250,8 +250,8 @@ MonoBehaviour:
     - https://www.youtube.com/watch?v=_MjKshi-HZo\nRobot shutting down - https://www.youtube.com/watch?v=_TBexXFaZyc\nDog
     fight sound - https://www.youtube.com/watch?v=d-5fV8Q5TIM\nVampire sound effect
     - https://www.myinstants.com/en/search/?name=vampire\nWerewolf chomp sound effect
-    - https://pixabay.com/sound-effects/search/dog%20bite/\n\nImages:\nFleshy background
-    - https://www.shutterstock.com/video/clip-1007681740-animated-hellish-inferno-extreme-intense-super-heated"
+    - https://pixabay.com/sound-effects/search/dog%20bite/\n\n\n\nImages:\nFleshy
+    background - https://www.shutterstock.com/video/clip-1007681740-animated-hellish-inferno-extreme-intense-super-heated"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ae54e4a9236384581b2bd9316f43a841, type: 2}
   m_sharedMaterial: {fileID: 4653624503363158687, guid: ae54e4a9236384581b2bd9316f43a841, type: 2}
