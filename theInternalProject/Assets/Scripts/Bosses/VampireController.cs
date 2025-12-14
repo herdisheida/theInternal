@@ -133,6 +133,7 @@ public class Vampire : MonoBehaviour
             phase2 = true;
             AudioManager.instance?.VampireGrowl();
             StopAllCoroutines();
+            busy = false;
             StartCoroutine(PhaseTwoAttackLoop());
         }
 
