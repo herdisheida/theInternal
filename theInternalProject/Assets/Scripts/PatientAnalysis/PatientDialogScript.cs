@@ -51,7 +51,13 @@ public class PatientDialogScript : MonoBehaviour
         GameManager.instance.dialogOver = false; // Initialize per call to AnalysisScreen
         started = false;
         dialogNumber = 0;
+
+        if (GameManager.instance.currentPatient.status == PatientStatus.Saved)
+        {
+            AudioManager.instance?.PlayPatientSavedMusic();
+        }
     }
+
     void Update()
     {
         analizedPatient = GameManager.instance.currentPatient;
@@ -66,9 +72,7 @@ public class PatientDialogScript : MonoBehaviour
 
         if (analizedPatient.status == PatientStatus.Saved) // makes sure to add the correct lines and names for each instance
         {
-            
-            // after entering and winning boss fight in patient
-            AudioManager.instance?.PlayPatientSavedMusic();
+                        
 
             switch (analizedPatient.patientType) 
             {
