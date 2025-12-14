@@ -57,7 +57,7 @@ MonoBehaviour:
   vampireBossBattleMusic: {fileID: 8300000, guid: ae6fdd4c33bca44afac0451eb6417acb, type: 3}
   goodEndingMusic: {fileID: 8300000, guid: 7a4c26b5ff5fe4b188ea4cd7ecb8f9a0, type: 3}
   badEndingMusic: {fileID: 8300000, guid: f132e9e754d7048faa88479993aac34d, type: 3}
-  partialEndingMusic: {fileID: 0}
+  partialEndingMusic: {fileID: 8300000, guid: ca429688fce5742a3b2ef873f8a59f66, type: 3}
   creditsMusic: {fileID: 8300000, guid: ec6eb95a2924b4700be5c359d2a668e3, type: 3}
   buttonClickClip: {fileID: 8300000, guid: ccac5e46673c84b52b31fc7ea8014b8f, type: 3}
   weaponOnlineClip: {fileID: 8300000, guid: a4370b5d0579849d9b62b92f0b0f51f4, type: 3}
