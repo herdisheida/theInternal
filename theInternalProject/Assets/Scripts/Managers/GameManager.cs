@@ -93,7 +93,6 @@ public class GameManager : MonoBehaviour
     public void MarkPatientDead()
     {
         if (currentPatient == null) return;
-        if (currentPatient.status != PatientStatus.None) return;
 
         // Can't kill someone already saved ( doctor is not a psycho )
         if (currentPatient.status == PatientStatus.Saved)
