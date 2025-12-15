@@ -603,6 +603,10 @@ PrefabInstance:
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7916299091387696680, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
+      propertyPath: sceneStartDelay
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7916299091387696680, guid: 7147e8debe8bede4bba78f4f2fd91972, type: 3}
       propertyPath: CircleWavePrefab
       value: 
       objectReference: {fileID: 4842515579273989020, guid: 2398d6d064bc4d4488559a10d5d14146, type: 3}

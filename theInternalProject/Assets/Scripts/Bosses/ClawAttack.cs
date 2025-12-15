@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ClawAttack : MonoBehaviour
 {
+
+    
     [Header("Damage Settings")]
     public int damage = 20;
 

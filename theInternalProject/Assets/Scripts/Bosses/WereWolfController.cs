@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class BossController_Werewolf : MonoBehaviour
 {
+    [Header("Scene Start Delay")]
+    public float sceneStartDelay = 1f;
+
+    private float sceneStartTime;
+    private bool attacksAllowed = false;
+
     public Transform player;
     [HideInInspector] public bool isAttacking = false;
 
@@ -76,6 +82,7 @@ public class BossController_Werewolf : MonoBehaviour
 
     void Start()
     {
+
         if (player != null)
             playerHP = player.GetComponent<HealthSystem>();
 
@@ -92,10 +99,25 @@ public class BossController_Werewolf : MonoBehaviour
 
         if (trailEffect != null)
             trailEffect.time = 0f;
+
+        sceneStartTime = Time.time;
+        attacksAllowed = false;
+        SetClawsActive(false);
+
     }
 
     void Update()
     {
+        if (!attacksAllowed)
+        {
+            if (Time.time - sceneStartTime >= sceneStartDelay)
+            {
+                attacksAllowed = true;
+                SetClawsActive(true);
+            }
+        }
+
+
         MoveBoss();
         UpdateHealthBar();
 
@@ -243,7 +265,8 @@ public class BossController_Werewolf : MonoBehaviour
     // attacks
     void TryBoomerangAttack()
     {
-        if (isDying) return;
+        if (!attacksAllowed || isDying)
+            return;
 
         float dist = Mathf.Abs(player.position.x - transform.position.x);
 
@@ -251,9 +274,13 @@ public class BossController_Werewolf : MonoBehaviour
             StartCoroutine(BoomerangAttackRoutine());
     }
 
+
     // bommerang / dash attack
     IEnumerator BoomerangAttackRoutine()
     {
+        if (!attacksAllowed)
+            yield break;
+
         AudioManager.instance?.WerewolfGrowl();
         AudioManager.instance?.WerewolfChomp();
 
@@ -427,4 +454,13 @@ public class BossController_Werewolf : MonoBehaviour
         else
             trailEffect.time = 0f;
     }
+
+    void SetClawsActive(bool active)
+    {
+        ClawShooter[] claws = GetComponentsInChildren<ClawShooter>(true);
+        foreach (var claw in claws)
+            claw.enabled = active;
+    }
+
+
 }
